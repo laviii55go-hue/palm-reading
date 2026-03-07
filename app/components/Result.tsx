@@ -2,6 +2,7 @@
 
 import { ReadingResult, FortuneType } from "../types";
 import { SECTION_STYLES, FORTUNE_OPTIONS } from "../data/fortunes";
+import AdBanner from "./AdBanner";
 
 interface Props {
   result: ReadingResult;
@@ -89,6 +90,8 @@ export default function Result({ result, fortuneType, onReset }: Props) {
           <span>LINE</span> でシェア
         </button>
       </div>
+
+      <AdBanner />
 
       <button
         onClick={onReset}

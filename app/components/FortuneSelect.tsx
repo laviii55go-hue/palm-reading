@@ -2,6 +2,7 @@
 
 import { FortuneType } from "../types";
 import { FORTUNE_OPTIONS } from "../data/fortunes";
+import AdBanner from "./AdBanner";
 
 interface Props {
   selected: FortuneType | null;
@@ -50,6 +51,8 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       >
         手相を入力する →
       </button>
+
+      <AdBanner />
     </div>
   );
 }
