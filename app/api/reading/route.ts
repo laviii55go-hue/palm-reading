@@ -64,8 +64,12 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ result });
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.error("API Error:", message);
+    const raw = error instanceof Error ? error.message : String(error);
+    const isOverloaded = raw.includes("overloaded") || raw.includes("529");
+    const message = isOverloaded
+      ? "ただいまアクセスが集中しています。少し時間をおいて再度お試しください。"
+      : raw;
+    console.error("API Error:", raw);
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
