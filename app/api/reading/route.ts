@@ -45,33 +45,54 @@ const FORTUNE_CONFIG: Record<string, {
   },
 };
 
+const MAX_RETRIES = 3;
+const RETRY_DELAY_MS = 2000;
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function POST(req: NextRequest) {
-  try {
-    const { selections, fortuneType } = await req.json();
-    const config = FORTUNE_CONFIG[fortuneType] ?? FORTUNE_CONFIG.general;
-    const prompt = buildPrompt(selections, config);
+  const { selections, fortuneType } = await req.json();
+  const config = FORTUNE_CONFIG[fortuneType] ?? FORTUNE_CONFIG.general;
+  const prompt = buildPrompt(selections, config);
 
-    const message = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 1500,
-      messages: [{ role: "user", content: prompt }],
-    });
+  let lastError = "";
 
-    const text = message.content[0].type === "text" ? message.content[0].text : "";
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error("レスポンスの形式が正しくありません");
-    const result = JSON.parse(jsonMatch[0]);
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const message = await client.messages.create({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 1500,
+        messages: [{ role: "user", content: prompt }],
+      });
 
-    return NextResponse.json({ result });
-  } catch (error) {
-    const raw = error instanceof Error ? error.message : String(error);
-    const isOverloaded = raw.includes("overloaded") || raw.includes("529");
-    const message = isOverloaded
-      ? "ただいまアクセスが集中しています。少し時間をおいて再度お試しください。"
-      : raw;
-    console.error("API Error:", raw);
-    return NextResponse.json({ error: message }, { status: 500 });
+      const text = message.content[0].type === "text" ? message.content[0].text : "";
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error("レスポンスの形式が正しくありません");
+      const result = JSON.parse(jsonMatch[0]);
+
+      return NextResponse.json({ result });
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : String(error);
+      const isOverloaded = lastError.includes("overloaded") || lastError.includes("529");
+
+      console.error(`API Error (attempt ${attempt}/${MAX_RETRIES}):`, lastError);
+
+      if (isOverloaded && attempt < MAX_RETRIES) {
+        await sleep(RETRY_DELAY_MS);
+        continue;
+      }
+      break;
+    }
   }
+
+  const isOverloaded = lastError.includes("overloaded") || lastError.includes("529");
+  const message = isOverloaded
+    ? "ただいまアクセスが集中しています。少し時間をおいて再度お試しください。"
+    : lastError;
+
+  return NextResponse.json({ error: message }, { status: 500 });
 }
 
 function buildPrompt(
