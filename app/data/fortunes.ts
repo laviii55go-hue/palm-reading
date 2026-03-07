@@ -1,0 +1,98 @@
+import { FortuneOption } from "../types";
+
+export const FORTUNE_OPTIONS: FortuneOption[] = [
+  {
+    id: "general",
+    label: "総合運",
+    emoji: "✨",
+    description: "あなたの運勢全体を鑑定",
+    gradient: "from-purple-50 to-indigo-100",
+    border: "border-purple-200",
+    text: "text-purple-700",
+  },
+  {
+    id: "love",
+    label: "恋愛運",
+    emoji: "💕",
+    description: "恋愛・パートナーシップ",
+    gradient: "from-rose-50 to-pink-100",
+    border: "border-rose-200",
+    text: "text-rose-700",
+  },
+  {
+    id: "marriage",
+    label: "結婚運",
+    emoji: "💍",
+    description: "結婚・長期的な縁",
+    gradient: "from-pink-50 to-fuchsia-100",
+    border: "border-pink-200",
+    text: "text-pink-700",
+  },
+  {
+    id: "career",
+    label: "仕事運",
+    emoji: "💼",
+    description: "キャリア・仕事の運勢",
+    gradient: "from-sky-50 to-blue-100",
+    border: "border-sky-200",
+    text: "text-sky-700",
+  },
+  {
+    id: "money",
+    label: "金運",
+    emoji: "💰",
+    description: "財運・お金の流れ",
+    gradient: "from-amber-50 to-yellow-100",
+    border: "border-amber-200",
+    text: "text-amber-700",
+  },
+  {
+    id: "health",
+    label: "健康運",
+    emoji: "🌿",
+    description: "健康・生命力",
+    gradient: "from-emerald-50 to-green-100",
+    border: "border-emerald-200",
+    text: "text-emerald-700",
+  },
+  {
+    id: "relationship",
+    label: "人間関係",
+    emoji: "🤝",
+    description: "人脈・対人関係",
+    gradient: "from-orange-50 to-amber-100",
+    border: "border-orange-200",
+    text: "text-orange-700",
+  },
+];
+
+export const SECTION_STYLES: Record<string, { gradient: string; border: string; text: string; emoji: string; title: string }> = {
+  lifeLine: {
+    gradient: "from-emerald-50 to-green-100",
+    border: "border-emerald-200",
+    text: "text-emerald-700",
+    emoji: "💚",
+    title: "健康運・生命力",
+  },
+  heartLine: {
+    gradient: "from-rose-50 to-pink-100",
+    border: "border-rose-200",
+    text: "text-rose-700",
+    emoji: "💕",
+    title: "恋愛運・感情面",
+  },
+  headLine: {
+    gradient: "from-sky-50 to-blue-100",
+    border: "border-sky-200",
+    text: "text-sky-700",
+    emoji: "🧠",
+    title: "知性・思考傾向",
+  },
+  fateLine: {
+    gradient: "from-violet-50 to-purple-100",
+    border: "border-violet-200",
+    text: "text-violet-700",
+    emoji: "⭐",
+    title: "仕事運・運命",
+  },
+};
