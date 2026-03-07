@@ -66,10 +66,6 @@ export default function PalmReading() {
         });
         const data = await res.json();
         if (!res.ok) {
-          if (data.overloaded && attempt < MAX_RETRIES) {
-            await new Promise((r) => setTimeout(r, RETRY_DELAY));
-            continue;
-          }
           throw new Error(data.error || "API error");
         }
         setResult(data.result);

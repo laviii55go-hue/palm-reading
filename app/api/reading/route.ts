@@ -1,7 +1,7 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
-const client = new Anthropic();
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 const FORTUNE_CONFIG: Record<string, {
   label: string;
@@ -51,13 +51,9 @@ export async function POST(req: NextRequest) {
     const config = FORTUNE_CONFIG[fortuneType] ?? FORTUNE_CONFIG.general;
     const prompt = buildPrompt(selections, config);
 
-    const message = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 1500,
-      messages: [{ role: "user", content: prompt }],
-    });
-
-    const text = message.content[0].type === "text" ? message.content[0].text : "";
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const response = await model.generateContent(prompt);
+    const text = response.response.text();
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error("レスポンスの形式が正しくありません");
     const result = JSON.parse(jsonMatch[0]);
@@ -65,12 +61,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ result });
   } catch (error) {
     const raw = error instanceof Error ? error.message : String(error);
-    const isOverloaded = raw.includes("overloaded") || raw.includes("529");
     console.error("API Error:", raw);
-    return NextResponse.json(
-      { error: raw, overloaded: isOverloaded },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: raw }, { status: 500 });
   }
 }
 
