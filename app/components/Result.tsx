@@ -27,17 +27,26 @@ export default function Result({ result, fortuneType, onReset }: Props) {
   const fortune = FORTUNE_OPTIONS.find((f) => f.id === fortuneType)!;
 
   const siteUrl = "https://jade-torte-9b5cde.netlify.app/";
-  const quote = result.summary.slice(0, 45);
-  const shareText = `手相診断したら衝撃の結果が出た😱\n\n「${quote}...」\n\n無料で試せるよ👇\n${siteUrl}\n#手相診断 #占い`;
+  const suffix = `\n\n無料で試せるよ👇\n${siteUrl}\n#手相診断 #占い`;
+
+  // X：280文字制限のため全文が入らない場合は切り詰める
+  const xHeader = `手相診断したら衝撃の結果が出た😱\n\n「`;
+  const xFooter = `」${suffix}`;
+  const xMaxSummary = 280 - xHeader.length - xFooter.length;
+  const xSummary = result.summary.length <= xMaxSummary
+    ? result.summary
+    : result.summary.slice(0, xMaxSummary - 1) + "…";
+  const xText = `${xHeader}${xSummary}${xFooter}`;
+
+  // LINE：文字数制限なし。全文そのまま
+  const lineText = `手相診断したら衝撃の結果が出た😱\n\n「${result.summary}」${suffix}`;
 
   const handleShareX = () => {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
-    window.open(url, "_blank");
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(xText)}`, "_blank");
   };
 
   const handleShareLine = () => {
-    const url = `https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`;
-    window.open(url, "_blank");
+    window.open(`https://line.me/R/msg/text/?${encodeURIComponent(lineText)}`, "_blank");
   };
 
   return (
