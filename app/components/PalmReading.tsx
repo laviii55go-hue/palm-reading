@@ -53,21 +53,39 @@ export default function PalmReading() {
   const fetchReading = async () => {
     setLoading(true);
     setError(null);
-    try {
-      const res = await fetch("/api/reading", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ selections, fortuneType }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "API error");
-      setResult(data.result);
-      setPhase("result");
-    } catch (e) {
-      setError(`エラー: ${e instanceof Error ? e.message : String(e)}`);
-    } finally {
-      setLoading(false);
+
+    const MAX_RETRIES = 3;
+    const RETRY_DELAY = 2000;
+
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        const res = await fetch("/api/reading", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ selections, fortuneType }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          if (data.overloaded && attempt < MAX_RETRIES) {
+            await new Promise((r) => setTimeout(r, RETRY_DELAY));
+            continue;
+          }
+          throw new Error(data.error || "API error");
+        }
+        setResult(data.result);
+        setPhase("result");
+        setLoading(false);
+        return;
+      } catch (e) {
+        if (attempt === MAX_RETRIES) {
+          setError(`エラー: ${e instanceof Error ? e.message : String(e)}`);
+          setLoading(false);
+          return;
+        }
+        await new Promise((r) => setTimeout(r, RETRY_DELAY));
+      }
     }
+    setLoading(false);
   };
 
   const handleReset = () => {
