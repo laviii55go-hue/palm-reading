@@ -135,6 +135,9 @@ export default function PalmReading() {
             <Result result={result} fortuneType={fortuneType!} onReset={handleReset} />
           ) : null}
         </div>
+        <div className="text-center mt-4">
+          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
+        </div>
       </div>
     </div>
   );
