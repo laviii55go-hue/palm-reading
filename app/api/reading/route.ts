@@ -1,7 +1,7 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { NextRequest, NextResponse } from "next/server";
 
-const client = new Anthropic();
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const FORTUNE_CONFIG: Record<string, {
   label: string;
@@ -51,13 +51,13 @@ export async function POST(req: NextRequest) {
     const config = FORTUNE_CONFIG[fortuneType] ?? FORTUNE_CONFIG.general;
     const prompt = buildPrompt(selections, config);
 
-    const message = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
+    const message = await client.chat.completions.create({
+      model: "gpt-4o-mini",
       max_tokens: 1500,
       messages: [{ role: "user", content: prompt }],
     });
 
-    const text = message.content[0].type === "text" ? message.content[0].text : "";
+    const text = message.choices[0].message.content ?? "";
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error("レスポンスの形式が正しくありません");
     const result = JSON.parse(jsonMatch[0]);
