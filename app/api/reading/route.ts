@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     const config = FORTUNE_CONFIG[fortuneType] ?? FORTUNE_CONFIG.general;
     const prompt = buildPrompt(selections, config);
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const response = await model.generateContent(prompt);
     const text = response.response.text();
     const jsonMatch = text.match(/\{[\s\S]*\}/);
