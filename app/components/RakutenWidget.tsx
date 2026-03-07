@@ -1,36 +1,48 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function RakutenWidget() {
-  useEffect(() => {
-    (window as unknown as Record<string, unknown>)["rakuten_affiliateId"] = "0ea62065.34400275.0ea62066.204f04c0";
-    (window as unknown as Record<string, unknown>)["rakuten_items"] = "ranking";
-    (window as unknown as Record<string, unknown>)["rakuten_genreId"] = "0";
-    (window as unknown as Record<string, unknown>)["rakuten_recommend"] = "on";
-    (window as unknown as Record<string, unknown>)["rakuten_design"] = "slide";
-    (window as unknown as Record<string, unknown>)["rakuten_size"] = "468x60";
-    (window as unknown as Record<string, unknown>)["rakuten_target"] = "_blank";
-    (window as unknown as Record<string, unknown>)["rakuten_border"] = "on";
-    (window as unknown as Record<string, unknown>)["rakuten_auto_mode"] = "on";
-    (window as unknown as Record<string, unknown>)["rakuten_adNetworkId"] = "a8Net";
-    (window as unknown as Record<string, unknown>)["rakuten_adNetworkUrl"] = "https%3A%2F%2Frpx.a8.net%2Fsvt%2Fejp%3Fa8mat%3D4AZAW7%2B8RJREA%2B2HOM%2BBS629%26rakuten%3Dy%26a8ejpredirect%3D";
-    (window as unknown as Record<string, unknown>)["rakuten_pointbackId"] = "a26030787012_4AZAW7_8RJREA_2HOM_BS629";
-    (window as unknown as Record<string, unknown>)["rakuten_mediaId"] = "20011816";
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    const script = document.createElement("script");
-    script.src = "//xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js";
-    script.async = true;
-    document.body.appendChild(script);
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // 変数設定スクリプトをコンテナに挿入
+    const inlineScript = document.createElement("script");
+    inlineScript.type = "text/javascript";
+    inlineScript.text = `
+      rakuten_affiliateId="0ea62065.34400275.0ea62066.204f04c0";
+      rakuten_items="ranking";
+      rakuten_genreId="0";
+      rakuten_recommend="on";
+      rakuten_design="slide";
+      rakuten_size="468x60";
+      rakuten_target="_blank";
+      rakuten_border="on";
+      rakuten_auto_mode="on";
+      rakuten_adNetworkId="a8Net";
+      rakuten_adNetworkUrl="https%3A%2F%2Frpx.a8.net%2Fsvt%2Fejp%3Fa8mat%3D4AZAW7%2B8RJREA%2B2HOM%2BBS629%26rakuten%3Dy%26a8ejpredirect%3D";
+      rakuten_pointbackId="a26030787012_4AZAW7_8RJREA_2HOM_BS629";
+      rakuten_mediaId="20011816";
+    `;
+    container.appendChild(inlineScript);
+
+    // ウィジェット本体スクリプトをコンテナに挿入
+    const widgetScript = document.createElement("script");
+    widgetScript.type = "text/javascript";
+    widgetScript.src = "//xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js";
+    container.appendChild(widgetScript);
 
     return () => {
-      document.body.removeChild(script);
+      container.innerHTML = "";
     };
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-1 py-1">
-      <div id="rakuten_widget" />
+    <div className="flex flex-col items-center gap-1 py-1 w-full overflow-hidden">
+      <div ref={containerRef} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         style={{ border: 0 }}
