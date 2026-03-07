@@ -11,7 +11,7 @@ export default function AdBanner() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          border={0}
+          style={{ border: 0 }}
           width={468}
           height={120}
           alt="ココナラ占い"
@@ -19,8 +19,9 @@ export default function AdBanner() {
           className="max-w-full rounded-lg"
         />
       </a>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        border={0}
+        style={{ border: 0 }}
         width={1}
         height={1}
         src="https://www14.a8.net/0.gif?a8mat=4AZAW7+8XI3G2+2PEO+1BSGQ9"
