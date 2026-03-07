@@ -25,7 +25,9 @@ function Stars({ score }: { score: number }) {
 export default function Result({ result, fortuneType, onReset }: Props) {
   const fortune = FORTUNE_OPTIONS.find((f) => f.id === fortuneType)!;
 
-  const shareText = `【手相診断】${fortune.emoji} ${fortune.label}の鑑定結果\n\n${result.summary.slice(0, 80)}...\n\n#手相診断 #手相`;
+  const siteUrl = "https://jade-torte-9b5cde.netlify.app/";
+  const quote = result.summary.slice(0, 45);
+  const shareText = `手相診断したら衝撃の結果が出た😱\n\n「${quote}...」\n\n無料で試せるよ👇\n${siteUrl}\n#手相診断 #占い`;
 
   const handleShareX = () => {
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
