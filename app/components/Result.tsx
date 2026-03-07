@@ -3,6 +3,7 @@
 import { ReadingResult, FortuneType } from "../types";
 import { SECTION_STYLES, FORTUNE_OPTIONS } from "../data/fortunes";
 import AdBanner from "./AdBanner";
+import RakutenWidget from "./RakutenWidget";
 
 interface Props {
   result: ReadingResult;
@@ -94,6 +95,8 @@ export default function Result({ result, fortuneType, onReset }: Props) {
       </div>
 
       <AdBanner />
+
+      <RakutenWidget />
 
       <button
         onClick={onReset}
