@@ -27,7 +27,12 @@ export default function LineStep({
     return selections[q.dependsOn.key] === q.dependsOn.value;
   });
 
-  const isComplete = visibleQuestions.every((q) => selections[q.key]);
+  const isComplete = visibleQuestions.every((q) => {
+    if (selections[q.key] === "other") {
+      return !!selections[`${q.key}_other`]?.trim();
+    }
+    return !!selections[q.key];
+  });
 
   return (
     <div className="space-y-6">
@@ -66,7 +71,26 @@ export default function LineStep({
                   {opt.label}
                 </button>
               ))}
+              <button
+                onClick={() => onChange(q.key, "other")}
+                className={`px-4 py-2 rounded-full border text-sm transition-colors ${
+                  selections[q.key] === "other"
+                    ? "bg-purple-600 text-white border-purple-600"
+                    : "bg-white text-gray-600 border-gray-300 hover:border-purple-400"
+                }`}
+              >
+                その他
+              </button>
             </div>
+            {selections[q.key] === "other" && (
+              <input
+                type="text"
+                placeholder="手相の特徴を入力してください"
+                value={selections[`${q.key}_other`] ?? ""}
+                onChange={(e) => onChange(`${q.key}_other`, e.target.value)}
+                className="w-full mt-2 px-4 py-2 rounded-xl border border-purple-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+              />
+            )}
           </div>
         ))}
       </div>

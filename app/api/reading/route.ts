@@ -92,7 +92,11 @@ function buildPrompt(
       lineTexts.push(`${line.name}: なし`);
     } else {
       const details = line.fields
-        .map((f) => selections[`${line.key}_${f}`])
+        .map((f) => {
+          const val = selections[`${line.key}_${f}`];
+          if (val === "other") return selections[`${line.key}_${f}_other`] ?? "その他";
+          return val;
+        })
         .filter(Boolean)
         .join("、");
       lineTexts.push(`${line.name}: あり（${details}）`);
