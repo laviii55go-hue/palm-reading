@@ -5,6 +5,7 @@ import { ReadingResult, FortuneType, Selections } from "../types";
 import { SECTION_STYLES, FORTUNE_OPTIONS } from "../data/fortunes";
 import AdBanner from "./AdBanner";
 import RakutenWidget from "./RakutenWidget";
+import RakutenFortuneItems from "./RakutenFortuneItems";
 
 interface Props {
   result: ReadingResult;
@@ -150,6 +151,8 @@ export default function Result({ result, fortuneType, selections, onReset }: Pro
           <span>LINE</span> でシェア
         </button>
       </div>
+
+      <RakutenFortuneItems fortuneType={fortuneType} />
 
       <AdBanner />
 
