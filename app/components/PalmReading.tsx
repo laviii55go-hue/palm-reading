@@ -98,8 +98,8 @@ export default function PalmReading() {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-purple-900">手相診断</h1>
-          <p className="text-gray-500 text-sm mt-1">あなたの手相から運勢を鑑定します</p>
+          <h1 className="text-2xl font-bold text-purple-900">手のひらの予言者</h1>
+          <p className="text-gray-500 text-sm mt-1">1分でわかるAI手相占い</p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-lg p-6">
