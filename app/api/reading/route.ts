@@ -47,10 +47,21 @@ const FORTUNE_CONFIG: Record<string, {
 
 export async function POST(req: NextRequest) {
   try {
-    const { selections, fortuneType } = await req.json();
+    const { selections, fortuneType, harsh } = await req.json();
     const config = FORTUNE_CONFIG[fortuneType] ?? FORTUNE_CONFIG.general;
-    const prompt = buildPrompt(selections, config);
 
+    if (harsh) {
+      const prompt = buildHarshPrompt(selections, config);
+      const message = await client.chat.completions.create({
+        model: "gpt-4o-mini",
+        max_tokens: 600,
+        messages: [{ role: "user", content: prompt }],
+      });
+      const harshSummary = message.choices[0].message.content?.trim() ?? "";
+      return NextResponse.json({ harshSummary });
+    }
+
+    const prompt = buildPrompt(selections, config);
     const message = await client.chat.completions.create({
       model: "gpt-4o-mini",
       max_tokens: 1500,
@@ -68,6 +79,44 @@ export async function POST(req: NextRequest) {
     console.error("API Error:", raw);
     return NextResponse.json({ error: raw }, { status: 500 });
   }
+}
+
+function buildHarshPrompt(
+  selections: Record<string, string>,
+  config: { label: string; focus: string }
+) {
+  const lineMap = [
+    { key: "lifeLine", name: "生命線", fields: ["length", "shape", "condition"] },
+    { key: "heartLine", name: "感情線", fields: ["length", "shape", "condition"] },
+    { key: "headLine", name: "頭脳線", fields: ["length", "direction", "condition"] },
+    { key: "fateLine", name: "運命線", fields: ["origin", "condition"] },
+    { key: "marriageLine", name: "結婚線", fields: ["count", "length", "condition"] },
+    { key: "moneyLine", name: "財運線", fields: ["length", "condition"] },
+  ];
+
+  const lineTexts: string[] = [];
+  for (const line of lineMap) {
+    const present = selections[`${line.key}_present`];
+    if (present === undefined) continue;
+    if (present === "no") {
+      lineTexts.push(`${line.name}: なし`);
+    } else {
+      const details = line.fields
+        .map((f) => {
+          const val = selections[`${line.key}_${f}`];
+          if (val === "other") return selections[`${line.key}_${f}_other`] ?? "その他";
+          return val;
+        })
+        .filter(Boolean)
+        .join("、");
+      lineTexts.push(`${line.name}: あり（${details}）`);
+    }
+  }
+
+  return `あなたは本音で語る辛口の手相鑑定士です。以下の手相情報をもとに「${config.label}」（${config.focus}）について、厳しくも的確な辛口コメントを3〜4文で述べてください。お世辞や励ましは不要です。現実をズバリ指摘し、改善すべき点を率直に伝えてください。JSONではなく、そのままテキストで返してください。
+
+手相情報:
+${lineTexts.join("\n")}`;
 }
 
 function buildPrompt(

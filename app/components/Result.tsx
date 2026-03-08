@@ -1,6 +1,7 @@
 "use client";
 
-import { ReadingResult, FortuneType } from "../types";
+import { useState } from "react";
+import { ReadingResult, FortuneType, Selections } from "../types";
 import { SECTION_STYLES, FORTUNE_OPTIONS } from "../data/fortunes";
 import AdBanner from "./AdBanner";
 import RakutenWidget from "./RakutenWidget";
@@ -8,6 +9,7 @@ import RakutenWidget from "./RakutenWidget";
 interface Props {
   result: ReadingResult;
   fortuneType: FortuneType;
+  selections: Selections;
   onReset: () => void;
 }
 
@@ -23,8 +25,32 @@ function Stars({ score }: { score: number }) {
   );
 }
 
-export default function Result({ result, fortuneType, onReset }: Props) {
+export default function Result({ result, fortuneType, selections, onReset }: Props) {
   const fortune = FORTUNE_OPTIONS.find((f) => f.id === fortuneType)!;
+
+  const [harshOpen, setHarshOpen] = useState(false);
+  const [harshText, setHarshText] = useState("");
+  const [harshLoading, setHarshLoading] = useState(false);
+
+  const handleHarshToggle = async () => {
+    if (!harshOpen && !harshText) {
+      setHarshLoading(true);
+      try {
+        const res = await fetch("/api/reading", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fortuneType, selections, harsh: true }),
+        });
+        const data = await res.json();
+        setHarshText(data.harshSummary ?? "取得できませんでした");
+      } catch {
+        setHarshText("取得できませんでした");
+      } finally {
+        setHarshLoading(false);
+      }
+    }
+    setHarshOpen((prev) => !prev);
+  };
 
   const siteUrl = "https://jade-torte-9b5cde.netlify.app/";
   const suffix = `\n\n無料で試せるよ👇\n${siteUrl}\n#手相診断 #占い`;
@@ -86,6 +112,28 @@ export default function Result({ result, fortuneType, onReset }: Props) {
           <span className="font-bold text-amber-700">総合アドバイス</span>
         </div>
         <p className="text-gray-600 text-sm leading-relaxed">{result.summary}</p>
+      </div>
+
+      <div className="rounded-2xl border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 overflow-hidden">
+        <button
+          onClick={handleHarshToggle}
+          className="w-full flex items-center justify-between px-4 py-3 text-left"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🔥</span>
+            <span className="font-bold text-red-700 text-sm">辛口鑑定を見る（閲覧注意）</span>
+          </div>
+          <span className="text-red-400 text-sm">{harshOpen ? "▲" : "▼"}</span>
+        </button>
+        {harshOpen && (
+          <div className="px-4 pb-4">
+            {harshLoading ? (
+              <p className="text-sm text-gray-400 animate-pulse">鑑定中...</p>
+            ) : (
+              <p className="text-gray-700 text-sm leading-relaxed">{harshText}</p>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="flex gap-3">

@@ -132,7 +132,7 @@ export default function PalmReading() {
               />
             </>
           ) : result ? (
-            <Result result={result} fortuneType={fortuneType!} onReset={handleReset} />
+            <Result result={result} fortuneType={fortuneType!} selections={selections} onReset={handleReset} />
           ) : null}
         </div>
         <div className="text-center mt-4">
