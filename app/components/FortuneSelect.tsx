@@ -43,6 +43,15 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
             <div className="text-xs text-gray-400 mt-0.5">{opt.description}</div>
           </button>
         ))}
+        <Link
+          href="/special"
+          className="relative p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-300 hover:shadow-md hover:scale-[1.02]"
+        >
+          <div className="text-2xl mb-1">✨</div>
+          <div className="font-bold text-sm text-amber-700">特殊手相</div>
+          <div className="text-xs text-amber-500 mt-0.5">ますかけ線・太陽線など</div>
+          <div className="absolute bottom-2 right-3 text-amber-400 text-xs">→</div>
+        </Link>
       </div>
 
       <button
@@ -52,13 +61,6 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       >
         手相を入力する →
       </button>
-
-      <Link
-        href="/special"
-        className="block w-full py-3 rounded-xl border-2 border-amber-300 text-amber-700 font-semibold text-sm text-center hover:bg-amber-50 transition-colors"
-      >
-        ✨ 特殊手相チェッカー（ますかけ線・太陽線など）
-      </Link>
 
       <AdBanner />
     </div>

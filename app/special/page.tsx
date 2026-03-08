@@ -3,68 +3,96 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { SPECIAL_LINE_DEFINITIONS, SpecialLineDefinition } from "../data/specialLines";
 
-const SPECIAL_LINES = [
-  {
-    key: "masukake",
-    name: "ますかけ線",
-    image: "/lines/ますかけ線.png",
-    description: "感情線と頭脳線が一本につながった希少な手相",
-    meaning:
-      "強運の持ち主とされる特別な線。強い意志と集中力を持ち、一度決めたことをやり遂げる力があります。波乱万丈な人生を送りやすいですが、大きな成功を掴む可能性を秘めています。",
-    lucky: "強運・成功運・集中力",
-  },
-  {
-    key: "sun",
-    name: "太陽線",
-    image: "/lines/太陽線.png",
-    description: "薬指の下に縦に走る線",
-    meaning:
-      "才能・名声・成功を象徴する線。この線がある人は芸術的センスや社会的な認知を得やすい傾向があります。人から注目され、輝きを放つ存在になれるサインです。",
-    lucky: "名声・才能・金運",
-  },
-  {
-    key: "buddha",
-    name: "仏眼",
-    image: "/lines/仏眼.png",
-    description: "親指の第一関節に現れる目のような模様",
-    meaning:
-      "霊的な感受性が高く、直感力や第六感に優れているとされます。予知夢を見たり、人の感情を敏感に読み取ったりする力があると言われる非常に珍しい相です。",
-    lucky: "直感力・霊感・守護",
-  },
-  {
-    key: "mystic",
-    name: "神秘十字",
-    image: "/lines/神秘十字.png",
-    description: "感情線と頭脳線の間に現れる十字の印",
-    meaning:
-      "神秘的な力に守られているサインとされます。危機的状況を直感で回避できる力があり、人生の転換期に不思議な助けが入ることが多いと言われています。",
-    lucky: "守護・危機回避・神秘的縁",
-  },
-  {
-    key: "mars",
-    name: "火星線",
-    image: "/lines/火星線.png",
-    description: "生命線の内側に沿って走る線",
-    meaning:
-      "生命線を補強する力強い線。体力・精神力・生命力が非常に強く、困難な状況でも諦めずに立ち向かうエネルギーを持っています。健康運が高く、長寿の相とも言われます。",
-    lucky: "体力・精神力・健康運",
-  },
-  {
-    key: "double",
-    name: "二重生命線",
-    image: "/lines/二重生命線.png",
-    description: "生命線が二本並行して走っている状態",
-    meaning:
-      "生命力が二重に備わっているとされる吉相。守護霊に守られているとも言われ、病気や怪我からの回復が早く、ピンチを乗り越える強さを持ちます。",
-    lucky: "生命力・守護・回復力",
-  },
-];
+type Phase = "select" | "questions" | "result";
+
+interface SpecialResult {
+  title: string;
+  overview: string;
+  personality: string;
+  fortune: string;
+  lucky: string;
+  score: number;
+}
+
+function Stars({ score }: { score: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <span key={i} className={`text-lg ${i <= score ? "opacity-100" : "opacity-20"}`}>⭐</span>
+      ))}
+    </div>
+  );
+}
 
 export default function SpecialPage() {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [phase, setPhase] = useState<Phase>("select");
+  const [selectedLine, setSelectedLine] = useState<SpecialLineDefinition | null>(null);
+  const [selections, setSelections] = useState<Record<string, string>>({});
+  const [result, setResult] = useState<SpecialResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const selectedLine = SPECIAL_LINES.find((l) => l.key === selected);
+  const handleSelectLine = (line: SpecialLineDefinition) => {
+    setSelectedLine(line);
+    setSelections({});
+    setResult(null);
+    setError(null);
+  };
+
+  const handleStart = () => {
+    if (!selectedLine) return;
+    setPhase("questions");
+  };
+
+  const handleChange = (key: string, value: string) => {
+    setSelections((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const isComplete = selectedLine?.questions.every((q) => {
+    if (selections[q.key] === "free") return !!selections[`${q.key}_free`]?.trim();
+    return !!selections[q.key];
+  }) ?? false;
+
+  const handleSubmit = async () => {
+    if (!selectedLine) return;
+    setLoading(true);
+    setError(null);
+
+    const finalSelections: Record<string, string> = {};
+    for (const q of selectedLine.questions) {
+      if (selections[q.key] === "free") {
+        finalSelections[q.key] = selections[`${q.key}_free`] ?? "その他";
+      } else {
+        finalSelections[q.key] = selections[q.key];
+      }
+    }
+
+    try {
+      const res = await fetch("/api/special", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lineKey: selectedLine.key, selections: finalSelections }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "API error");
+      setResult(data.result);
+      setPhase("result");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "エラーが発生しました");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setPhase("select");
+    setSelectedLine(null);
+    setSelections({});
+    setResult(null);
+    setError(null);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-4">
@@ -75,56 +103,199 @@ export default function SpecialPage() {
           <p className="text-gray-500 text-sm mt-1">あなたの手にある？幸運の特別な手相</p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-lg p-6 space-y-4">
-          <p className="text-sm text-gray-500 text-center">気になる手相をタップして確認しよう</p>
+        <div className="bg-white rounded-3xl shadow-lg p-6">
+          {loading ? (
+            <div className="text-center py-12 space-y-3">
+              <div className="text-5xl animate-pulse">✨</div>
+              <p className="text-purple-700 font-medium">鑑定中です...</p>
+              <p className="text-gray-400 text-xs">少々お待ちください</p>
+            </div>
+          ) : phase === "select" ? (
+            <div className="space-y-5">
+              <div className="text-center">
+                <p className="text-gray-600 text-sm">あなたの手にある特殊な手相を選んでください</p>
+              </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            {SPECIAL_LINES.map((line) => (
+              <div className="grid grid-cols-2 gap-3">
+                {SPECIAL_LINE_DEFINITIONS.map((line) => (
+                  <button
+                    key={line.key}
+                    onClick={() => handleSelectLine(line)}
+                    className={`rounded-2xl border-2 p-3 text-left transition-all ${
+                      selectedLine?.key === line.key
+                        ? "border-purple-500 bg-purple-50 shadow-md scale-[1.02]"
+                        : "border-gray-200 bg-white hover:border-purple-300"
+                    }`}
+                  >
+                    {selectedLine?.key === line.key && (
+                      <div className="flex justify-end mb-1">
+                        <div className="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">✓</span>
+                        </div>
+                      </div>
+                    )}
+                    <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 bg-purple-50">
+                      <Image src={line.image} alt={line.name} fill className="object-contain" />
+                    </div>
+                    <div className="text-lg mb-0.5">{line.emoji}</div>
+                    <div className="font-bold text-sm text-purple-800">{line.name}</div>
+                    <div className="text-xs text-gray-400 mt-0.5">{line.description}</div>
+                  </button>
+                ))}
+              </div>
+
               <button
-                key={line.key}
-                onClick={() => setSelected(selected === line.key ? null : line.key)}
-                className={`rounded-2xl border-2 p-3 text-left transition-all ${
-                  selected === line.key
-                    ? "border-purple-500 bg-purple-50"
-                    : "border-gray-200 bg-white hover:border-purple-300"
-                }`}
+                onClick={handleStart}
+                disabled={!selectedLine}
+                className="w-full py-3 rounded-xl bg-purple-600 text-white font-bold text-lg disabled:opacity-40 hover:bg-purple-700 transition-colors shadow-md"
               >
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 bg-purple-50">
+                鑑定を始める →
+              </button>
+            </div>
+          ) : phase === "questions" && selectedLine ? (
+            <div className="space-y-6">
+              <div className="text-center">
+                <div className="text-3xl mb-1">{selectedLine.emoji}</div>
+                <h2 className="text-xl font-bold text-purple-800">{selectedLine.name}</h2>
+                <p className="text-gray-500 text-sm mt-1">特徴を教えてください</p>
+              </div>
+
+              <div className="flex justify-center">
+                <div className="relative w-full max-w-xs rounded-xl overflow-hidden border border-purple-100 bg-purple-50">
                   <Image
-                    src={line.image}
-                    alt={line.name}
-                    fill
-                    className="object-contain"
+                    src={selectedLine.image}
+                    alt={selectedLine.name}
+                    width={400}
+                    height={280}
+                    className="w-full h-auto object-contain"
                   />
                 </div>
-                <div className="font-bold text-sm text-purple-800">{line.name}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{line.description}</div>
-              </button>
-            ))}
-          </div>
-
-          {selectedLine && (
-            <div className="rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-50 p-4 space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">✨</span>
-                <h2 className="text-lg font-bold text-amber-800">{selectedLine.name}</h2>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">{selectedLine.meaning}</p>
-              <div className="flex items-center gap-2 bg-white rounded-xl px-3 py-2 border border-amber-200">
-                <span className="text-sm">🍀</span>
-                <span className="text-xs text-amber-700 font-medium">ラッキーポイント：{selectedLine.lucky}</span>
+
+              <div className="space-y-5">
+                {selectedLine.questions.map((q) => (
+                  <div key={q.key} className="space-y-2">
+                    <p className="font-medium text-gray-700">{q.label}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {q.options.map((opt) => (
+                        <button
+                          key={opt.value}
+                          onClick={() => handleChange(q.key, opt.value)}
+                          className={`px-4 py-2 rounded-full border text-sm transition-colors ${
+                            selections[q.key] === opt.value
+                              ? "bg-purple-600 text-white border-purple-600"
+                              : "bg-white text-gray-600 border-gray-300 hover:border-purple-400"
+                          }`}
+                        >
+                          {opt.label}
+                        </button>
+                      ))}
+                      <button
+                        onClick={() => handleChange(q.key, "free")}
+                        className={`px-4 py-2 rounded-full border text-sm transition-colors ${
+                          selections[q.key] === "free"
+                            ? "bg-purple-600 text-white border-purple-600"
+                            : "bg-white text-gray-600 border-gray-300 hover:border-purple-400"
+                        }`}
+                      >
+                        その他
+                      </button>
+                    </div>
+                    {selections[q.key] === "free" && (
+                      <input
+                        type="text"
+                        placeholder="手相の特徴を入力してください"
+                        value={selections[`${q.key}_free`] ?? ""}
+                        onChange={(e) => handleChange(`${q.key}_free`, e.target.value)}
+                        className="w-full mt-2 px-4 py-2 rounded-xl border border-purple-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+              <div className="flex justify-between pt-2">
+                <button
+                  onClick={() => setPhase("select")}
+                  className="px-5 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
+                >
+                  戻る
+                </button>
+                <button
+                  onClick={handleSubmit}
+                  disabled={!isComplete}
+                  className="px-6 py-2 rounded-lg bg-purple-600 text-white font-semibold disabled:opacity-40 hover:bg-purple-700 transition-colors"
+                >
+                  鑑定する
+                </button>
               </div>
             </div>
-          )}
+          ) : phase === "result" && result && selectedLine ? (
+            <div className="space-y-5">
+              <div className="text-center">
+                <div className="text-4xl mb-1">{selectedLine.emoji}</div>
+                <h2 className="text-xl font-bold text-purple-800">{result.title}</h2>
+                <p className="text-gray-400 text-xs mt-1">あなたの手相から読み取りました</p>
+              </div>
 
-          <div className="pt-2">
-            <Link
-              href="/"
-              className="block w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm text-center hover:bg-purple-700 transition-colors"
-            >
-              🔮 手相診断を始める
-            </Link>
-          </div>
+              <div className="flex justify-center">
+                <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl px-6 py-3 flex items-center gap-3">
+                  <span className="text-sm font-bold text-amber-700">希少度・強運度</span>
+                  <Stars score={result.score} />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="rounded-2xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50 p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg">✨</span>
+                    <span className="font-bold text-purple-700 text-sm">この手相の意味</span>
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed">{result.overview}</p>
+                </div>
+
+                <div className="rounded-2xl border-2 border-pink-200 bg-gradient-to-br from-pink-50 to-rose-50 p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg">💎</span>
+                    <span className="font-bold text-pink-700 text-sm">性格・気質</span>
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed">{result.personality}</p>
+                </div>
+
+                <div className="rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-50 p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg">🔮</span>
+                    <span className="font-bold text-amber-700 text-sm">運勢・アドバイス</span>
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed">{result.fortune}</p>
+                </div>
+
+                <div className="rounded-2xl border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 p-4 flex items-center gap-3">
+                  <span className="text-2xl">🍀</span>
+                  <div>
+                    <div className="font-bold text-green-700 text-sm">ラッキーポイント</div>
+                    <div className="text-gray-600 text-sm mt-0.5">{result.lucky}</div>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={handleReset}
+                className="w-full py-3 rounded-xl border-2 border-purple-300 text-purple-700 font-semibold hover:bg-purple-50 transition-colors"
+              >
+                別の手相を見る
+              </button>
+
+              <Link
+                href="/"
+                className="block w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm text-center hover:bg-purple-700 transition-colors"
+              >
+                🔮 手相診断を始める
+              </Link>
+            </div>
+          ) : null}
         </div>
 
         <div className="text-center mt-4">
