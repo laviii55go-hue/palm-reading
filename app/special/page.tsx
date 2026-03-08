@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SPECIAL_LINE_DEFINITIONS, SpecialLineDefinition } from "../data/specialLines";
+import AdBanner from "../components/AdBanner";
+import RakutenWidget from "../components/RakutenWidget";
 
 type Phase = "select" | "questions" | "result";
 
@@ -280,6 +282,10 @@ export default function SpecialPage() {
                   </div>
                 </div>
               </div>
+
+              <AdBanner />
+
+              <RakutenWidget />
 
               <button
                 onClick={handleReset}
