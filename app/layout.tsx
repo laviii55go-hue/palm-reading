@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "手相診断 - あなたの手相から運勢を鑑定",
-  description: "手相の線を選択するだけで、AIがあなたの恋愛運・仕事運・健康運などを詳しく鑑定します。",
+  title: "手のひらの予言者【1分でわかるAI手相占い】",
+  description: "スマホでパッと占える！AIがあなたの手相から恋愛運・金運・仕事運を1分で無料診断します。悩める未来のヒントが見つかる本格鑑定を今すぐ体験。",
 };
 
 export default function RootLayout({
