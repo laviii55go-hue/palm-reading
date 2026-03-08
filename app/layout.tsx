@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "手のひらの予言者【1分でわかるAI手相占い】",
+  title: "【無料】手のひらの予言者【1分でわかるAI手相占い】",
   description: "スマホでパッと占える！AIがあなたの手相から恋愛運・金運・仕事運を1分で無料診断します。悩める未来のヒントが見つかる本格鑑定を今すぐ体験。",
 };
 
