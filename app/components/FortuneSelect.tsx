@@ -52,6 +52,15 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           <div className="text-xs text-amber-500 mt-0.5">ますかけ線・太陽線など</div>
           <div className="absolute bottom-2 right-3 text-amber-400 text-xs">→</div>
         </Link>
+        <Link
+          href="/mole"
+          className="relative p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-300 hover:shadow-md hover:scale-[1.02]"
+        >
+          <div className="text-2xl mb-1">🔵</div>
+          <div className="font-bold text-sm text-blue-700">ほくろ占い</div>
+          <div className="text-xs text-blue-400 mt-0.5">手のほくろの位置で診断</div>
+          <div className="absolute bottom-2 right-3 text-blue-400 text-xs">→</div>
+        </Link>
       </div>
 
       <button
