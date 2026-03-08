@@ -1,11 +1,11 @@
 import { FortuneType } from "../types";
 
-const AFFILIATE_BASE =
+export const AFFILIATE_BASE =
   // TODO: ここをあなたの楽天アフィリエイトIDに差し替えてください
   // 例）https://hb.afl.rakuten.co.jp/hgc/あなたのID/?pc=
   "https://hb.afl.rakuten.co.jp/hgc/51b2aa6a.41cda442.51b2aa6b.ec7875f8/?pc=";
 
-type FortuneItems = {
+export type FortuneItems = {
   title: string;
   lead: string;
   items: {
@@ -15,7 +15,7 @@ type FortuneItems = {
   }[];
 };
 
-function getFortuneItems(fortuneType: FortuneType): FortuneItems {
+export function getFortuneItems(fortuneType: FortuneType): FortuneItems {
   switch (fortuneType) {
     case "money":
       return {
@@ -107,7 +107,7 @@ function getFortuneItems(fortuneType: FortuneType): FortuneItems {
   }
 }
 
-function buildAffiliateUrl(keyword: string): string {
+export function buildAffiliateUrl(keyword: string): string {
   const searchUrl = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(keyword)}/`;
   return `${AFFILIATE_BASE}${encodeURIComponent(searchUrl)}`;
 }

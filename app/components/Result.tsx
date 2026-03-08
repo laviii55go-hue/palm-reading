@@ -5,7 +5,7 @@ import { ReadingResult, FortuneType, Selections } from "../types";
 import { SECTION_STYLES, FORTUNE_OPTIONS } from "../data/fortunes";
 import AdBanner from "./AdBanner";
 import RakutenWidget from "./RakutenWidget";
-import RakutenFortuneItems from "./RakutenFortuneItems";
+import RakutenFortuneItems, { getFortuneItems, buildAffiliateUrl } from "./RakutenFortuneItems";
 
 interface Props {
   result: ReadingResult;
@@ -105,6 +105,36 @@ export default function Result({ result, fortuneType, selections, onReset }: Pro
             </div>
           );
         })}
+
+        {result.sections.length === 3 && (() => {
+          const fortuneItems = getFortuneItems(fortuneType);
+          const featured = fortuneItems.items[0];
+          const href = buildAffiliateUrl(featured.keyword);
+
+          return (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl border-2 p-4 bg-gradient-to-br from-pink-50 to-rose-100 border-pink-200"
+            >
+              <div className="text-xl mb-1">✨</div>
+              <div className="font-bold text-sm text-pink-700">運気を育てる開運アイテム</div>
+              <div className="mt-1 flex items-center gap-1">
+                <span className="text-[10px] text-gray-500">おすすめ度</span>
+                <Stars score={5} />
+              </div>
+              <p className="text-gray-600 text-xs mt-2 leading-relaxed">
+                今回の{fortune.label}の診断結果に合わせて、「{featured.label}」をピックアップしました。
+                楽天ランキングでも人気の、今チェックすべきアイテムを厳選しました。
+              </p>
+              <p className="mt-2 text-[11px] text-pink-700 font-semibold">
+                楽天で詳しく見る ↗
+              </p>
+              <p className="mt-1 text-[10px] text-gray-400">※楽天市場への広告リンクです</p>
+            </a>
+          );
+        })()}
       </div>
 
       <div className="rounded-2xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-100 p-4">
