@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FortuneType } from "../types";
 import { FORTUNE_OPTIONS } from "../data/fortunes";
 import AdBanner from "./AdBanner";
@@ -51,6 +52,13 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       >
         手相を入力する →
       </button>
+
+      <Link
+        href="/special"
+        className="block w-full py-3 rounded-xl border-2 border-amber-300 text-amber-700 font-semibold text-sm text-center hover:bg-amber-50 transition-colors"
+      >
+        ✨ 特殊手相チェッカー（ますかけ線・太陽線など）
+      </Link>
 
       <AdBanner />
     </div>
