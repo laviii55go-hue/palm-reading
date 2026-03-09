@@ -123,8 +123,36 @@ export default function GuidePage() {
           </p>
         </div>
 
+        {/* 目次 */}
+        <nav className="rounded-2xl border-2 border-purple-100 bg-white shadow-sm overflow-hidden">
+          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2.5 flex items-center gap-2">
+            <span className="text-white text-sm">📋</span>
+            <span className="text-white font-bold text-sm">目次</span>
+          </div>
+          <ol className="divide-y divide-purple-50">
+            {[
+              { href: "#hands",   emoji: "🤲", label: "左手と右手、どちらを見る？" },
+              { href: "#lines",   emoji: "✍️", label: "主要な4本の線" },
+              { href: "#hills",   emoji: "🏔️", label: "手の丘（マウント）の意味" },
+              { href: "#faq",     emoji: "❓", label: "よくある質問" },
+              { href: "#fortune", emoji: "🔮", label: "実際に手相診断を試す" },
+            ].map((item, i) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-3 px-4 py-3 hover:bg-purple-50 transition-colors"
+              >
+                <span className="text-purple-400 text-xs font-bold w-4 shrink-0">{i + 1}</span>
+                <span className="text-base shrink-0">{item.emoji}</span>
+                <span className="text-sm text-gray-700 font-medium">{item.label}</span>
+                <span className="ml-auto text-purple-300 text-xs">↓</span>
+              </a>
+            ))}
+          </ol>
+        </nav>
+
         {/* 左手・右手の違い */}
-        <section className="space-y-4">
+        <section id="hands" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
             <span>🤲</span> 左手と右手、どちらを見る？
           </h2>
@@ -153,7 +181,7 @@ export default function GuidePage() {
         </section>
 
         {/* 主要4本線 */}
-        <section className="space-y-4">
+        <section id="lines" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
             <span>✍️</span> 主要な4本の線
           </h2>
@@ -217,7 +245,7 @@ export default function GuidePage() {
         </section>
 
         {/* 手の丘 */}
-        <section className="space-y-4">
+        <section id="hills" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
             <span>🏔️</span> 手の丘（マウント）の意味
           </h2>
@@ -237,7 +265,7 @@ export default function GuidePage() {
         </section>
 
         {/* よくある質問 */}
-        <section className="space-y-4">
+        <section id="faq" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
             <span>❓</span> よくある質問
           </h2>
@@ -252,7 +280,7 @@ export default function GuidePage() {
         </section>
 
         {/* 占いへの導線 */}
-        <section className="rounded-2xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50 p-5 text-center space-y-3">
+        <section id="fortune" className="rounded-2xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50 p-5 text-center space-y-3 scroll-mt-16">
           <div className="text-3xl">🔮</div>
           <p className="font-bold text-purple-800">基礎がわかったら、実際に試してみよう</p>
           <p className="text-gray-500 text-xs">AIが手相から運勢を無料で鑑定します</p>
