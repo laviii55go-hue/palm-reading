@@ -155,27 +155,20 @@ export default function MolePage() {
                 </button>
               </div>
 
-              {/* 手のひら側の図（手の甲は画像なし・説明テキストで補足） */}
-              {activeSide === "palm" ? (
-                <div className="flex justify-center">
-                  <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
-                    <Image
-                      src="/lines/ほくろ.png"
-                      alt="手のほくろエリア図"
-                      width={800}
-                      height={800}
-                      quality={100}
-                      unoptimized
-                      priority
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
+              <div className="flex justify-center">
+                <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
+                  <Image
+                    src={activeSide === "palm" ? "/lines/ほくろ.png" : "/lines/ほくろ甲.png"}
+                    alt={activeSide === "palm" ? "手のひらのほくろエリア図" : "手の甲のほくろエリア図"}
+                    width={800}
+                    height={800}
+                    quality={100}
+                    unoptimized
+                    priority
+                    className="w-full h-auto object-contain"
+                  />
                 </div>
-              ) : (
-                <div className="rounded-xl bg-purple-50 border border-purple-100 px-4 py-3 text-xs text-purple-700 leading-relaxed">
-                  ✋ 手の甲を上にした状態で、指先から手首に向けてほくろの位置を確認してください。
-                </div>
-              )}
+              </div>
 
               <div>
                 <p className="font-medium text-gray-700 mb-3">番号を選んでください</p>
