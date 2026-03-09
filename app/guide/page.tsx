@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -156,6 +157,41 @@ export default function GuidePage() {
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
             <span>✍️</span> 主要な4本の線
           </h2>
+
+          {/* 基本4線の画像 */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-xs rounded-2xl overflow-hidden border-2 border-purple-100 bg-white shadow-sm">
+              <Image
+                src="/lines/基本4線.png"
+                alt="手相の主要4本線（生命線・感情線・頭脳線・運命線）"
+                width={800}
+                height={1000}
+                quality={100}
+                unoptimized
+                priority
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+
+          {/* カラー凡例 */}
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { color: "bg-emerald-500", label: "生命線", sub: "健康・体力・生命力" },
+              { color: "bg-sky-500",     label: "頭脳線", sub: "知性・思考・判断力" },
+              { color: "bg-pink-500",    label: "感情線", sub: "感情・恋愛・対人" },
+              { color: "bg-violet-500",  label: "運命線", sub: "仕事・成功・方向性" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-2 bg-white rounded-xl border border-gray-100 px-3 py-2 shadow-sm">
+                <span className={`w-3 h-3 rounded-full shrink-0 ${item.color}`} />
+                <div>
+                  <div className="text-xs font-bold text-gray-700">{item.label}</div>
+                  <div className="text-[10px] text-gray-400">{item.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="space-y-3">
             {LINES.map((line) => (
               <div
@@ -177,6 +213,7 @@ export default function GuidePage() {
                 </ul>
               </div>
             ))}
+          </div>
           </div>
         </section>
 
