@@ -80,6 +80,13 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
         手相を入力する →
       </button>
 
+      <Link
+        href="/guide"
+        className="block w-full py-2.5 rounded-xl border-2 border-purple-200 text-purple-600 font-semibold text-sm text-center hover:bg-purple-50 transition-colors"
+      >
+        📖 手相の基本知識を読む
+      </Link>
+
       <AdBanner />
     </div>
   );
