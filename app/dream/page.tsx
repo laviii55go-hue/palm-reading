@@ -100,15 +100,15 @@ export default function DreamPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white flex flex-col items-center p-4">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950 flex flex-col items-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <Link href="/" className="text-indigo-400 text-sm hover:underline">← トップに戻る</Link>
-          <h1 className="text-2xl font-bold text-indigo-900 mt-2">🌙 夢占い</h1>
-          <p className="text-gray-500 text-sm mt-1">見た夢からメッセージを読み解きます</p>
+          <Link href="/" className="text-indigo-300 text-sm hover:text-indigo-200 hover:underline">← トップに戻る</Link>
+          <h1 className="text-2xl font-bold text-white mt-2">🌙 夢占い</h1>
+          <p className="text-slate-400 text-sm mt-1">見た夢からメッセージを読み解きます</p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-lg p-6">
+        <div className="bg-white rounded-3xl shadow-xl shadow-black/20 p-6">
           {loading ? (
             <div className="text-center py-12 space-y-3">
               <div className="text-5xl animate-pulse">🌙</div>
@@ -174,6 +174,10 @@ export default function DreamPage() {
               >
                 夢を読み解く →
               </button>
+
+              <AdBanner />
+
+              <RakutenWidget />
             </div>
           ) : (
             <div className="space-y-5">
@@ -242,7 +246,7 @@ export default function DreamPage() {
         </div>
 
         <div className="text-center mt-4">
-          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
+          <a href="/privacy" className="text-slate-500 text-xs hover:text-slate-400 hover:underline">プライバシーポリシー</a>
         </div>
       </div>
     </div>
