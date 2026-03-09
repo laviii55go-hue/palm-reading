@@ -136,8 +136,8 @@ export default function SpecialPage() {
                         </div>
                       </div>
                     )}
-                    <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 bg-purple-50">
-                      <Image src={line.image} alt={line.name} fill className="object-contain" />
+                    <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 bg-white">
+                      <Image src={line.image} alt={line.name} fill unoptimized className="object-contain" />
                     </div>
                     <div className="text-lg mb-0.5">{line.emoji}</div>
                     <div className="font-bold text-sm text-purple-800">{line.name}</div>
@@ -163,12 +163,15 @@ export default function SpecialPage() {
               </div>
 
               <div className="flex justify-center">
-                <div className="relative w-full max-w-xs rounded-xl overflow-hidden border border-purple-100 bg-purple-50">
+                <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
                   <Image
                     src={selectedLine.image}
                     alt={selectedLine.name}
-                    width={400}
-                    height={280}
+                    width={800}
+                    height={560}
+                    quality={100}
+                    unoptimized
+                    priority
                     className="w-full h-auto object-contain"
                   />
                 </div>

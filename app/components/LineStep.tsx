@@ -42,12 +42,15 @@ export default function LineStep({
       </div>
 
       <div className="flex justify-center">
-        <div className="relative w-full max-w-xs rounded-xl overflow-hidden border border-purple-100 bg-purple-50">
+        <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
           <Image
             src={step.image}
             alt={`${step.title}の参考画像`}
-            width={400}
-            height={280}
+            width={800}
+            height={560}
+            quality={100}
+            unoptimized
+            priority
             className="w-full h-auto object-contain"
           />
         </div>

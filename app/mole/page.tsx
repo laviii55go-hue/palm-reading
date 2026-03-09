@@ -130,12 +130,15 @@ export default function MolePage() {
               </div>
 
               <div className="flex justify-center">
-                <div className="relative w-full max-w-xs rounded-xl overflow-hidden border border-purple-100 bg-white">
+                <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
                   <Image
                     src="/lines/ほくろ.png"
                     alt="手のほくろエリア図"
-                    width={400}
-                    height={400}
+                    width={800}
+                    height={800}
+                    quality={100}
+                    unoptimized
+                    priority
                     className="w-full h-auto object-contain"
                   />
                 </div>
