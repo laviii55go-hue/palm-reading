@@ -214,7 +214,6 @@ export default function GuidePage() {
               </div>
             ))}
           </div>
-          </div>
         </section>
 
         {/* 手の丘 */}
