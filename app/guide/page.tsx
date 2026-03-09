@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import AdBanner from "../components/AdBanner";
+import RakutenWidget from "../components/RakutenWidget";
 
 export const metadata: Metadata = {
   title: "手相の基本知識｜左手・右手の違いと主要な線の読み方",
@@ -308,6 +310,10 @@ export default function GuidePage() {
             <Link href="/dream" className="text-xs text-purple-500 hover:underline">🌙 夢占い</Link>
           </div>
         </section>
+
+        <AdBanner />
+
+        <RakutenWidget />
 
         {/* フッター */}
         <div className="text-center pt-2">
