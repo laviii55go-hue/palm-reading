@@ -113,7 +113,7 @@ export default function GuidePage() {
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
 
         {/* タイトル */}
-        <div className="text-center space-y-2">
+        <div id="top" className="text-center space-y-2">
           <div className="text-5xl">🖐</div>
           <h1 className="text-2xl font-bold text-purple-900 leading-tight">
             手相の基本知識
@@ -177,6 +177,9 @@ export default function GuidePage() {
           <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-xs text-amber-800 leading-relaxed">
             💡 <span className="font-semibold">基本的には利き手と逆の手が「本来の自分」を示すとされています。</span>
             右利きなら左手が先天運、左利きなら右手が先天運です。両手を見比べることで、生まれ持った可能性と現在の状態のギャップがわかります。
+          </div>
+          <div className="text-right">
+            <a href="#top" className="text-xs text-purple-400 hover:text-purple-600 hover:underline">△ TOPに戻る</a>
           </div>
         </section>
 
@@ -242,6 +245,9 @@ export default function GuidePage() {
               </div>
             ))}
           </div>
+          <div className="text-right">
+            <a href="#top" className="text-xs text-purple-400 hover:text-purple-600 hover:underline">△ TOPに戻る</a>
+          </div>
         </section>
 
         {/* 手の丘 */}
@@ -262,6 +268,9 @@ export default function GuidePage() {
               </div>
             ))}
           </div>
+          <div className="text-right">
+            <a href="#top" className="text-xs text-purple-400 hover:text-purple-600 hover:underline">△ TOPに戻る</a>
+          </div>
         </section>
 
         {/* よくある質問 */}
@@ -276,6 +285,9 @@ export default function GuidePage() {
                 <p className="text-gray-600 text-xs leading-relaxed">A. {faq.a}</p>
               </div>
             ))}
+          </div>
+          <div className="text-right">
+            <a href="#top" className="text-xs text-purple-400 hover:text-purple-600 hover:underline">△ TOPに戻る</a>
           </div>
         </section>
 
