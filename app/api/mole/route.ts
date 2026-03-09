@@ -10,7 +10,8 @@ export async function POST(req: NextRequest) {
 
     const area = MOLE_AREAS.find((a) => a.number === Number(areaNumber));
     const areaLabel = area ? `${area.label}（${area.description}）` : `エリア${areaNumber}`;
-    const handLabel = hand === "right" ? "右手" : hand === "left" ? "左手" : "両手";
+    const handLabel =
+      hand === "right" ? "右手" : hand === "left" ? "左手" : hand === "both" ? "両手" : hand;
     const sizeLabel = size === "large" ? "大きめ" : size === "small" ? "小さめ" : size;
     const colorLabel =
       color === "black" ? "黒" : color === "dark" ? "濃い茶色" : color === "light" ? "薄い茶色" : color;

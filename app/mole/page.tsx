@@ -30,23 +30,35 @@ export default function MolePage() {
   const [phase, setPhase] = useState<Phase>("select");
   const [areaNumber, setAreaNumber] = useState<number | null>(null);
   const [hand, setHand] = useState("");
+  const [handOther, setHandOther] = useState("");
   const [size, setSize] = useState("");
+  const [sizeOther, setSizeOther] = useState("");
   const [color, setColor] = useState("");
+  const [colorOther, setColorOther] = useState("");
   const [result, setResult] = useState<MoleResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const selectedArea = MOLE_AREAS.find((a) => a.number === areaNumber);
-  const isDetailComplete = hand && size && color;
+  const isDetailComplete =
+    !!hand &&
+    !!size &&
+    !!color &&
+    (hand !== "other" || handOther.trim().length > 0) &&
+    (size !== "other" || sizeOther.trim().length > 0) &&
+    (color !== "other" || colorOther.trim().length > 0);
 
   const handleSubmit = async () => {
     setLoading(true);
     setError(null);
     try {
+      const handValue = hand === "other" ? handOther.trim() || "その他" : hand;
+      const sizeValue = size === "other" ? sizeOther.trim() || "その他" : size;
+      const colorValue = color === "other" ? colorOther.trim() || "その他" : color;
       const res = await fetch("/api/mole", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ areaNumber, hand, size, color }),
+        body: JSON.stringify({ areaNumber, hand: handValue, size: sizeValue, color: colorValue }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "API error");
@@ -63,8 +75,11 @@ export default function MolePage() {
     setPhase("select");
     setAreaNumber(null);
     setHand("");
+    setHandOther("");
     setSize("");
+    setSizeOther("");
     setColor("");
+    setColorOther("");
     setResult(null);
     setError(null);
   };
@@ -175,7 +190,17 @@ export default function MolePage() {
                     <OptionButton value="right" current={hand} label="右手" onClick={() => setHand("right")} />
                     <OptionButton value="left" current={hand} label="左手" onClick={() => setHand("left")} />
                     <OptionButton value="both" current={hand} label="両手" onClick={() => setHand("both")} />
+                    <OptionButton value="other" current={hand} label="その他" onClick={() => setHand("other")} />
                   </div>
+                  {hand === "other" && (
+                    <input
+                      type="text"
+                      value={handOther}
+                      onChange={(e) => setHandOther(e.target.value)}
+                      placeholder="例：利き手と逆のほう など"
+                      className="w-full mt-2 px-4 py-2 rounded-xl border border-purple-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    />
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -183,7 +208,17 @@ export default function MolePage() {
                   <div className="flex flex-wrap gap-2">
                     <OptionButton value="large" current={size} label="大きめ" onClick={() => setSize("large")} />
                     <OptionButton value="small" current={size} label="小さめ" onClick={() => setSize("small")} />
+                    <OptionButton value="other" current={size} label="その他" onClick={() => setSize("other")} />
                   </div>
+                  {size === "other" && (
+                    <input
+                      type="text"
+                      value={sizeOther}
+                      onChange={(e) => setSizeOther(e.target.value)}
+                      placeholder="例：かなり小さい点が複数 など"
+                      className="w-full mt-2 px-4 py-2 rounded-xl border border-purple-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    />
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -192,7 +227,17 @@ export default function MolePage() {
                     <OptionButton value="black" current={color} label="黒" onClick={() => setColor("black")} />
                     <OptionButton value="dark" current={color} label="濃い茶色" onClick={() => setColor("dark")} />
                     <OptionButton value="light" current={color} label="薄い茶色" onClick={() => setColor("light")} />
+                    <OptionButton value="other" current={color} label="その他" onClick={() => setColor("other")} />
                   </div>
+                  {color === "other" && (
+                    <input
+                      type="text"
+                      value={colorOther}
+                      onChange={(e) => setColorOther(e.target.value)}
+                      placeholder="例：赤みがかった茶色 など"
+                      className="w-full mt-2 px-4 py-2 rounded-xl border border-purple-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    />
+                  )}
                 </div>
               </div>
 
