@@ -148,18 +148,23 @@ export default function Result({ result, fortuneType, selections, onReset }: Pro
       <div className="rounded-2xl border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 overflow-hidden">
         <button
           onClick={handleHarshToggle}
-          className="w-full flex items-center justify-between px-4 py-3 text-left"
+          disabled={harshLoading}
+          className="w-full flex items-center justify-between px-4 py-3 text-left disabled:opacity-70 disabled:cursor-wait transition-opacity"
         >
           <div className="flex items-center gap-2">
-            <span className="text-xl">🔥</span>
-            <span className="font-bold text-red-700 text-sm">辛口鑑定を見る（閲覧注意）</span>
+            <span className="text-xl">{harshLoading ? "⏳" : "🔥"}</span>
+            <span className="font-bold text-red-700 text-sm">
+              {harshLoading ? "辛口鑑定を取得中..." : "辛口鑑定を見る（閲覧注意）"}
+            </span>
           </div>
-          <span className="text-red-400 text-sm">{harshOpen ? "▲" : "▼"}</span>
+          {!harshLoading && (
+            <span className="text-red-400 text-sm">{harshOpen ? "▲" : "▼"}</span>
+          )}
         </button>
         {harshOpen && (
-          <div className="px-4 pb-4">
+          <div className="px-4 pb-4 bg-red-50/50">
             {harshLoading ? (
-              <p className="text-sm text-gray-400 animate-pulse">鑑定中...</p>
+              <p className="text-sm text-gray-400 animate-pulse">辛口鑑定を取得中です...</p>
             ) : (
               <p className="text-gray-700 text-sm leading-relaxed">{harshText}</p>
             )}
