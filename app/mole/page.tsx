@@ -28,6 +28,7 @@ function Stars({ score }: { score: number }) {
 
 export default function MolePage() {
   const [phase, setPhase] = useState<Phase>("select");
+  const [activeSide, setActiveSide] = useState<"palm" | "back">("palm");
   const [areaNumber, setAreaNumber] = useState<number | null>(null);
   const [hand, setHand] = useState("");
   const [handOther, setHandOther] = useState("");
@@ -73,6 +74,7 @@ export default function MolePage() {
 
   const handleReset = () => {
     setPhase("select");
+    setActiveSide("palm");
     setAreaNumber(null);
     setHand("");
     setHandOther("");
@@ -129,25 +131,56 @@ export default function MolePage() {
                 <p className="text-gray-600 text-sm">ほくろがある位置の番号を選んでください</p>
               </div>
 
-              <div className="flex justify-center">
-                <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
-                  <Image
-                    src="/lines/ほくろ.png"
-                    alt="手のほくろエリア図"
-                    width={800}
-                    height={800}
-                    quality={100}
-                    unoptimized
-                    priority
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+              {/* 手のひら / 手の甲 タブ */}
+              <div className="flex rounded-xl overflow-hidden border border-purple-200">
+                <button
+                  onClick={() => { setActiveSide("palm"); setAreaNumber(null); }}
+                  className={`flex-1 py-2 text-sm font-semibold transition-colors ${
+                    activeSide === "palm"
+                      ? "bg-purple-600 text-white"
+                      : "bg-white text-gray-500 hover:bg-purple-50"
+                  }`}
+                >
+                  🖐 手のひら
+                </button>
+                <button
+                  onClick={() => { setActiveSide("back"); setAreaNumber(null); }}
+                  className={`flex-1 py-2 text-sm font-semibold transition-colors ${
+                    activeSide === "back"
+                      ? "bg-purple-600 text-white"
+                      : "bg-white text-gray-500 hover:bg-purple-50"
+                  }`}
+                >
+                  ✋ 手の甲
+                </button>
               </div>
+
+              {/* 手のひら側の図（手の甲は画像なし・説明テキストで補足） */}
+              {activeSide === "palm" ? (
+                <div className="flex justify-center">
+                  <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
+                    <Image
+                      src="/lines/ほくろ.png"
+                      alt="手のほくろエリア図"
+                      width={800}
+                      height={800}
+                      quality={100}
+                      unoptimized
+                      priority
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-xl bg-purple-50 border border-purple-100 px-4 py-3 text-xs text-purple-700 leading-relaxed">
+                  ✋ 手の甲を上にした状態で、指先から手首に向けてほくろの位置を確認してください。
+                </div>
+              )}
 
               <div>
                 <p className="font-medium text-gray-700 mb-3">番号を選んでください</p>
                 <div className="grid grid-cols-7 gap-2">
-                  {MOLE_AREAS.map((area) => (
+                  {MOLE_AREAS.filter((a) => a.side === activeSide).map((area) => (
                     <button
                       key={area.number}
                       onClick={() => setAreaNumber(area.number)}
