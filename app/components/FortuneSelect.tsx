@@ -113,6 +113,12 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       <div className="space-y-3">
         <CategoryLabel emoji="🔢" label="数秘術" />
         <Link
+          href="/numerology-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-violet-200 text-violet-600 font-semibold text-sm text-center hover:bg-violet-50 transition-colors"
+        >
+          📖 数秘術の基本知識を読む
+        </Link>
+        <Link
           href="/lucky-number"
           className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-violet-50 to-purple-50 border-violet-300 hover:shadow-md hover:scale-[1.01]"
         >

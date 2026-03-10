@@ -239,6 +239,9 @@ export default function LuckyNumberPage() {
                   <p className="font-medium text-violet-700">🔢 ライフパスナンバーとは？</p>
                   <p>生年月日のすべての数字を1桁になるまで足し続けた数字です。あなたの人生の目的・性格・才能を示します。</p>
                   <p className="text-violet-600 font-medium mt-1">例）1990年3月15日 → 1+9+9+0+3+1+5 = 28 → 2+8 = 10 → 1+0 = 1</p>
+                  <Link href="/numerology-guide" className="block text-center mt-2 text-violet-600 font-semibold hover:underline">
+                    📖 数秘術の基本知識を読む →
+                  </Link>
                 </div>
 
                 <AdBanner />
