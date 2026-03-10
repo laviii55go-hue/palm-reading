@@ -338,7 +338,7 @@ export default function LuckyNumberPage() {
                 <RakutenWidget />
 
                 {(() => {
-                  const shareText = `🔢 数秘術占い結果\nライフパスナンバー【${lifePathNum}】${personalEntry.emoji} ${personalEntry.title}\n${personalEntry.keywords.slice(0, 3).join("・")}\n📅 ${CURRENT_YEAR}年のテーマ：${yearEntry.theme}\n\nあなたも試してみてください👇`;
+                  const shareText = `🔢 数秘術占い結果\nライフパスナンバー【${lifePathNum}】${personalEntry.emoji} ${personalEntry.title}\n${personalEntry.keywords.slice(0, 3).join("・")}\n📅 ${CURRENT_YEAR}年のテーマ：${yearEntry.theme}\n\nあなたも試してみてください👇\n#数秘術 #占い好きな人と繋がりたい #生年月日占い`;
                   const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(PAGE_URL)}`;
                   const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(PAGE_URL + "?text=" + encodeURIComponent(shareText))}`;
                   return (
@@ -494,7 +494,7 @@ export default function LuckyNumberPage() {
 
                 {/* シェアボタン */}
                 {(() => {
-                  const shareText = `💞 数秘術 相性診断結果\nライフパスナンバー【${myNum}】×【${partnerNum}】\n総合相性：${"★".repeat(compat.score)}${"☆".repeat(5 - compat.score)}\n\nあなたも試してみてください👇`;
+                  const shareText = `💞 数秘術 相性診断結果\nライフパスナンバー【${myNum}】×【${partnerNum}】\n総合相性：${"★".repeat(compat.score)}${"☆".repeat(5 - compat.score)}\n\nあなたも試してみてください👇\n#数秘術 #相性診断 #占い好きな人と繋がりたい`;
                   const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(PAGE_URL)}`;
                   const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(PAGE_URL + "?text=" + encodeURIComponent(shareText))}`;
                   return (

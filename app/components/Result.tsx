@@ -54,7 +54,8 @@ export default function Result({ result, fortuneType, selections, onReset }: Pro
   };
 
   const siteUrl = "https://jade-torte-9b5cde.netlify.app/";
-  const suffix = `\n\n無料で試せるよ👇\n${siteUrl}\n#手相診断 #占い`;
+  const hashtags = `#手相占い #占い好きな人と繋がりたい #AI手相`;
+  const suffix = `\n\n無料で試せるよ👇\n${siteUrl}\n${hashtags}`;
 
   // X：280文字制限のため全文が入らない場合は切り詰める
   const xHeader = `手相診断したら衝撃の結果が出た😱\n\n「`;
