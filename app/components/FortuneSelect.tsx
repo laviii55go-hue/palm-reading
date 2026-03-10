@@ -13,19 +13,28 @@ interface Props {
 
 type CategoryColor = "purple" | "indigo" | "green" | "violet";
 
-const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border: string }> = {
-  purple: { bg: "bg-purple-200", text: "text-purple-800", border: "border-purple-300" },
-  indigo: { bg: "bg-indigo-200", text: "text-indigo-800", border: "border-indigo-300" },
-  green:  { bg: "bg-green-200",  text: "text-green-800",  border: "border-green-300"  },
-  violet: { bg: "bg-violet-200", text: "text-violet-800", border: "border-violet-300" },
+const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border: string; sectionBg: string; sectionBorder: string }> = {
+  purple: { bg: "bg-purple-200", text: "text-purple-800", border: "border-purple-300", sectionBg: "bg-purple-50",  sectionBorder: "border-purple-200" },
+  indigo: { bg: "bg-indigo-200", text: "text-indigo-800", border: "border-indigo-300", sectionBg: "bg-indigo-50",  sectionBorder: "border-indigo-200" },
+  green:  { bg: "bg-green-200",  text: "text-green-800",  border: "border-green-300",  sectionBg: "bg-green-50",   sectionBorder: "border-green-200"  },
+  violet: { bg: "bg-violet-200", text: "text-violet-800", border: "border-violet-300", sectionBg: "bg-violet-50",  sectionBorder: "border-violet-200" },
 };
 
 function CategoryLabel({ emoji, label, color }: { emoji: string; label: string; color: CategoryColor }) {
   const s = CATEGORY_STYLES[color];
   return (
-    <div className={`flex items-center rounded-xl overflow-hidden border ${s.border} ${s.bg} px-4 py-2 mt-2`}>
+    <div className={`flex items-center rounded-xl overflow-hidden border ${s.border} ${s.bg} px-4 py-2`}>
       <span className="text-lg mr-2">{emoji}</span>
       <span className={`font-black text-base ${s.text}`}>{label}</span>
+    </div>
+  );
+}
+
+function CategorySection({ color, children }: { color: CategoryColor; children: React.ReactNode }) {
+  const s = CATEGORY_STYLES[color];
+  return (
+    <div className={`rounded-2xl border ${s.sectionBorder} ${s.sectionBg} p-4 space-y-3`}>
+      {children}
     </div>
   );
 }
@@ -40,16 +49,14 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       </div>
 
       {/* ── 手相占い ── */}
-      <div className="space-y-3">
+      <CategorySection color="purple">
         <CategoryLabel emoji="🖐" label="手相占い" color="purple" />
-
         <Link
           href="/guide"
-          className="block w-full py-2.5 rounded-xl border-2 border-purple-200 text-purple-600 font-semibold text-sm text-center hover:bg-purple-50 transition-colors"
+          className="block w-full py-2.5 rounded-xl border-2 border-purple-200 text-purple-600 font-semibold text-sm text-center hover:bg-white transition-colors"
         >
           📖 手相の基本知識を読む
         </Link>
-
         <div className="grid grid-cols-2 gap-3">
           {FORTUNE_OPTIONS.map((opt) => (
             <button
@@ -92,7 +99,6 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
             <div className="absolute bottom-2 right-3 text-blue-400 text-xs">→</div>
           </Link>
         </div>
-
         <button
           onClick={onStart}
           disabled={!selected}
@@ -100,22 +106,22 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
         >
           手相を入力する →
         </button>
-      </div>
+      </CategorySection>
 
       <AdBanner />
 
       {/* ── 夢占い ── */}
-      <div className="space-y-3">
+      <CategorySection color="indigo">
         <CategoryLabel emoji="🌙" label="夢占い" color="indigo" />
         <Link
           href="/dream-guide"
-          className="block w-full py-2.5 rounded-xl border-2 border-indigo-200 text-indigo-600 font-semibold text-sm text-center hover:bg-indigo-50 transition-colors"
+          className="block w-full py-2.5 rounded-xl border-2 border-indigo-200 text-indigo-600 font-semibold text-sm text-center hover:bg-white transition-colors"
         >
           📖 夢占いの基本知識を読む
         </Link>
         <Link
           href="/dream"
-          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-indigo-50 to-slate-100 border-indigo-300 hover:shadow-md hover:scale-[1.01]"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-indigo-200 hover:shadow-md hover:scale-[1.01]"
         >
           <div className="text-3xl">🌙</div>
           <div>
@@ -124,20 +130,20 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           </div>
           <div className="absolute right-4 text-indigo-400 text-sm">→</div>
         </Link>
-      </div>
+      </CategorySection>
 
       {/* ── 動物占い ── */}
-      <div className="space-y-3">
+      <CategorySection color="green">
         <CategoryLabel emoji="🐾" label="動物占い" color="green" />
         <Link
           href="/animal-guide"
-          className="block w-full py-2.5 rounded-xl border-2 border-green-200 text-green-600 font-semibold text-sm text-center hover:bg-green-50 transition-colors"
+          className="block w-full py-2.5 rounded-xl border-2 border-green-200 text-green-600 font-semibold text-sm text-center hover:bg-white transition-colors"
         >
           📖 動物占いの基本知識を読む
         </Link>
         <Link
           href="/animal"
-          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-green-50 to-emerald-50 border-green-300 hover:shadow-md hover:scale-[1.01]"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-green-200 hover:shadow-md hover:scale-[1.01]"
         >
           <div className="text-3xl">🐾</div>
           <div>
@@ -146,20 +152,20 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           </div>
           <div className="absolute right-4 text-green-400 text-sm">→</div>
         </Link>
-      </div>
+      </CategorySection>
 
       {/* ── 数秘術 ── */}
-      <div className="space-y-3">
+      <CategorySection color="violet">
         <CategoryLabel emoji="🔢" label="数秘術" color="violet" />
         <Link
           href="/numerology-guide"
-          className="block w-full py-2.5 rounded-xl border-2 border-violet-200 text-violet-600 font-semibold text-sm text-center hover:bg-violet-50 transition-colors"
+          className="block w-full py-2.5 rounded-xl border-2 border-violet-200 text-violet-600 font-semibold text-sm text-center hover:bg-white transition-colors"
         >
           📖 数秘術の基本知識を読む
         </Link>
         <Link
           href="/lucky-number"
-          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-violet-50 to-purple-50 border-violet-300 hover:shadow-md hover:scale-[1.01]"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-violet-200 hover:shadow-md hover:scale-[1.01]"
         >
           <div className="text-3xl">🔢</div>
           <div>
@@ -168,7 +174,7 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           </div>
           <div className="absolute right-4 text-violet-400 text-sm">→</div>
         </Link>
-      </div>
+      </CategorySection>
 
       <AdBanner />
     </div>
