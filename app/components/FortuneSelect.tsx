@@ -109,6 +109,22 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
         </Link>
       </div>
 
+      {/* ── 動物占い ── */}
+      <div className="space-y-3">
+        <CategoryLabel emoji="🐾" label="動物占い" />
+        <Link
+          href="/animal"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-green-50 to-emerald-50 border-green-300 hover:shadow-md hover:scale-[1.01]"
+        >
+          <div className="text-3xl">🐾</div>
+          <div>
+            <div className="font-bold text-sm text-green-800">動物占い</div>
+            <div className="text-xs text-green-500 mt-0.5">生年月日で60種の動物キャラを診断</div>
+          </div>
+          <div className="absolute right-4 text-green-400 text-sm">→</div>
+        </Link>
+      </div>
+
       {/* ── 数秘術 ── */}
       <div className="space-y-3">
         <CategoryLabel emoji="🔢" label="数秘術" />
