@@ -99,7 +99,7 @@ export default function PalmReading() {
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-purple-900">手のひらの予言者</h1>
-          <p className="text-gray-500 text-sm mt-1">1分でわかるAI手相占い</p>
+          <p className="text-gray-500 text-sm mt-1">総合占いで、あなたの未来を楽しく紐解く</p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-lg p-6">
