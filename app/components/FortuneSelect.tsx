@@ -13,22 +13,19 @@ interface Props {
 
 type CategoryColor = "purple" | "indigo" | "green" | "violet";
 
-const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border: string; bar: string }> = {
-  purple: { bg: "bg-purple-100", text: "text-purple-700", border: "border-purple-200", bar: "bg-purple-300" },
-  indigo: { bg: "bg-indigo-100", text: "text-indigo-700", border: "border-indigo-200", bar: "bg-indigo-300" },
-  green:  { bg: "bg-green-100",  text: "text-green-700",  border: "border-green-200",  bar: "bg-green-300"  },
-  violet: { bg: "bg-violet-100", text: "text-violet-700", border: "border-violet-200", bar: "bg-violet-300" },
+const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border: string }> = {
+  purple: { bg: "bg-purple-200", text: "text-purple-800", border: "border-purple-300" },
+  indigo: { bg: "bg-indigo-200", text: "text-indigo-800", border: "border-indigo-300" },
+  green:  { bg: "bg-green-200",  text: "text-green-800",  border: "border-green-300"  },
+  violet: { bg: "bg-violet-200", text: "text-violet-800", border: "border-violet-300" },
 };
 
 function CategoryLabel({ emoji, label, color }: { emoji: string; label: string; color: CategoryColor }) {
   const s = CATEGORY_STYLES[color];
   return (
-    <div className={`flex items-stretch rounded-xl overflow-hidden border ${s.border} mt-2`}>
-      <div className={`flex items-center gap-2 px-4 py-2 ${s.bg} ${s.text} font-black text-base`}>
-        <span className="text-lg">{emoji}</span>
-        <span>{label}</span>
-      </div>
-      <div className={`flex-1 ${s.bg} opacity-40`} />
+    <div className={`flex items-center rounded-xl overflow-hidden border ${s.border} ${s.bg} px-4 py-2 mt-2`}>
+      <span className="text-lg mr-2">{emoji}</span>
+      <span className={`font-black text-base ${s.text}`}>{label}</span>
     </div>
   );
 }
