@@ -183,7 +183,10 @@ export default function AnimalFortunePage() {
 
         {/* ヘッダー */}
         <div className="text-center space-y-1">
-          <Link href="/" className="text-xs text-green-500 hover:underline">← トップに戻る</Link>
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-xs text-green-500 hover:underline">← トップに戻る</Link>
+            <Link href="/animal-guide" className="text-xs text-green-600 border border-green-300 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">📖 動物占いガイド</Link>
+          </div>
           <div className="text-5xl">🐾</div>
           <h1 className="text-2xl font-black text-green-800">動物占い</h1>
           <p className="text-green-600 text-sm">生年月日があなたの動物キャラを教えてくれる</p>

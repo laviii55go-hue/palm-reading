@@ -103,7 +103,10 @@ export default function DreamPage() {
     <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-slate-900 to-slate-950 flex flex-col items-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <Link href="/" className="text-indigo-300 text-sm hover:text-indigo-200 hover:underline">← トップに戻る</Link>
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-indigo-300 text-sm hover:text-indigo-200 hover:underline">← トップに戻る</Link>
+            <Link href="/dream-guide" className="text-indigo-300 text-xs hover:text-indigo-200 hover:underline border border-indigo-600 rounded-full px-3 py-1">📖 夢占いガイド</Link>
+          </div>
           <h1 className="text-2xl font-bold text-white mt-2">🌙 夢占い</h1>
           <p className="text-slate-400 text-sm mt-1">見た夢からメッセージを読み解きます</p>
         </div>

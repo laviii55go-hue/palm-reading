@@ -97,6 +97,12 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       <div className="space-y-3">
         <CategoryLabel emoji="🌙" label="夢占い" />
         <Link
+          href="/dream-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-indigo-200 text-indigo-600 font-semibold text-sm text-center hover:bg-indigo-50 transition-colors"
+        >
+          📖 夢占いの基本知識を読む
+        </Link>
+        <Link
           href="/dream"
           className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-indigo-50 to-slate-100 border-indigo-300 hover:shadow-md hover:scale-[1.01]"
         >
@@ -112,6 +118,12 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       {/* ── 動物占い ── */}
       <div className="space-y-3">
         <CategoryLabel emoji="🐾" label="動物占い" />
+        <Link
+          href="/animal-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-green-200 text-green-600 font-semibold text-sm text-center hover:bg-green-50 transition-colors"
+        >
+          📖 動物占いの基本知識を読む
+        </Link>
         <Link
           href="/animal"
           className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-green-50 to-emerald-50 border-green-300 hover:shadow-md hover:scale-[1.01]"
