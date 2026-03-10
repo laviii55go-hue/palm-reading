@@ -164,6 +164,13 @@ export default function LuckyNumberPage() {
     setOpenCategory(null);
   };
 
+  const handleChangePartnerOnly = () => {
+    setCompatPhase("input");
+    setPartnerYear(""); setPartnerMonth(""); setPartnerDay("");
+    setCompatError(null);
+    setOpenCategory(null);
+  };
+
   const personalEntry = NUMEROLOGY_DATA[lifePathNum];
   const yearEntry = PERSONAL_YEAR_DATA[personalYearNum];
   const myEntry = NUMEROLOGY_DATA[myNum];
@@ -376,8 +383,15 @@ export default function LuckyNumberPage() {
                   <p className="text-gray-600 text-sm mt-1">2人の生年月日から相性を診断します</p>
                 </div>
 
-                <div className="rounded-2xl border-2 border-purple-200 p-4 space-y-3">
-                  <p className="text-sm font-bold text-purple-700">👤 あなた</p>
+                <div className={`rounded-2xl border-2 p-4 space-y-3 ${myYear && myMonth && myDay ? "border-purple-200 bg-purple-50/50" : "border-purple-200"}`}>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-bold text-purple-700">👤 あなた</p>
+                    {myYear && myMonth && myDay && (
+                      <span className="text-xs text-purple-500 bg-purple-100 px-2 py-0.5 rounded-full">
+                        {myYear}/{myMonth}/{myDay} 入力済み
+                      </span>
+                    )}
+                  </div>
                   <DateInputs
                     labelYear="生まれ年" labelMonth="月" labelDay="日"
                     valYear={myYear} valMonth={myMonth} valDay={myDay}
@@ -499,10 +513,16 @@ export default function LuckyNumberPage() {
                   );
                 })()}
 
-                <button onClick={handleCompatReset}
-                  className="w-full py-3 rounded-xl border-2 border-pink-300 text-pink-600 font-semibold hover:bg-pink-50 transition-colors">
-                  別の組み合わせで診断する
-                </button>
+                <div className="grid grid-cols-2 gap-3">
+                  <button onClick={handleChangePartnerOnly}
+                    className="py-3 rounded-xl bg-pink-500 text-white font-bold text-sm hover:bg-pink-600 transition-colors">
+                    💕 相手だけ変える
+                  </button>
+                  <button onClick={handleCompatReset}
+                    className="py-3 rounded-xl border-2 border-gray-300 text-gray-500 font-semibold text-sm hover:bg-gray-50 transition-colors">
+                    最初からやり直す
+                  </button>
+                </div>
 
                 <Link href="/" className="block w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm text-center hover:bg-purple-700 transition-colors">
                   🔮 手相診断を始める
