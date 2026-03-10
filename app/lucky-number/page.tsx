@@ -81,6 +81,8 @@ const COMPAT_CATEGORIES = [
   { key: "love", label: "恋愛の相性", emoji: "💕" },
   { key: "work", label: "仕事の相性", emoji: "💼" },
   { key: "friendship", label: "友情の相性", emoji: "🤝" },
+  { key: "parent", label: "親子の相性", emoji: "👨‍👩‍👧" },
+  { key: "family", label: "家族の相性", emoji: "🏠" },
 ];
 
 function StarScore({ score }: { score: number }) {
