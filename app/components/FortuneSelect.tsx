@@ -23,12 +23,12 @@ const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border:
 function CategoryLabel({ emoji, label, color }: { emoji: string; label: string; color: CategoryColor }) {
   const s = CATEGORY_STYLES[color];
   return (
-    <div className="flex items-center gap-3 mt-2">
-      <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full border ${s.bg} ${s.border} ${s.text} font-black text-base shadow-sm`}>
+    <div className={`flex items-stretch rounded-xl overflow-hidden border ${s.border} mt-2`}>
+      <div className={`flex items-center gap-2 px-4 py-2 ${s.bg} ${s.text} font-black text-base`}>
         <span className="text-lg">{emoji}</span>
         <span>{label}</span>
       </div>
-      <div className={`flex-1 h-0.5 rounded-full ${s.bar} opacity-50`} />
+      <div className={`flex-1 ${s.bg} opacity-40`} />
     </div>
   );
 }
