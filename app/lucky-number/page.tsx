@@ -334,6 +334,18 @@ export default function LuckyNumberPage() {
                   </a>
                 </div>
 
+                <button
+                  onClick={() => {
+                    setMyYear(year);
+                    setMyMonth(month);
+                    setMyDay(day);
+                    setActiveTab("compatibility");
+                  }}
+                  className="w-full py-3 rounded-xl bg-pink-500 text-white font-bold text-sm hover:bg-pink-600 transition-colors"
+                >
+                  💞 相性診断へ（相手の情報を入力） →
+                </button>
+
                 <AdBanner />
                 <RakutenWidget />
 
@@ -363,11 +375,6 @@ export default function LuckyNumberPage() {
                 <button onClick={handlePersonalReset}
                   className="w-full py-3 rounded-xl border-2 border-purple-300 text-purple-700 font-semibold hover:bg-purple-50 transition-colors">
                   別の生年月日で調べる
-                </button>
-
-                <button onClick={() => setActiveTab("compatibility")}
-                  className="w-full py-3 rounded-xl bg-pink-500 text-white font-bold text-sm hover:bg-pink-600 transition-colors">
-                  💞 相性診断もする →
                 </button>
 
                 <Link href="/" className="block w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm text-center hover:bg-purple-700 transition-colors">
