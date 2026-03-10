@@ -239,8 +239,8 @@ export default function AnimalFortunePage() {
   const partnerFullName = `${partnerSubtype.name}${partnerAnimal.name}`;
 
   // ─── シェアテキスト ───────────────────────────────────
-  const personalShareText = `私の動物占いは「${animal.emoji} ${fullName}」でした！\n${animal.title}タイプ✨\n#動物占い #${fullName} #占い好きな人と繋がりたい #生年月日占い`;
-  const compatShareText = `動物占い相性診断結果 ${animal.emoji}×${partnerAnimal.emoji}\n${myFullName} × ${partnerFullName}\n相性スコア ★${compat.score}/5\n#動物占い #相性診断 #占い好きな人と繋がりたい`;
+  const personalShareText = `私の動物占いは「${animal.emoji} ${fullName}」でした！\n${animal.title}タイプ✨\n\nあなたも試してみてください👇\n${PAGE_URL}\n#動物占い #${fullName} #占い好きな人と繋がりたい #生年月日占い`;
+  const compatShareText = `動物占い相性診断結果 ${animal.emoji}×${partnerAnimal.emoji}\n${myFullName} × ${partnerFullName}\n相性スコア ★${compat.score}/5\n\nあなたも試してみてください👇\n${PAGE_URL}\n#動物占い #相性診断 #占い好きな人と繋がりたい`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
@@ -382,14 +382,14 @@ export default function AnimalFortunePage() {
                   <p className="text-center text-sm font-bold text-gray-600">結果をシェアする</p>
                   <div className="grid grid-cols-2 gap-3">
                     <a
-                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(personalShareText)}&url=${encodeURIComponent(PAGE_URL)}`}
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(personalShareText)}`}
                       target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-black text-white text-sm font-bold hover:bg-gray-800 transition-colors"
                     >
                       <span className="text-base">𝕏</span> Xでシェア
                     </a>
                     <a
-                      href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(PAGE_URL)}&text=${encodeURIComponent(personalShareText)}`}
+                      href={`https://line.me/R/msg/text/?${encodeURIComponent(personalShareText)}`}
                       target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#06C755] text-white text-sm font-bold hover:bg-[#05b34d] transition-colors"
                     >
@@ -523,14 +523,14 @@ export default function AnimalFortunePage() {
                   <p className="text-center text-sm font-bold text-gray-600">結果をシェアする</p>
                   <div className="grid grid-cols-2 gap-3">
                     <a
-                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(compatShareText)}&url=${encodeURIComponent(PAGE_URL)}`}
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(compatShareText)}`}
                       target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-black text-white text-sm font-bold hover:bg-gray-800 transition-colors"
                     >
                       <span className="text-base">𝕏</span> Xでシェア
                     </a>
                     <a
-                      href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(PAGE_URL)}&text=${encodeURIComponent(compatShareText)}`}
+                      href={`https://line.me/R/msg/text/?${encodeURIComponent(compatShareText)}`}
                       target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-[#06C755] text-white text-sm font-bold hover:bg-[#05b34d] transition-colors"
                     >

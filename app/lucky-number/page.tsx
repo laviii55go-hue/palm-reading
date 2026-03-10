@@ -380,8 +380,8 @@ export default function LuckyNumberPage() {
 
                 {(() => {
                   const shareText = `🔢 数秘術占い結果\nライフパスナンバー【${lifePathNum}】${personalEntry.emoji} ${personalEntry.title}\n${personalEntry.keywords.slice(0, 3).join("・")}\n📅 ${CURRENT_YEAR}年のテーマ：${yearEntry.theme}\n\nあなたも試してみてください👇\n${PAGE_URL}\n#数秘術 #占い好きな人と繋がりたい #生年月日占い`;
-                  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(PAGE_URL)}`;
-                  const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(PAGE_URL)}&text=${encodeURIComponent(shareText)}`;
+                  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+                  const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`;
                   return (
                     <div className="rounded-2xl border-2 border-gray-200 bg-gray-50 p-4 space-y-3">
                       <p className="text-center text-sm font-medium text-gray-500">📣 結果をシェアする</p>
@@ -543,8 +543,8 @@ export default function LuckyNumberPage() {
                 {/* シェアボタン */}
                 {(() => {
                   const shareText = `💞 数秘術 相性診断結果\nライフパスナンバー【${myNum}】×【${partnerNum}】\n総合相性：${"★".repeat(compat.score)}${"☆".repeat(5 - compat.score)}\n\nあなたも試してみてください👇\n${PAGE_URL}\n#数秘術 #相性診断 #占い好きな人と繋がりたい`;
-                  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(PAGE_URL)}`;
-                  const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(PAGE_URL)}&text=${encodeURIComponent(shareText)}`;
+                  const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+                  const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`;
                   return (
                     <div className="rounded-2xl border-2 border-gray-200 bg-gray-50 p-4 space-y-3">
                       <p className="text-center text-sm font-medium text-gray-500">📣 結果をシェアする</p>

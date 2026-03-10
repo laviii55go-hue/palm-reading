@@ -246,8 +246,8 @@ export default function DreamPage() {
                 const pageUrl = "https://jade-torte-9b5cde.netlify.app/dream";
                 const tag = keywords.length > 0 ? `「${keywords.slice(0, 2).join("・")}」` : "";
                 const shareText = `🌙 夢占い結果${tag}\n${narrative.slice(0, 60)}...\n\nあなたの夢も診断してみてください👇\n${pageUrl}\n#夢占い #夢診断 #占い好きな人と繋がりたい`;
-                const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`;
-                const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}`;
+                const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+                const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`;
                 return (
                   <div className="rounded-2xl border-2 border-gray-200 bg-gray-50 p-4 space-y-3">
                     <p className="text-center text-sm font-medium text-gray-500">📣 結果をシェアする</p>
