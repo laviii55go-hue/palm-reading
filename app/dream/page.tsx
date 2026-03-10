@@ -2,6 +2,7 @@
 
 import { useState, KeyboardEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 
@@ -107,7 +108,17 @@ export default function DreamPage() {
             <Link href="/" className="text-indigo-300 text-sm hover:text-indigo-200 hover:underline">← トップに戻る</Link>
             <Link href="/dream-guide" className="text-indigo-300 text-xs hover:text-indigo-200 hover:underline border border-indigo-600 rounded-full px-3 py-1">📖 夢占いガイド</Link>
           </div>
-          <h1 className="text-2xl font-bold text-white mt-2">🌙 夢占い</h1>
+          <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/30">
+            <Image
+              src="/dream-top.png"
+              alt="夢占い"
+              width={600}
+              height={300}
+              className="w-full h-auto object-cover"
+              priority
+            />
+          </div>
+          <h1 className="text-2xl font-bold text-white mt-3">🌙 夢占い</h1>
           <p className="text-slate-400 text-sm mt-1">見た夢からメッセージを読み解きます</p>
         </div>
 

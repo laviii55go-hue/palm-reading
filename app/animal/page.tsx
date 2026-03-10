@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import {
@@ -187,8 +188,17 @@ export default function AnimalFortunePage() {
             <Link href="/" className="text-xs text-green-500 hover:underline">← トップに戻る</Link>
             <Link href="/animal-guide" className="text-xs text-green-600 border border-green-300 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">📖 動物占いガイド</Link>
           </div>
-          <div className="text-5xl">🐾</div>
-          <h1 className="text-2xl font-black text-green-800">動物占い</h1>
+          <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
+            <Image
+              src="/animal-top.png"
+              alt="動物占い"
+              width={600}
+              height={300}
+              className="w-full h-auto object-cover"
+              priority
+            />
+          </div>
+          <h1 className="text-2xl font-black text-green-800 mt-3">動物占い</h1>
           <p className="text-green-600 text-sm">生年月日があなたの動物キャラを教えてくれる</p>
         </div>
 
