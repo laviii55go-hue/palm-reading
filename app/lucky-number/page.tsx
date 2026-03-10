@@ -348,6 +348,12 @@ export default function LuckyNumberPage() {
                     setMyYear(year);
                     setMyMonth(month);
                     setMyDay(day);
+                    setPartnerYear("");
+                    setPartnerMonth("");
+                    setPartnerDay("");
+                    setCompatPhase("input");
+                    setCompatError(null);
+                    setOpenCategory(null);
                     setActiveTab("compatibility");
                   }}
                   className="w-full py-3 rounded-xl bg-pink-500 text-white font-bold text-sm hover:bg-pink-600 transition-colors"
