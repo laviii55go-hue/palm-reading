@@ -77,6 +77,15 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           <div className="text-xs text-indigo-500 mt-0.5">見た夢からメッセージを読み解く</div>
           <div className="absolute bottom-2 right-3 text-indigo-400 text-xs">→</div>
         </Link>
+        <Link
+          href="/lucky-number"
+          className="relative p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-violet-50 to-purple-50 border-violet-300 hover:shadow-md hover:scale-[1.02]"
+        >
+          <div className="text-2xl mb-1">🔢</div>
+          <div className="font-bold text-sm text-violet-800">数秘術占い</div>
+          <div className="text-xs text-violet-500 mt-0.5">生年月日で運命数を読み解く</div>
+          <div className="absolute bottom-2 right-3 text-violet-400 text-xs">→</div>
+        </Link>
       </div>
 
       <button
