@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "【無料】手のひらの予言者【1分でわかるAI手相占い】",
-  description: "スマホでパッと占える！AIがあなたの手相から恋愛運・金運・仕事運を1分で無料診断します。悩める未来のヒントが見つかる本格鑑定を今すぐ体験。",
+  title: "【無料】手のひらの予言者【総合占いで、あなたの未来を楽しく紐解く】",
+  description: "手相・夢占い・動物占い・数秘術など多彩な占いが無料で楽しめる総合占いサイト。生年月日や手相から恋愛運・金運・仕事運を診断します。",
   openGraph: {
-    title: "手のひらの予言者【1分でわかるAI手相占い】",
-    description: "スマホでパッと占える！AIがあなたの手相から恋愛運・金運・仕事運を1分で無料診断します。悩める未来のヒントが見つかる本格鑑定を今すぐ体験。",
+    title: "手のひらの予言者【総合占いで、あなたの未来を楽しく紐解く】",
+    description: "手相・夢占い・動物占い・数秘術など多彩な占いが無料で楽しめる総合占いサイト。生年月日や手相から恋愛運・金運・仕事運を診断します。",
     url: "https://jade-torte-9b5cde.netlify.app/",
     siteName: "手のひらの予言者",
     images: [
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "手のひらの予言者【1分でわかるAI手相占い】",
-    description: "スマホでパッと占える！AIがあなたの手相から恋愛運・金運・仕事運を1分で無料診断します。悩める未来のヒントが見つかる本格鑑定を今すぐ体験。",
+    title: "手のひらの予言者【総合占いで、あなたの未来を楽しく紐解く】",
+    description: "手相・夢占い・動物占い・数秘術など多彩な占いが無料で楽しめる総合占いサイト。生年月日や手相から恋愛運・金運・仕事運を診断します。",
     images: ["https://jade-torte-9b5cde.netlify.app/og-image-v2.png"],
   },
 };
