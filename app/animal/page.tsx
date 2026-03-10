@@ -19,6 +19,57 @@ type CompatPhase = "input" | "result";
 const CURRENT_YEAR = new Date().getFullYear();
 const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/animal";
 
+// サブタイプ別カラーテーマ（0:黒い 1:白い 2:赤い 3:青い 4:金の）
+const SUBTYPE_THEMES = [
+  {
+    // 0: 黒い
+    cardGradient: "from-gray-700 via-gray-800 to-gray-950",
+    cardBg: "bg-gray-900",
+    subText: "text-gray-400",
+    badge: "bg-white/15 text-gray-200",
+    sectionAccent: "text-gray-700",
+    emoji: "⚫",
+  },
+  {
+    // 1: 白い
+    cardGradient: "from-slate-100 via-gray-200 to-slate-300",
+    cardBg: "bg-slate-200",
+    subText: "text-slate-500",
+    badge: "bg-gray-400/20 text-gray-700",
+    sectionAccent: "text-slate-600",
+    emoji: "⚪",
+    darkText: true,
+  },
+  {
+    // 2: 赤い
+    cardGradient: "from-red-500 via-rose-500 to-red-700",
+    cardBg: "bg-red-600",
+    subText: "text-red-200",
+    badge: "bg-white/20 text-white",
+    sectionAccent: "text-red-700",
+    emoji: "🔴",
+  },
+  {
+    // 3: 青い
+    cardGradient: "from-blue-500 via-blue-600 to-indigo-700",
+    cardBg: "bg-blue-600",
+    subText: "text-blue-200",
+    badge: "bg-white/20 text-white",
+    sectionAccent: "text-blue-700",
+    emoji: "🔵",
+  },
+  {
+    // 4: 金の
+    cardGradient: "from-amber-300 via-yellow-400 to-amber-500",
+    cardBg: "bg-amber-400",
+    subText: "text-amber-800",
+    badge: "bg-amber-900/20 text-amber-900",
+    sectionAccent: "text-amber-700",
+    emoji: "🟡",
+    darkText: true,
+  },
+] as const;
+
 // ─── 日付入力コンポーネント ──────────────────────────────
 type DateInputsProps = {
   labelYear: string; labelMonth: string; labelDay: string;
@@ -164,6 +215,9 @@ export default function AnimalFortunePage() {
   // ─── 結果データ取得 ──────────────────────────────────
   const animal = ANIMALS[animalIdx];
   const subtype = SUBTYPES[subtypeIdx];
+  const theme = SUBTYPE_THEMES[subtypeIdx];
+  const myTheme = SUBTYPE_THEMES[mySubtypeIdx];
+  const partnerTheme = SUBTYPE_THEMES[partnerSubtypeIdx];
   const myAnimal = ANIMALS[myAnimalIdx];
   const mySubtype = SUBTYPES[mySubtypeIdx];
   const partnerAnimal = ANIMALS[partnerAnimalIdx];
@@ -243,14 +297,14 @@ export default function AnimalFortunePage() {
             {personalPhase === "result" && (
               <div className="space-y-4">
                 {/* 動物カード */}
-                <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-6 text-white text-center shadow-lg">
-                  <p className="text-green-200 text-sm mb-2">あなたの動物は</p>
-                  <div className="text-7xl mb-3">{animal.emoji}</div>
-                  <div className="text-3xl font-black mb-1">{fullName}</div>
-                  <div className="text-green-200 text-sm font-medium">
+                <div className={`bg-gradient-to-br ${theme.cardGradient} rounded-3xl p-6 text-center shadow-lg`}>
+                  <p className={`${theme.subText} text-sm mb-2`}>あなたの動物は</p>
+                  <div className="text-7xl mb-3 drop-shadow-md">{animal.emoji}</div>
+                  <div className={`text-3xl font-black mb-1 ${theme.darkText ? "text-gray-800" : "text-white"}`}>{fullName}</div>
+                  <div className={`${theme.subText} text-sm font-medium`}>
                     {subtype.modifier}・{animal.title}
                   </div>
-                  <div className="mt-3 bg-white/20 rounded-2xl px-4 py-2 text-sm">
+                  <div className={`mt-3 rounded-2xl px-4 py-2 text-sm ${theme.badge}`}>
                     🎨 ラッキーカラー：{animal.luckyColor}
                   </div>
                 </div>
@@ -392,34 +446,40 @@ export default function AnimalFortunePage() {
             {compatPhase === "result" && (
               <div className="space-y-4">
                 {/* 相性スコア */}
-                <div className="bg-gradient-to-br from-pink-500 to-rose-500 rounded-3xl p-6 text-white text-center shadow-lg">
-                  <p className="text-pink-200 text-sm mb-3">2人の動物相性</p>
-                  <div className="flex justify-center items-center gap-4 mb-4">
+                <div className="rounded-3xl overflow-hidden shadow-lg">
+                  {/* 上部：2人の動物プレート */}
+                  <div className="flex">
                     <button
                       onClick={() => goToPersonalResult(myYear, myMonth, myDay)}
-                      className="text-center flex-1 rounded-2xl border-2 border-white/30 bg-white/20 p-3 hover:bg-white/30 transition-all active:scale-95"
+                      className={`flex-1 bg-gradient-to-br ${myTheme.cardGradient} p-4 text-center hover:brightness-95 transition-all active:scale-95`}
                     >
-                      <div className="text-4xl">{myAnimal.emoji}</div>
-                      <div className="text-xl font-black">{myAnimal.name}</div>
-                      <div className="text-xs text-pink-200">{mySubtype.name}タイプ</div>
-                      <div className="text-xs text-pink-100 mt-0.5">あなた（{myYear}/{myMonth}/{myDay}）</div>
-                      <div className="text-[10px] text-pink-300 mt-1">タップで個人診断 →</div>
+                      <div className="text-4xl drop-shadow-sm">{myAnimal.emoji}</div>
+                      <div className={`text-lg font-black mt-1 ${myTheme.darkText ? "text-gray-800" : "text-white"}`}>{myAnimal.name}</div>
+                      <div className={`text-xs mt-0.5 ${myTheme.subText}`}>{mySubtype.name}タイプ</div>
+                      <div className={`text-xs mt-0.5 ${myTheme.subText}`}>あなた</div>
+                      <div className={`text-[10px] mt-1 ${myTheme.subText}`}>→ 個人診断</div>
                     </button>
-                    <div className="text-3xl">💞</div>
+                    <div className="flex items-center justify-center bg-white/90 px-2">
+                      <span className="text-2xl">💞</span>
+                    </div>
                     <button
                       onClick={() => goToPersonalResult(partnerYear, partnerMonth, partnerDay)}
-                      className="text-center flex-1 rounded-2xl border-2 border-white/30 bg-white/20 p-3 hover:bg-white/30 transition-all active:scale-95"
+                      className={`flex-1 bg-gradient-to-bl ${partnerTheme.cardGradient} p-4 text-center hover:brightness-95 transition-all active:scale-95`}
                     >
-                      <div className="text-4xl">{partnerAnimal.emoji}</div>
-                      <div className="text-xl font-black">{partnerAnimal.name}</div>
-                      <div className="text-xs text-pink-200">{partnerSubtype.name}タイプ</div>
-                      <div className="text-xs text-pink-100 mt-0.5">相手（{partnerYear}/{partnerMonth}/{partnerDay}）</div>
-                      <div className="text-[10px] text-pink-300 mt-1">タップで個人診断 →</div>
+                      <div className="text-4xl drop-shadow-sm">{partnerAnimal.emoji}</div>
+                      <div className={`text-lg font-black mt-1 ${partnerTheme.darkText ? "text-gray-800" : "text-white"}`}>{partnerAnimal.name}</div>
+                      <div className={`text-xs mt-0.5 ${partnerTheme.subText}`}>{partnerSubtype.name}タイプ</div>
+                      <div className={`text-xs mt-0.5 ${partnerTheme.subText}`}>相手</div>
+                      <div className={`text-[10px] mt-1 ${partnerTheme.subText}`}>→ 個人診断</div>
                     </button>
                   </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <StarScore score={compat.score} />
-                    <span className="text-lg font-bold">{compat.score}/5</span>
+                  {/* 下部：スコア帯 */}
+                  <div className="bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-3 text-white text-center">
+                    <p className="text-pink-200 text-xs mb-1">2人の動物相性</p>
+                    <div className="flex items-center justify-center gap-2">
+                      <StarScore score={compat.score} />
+                      <span className="text-lg font-bold">{compat.score}/5</span>
+                    </div>
                   </div>
                 </div>
 
