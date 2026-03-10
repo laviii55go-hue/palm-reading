@@ -19,8 +19,18 @@ type CompatPhase = "input" | "result";
 const CURRENT_YEAR = new Date().getFullYear();
 const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/animal";
 
+type SubtypeTheme = {
+  cardGradient: string;
+  cardBg: string;
+  subText: string;
+  badge: string;
+  sectionAccent: string;
+  emoji: string;
+  darkText?: boolean;
+};
+
 // サブタイプ別カラーテーマ（0:黒い 1:白い 2:赤い 3:青い 4:金の）
-const SUBTYPE_THEMES = [
+const SUBTYPE_THEMES: SubtypeTheme[] = [
   {
     // 0: 黒い
     cardGradient: "from-gray-700 via-gray-800 to-gray-950",
@@ -68,7 +78,7 @@ const SUBTYPE_THEMES = [
     emoji: "🟡",
     darkText: true,
   },
-] as const;
+];
 
 // ─── 日付入力コンポーネント ──────────────────────────────
 type DateInputsProps = {
