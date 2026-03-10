@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "手のひらの予言者",
     images: [
       {
-        url: "https://jade-torte-9b5cde.netlify.app/og-image.png",
+        url: "https://jade-torte-9b5cde.netlify.app/og-image-v2.png",
         width: 1200,
         height: 630,
         alt: "手のひらの予言者 AI手相占い",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "手のひらの予言者【1分でわかるAI手相占い】",
     description: "スマホでパッと占える！AIがあなたの手相から恋愛運・金運・仕事運を1分で無料診断します。悩める未来のヒントが見つかる本格鑑定を今すぐ体験。",
-    images: ["https://jade-torte-9b5cde.netlify.app/og-image.png"],
+    images: ["https://jade-torte-9b5cde.netlify.app/og-image-v2.png"],
   },
 };
 
