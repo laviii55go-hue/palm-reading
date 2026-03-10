@@ -286,23 +286,25 @@ export default function AnimalFortunePage() {
         {tab === "personal" && (
           <>
             {personalPhase === "input" && (
-              <div className="bg-white rounded-3xl shadow-sm p-6 space-y-5">
-                <h2 className="text-center font-bold text-green-800">あなたの生年月日を入力</h2>
-                <DateInputs
-                  labelYear="生まれ年" labelMonth="月" labelDay="日"
-                  valYear={year} valMonth={month} valDay={day}
-                  setValYear={setYear} setValMonth={setMonth} setValDay={setDay}
-                />
-                <button
-                  onClick={handlePersonalCalc}
-                  disabled={!personalValid}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-lg disabled:opacity-40 shadow-md hover:shadow-lg transition-all active:scale-95"
-                >
-                  🐾 あなたの動物を診断する
-                </button>
-                <p className="text-xs text-center text-gray-400">60種類の動物キャラから診断します</p>
-              </div>
-              <AdBanner />
+              <>
+                <div className="bg-white rounded-3xl shadow-sm p-6 space-y-5">
+                  <h2 className="text-center font-bold text-green-800">あなたの生年月日を入力</h2>
+                  <DateInputs
+                    labelYear="生まれ年" labelMonth="月" labelDay="日"
+                    valYear={year} valMonth={month} valDay={day}
+                    setValYear={setYear} setValMonth={setMonth} setValDay={setDay}
+                  />
+                  <button
+                    onClick={handlePersonalCalc}
+                    disabled={!personalValid}
+                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold text-lg disabled:opacity-40 shadow-md hover:shadow-lg transition-all active:scale-95"
+                  >
+                    🐾 あなたの動物を診断する
+                  </button>
+                  <p className="text-xs text-center text-gray-400">60種類の動物キャラから診断します</p>
+                </div>
+                <AdBanner />
+              </>
             )}
 
             {personalPhase === "result" && (
@@ -411,48 +413,50 @@ export default function AnimalFortunePage() {
         {tab === "compatibility" && (
           <>
             {compatPhase === "input" && (
-              <div className="bg-white rounded-3xl shadow-sm p-6 space-y-5">
-                <h2 className="text-center font-bold text-green-800">2人の生年月日を入力</h2>
+              <>
+                <div className="bg-white rounded-3xl shadow-sm p-6 space-y-5">
+                  <h2 className="text-center font-bold text-green-800">2人の生年月日を入力</h2>
 
-                <div className="bg-green-50 rounded-2xl p-4 space-y-3">
-                  <p className="text-green-700 font-bold text-sm">🐾 あなた</p>
-                  <DateInputs
-                    labelYear="生まれ年" labelMonth="月" labelDay="日"
-                    valYear={myYear} valMonth={myMonth} valDay={myDay}
-                    setValYear={setMyYear} setValMonth={setMyMonth} setValDay={setMyDay}
-                  />
-                </div>
-
-                <div className="text-center text-2xl text-green-400">💞</div>
-
-                <div className="bg-pink-50 rounded-2xl p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <p className="text-pink-700 font-bold text-sm">🐾 相手</p>
-                    {partnerYear && (
-                      <button
-                        onClick={() => { setPartnerYear(""); setPartnerMonth(""); setPartnerDay(""); }}
-                        className="text-xs text-pink-400 border border-pink-200 rounded-lg px-2 py-1 hover:bg-pink-50"
-                      >
-                        相手をリセット
-                      </button>
-                    )}
+                  <div className="bg-green-50 rounded-2xl p-4 space-y-3">
+                    <p className="text-green-700 font-bold text-sm">🐾 あなた</p>
+                    <DateInputs
+                      labelYear="生まれ年" labelMonth="月" labelDay="日"
+                      valYear={myYear} valMonth={myMonth} valDay={myDay}
+                      setValYear={setMyYear} setValMonth={setMyMonth} setValDay={setMyDay}
+                    />
                   </div>
-                  <DateInputs
-                    labelYear="生まれ年" labelMonth="月" labelDay="日"
-                    valYear={partnerYear} valMonth={partnerMonth} valDay={partnerDay}
-                    setValYear={setPartnerYear} setValMonth={setPartnerMonth} setValDay={setPartnerDay}
-                  />
-                </div>
 
-                <button
-                  onClick={handleCompatCalc}
-                  disabled={!compatValid}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-lg disabled:opacity-40 shadow-md hover:shadow-lg transition-all active:scale-95"
-                >
-                  💞 相性を診断する
-                </button>
-              </div>
-              <AdBanner />
+                  <div className="text-center text-2xl text-green-400">💞</div>
+
+                  <div className="bg-pink-50 rounded-2xl p-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <p className="text-pink-700 font-bold text-sm">🐾 相手</p>
+                      {partnerYear && (
+                        <button
+                          onClick={() => { setPartnerYear(""); setPartnerMonth(""); setPartnerDay(""); }}
+                          className="text-xs text-pink-400 border border-pink-200 rounded-lg px-2 py-1 hover:bg-pink-50"
+                        >
+                          相手をリセット
+                        </button>
+                      )}
+                    </div>
+                    <DateInputs
+                      labelYear="生まれ年" labelMonth="月" labelDay="日"
+                      valYear={partnerYear} valMonth={partnerMonth} valDay={partnerDay}
+                      setValYear={setPartnerYear} setValMonth={setPartnerMonth} setValDay={setPartnerDay}
+                    />
+                  </div>
+
+                  <button
+                    onClick={handleCompatCalc}
+                    disabled={!compatValid}
+                    className="w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold text-lg disabled:opacity-40 shadow-md hover:shadow-lg transition-all active:scale-95"
+                  >
+                    💞 相性を診断する
+                  </button>
+                </div>
+                <AdBanner />
+              </>
             )}
 
             {compatPhase === "result" && (
