@@ -171,6 +171,15 @@ export default function LuckyNumberPage() {
     setOpenCategory(null);
   };
 
+  const goToPersonalResult = (y: string, m: string, d: string) => {
+    const yn = parseInt(y), mn = parseInt(m), dn = parseInt(d);
+    setYear(y); setMonth(m); setDay(d);
+    setLifePathNum(calcLifePathNumber(yn, mn, dn));
+    setPersonalYearNum(calcPersonalYearNumber(mn, dn, CURRENT_YEAR));
+    setPersonalPhase("result");
+    setActiveTab("personal");
+  };
+
   const personalEntry = NUMEROLOGY_DATA[lifePathNum];
   const yearEntry = PERSONAL_YEAR_DATA[personalYearNum];
   const myEntry = NUMEROLOGY_DATA[myNum];
@@ -440,19 +449,31 @@ export default function LuckyNumberPage() {
 
                 {/* 2人のナンバー表示 */}
                 <div className="flex items-center justify-center gap-4">
-                  <div className="text-center flex-1 rounded-2xl border-2 border-purple-200 bg-purple-50 p-3">
+                  <button
+                    onClick={() => goToPersonalResult(myYear, myMonth, myDay)}
+                    className="text-center flex-1 rounded-2xl border-2 border-purple-200 bg-purple-50 p-3 hover:bg-purple-100 hover:shadow-md transition-all active:scale-95"
+                  >
                     <div className="text-2xl">{myEntry.emoji}</div>
                     <div className="text-2xl font-black text-purple-700">{myNum}</div>
                     <div className="text-xs text-purple-600 font-medium">{myEntry.title}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">あなた</div>
-                  </div>
+                    <div className="text-xs text-gray-500 mt-0.5">
+                      あなた（{myYear}/{myMonth}/{myDay}）
+                    </div>
+                    <div className="text-[10px] text-purple-400 mt-1">タップで個人鑑定 →</div>
+                  </button>
                   <div className="text-3xl text-pink-400">×</div>
-                  <div className="text-center flex-1 rounded-2xl border-2 border-pink-200 bg-pink-50 p-3">
+                  <button
+                    onClick={() => goToPersonalResult(partnerYear, partnerMonth, partnerDay)}
+                    className="text-center flex-1 rounded-2xl border-2 border-pink-200 bg-pink-50 p-3 hover:bg-pink-100 hover:shadow-md transition-all active:scale-95"
+                  >
                     <div className="text-2xl">{partnerEntry.emoji}</div>
                     <div className="text-2xl font-black text-pink-600">{partnerNum}</div>
                     <div className="text-xs text-pink-600 font-medium">{partnerEntry.title}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">相手</div>
-                  </div>
+                    <div className="text-xs text-gray-500 mt-0.5">
+                      相手（{partnerYear}/{partnerMonth}/{partnerDay}）
+                    </div>
+                    <div className="text-[10px] text-pink-400 mt-1">タップで個人鑑定 →</div>
+                  </button>
                 </div>
 
                 {/* 総合スコア */}
