@@ -20,6 +20,63 @@ type CompatPhase = "input" | "result";
 const CURRENT_YEAR = new Date().getFullYear();
 const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/lucky-number";
 
+type DateInputsProps = {
+  labelYear: string; labelMonth: string; labelDay: string;
+  valYear: string; valMonth: string; valDay: string;
+  setValYear: (v: string) => void; setValMonth: (v: string) => void; setValDay: (v: string) => void;
+};
+
+function DateInputs({
+  labelYear, labelMonth, labelDay,
+  valYear, valMonth, valDay,
+  setValYear, setValMonth, setValDay,
+}: DateInputsProps) {
+  return (
+    <div className="space-y-3">
+      <div className="space-y-1">
+        <label className="text-sm font-medium text-gray-700">{labelYear}</label>
+        <input
+          type="number"
+          value={valYear}
+          onChange={(e) => setValYear(e.target.value)}
+          placeholder="例：1990"
+          min={1900}
+          max={CURRENT_YEAR}
+          className="w-full px-4 py-3 rounded-xl border border-purple-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 placeholder-gray-300"
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1">
+          <label className="text-sm font-medium text-gray-700">{labelMonth}</label>
+          <select
+            value={valMonth}
+            onChange={(e) => setValMonth(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-purple-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 bg-white"
+          >
+            <option value="">-- 月 --</option>
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+              <option key={m} value={m}>{m}月</option>
+            ))}
+          </select>
+        </div>
+        <div className="space-y-1">
+          <label className="text-sm font-medium text-gray-700">{labelDay}</label>
+          <select
+            value={valDay}
+            onChange={(e) => setValDay(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-purple-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 bg-white"
+          >
+            <option value="">-- 日 --</option>
+            {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+              <option key={d} value={d}>{d}日</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPAT_CATEGORIES = [
   { key: "love", label: "恋愛の相性", emoji: "💕" },
   { key: "work", label: "仕事の相性", emoji: "💼" },
@@ -112,59 +169,6 @@ export default function LuckyNumberPage() {
   const myEntry = NUMEROLOGY_DATA[myNum];
   const partnerEntry = NUMEROLOGY_DATA[partnerNum];
   const compat = myNum && partnerNum ? getCompatibility(myNum, partnerNum) : null;
-
-  const DateInputs = ({
-    labelYear, labelMonth, labelDay,
-    valYear, valMonth, valDay,
-    setValYear, setValMonth, setValDay,
-  }: {
-    labelYear: string; labelMonth: string; labelDay: string;
-    valYear: string; valMonth: string; valDay: string;
-    setValYear: (v: string) => void; setValMonth: (v: string) => void; setValDay: (v: string) => void;
-  }) => (
-    <div className="space-y-3">
-      <div className="space-y-1">
-        <label className="text-sm font-medium text-gray-700">{labelYear}</label>
-        <input
-          type="number"
-          value={valYear}
-          onChange={(e) => setValYear(e.target.value)}
-          placeholder="例：1990"
-          min={1900}
-          max={CURRENT_YEAR}
-          className="w-full px-4 py-3 rounded-xl border border-purple-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 placeholder-gray-300"
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        <div className="space-y-1">
-          <label className="text-sm font-medium text-gray-700">{labelMonth}</label>
-          <select
-            value={valMonth}
-            onChange={(e) => setValMonth(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-purple-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 bg-white"
-          >
-            <option value="">-- 月 --</option>
-            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-              <option key={m} value={m}>{m}月</option>
-            ))}
-          </select>
-        </div>
-        <div className="space-y-1">
-          <label className="text-sm font-medium text-gray-700">{labelDay}</label>
-          <select
-            value={valDay}
-            onChange={(e) => setValDay(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-purple-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-700 bg-white"
-          >
-            <option value="">-- 日 --</option>
-            {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
-              <option key={d} value={d}>{d}日</option>
-            ))}
-          </select>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-4">
