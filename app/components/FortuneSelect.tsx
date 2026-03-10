@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { FortuneType } from "../types";
 import { FORTUNE_OPTIONS } from "../data/fortunes";
 import AdBanner from "./AdBanner";
@@ -43,7 +44,16 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <div className="text-5xl mb-3">🖐</div>
+        <div className="rounded-2xl overflow-hidden shadow-md mb-4">
+          <Image
+            src="/title-top.png"
+            alt="手のひらの予言者"
+            width={600}
+            height={300}
+            className="w-full h-auto object-cover"
+            priority
+          />
+        </div>
         <h2 className="text-2xl font-bold text-purple-800">何を占いますか？</h2>
         <p className="text-gray-500 text-sm mt-1">カテゴリから選んでください</p>
       </div>

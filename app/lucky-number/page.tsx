@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import {
@@ -192,10 +193,21 @@ export default function LuckyNumberPage() {
     <div className="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <Link href="/" className="text-violet-300 text-sm hover:text-violet-200 hover:underline">
-            ← トップに戻る
-          </Link>
-          <h1 className="text-2xl font-bold text-white mt-2">🔢 数秘術占い</h1>
+          <div className="flex items-center justify-between mb-3">
+            <Link href="/" className="text-violet-300 text-sm hover:text-violet-200 hover:underline">← トップに戻る</Link>
+            <Link href="/numerology-guide" className="text-violet-300 text-xs hover:text-violet-200 hover:underline border border-violet-600 rounded-full px-3 py-1">📖 数秘術ガイド</Link>
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-lg shadow-black/30">
+            <Image
+              src="/numerology-top.png"
+              alt="数秘術占い"
+              width={600}
+              height={300}
+              className="w-full h-auto object-cover"
+              priority
+            />
+          </div>
+          <h1 className="text-2xl font-bold text-white mt-3">🔢 数秘術占い</h1>
           <p className="text-slate-400 text-sm mt-1">生年月日からあなたの運命数を読み解きます</p>
         </div>
 
