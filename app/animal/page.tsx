@@ -302,6 +302,7 @@ export default function AnimalFortunePage() {
                 </button>
                 <p className="text-xs text-center text-gray-400">60種類の動物キャラから診断します</p>
               </div>
+              <AdBanner />
             )}
 
             {personalPhase === "result" && (
@@ -451,6 +452,7 @@ export default function AnimalFortunePage() {
                   💞 相性を診断する
                 </button>
               </div>
+              <AdBanner />
             )}
 
             {compatPhase === "result" && (
