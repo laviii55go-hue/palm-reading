@@ -109,7 +109,11 @@ export default function PersonalityPage() {
           <div className="space-y-4">
             <div className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-3xl p-6 text-white text-center shadow-lg">
               <p className="text-teal-200 text-sm mb-2">あなたの性格タイプは</p>
-              <div className="text-4xl font-black mb-1">{result.code}（{result.nickname}）</div>
+              <div className="text-4xl font-black mb-1">
+                {result.code}
+                <br />
+                （{result.nickname}）
+              </div>
               <p className="text-teal-200 text-sm">タイプ</p>
             </div>
 
