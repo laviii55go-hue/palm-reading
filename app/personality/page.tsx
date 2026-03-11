@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import {
@@ -51,6 +52,16 @@ export default function PersonalityPage() {
         <div className="text-center space-y-1">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xs text-teal-600 hover:underline">← トップに戻る</Link>
+          </div>
+          <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/20">
+            <Image
+              src="/personality-top.png"
+              alt="16タイプ性格診断"
+              width={600}
+              height={300}
+              className="w-full h-auto object-cover"
+              priority
+            />
           </div>
           <h1 className="text-2xl font-black text-teal-800 mt-3">🧠 16タイプ性格診断</h1>
           <p className="text-teal-600 text-sm">8問の質問であなたの性格タイプを診断</p>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     siteName: "手のひらの予言者",
     images: [
       {
-        url: "https://jade-torte-9b5cde.netlify.app/og-image-v2.png",
+        url: "https://jade-torte-9b5cde.netlify.app/personality-top.png",
         width: 1200,
         height: 630,
         alt: "16タイプ性格診断",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "16タイプ性格診断【無料】8問で性格タイプを診断",
     description: "4つの軸からあなたの性格タイプを16種類の中から診断。8問の質問でわかります。",
-    images: ["https://jade-torte-9b5cde.netlify.app/og-image-v2.png"],
+    images: ["https://jade-torte-9b5cde.netlify.app/personality-top.png"],
   },
 };
 
