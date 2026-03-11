@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import AdBanner from "../components/AdBanner";
@@ -15,7 +15,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 const CURRENT_MONTH = new Date().getMonth() + 1;
 const CURRENT_DAY = new Date().getDate();
 
-export default function DailyFortunePage() {
+function DailyFortuneContent() {
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<Mode>("numerology");
   const [birthYear, setBirthYear] = useState("");
@@ -262,5 +262,17 @@ export default function DailyFortunePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function DailyFortunePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 flex items-center justify-center">
+        <p className="text-rose-600 font-medium">読み込み中...</p>
+      </div>
+    }>
+      <DailyFortuneContent />
+    </Suspense>
   );
 }
