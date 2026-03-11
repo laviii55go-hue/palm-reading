@@ -6,6 +6,25 @@ import RakutenWidget from "../../components/RakutenWidget";
 import { PERSONALITY_TYPES, PERSONALITY_TYPE_CODES } from "../../data/personalityData";
 
 type Props = { params: Promise<{ type: string }> };
+type GroupKey = "NT" | "NF" | "SJ" | "SP";
+
+function getTypeGroup(code: string): GroupKey {
+  const s = code[1];
+  const t = code[2];
+  const j = code[3];
+  if (s === "N" && t === "T") return "NT";
+  if (s === "N" && t === "F") return "NF";
+  if (s === "S" && j === "J") return "SJ";
+  if (s === "S" && j === "P") return "SP";
+  return "NT";
+}
+
+const CARD_GRADIENTS: Record<GroupKey, string> = {
+  NT: "from-purple-300 to-purple-500",
+  NF: "from-green-300 to-green-500",
+  SJ: "from-blue-300 to-blue-500",
+  SP: "from-orange-300 to-orange-500",
+};
 
 export async function generateStaticParams() {
   return PERSONALITY_TYPE_CODES.map((type) => ({ type }));
@@ -28,8 +47,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PersonalityTypePage({ params }: Props) {
   const { type } = await params;
-  const t = PERSONALITY_TYPES[type.toUpperCase()];
+  const code = type.toUpperCase();
+  const t = PERSONALITY_TYPES[code];
   if (!t) notFound();
+
+  const group = getTypeGroup(code);
+  const cardGradient = CARD_GRADIENTS[group];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
@@ -43,7 +66,7 @@ export default async function PersonalityTypePage({ params }: Props) {
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-6">
         {/* タイプカード */}
-        <div className="bg-gradient-to-br from-teal-500 to-cyan-600 rounded-3xl p-6 text-white text-center shadow-lg">
+        <div className={`bg-gradient-to-br ${cardGradient} rounded-3xl p-6 text-white text-center shadow-lg`}>
           <div className="text-4xl font-black mb-1">
             {t.code}
             <br />

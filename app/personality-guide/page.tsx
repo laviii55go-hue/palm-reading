@@ -75,6 +75,26 @@ const TOC = [
   { href: "#faq", label: "よくある質問" },
 ];
 
+// 4系統のスタイル（淡い色）
+type GroupKey = "NT" | "NF" | "SJ" | "SP";
+const GROUP_STYLES: Record<GroupKey, { bg: string; border: string; text: string; subText: string }> = {
+  NT: { bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-800", subText: "text-purple-600" },
+  NF: { bg: "bg-green-50", border: "border-green-200", text: "text-green-800", subText: "text-green-600" },
+  SJ: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-800", subText: "text-blue-600" },
+  SP: { bg: "bg-orange-50", border: "border-orange-200", text: "text-orange-800", subText: "text-orange-600" },
+};
+
+function getTypeGroup(code: string): GroupKey {
+  const s = code[1]; // S or N
+  const t = code[2]; // T or F
+  const j = code[3]; // J or P
+  if (s === "N" && t === "T") return "NT";
+  if (s === "N" && t === "F") return "NF";
+  if (s === "S" && j === "J") return "SJ";
+  if (s === "S" && j === "P") return "SP";
+  return "NT";
+}
+
 export default function PersonalityGuidePage() {
   const typeList = Object.entries(PERSONALITY_TYPES);
 
@@ -157,18 +177,28 @@ export default function PersonalityGuidePage() {
             📋 16タイプ一覧
           </h2>
           <p className="text-gray-700 text-sm">4つの軸の組み合わせで16種類のタイプが生まれます。</p>
+          <div className="flex flex-wrap gap-2 mb-3">
+            <span className="bg-purple-50 border border-purple-200 text-purple-700 rounded-full px-2.5 py-0.5 text-xs">分析家(NT)</span>
+            <span className="bg-green-50 border border-green-200 text-green-700 rounded-full px-2.5 py-0.5 text-xs">外交官(NF)</span>
+            <span className="bg-blue-50 border border-blue-200 text-blue-700 rounded-full px-2.5 py-0.5 text-xs">番人(SJ)</span>
+            <span className="bg-orange-50 border border-orange-200 text-orange-700 rounded-full px-2.5 py-0.5 text-xs">探検家(SP)</span>
+          </div>
           <div className="grid grid-cols-2 gap-2">
-            {typeList.map(([code, t]) => (
-              <Link
-                key={code}
-                href={`/personality-guide/${code}`}
-                className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm hover:border-teal-300 hover:shadow-md transition-all block"
-              >
-                <div className="font-black text-teal-800 text-sm">{code}</div>
-                <div className="text-teal-600 text-xs">（{t.nickname}）</div>
-                <div className="text-teal-400 text-[10px] mt-1">→ 詳細を見る</div>
-              </Link>
-            ))}
+            {typeList.map(([code, t]) => {
+              const group = getTypeGroup(code);
+              const s = GROUP_STYLES[group];
+              return (
+                <Link
+                  key={code}
+                  href={`/personality-guide/${code}`}
+                  className={`${s.bg} rounded-xl p-3 border ${s.border} shadow-sm hover:shadow-md transition-all block`}
+                >
+                  <div className={`font-black text-sm ${s.text}`}>{code}</div>
+                  <div className={`text-xs ${s.subText}`}>（{t.nickname}）</div>
+                  <div className={`${s.subText} text-[10px] mt-1 opacity-70`}>→ 詳細を見る</div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
