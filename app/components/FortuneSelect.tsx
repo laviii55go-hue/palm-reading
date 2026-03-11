@@ -186,6 +186,12 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           <div className="absolute right-4 text-violet-400 text-sm">→</div>
         </Link>
         <Link
+          href="/personality-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-violet-200 text-violet-600 font-semibold text-sm text-center hover:bg-white transition-colors"
+        >
+          📖 16タイプ診断の基本知識を読む
+        </Link>
+        <Link
           href="/personality"
           className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-violet-200 hover:shadow-md hover:scale-[1.01]"
         >
