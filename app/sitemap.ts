@@ -1,7 +1,15 @@
 import { MetadataRoute } from "next";
+import { PERSONALITY_TYPE_CODES } from "./data/personalityData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://jade-torte-9b5cde.netlify.app";
+
+  const personalityTypeUrls = PERSONALITY_TYPE_CODES.map((code) => ({
+    url: `${baseUrl}/personality-guide/${code}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
 
   return [
     {
@@ -76,6 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    ...personalityTypeUrls,
     {
       url: `${baseUrl}/privacy`,
       lastModified: new Date(),

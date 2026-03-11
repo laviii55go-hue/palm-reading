@@ -159,10 +159,15 @@ export default function PersonalityGuidePage() {
           <p className="text-gray-700 text-sm">4つの軸の組み合わせで16種類のタイプが生まれます。</p>
           <div className="grid grid-cols-2 gap-2">
             {typeList.map(([code, t]) => (
-              <div key={code} className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm">
+              <Link
+                key={code}
+                href={`/personality-guide/${code}`}
+                className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm hover:border-teal-300 hover:shadow-md transition-all block"
+              >
                 <div className="font-black text-teal-800 text-sm">{code}</div>
                 <div className="text-teal-600 text-xs">（{t.nickname}）</div>
-              </div>
+                <div className="text-teal-400 text-[10px] mt-1">→ 詳細を見る</div>
+              </Link>
             ))}
           </div>
         </section>

@@ -277,6 +277,9 @@ export const PERSONALITY_TYPES: Record<string, PersonalityType> = {
   },
 };
 
+// ─── 有効なタイプコード一覧 ─────────────────────────────────────
+export const PERSONALITY_TYPE_CODES = Object.keys(PERSONALITY_TYPES) as string[];
+
 // ─── スコアからタイプコードを算出 ─────────────────────────────
 export function calcPersonalityType(scores: { E: number; I: number; S: number; N: number; T: number; F: number; J: number; P: number }): string {
   const e = scores.E >= scores.I ? "E" : "I";
