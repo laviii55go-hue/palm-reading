@@ -97,6 +97,38 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
   },
 ];
 
+// ─── 質問（詳細版：各軸6問＝計24問） ─────────────────────────────
+export const QUIZ_QUESTIONS_FULL: QuizQuestion[] = [
+  // E vs I（6問）
+  { id: "f1", dimension: "EI", text: "休日の過ごし方で近いのは？", options: [{ text: "友達と会う・外出する", value: "E" }, { text: "家でゆっくり過ごす", value: "I" }] },
+  { id: "f2", dimension: "EI", text: "新しい環境では？", options: [{ text: "人に話しかけて場を盛り上げる", value: "E" }, { text: "様子を見てから動く", value: "I" }] },
+  { id: "f3", dimension: "EI", text: "パーティーでは？", options: [{ text: "人と交流して楽しむ", value: "E" }, { text: "少人数で落ち着いて話す", value: "I" }] },
+  { id: "f4", dimension: "EI", text: "アイデアを練るとき？", options: [{ text: "人と話しながら進める", value: "E" }, { text: "一人で考えをまとめる", value: "I" }] },
+  { id: "f5", dimension: "EI", text: "疲れたとき？", options: [{ text: "誰かと話して回復", value: "E" }, { text: "一人で静かに休む", value: "I" }] },
+  { id: "f6", dimension: "EI", text: "初対面の人には？", options: [{ text: "積極的に話しかける", value: "E" }, { text: "相手から話しかけられるのを待つ", value: "I" }] },
+  // S vs N（6問）
+  { id: "f7", dimension: "SN", text: "物事を判断するとき重視するのは？", options: [{ text: "事実やデータ、経験", value: "S" }, { text: "直感や可能性、パターン", value: "N" }] },
+  { id: "f8", dimension: "SN", text: "会話の好みは？", options: [{ text: "具体的でわかりやすい話", value: "S" }, { text: "抽象的なアイデアや未来の話", value: "N" }] },
+  { id: "f9", dimension: "SN", text: "未来について考えるとき？", options: [{ text: "具体的な計画を立てる", value: "S" }, { text: "いろんな可能性を想像する", value: "N" }] },
+  { id: "f10", dimension: "SN", text: "新しいことを学ぶとき？", options: [{ text: "手を動かして体験したい", value: "S" }, { text: "理論や概念から理解したい", value: "N" }] },
+  { id: "f11", dimension: "SN", text: "説明するとき？", options: [{ text: "事実や具体例で", value: "S" }, { text: "全体像やイメージで", value: "N" }] },
+  { id: "f12", dimension: "SN", text: "決めるとき？", options: [{ text: "過去の経験を重視", value: "S" }, { text: "新しい可能性を重視", value: "N" }] },
+  // T vs F（6問）
+  { id: "f13", dimension: "TF", text: "決断するとき重視するのは？", options: [{ text: "論理や公平性", value: "T" }, { text: "相手の気持ちや調和", value: "F" }] },
+  { id: "f14", dimension: "TF", text: "人から相談されたら？", options: [{ text: "解決策を提案する", value: "T" }, { text: "気持ちに寄り添う", value: "F" }] },
+  { id: "f15", dimension: "TF", text: "批判されたとき？", options: [{ text: "論点を整理して考える", value: "T" }, { text: "相手の意図や感情を考える", value: "F" }] },
+  { id: "f16", dimension: "TF", text: "チームで決めるとき？", options: [{ text: "効率や成果を優先", value: "T" }, { text: "みんなの気持ちを優先", value: "F" }] },
+  { id: "f17", dimension: "TF", text: "助言するとき？", options: [{ text: "現実的な解決策を", value: "T" }, { text: "相手の気持ちに寄り添う", value: "F" }] },
+  { id: "f18", dimension: "TF", text: "争いごとでは？", options: [{ text: "正しいかどうかで判断", value: "T" }, { text: "関係を重視して判断", value: "F" }] },
+  // J vs P（6問）
+  { id: "f19", dimension: "JP", text: "スケジュールの立て方は？", options: [{ text: "計画的に事前に決める", value: "J" }, { text: "その時の気分で柔軟に", value: "P" }] },
+  { id: "f20", dimension: "JP", text: "締め切り前は？", options: [{ text: "余裕を持って早めに仕上げる", value: "J" }, { text: "締め切り直前で集中する", value: "P" }] },
+  { id: "f21", dimension: "JP", text: "旅行の計画は？", options: [{ text: "事前に細かく決める", value: "J" }, { text: "現地で決める", value: "P" }] },
+  { id: "f22", dimension: "JP", text: "仕事の進め方は？", options: [{ text: "To-Doリストを作る", value: "J" }, { text: "その場の流れで進める", value: "P" }] },
+  { id: "f23", dimension: "JP", text: "予定が変わったとき？", options: [{ text: "ストレスを感じる", value: "J" }, { text: "柔軟に対応する", value: "P" }] },
+  { id: "f24", dimension: "JP", text: "部屋の状態は？", options: [{ text: "整理整頓されている", value: "J" }, { text: "必要なものが手の届くところにあればOK", value: "P" }] },
+];
+
 // ─── 16タイプ定義（4文字コード＋ニックネーム） ─────────────────
 export const PERSONALITY_TYPES: Record<string, PersonalityType> = {
   INTJ: {

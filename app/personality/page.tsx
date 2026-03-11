@@ -7,22 +7,26 @@ import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   QUIZ_QUESTIONS,
+  QUIZ_QUESTIONS_FULL,
   PERSONALITY_TYPES,
   calcPersonalityType,
 } from "../data/personalityData";
 
 type Phase = "start" | "quiz" | "result";
+type QuizMode = "short" | "full";
 
 const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/personality";
 
 export default function PersonalityPage() {
   const [phase, setPhase] = useState<Phase>("start");
+  const [quizMode, setQuizMode] = useState<QuizMode | null>(null);
   const [currentQ, setCurrentQ] = useState(0);
   const [scores, setScores] = useState({ E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 });
   const [resultCode, setResultCode] = useState<string | null>(null);
 
-  const question = QUIZ_QUESTIONS[currentQ];
-  const totalQ = QUIZ_QUESTIONS.length;
+  const questions = quizMode === "full" ? QUIZ_QUESTIONS_FULL : QUIZ_QUESTIONS;
+  const question = questions[currentQ];
+  const totalQ = questions.length;
   const progress = ((currentQ + 1) / totalQ) * 100;
 
   const handleAnswer = (value: "E" | "I" | "S" | "N" | "T" | "F" | "J" | "P") => {
@@ -38,9 +42,15 @@ export default function PersonalityPage() {
 
   const handleReset = () => {
     setPhase("start");
+    setQuizMode(null);
     setCurrentQ(0);
     setScores({ E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 });
     setResultCode(null);
+  };
+
+  const startQuiz = (mode: QuizMode) => {
+    setQuizMode(mode);
+    setPhase("quiz");
   };
 
   const result = resultCode ? PERSONALITY_TYPES[resultCode] : null;
@@ -65,7 +75,9 @@ export default function PersonalityPage() {
             />
           </div>
           <h1 className="text-2xl font-black text-teal-800 mt-3">🧠 16タイプ性格診断</h1>
-          <p className="text-teal-600 text-sm">8問の質問であなたの性格タイプを診断</p>
+          <p className="text-teal-600 text-sm">
+            {quizMode ? `${totalQ}問の質問であなたの性格タイプを診断` : "8問 or 24問で性格タイプを診断"}
+          </p>
         </div>
 
         {/* ═══ スタート画面 ═══ */}
@@ -75,15 +87,25 @@ export default function PersonalityPage() {
               <p className="text-gray-600 text-sm leading-relaxed text-center">
                 4つの軸（外向/内向・感覚/直感・思考/感情・判断/知覚）から、あなたに近い性格タイプを16種類の中から診断します。
               </p>
-              <p className="text-gray-500 text-xs text-center">
-                所要時間：約2分
+              <p className="text-gray-500 text-xs text-center mb-4">
+                診断のバージョンを選んでください
               </p>
-              <button
-                onClick={() => setPhase("quiz")}
-                className="w-full py-4 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold text-lg shadow-md hover:shadow-lg transition-all active:scale-95"
-              >
-                🧠 診断を始める
-              </button>
+              <div className="space-y-3">
+                <button
+                  onClick={() => startQuiz("short")}
+                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-bold shadow-md hover:shadow-lg transition-all active:scale-95"
+                >
+                  <span className="block text-lg">簡易版（8問）</span>
+                  <span className="block text-sm font-normal text-teal-100 mt-0.5">約2分・サクッと診断</span>
+                </button>
+                <button
+                  onClick={() => startQuiz("full")}
+                  className="w-full py-4 rounded-2xl border-2 border-teal-300 text-teal-700 font-bold shadow-sm hover:bg-teal-50 transition-all active:scale-95"
+                >
+                  <span className="block text-lg">詳細版（24問）</span>
+                  <span className="block text-sm font-normal text-teal-600 mt-0.5">約5分・より精度の高い診断</span>
+                </button>
+              </div>
             </div>
             <AdBanner />
           </>
