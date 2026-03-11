@@ -12,13 +12,14 @@ interface Props {
   onStart: () => void;
 }
 
-type CategoryColor = "purple" | "indigo" | "green" | "violet";
+type CategoryColor = "purple" | "indigo" | "green" | "violet" | "teal";
 
 const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border: string; sectionBg: string; sectionBorder: string }> = {
   purple: { bg: "bg-purple-200", text: "text-purple-800", border: "border-purple-300", sectionBg: "bg-purple-50",  sectionBorder: "border-purple-200" },
   indigo: { bg: "bg-indigo-200", text: "text-indigo-800", border: "border-indigo-300", sectionBg: "bg-indigo-50",  sectionBorder: "border-indigo-200" },
   green:  { bg: "bg-green-200",  text: "text-green-800",  border: "border-green-300",  sectionBg: "bg-green-50",   sectionBorder: "border-green-200"  },
   violet: { bg: "bg-violet-200", text: "text-violet-800", border: "border-violet-300", sectionBg: "bg-violet-50",  sectionBorder: "border-violet-200" },
+  teal:   { bg: "bg-teal-200",   text: "text-teal-800",   border: "border-teal-300",   sectionBg: "bg-teal-50",    sectionBorder: "border-teal-200"   },
 };
 
 function CategoryLabel({ emoji, label, color }: { emoji: string; label: string; color: CategoryColor }) {
@@ -181,6 +182,17 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           <div>
             <div className="font-bold text-sm text-violet-800">数秘術占い</div>
             <div className="text-xs text-violet-500 mt-0.5">生年月日で運命数を読み解く</div>
+          </div>
+          <div className="absolute right-4 text-violet-400 text-sm">→</div>
+        </Link>
+        <Link
+          href="/personality"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-violet-200 hover:shadow-md hover:scale-[1.01]"
+        >
+          <div className="text-3xl">🧠</div>
+          <div>
+            <div className="font-bold text-sm text-violet-800">16タイプ性格診断</div>
+            <div className="text-xs text-violet-500 mt-0.5">8問の質問で性格タイプを診断</div>
           </div>
           <div className="absolute right-4 text-violet-400 text-sm">→</div>
         </Link>
