@@ -221,4 +221,90 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
       },
     ],
   },
+  {
+    key: "money",
+    name: "財運線",
+    emoji: "💰",
+    image: "/lines/財運線.png",
+    description: "小指の付け根から感情線に向かう縦線（水星線）",
+    questions: [
+      {
+        key: "hand",
+        label: "どちらの手にありますか？",
+        options: [
+          { value: "right", label: "右手" },
+          { value: "left", label: "左手" },
+          { value: "both", label: "両手" },
+        ],
+      },
+      {
+        key: "length",
+        label: "線の長さは？",
+        options: [
+          { value: "short", label: "短い" },
+          { value: "long", label: "長い（感情線まで届く）" },
+        ],
+      },
+      {
+        key: "count",
+        label: "本数は？",
+        options: [
+          { value: "one", label: "1本" },
+          { value: "multiple", label: "2本以上" },
+        ],
+      },
+      {
+        key: "clarity",
+        label: "線の濃さは？",
+        options: [
+          { value: "clear", label: "くっきり" },
+          { value: "faint", label: "薄め" },
+        ],
+      },
+    ],
+  },
+  {
+    key: "marriage",
+    name: "結婚線",
+    emoji: "💍",
+    image: "/lines/結婚線.png",
+    description: "小指の下・感情線の上にある横線",
+    questions: [
+      {
+        key: "hand",
+        label: "どちらの手にありますか？",
+        options: [
+          { value: "right", label: "右手" },
+          { value: "left", label: "左手" },
+          { value: "both", label: "両手" },
+        ],
+      },
+      {
+        key: "count",
+        label: "本数は？",
+        options: [
+          { value: "one", label: "1本" },
+          { value: "two", label: "2本" },
+          { value: "many", label: "3本以上" },
+        ],
+      },
+      {
+        key: "length",
+        label: "線の長さは？",
+        options: [
+          { value: "short", label: "短い" },
+          { value: "medium", label: "中程度" },
+          { value: "long", label: "長い（薬指の下あたりまで）" },
+        ],
+      },
+      {
+        key: "clarity",
+        label: "線の濃さは？",
+        options: [
+          { value: "clear", label: "くっきり" },
+          { value: "faint", label: "薄め" },
+        ],
+      },
+    ],
+  },
 ];

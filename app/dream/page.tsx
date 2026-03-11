@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
+import FooterLinks from "../components/FooterLinks";
 
 type Phase = "input" | "result";
 
@@ -284,9 +285,7 @@ export default function DreamPage() {
           )}
         </div>
 
-        <div className="text-center mt-4">
-          <a href="/privacy" className="text-slate-500 text-xs hover:text-slate-400 hover:underline">プライバシーポリシー</a>
-        </div>
+        <FooterLinks className="text-center mt-4" linkClassName="text-slate-500 text-xs hover:text-slate-400 hover:underline" />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import FortuneSelect from "./FortuneSelect";
 import StepIndicator from "./StepIndicator";
 import LineStep from "./LineStep";
 import Result from "./Result";
+import FooterLinks from "./FooterLinks";
 
 type Phase = "select" | "steps" | "result";
 
@@ -135,9 +136,7 @@ export default function PalmReading() {
             <Result result={result} fortuneType={fortuneType!} selections={selections} onReset={handleReset} />
           ) : null}
         </div>
-        <div className="text-center mt-4">
-          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
-        </div>
+        <FooterLinks className="text-center mt-4" />
       </div>
     </div>
   );

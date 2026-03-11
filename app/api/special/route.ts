@@ -10,6 +10,8 @@ const LINE_LABELS: Record<string, string> = {
   mystic: "神秘十字",
   mars: "火星線",
   double: "二重生命線",
+  money: "財運線",
+  marriage: "結婚線",
 };
 
 const QUESTION_LABELS: Record<string, Record<string, string>> = {
@@ -18,7 +20,7 @@ const QUESTION_LABELS: Record<string, Record<string, string>> = {
   clarity: { clear: "くっきり", faint: "薄め・うっすら" },
   continuity: { connected: "一本につながっている", broken: "途中で途切れている" },
   length: { long: "長い", medium: "中程度", short: "短い", same: "生命線と同じくらい" },
-  count: { one: "1本", multiple: "2本以上" },
+  count: { one: "1本", multiple: "2本以上", two: "2本", many: "3本以上" },
   finger: { thumb: "親指", index: "人差し指", middle: "中指", ring: "薬指", pinky: "小指", multiple: "複数の指" },
   position: { center: "感情線と頭脳線のほぼ中央", near_heart: "感情線に近い", near_head: "頭脳線に近い" },
   size: { large: "大きめ", small: "小さめ" },

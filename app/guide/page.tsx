@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
+import FooterLinks from "../components/FooterLinks";
 
 export const metadata: Metadata = {
   title: "手相の基本知識｜左手・右手の違いと主要な線の読み方",
@@ -226,25 +227,36 @@ export default function GuidePage() {
           </div>
 
           <div className="space-y-3">
-            {LINES.map((line) => (
-              <div
+            {[
+              { line: LINES[0], key: "life-line" },
+              { line: LINES[1], key: "heart-line" },
+              { line: LINES[2], key: "head-line" },
+              { line: LINES[3], key: "fate-line" },
+            ].map(({ line, key }) => (
+              <Link
                 key={line.name}
-                className={`rounded-2xl border-2 ${line.border} bg-gradient-to-br ${line.bg} p-4`}
+                href={`/guide/${key}`}
+                className={`block rounded-2xl border-2 ${line.border} bg-gradient-to-br ${line.bg} p-4 hover:shadow-md transition-all`}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">{line.emoji}</span>
-                  <span className={`font-bold text-sm ${line.text}`}>{line.name}</span>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-xl">{line.emoji}</span>
+                      <span className={`font-bold text-sm ${line.text}`}>{line.name}</span>
+                    </div>
+                    <p className="text-gray-600 text-xs mb-2 leading-relaxed">{line.summary}</p>
+                    <ul className="space-y-1">
+                      {line.details.slice(0, 2).map((d, i) => (
+                        <li key={i} className="text-gray-500 text-xs leading-relaxed flex gap-1">
+                          <span className="shrink-0 text-gray-300">▸</span>
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <span className="text-purple-400 text-sm shrink-0">→</span>
                 </div>
-                <p className="text-gray-600 text-xs mb-3 leading-relaxed">{line.summary}</p>
-                <ul className="space-y-1">
-                  {line.details.map((d, i) => (
-                    <li key={i} className="text-gray-500 text-xs leading-relaxed flex gap-1">
-                      <span className="shrink-0 text-gray-300">▸</span>
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="text-right">
@@ -304,7 +316,8 @@ export default function GuidePage() {
           >
             手相診断を始める →
           </Link>
-          <div className="grid grid-cols-3 gap-2 pt-1">
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <Link href="/palm-quiz" className="text-xs text-purple-500 hover:underline">📋 【簡易】手相タイプ診断</Link>
             <Link href="/special" className="text-xs text-purple-500 hover:underline">✨ 特殊手相</Link>
             <Link href="/mole" className="text-xs text-purple-500 hover:underline">🔵 ほくろ占い</Link>
             <Link href="/dream" className="text-xs text-purple-500 hover:underline">🌙 夢占い</Link>
@@ -316,9 +329,7 @@ export default function GuidePage() {
         <RakutenWidget />
 
         {/* フッター */}
-        <div className="text-center pt-2">
-          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
-        </div>
+        <FooterLinks className="text-center pt-2" />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-12 px-4">
@@ -48,8 +50,14 @@ export default function PrivacyPage() {
           <p className="text-gray-400 text-xs pt-4">制定日：2026年3月8日</p>
         </div>
 
-        <div className="mt-8 text-center">
-          <a href="/" className="text-purple-600 hover:underline text-sm">← トップに戻る</a>
+        <div className="mt-8 text-center space-x-4">
+          <Link href="/changelog" className="text-purple-600 hover:underline text-sm">
+            更新履歴
+          </Link>
+          <span className="text-gray-300">|</span>
+          <Link href="/" className="text-purple-600 hover:underline text-sm">
+            ← トップに戻る
+          </Link>
         </div>
       </div>
     </div>

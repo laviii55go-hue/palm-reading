@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
+import FooterLinks from "../components/FooterLinks";
 import {
   calcLifePathNumber,
   calcPersonalYearNumber,
@@ -121,6 +123,18 @@ export default function LuckyNumberPage() {
   const [compatError, setCompatError] = useState<string | null>(null);
   const [openCategory, setOpenCategory] = useState<string | null>(null);
 
+  useEffect(() => {
+    const saved = getSavedBirthDate();
+    if (saved && (saved.year || saved.month || saved.day)) {
+      setYear(saved.year);
+      setMonth(saved.month);
+      setDay(saved.day);
+      setMyYear(saved.year);
+      setMyMonth(saved.month);
+      setMyDay(saved.day);
+    }
+  }, []);
+
   // ── ハンドラ：個人 ──
   const handlePersonalSubmit = () => {
     setPersonalError(null);
@@ -219,7 +233,17 @@ export default function LuckyNumberPage() {
           ] as { id: Tab; label: string }[]).map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                if (tab.id === "compatibility") {
+                  const saved = getSavedBirthDate();
+                  if (saved && (saved.year || saved.month || saved.day)) {
+                    setMyYear(saved.year);
+                    setMyMonth(saved.month);
+                    setMyDay(saved.day);
+                  }
+                }
+              }}
               className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${
                 activeTab === tab.id
                   ? "bg-white text-purple-700 shadow"
@@ -247,6 +271,29 @@ export default function LuckyNumberPage() {
                   valYear={year} valMonth={month} valDay={day}
                   setValYear={setYear} setValMonth={setMonth} setValDay={setDay}
                 />
+
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => saveBirthDate(year, month, day)}
+                    disabled={!year || !month || !day}
+                    className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold disabled:opacity-40"
+                  >
+                    保存する
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      clearSavedBirthDate();
+                      setYear("");
+                      setMonth("");
+                      setDay("");
+                    }}
+                    className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold"
+                  >
+                    保存を解除
+                  </button>
+                </div>
 
                 {personalError && <p className="text-red-500 text-sm text-center">{personalError}</p>}
 
@@ -436,6 +483,28 @@ export default function LuckyNumberPage() {
                     valYear={myYear} valMonth={myMonth} valDay={myDay}
                     setValYear={setMyYear} setValMonth={setMyMonth} setValDay={setMyDay}
                   />
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => saveBirthDate(myYear, myMonth, myDay)}
+                      disabled={!myYear || !myMonth || !myDay}
+                      className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold disabled:opacity-40"
+                    >
+                      保存する
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        clearSavedBirthDate();
+                        setMyYear("");
+                        setMyMonth("");
+                        setMyDay("");
+                      }}
+                      className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold"
+                    >
+                      保存を解除
+                    </button>
+                  </div>
                 </div>
 
                 <div className="rounded-2xl border-2 border-pink-200 p-4 space-y-3">
@@ -583,11 +652,7 @@ export default function LuckyNumberPage() {
           )}
         </div>
 
-        <div className="text-center mt-4">
-          <a href="/privacy" className="text-slate-500 text-xs hover:text-slate-400 hover:underline">
-            プライバシーポリシー
-          </a>
-        </div>
+        <FooterLinks className="text-center mt-4" linkClassName="text-slate-500 text-xs hover:text-slate-400 hover:underline" />
       </div>
     </div>
   );

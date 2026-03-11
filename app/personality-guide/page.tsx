@@ -102,8 +102,11 @@ export default function PersonalityGuidePage() {
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
       {/* ヘッダー */}
       <div className="bg-white border-b border-teal-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/personality" className="text-teal-600 text-sm hover:underline">← 16タイプ診断へ</Link>
+        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
+          <div className="flex gap-3">
+            <Link href="/" className="text-teal-600 text-sm hover:underline">← トップへ</Link>
+            <Link href="/personality" className="text-teal-600 text-sm hover:underline">16タイプ診断へ</Link>
+          </div>
           <span className="text-xs text-gray-400">入門ガイド</span>
         </div>
       </div>

@@ -1,30 +1,37 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
+function RakutenMotionAd() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const inlineScript = document.createElement("script");
+    inlineScript.type = "text/javascript";
+    inlineScript.text = `rakuten_design="slide";rakuten_affiliateId="36aa5de7.f708acbb.36aa5de8.4921b4af";rakuten_items="ranking";rakuten_genreId="0";rakuten_size="468x160";rakuten_target="_blank";rakuten_theme="gray";rakuten_border="off";rakuten_auto_mode="on";rakuten_genre_title="off";rakuten_recommend="on";rakuten_ts="1773271453101";`;
+    container.appendChild(inlineScript);
+
+    const widgetScript = document.createElement("script");
+    widgetScript.type = "text/javascript";
+    widgetScript.src = "https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106";
+    container.appendChild(widgetScript);
+
+    return () => {
+      container.innerHTML = "";
+    };
+  }, []);
+
+  return <div ref={containerRef} className="w-full max-w-[468px] min-h-[160px]" />;
+}
+
 export default function AdBanner() {
   return (
     <div className="flex flex-col items-center gap-3 py-2">
       <p className="text-xs text-gray-400">PR</p>
-      <a
-        href="https://rpx.a8.net/svt/ejp?a8mat=4AZAW7+8RJREA+2HOM+601S1&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa26030787012_4AZAW7_8RJREA_2HOM_601S1%3Fpc%3Dhttp%253A%252F%252Fwww.rakuten.co.jp%252F%26m%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252F"
-        rel="nofollow"
-        target="_blank"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="http://hbb.afl.rakuten.co.jp/hsb/0eb4bbb1.717c6090.0eb4bbaa.95151395/"
-          style={{ border: 0 }}
-          alt="楽天市場"
-          className="max-w-full rounded-lg"
-        />
-      </a>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        style={{ border: 0 }}
-        width={1}
-        height={1}
-        src="https://www19.a8.net/0.gif?a8mat=4AZAW7+8RJREA+2HOM+601S1"
-        alt=""
-      />
+      <RakutenMotionAd />
       <a
         href="https://px.a8.net/svt/ejp?a8mat=4AZAW7+8XI3G2+2PEO+1BSGQ9"
         rel="nofollow"

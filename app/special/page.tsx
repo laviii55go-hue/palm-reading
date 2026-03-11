@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SPECIAL_LINE_DEFINITIONS, SpecialLineDefinition } from "../data/specialLines";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
+import FooterLinks from "../components/FooterLinks";
 
 type Phase = "select" | "questions" | "result";
 
@@ -307,9 +308,7 @@ export default function SpecialPage() {
           ) : null}
         </div>
 
-        <div className="text-center mt-4">
-          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
-        </div>
+        <FooterLinks />
       </div>
     </div>
   );

@@ -68,8 +68,11 @@ export default function AnimalGuidePage() {
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* ヘッダー */}
       <div className="bg-white border-b border-green-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/animal" className="text-green-500 text-sm hover:underline">← 動物占いへ</Link>
+        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
+          <div className="flex gap-3">
+            <Link href="/" className="text-green-500 text-sm hover:underline">← トップへ</Link>
+            <Link href="/animal" className="text-green-500 text-sm hover:underline">動物占いへ</Link>
+          </div>
           <span className="text-xs text-gray-400">動物占い入門ガイド</span>
         </div>
       </div>

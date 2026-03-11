@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MOLE_AREAS } from "../data/moleAreas";
+import FooterLinks from "../components/FooterLinks";
 
 type Phase = "select" | "detail" | "result";
 
@@ -356,9 +357,7 @@ export default function MolePage() {
           ) : null}
         </div>
 
-        <div className="text-center mt-4">
-          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
-        </div>
+        <FooterLinks />
       </div>
     </div>
   );

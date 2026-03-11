@@ -114,8 +114,11 @@ export default function DreamGuidePage() {
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
       {/* ヘッダー */}
       <div className="bg-white border-b border-indigo-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/dream" className="text-indigo-500 text-sm hover:underline">← 夢占いへ</Link>
+        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
+          <div className="flex gap-3">
+            <Link href="/" className="text-indigo-500 text-sm hover:underline">← トップへ</Link>
+            <Link href="/dream" className="text-indigo-500 text-sm hover:underline">夢占いへ</Link>
+          </div>
           <span className="text-xs text-gray-400">夢占い入門ガイド</span>
         </div>
       </div>

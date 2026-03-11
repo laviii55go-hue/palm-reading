@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
+import FooterLinks from "../components/FooterLinks";
 
 export const metadata: Metadata = {
   title: "数秘術とは？ライフパスナンバーの計算方法と各数字の意味",
@@ -74,6 +75,10 @@ export default function NumerologyGuidePage() {
       </div>
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
+
+        <div className="text-center">
+          <Link href="/" className="text-violet-500 text-sm hover:underline">← トップへ</Link>
+        </div>
 
         {/* タイトル */}
         <div id="top" className="text-center space-y-2">
@@ -349,9 +354,7 @@ export default function NumerologyGuidePage() {
         <AdBanner />
         <RakutenWidget />
 
-        <div className="text-center pt-2">
-          <a href="/privacy" className="text-gray-400 text-xs hover:underline">プライバシーポリシー</a>
-        </div>
+        <FooterLinks className="text-center pt-2" />
       </div>
     </div>
   );

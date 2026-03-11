@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -179,6 +180,18 @@ export default function AnimalFortunePage() {
   const personalValid = year && month && day;
   const compatValid = myYear && myMonth && myDay && partnerYear && partnerMonth && partnerDay;
 
+  useEffect(() => {
+    const saved = getSavedBirthDate();
+    if (saved && (saved.year || saved.month || saved.day)) {
+      setYear(saved.year);
+      setMonth(saved.month);
+      setDay(saved.day);
+      setMyYear(saved.year);
+      setMyMonth(saved.month);
+      setMyDay(saved.day);
+    }
+  }, []);
+
   // ─── 個人診断実行 ────────────────────────────────────
   const handlePersonalCalc = () => {
     const { animalIndex, subtypeIndex } = calcAnimalIndices(
@@ -275,7 +288,25 @@ export default function AnimalFortunePage() {
             🐾 個人診断
           </button>
           <button
-            onClick={() => { setTab("compatibility"); if (tab !== "compatibility") { setMyYear(""); setMyMonth(""); setMyDay(""); setPartnerYear(""); setPartnerMonth(""); setPartnerDay(""); setCompatPhase("input"); } }}
+            onClick={() => {
+              setTab("compatibility");
+              if (tab !== "compatibility") {
+                const saved = getSavedBirthDate();
+                if (saved && (saved.year || saved.month || saved.day)) {
+                  setMyYear(saved.year);
+                  setMyMonth(saved.month);
+                  setMyDay(saved.day);
+                } else {
+                  setMyYear("");
+                  setMyMonth("");
+                  setMyDay("");
+                }
+                setPartnerYear("");
+                setPartnerMonth("");
+                setPartnerDay("");
+                setCompatPhase("input");
+              }
+            }}
             className={`flex-1 py-3 text-sm font-bold transition-all ${tab === "compatibility" ? "bg-green-500 text-white" : "text-green-600 hover:bg-green-50"}`}
           >
             💞 相性診断
@@ -294,6 +325,28 @@ export default function AnimalFortunePage() {
                     valYear={year} valMonth={month} valDay={day}
                     setValYear={setYear} setValMonth={setMonth} setValDay={setDay}
                   />
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => saveBirthDate(year, month, day)}
+                      disabled={!personalValid}
+                      className="flex-1 py-2 rounded-xl border-2 border-green-200 text-green-600 text-sm font-semibold disabled:opacity-40"
+                    >
+                      保存する
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        clearSavedBirthDate();
+                        setYear("");
+                        setMonth("");
+                        setDay("");
+                      }}
+                      className="flex-1 py-2 rounded-xl border-2 border-green-200 text-green-600 text-sm font-semibold"
+                    >
+                      保存を解除
+                    </button>
+                  </div>
                   <button
                     onClick={handlePersonalCalc}
                     disabled={!personalValid}
@@ -424,6 +477,28 @@ export default function AnimalFortunePage() {
                       valYear={myYear} valMonth={myMonth} valDay={myDay}
                       setValYear={setMyYear} setValMonth={setMyMonth} setValDay={setMyDay}
                     />
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => saveBirthDate(myYear, myMonth, myDay)}
+                        disabled={!myYear || !myMonth || !myDay}
+                        className="flex-1 py-2 rounded-xl border-2 border-green-200 text-green-600 text-sm font-semibold disabled:opacity-40"
+                      >
+                        保存する
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          clearSavedBirthDate();
+                          setMyYear("");
+                          setMyMonth("");
+                          setMyDay("");
+                        }}
+                        className="flex-1 py-2 rounded-xl border-2 border-green-200 text-green-600 text-sm font-semibold"
+                      >
+                        保存を解除
+                      </button>
+                    </div>
                   </div>
 
                   <div className="text-center text-2xl text-green-400">💞</div>
