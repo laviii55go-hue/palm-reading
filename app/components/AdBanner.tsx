@@ -11,7 +11,7 @@ export default function AdBanner() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://hbb.afl.rakuten.co.jp/hsb/0eb4bbb1.717c6090.0eb4bbaa.95151395/"
+          src="http://hbb.afl.rakuten.co.jp/hsb/0eb4bbb1.717c6090.0eb4bbaa.95151395/"
           style={{ border: 0 }}
           alt="楽天市場"
           className="max-w-full rounded-lg"
