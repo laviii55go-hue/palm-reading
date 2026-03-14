@@ -1,0 +1,125 @@
+// 姓名判断 81画 吉凶表（流派により異なります。参考としてご利用ください）
+
+export type FortuneLevel = "max-good" | "good" | "neutral" | "bad" | "max-bad";
+
+export const STROKE_FORTUNE: Record<number, { level: FortuneLevel; label: string }> = {
+  1: { level: "max-good", label: "最大吉" },
+  2: { level: "max-bad", label: "大凶" },
+  3: { level: "good", label: "大吉" },
+  4: { level: "max-bad", label: "大凶" },
+  5: { level: "good", label: "大吉" },
+  6: { level: "good", label: "大吉" },
+  7: { level: "neutral", label: "吉" },
+  8: { level: "neutral", label: "吉" },
+  9: { level: "max-bad", label: "大凶" },
+  10: { level: "max-bad", label: "最大凶" },
+  11: { level: "max-good", label: "最大吉" },
+  12: { level: "bad", label: "凶" },
+  13: { level: "good", label: "大吉" },
+  14: { level: "max-bad", label: "大凶" },
+  15: { level: "max-good", label: "最大吉" },
+  16: { level: "good", label: "大吉" },
+  17: { level: "neutral", label: "吉" },
+  18: { level: "neutral", label: "吉" },
+  19: { level: "max-bad", label: "大凶" },
+  20: { level: "max-bad", label: "最大凶" },
+  21: { level: "good", label: "大吉" },
+  22: { level: "bad", label: "凶" },
+  23: { level: "good", label: "大吉" },
+  24: { level: "good", label: "大吉" },
+  25: { level: "good", label: "大吉" },
+  26: { level: "max-bad", label: "大凶" },
+  27: { level: "bad", label: "凶" },
+  28: { level: "max-bad", label: "大凶" },
+  29: { level: "neutral", label: "吉" },
+  30: { level: "neutral", label: "吉凶" },
+  31: { level: "good", label: "大吉" },
+  32: { level: "max-good", label: "最大吉" },
+  33: { level: "neutral", label: "吉" },
+  34: { level: "max-bad", label: "最大凶" },
+  35: { level: "neutral", label: "吉" },
+  36: { level: "bad", label: "凶" },
+  37: { level: "good", label: "大吉" },
+  38: { level: "neutral", label: "吉凶" },
+  39: { level: "good", label: "大吉" },
+  40: { level: "neutral", label: "吉凶" },
+  41: { level: "max-good", label: "最大吉" },
+  42: { level: "bad", label: "凶" },
+  43: { level: "bad", label: "凶" },
+  44: { level: "max-bad", label: "最大凶" },
+  45: { level: "good", label: "大吉" },
+  46: { level: "bad", label: "凶" },
+  47: { level: "good", label: "大吉" },
+  48: { level: "neutral", label: "吉" },
+  49: { level: "neutral", label: "吉凶" },
+  50: { level: "bad", label: "凶" },
+  51: { level: "neutral", label: "吉" },
+  52: { level: "good", label: "大吉" },
+  53: { level: "neutral", label: "吉凶" },
+  54: { level: "max-bad", label: "大凶" },
+  55: { level: "neutral", label: "吉凶" },
+  56: { level: "max-bad", label: "大凶" },
+  57: { level: "neutral", label: "吉" },
+  58: { level: "neutral", label: "吉凶" },
+  59: { level: "max-bad", label: "大凶" },
+  60: { level: "max-bad", label: "最大凶" },
+  61: { level: "good", label: "大吉" },
+  62: { level: "bad", label: "凶" },
+  63: { level: "max-good", label: "最大吉" },
+  64: { level: "max-bad", label: "大凶" },
+  65: { level: "max-good", label: "最大吉" },
+  66: { level: "max-bad", label: "大凶" },
+  67: { level: "good", label: "大吉" },
+  68: { level: "neutral", label: "吉" },
+  69: { level: "max-bad", label: "最大凶" },
+  70: { level: "max-bad", label: "最大凶" },
+  71: { level: "neutral", label: "吉凶" },
+  72: { level: "bad", label: "凶" },
+  73: { level: "neutral", label: "吉凶" },
+  74: { level: "max-bad", label: "大凶" },
+  75: { level: "neutral", label: "吉凶" },
+  76: { level: "max-bad", label: "大凶" },
+  77: { level: "neutral", label: "吉凶" },
+  78: { level: "bad", label: "凶" },
+  79: { level: "max-bad", label: "大凶" },
+  80: { level: "max-bad", label: "最大凶" },
+  81: { level: "max-good", label: "最大吉" },
+};
+
+// 81を超える画数は 81 に還元（81画＝1画と同等）
+export function normalizeStroke(n: number): number {
+  if (n < 1) return 1;
+  if (n > 81) {
+    const r = ((n - 1) % 81) + 1;
+    return r;
+  }
+  return n;
+}
+
+// 五格の説明
+export const GAKU_LABELS = {
+  tenkaku: { name: "天格", desc: "先祖・家系の運。姓の画数で決まります。" },
+  jinkaku: { name: "人格", desc: "本人の性格・才能。姓の下の字＋名の上の字。" },
+  chikaku: { name: "地格", desc: "基礎運・幼少期。名の画数で決まります。" },
+  gaikaku: { name: "外格", desc: "対人関係・社会運。総格－人格＋1。" },
+  soukaku: { name: "総格", desc: "人生全体の運勢。姓＋名の総画数。" },
+} as const;
+
+// ひらがなの画数（フォールバック用）
+export const HIRAGANA_STROKES: Record<string, number> = {
+  あ: 3, い: 2, う: 2, え: 2, お: 3,
+  か: 2, き: 4, く: 1, け: 2, こ: 2,
+  さ: 3, し: 1, す: 2, せ: 2, そ: 1,
+  た: 2, ち: 2, つ: 1, て: 1, と: 2,
+  な: 2, に: 2, ぬ: 2, ね: 2, の: 1,
+  は: 3, ひ: 1, ふ: 2, へ: 1, ほ: 4,
+  ま: 3, み: 2, む: 3, め: 2, も: 3,
+  や: 2, ゆ: 2, よ: 2,
+  ら: 2, り: 2, る: 1, れ: 2, ろ: 2,
+  わ: 2, を: 3, ん: 1,
+  が: 2, ぎ: 4, ぐ: 1, げ: 2, ご: 2,
+  ざ: 3, じ: 1, ず: 2, ぜ: 2, ぞ: 1,
+  だ: 2, ぢ: 2, づ: 1, で: 1, ど: 2,
+  ば: 3, び: 1, ぶ: 2, べ: 1, ぼ: 4,
+  ぱ: 3, ぴ: 1, ぷ: 2, ぺ: 1, ぽ: 4,
+};

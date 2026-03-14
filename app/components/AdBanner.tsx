@@ -1,43 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 function RakutenMotionAd() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const inlineScript = document.createElement("script");
-    inlineScript.type = "text/javascript";
-    inlineScript.text = `
-      rakuten_design="slide";
-      rakuten_affiliateId="36aa5de7.f708acbb.36aa5de8.4921b4af";
-      rakuten_items="ctsmatch";
-      rakuten_genreId="0";
-      rakuten_size="468x160";
-      rakuten_target="_blank";
-      rakuten_theme="gray";
-      rakuten_border="off";
-      rakuten_auto_mode="on";
-      rakuten_genre_title="off";
-      rakuten_recommend="on";
-      rakuten_ts="1773443832333";
-    `;
-    container.appendChild(inlineScript);
-
-    const widgetScript = document.createElement("script");
-    widgetScript.type = "text/javascript";
-    widgetScript.src = "https://xml.affiliate.rakuten.co.jp/widget/js/rakuten_widget.js?20230106";
-    container.appendChild(widgetScript);
-
-    return () => {
-      container.innerHTML = "";
-    };
-  }, []);
-
-  return <div ref={containerRef} className="w-full max-w-[468px] min-h-[160px]" />;
+  return (
+    <iframe
+      src="/rakuten-widget.html"
+      title="楽天アフィリエイト"
+      className="w-full max-w-[468px] min-h-[160px] border-0 overflow-hidden"
+      style={{ minHeight: 160 }}
+    />
+  );
 }
 
 export default function AdBanner() {

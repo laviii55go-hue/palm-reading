@@ -14,7 +14,7 @@ interface Props {
   onStart: () => void;
 }
 
-type CategoryColor = "purple" | "indigo" | "green" | "violet" | "teal" | "amber";
+type CategoryColor = "purple" | "indigo" | "green" | "violet" | "teal" | "amber" | "rose" | "cyan";
 
 const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border: string; sectionBg: string; sectionBorder: string }> = {
   purple: { bg: "bg-purple-200", text: "text-purple-800", border: "border-purple-300", sectionBg: "bg-purple-50",  sectionBorder: "border-purple-200" },
@@ -23,6 +23,8 @@ const CATEGORY_STYLES: Record<CategoryColor, { bg: string; text: string; border:
   violet: { bg: "bg-violet-200", text: "text-violet-800", border: "border-violet-300", sectionBg: "bg-violet-50",  sectionBorder: "border-violet-200" },
   teal:   { bg: "bg-teal-200",   text: "text-teal-800",   border: "border-teal-300",   sectionBg: "bg-teal-50",    sectionBorder: "border-teal-200"   },
   amber:  { bg: "bg-amber-200",  text: "text-amber-800",  border: "border-amber-300",  sectionBg: "bg-amber-50",   sectionBorder: "border-amber-200"  },
+  rose:   { bg: "bg-rose-200",   text: "text-rose-800",   border: "border-rose-300",   sectionBg: "bg-rose-50",    sectionBorder: "border-rose-200"   },
+  cyan:   { bg: "bg-cyan-200",   text: "text-cyan-800",   border: "border-cyan-300",   sectionBg: "bg-cyan-50",    sectionBorder: "border-cyan-200"   },
 };
 
 function CategoryLabel({ emoji, label, color }: { emoji: string; label: string; color: CategoryColor }) {
@@ -112,6 +114,8 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           <a href="#personality" className="px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-medium hover:bg-amber-200">16タイプ</a>
           <a href="#dream" className="px-3 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-medium hover:bg-indigo-200">夢占い</a>
           <a href="#animal" className="px-3 py-1.5 rounded-full bg-green-100 text-green-700 text-xs font-medium hover:bg-green-200">動物占い</a>
+          <a href="#blood-type" className="px-3 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-medium hover:bg-rose-200">血液型占い</a>
+          <a href="#name-fortune" className="px-3 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-xs font-medium hover:bg-cyan-200">姓名判断</a>
           <a href="#daily" className="px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-medium hover:bg-amber-200">運勢ランキング</a>
         </div>
       </div>
@@ -307,6 +311,8 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
         </Link>
       </CategorySection>
 
+      <AdBanner />
+
       {/* ── 動物占い ── */}
       <CategorySection id="animal" color="green">
         <CategoryLabel emoji="🐾" label="動物占い" color="green" />
@@ -326,6 +332,50 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
             <div className="text-xs text-green-500 mt-0.5">生年月日で60種の動物キャラを診断</div>
           </div>
           <div className="absolute right-4 text-green-400 text-sm">→</div>
+        </Link>
+      </CategorySection>
+
+      {/* ── 血液型占い ── */}
+      <CategorySection id="blood-type" color="rose">
+        <CategoryLabel emoji="🩸" label="血液型占い" color="rose" />
+        <Link
+          href="/blood-type-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-rose-200 text-rose-600 font-semibold text-sm text-center hover:bg-white transition-colors"
+        >
+          📖 血液型占いの基本知識を読む
+        </Link>
+        <Link
+          href="/blood-type"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-rose-200 hover:shadow-md hover:scale-[1.01]"
+        >
+          <div className="text-3xl">🩸</div>
+          <div>
+            <div className="font-bold text-sm text-rose-800">血液型占い</div>
+            <div className="text-xs text-rose-500 mt-0.5">A・B・O・AB型の性格・相性診断</div>
+          </div>
+          <div className="absolute right-4 text-rose-400 text-sm">→</div>
+        </Link>
+      </CategorySection>
+
+      {/* ── 姓名判断 ── */}
+      <CategorySection id="name-fortune" color="cyan">
+        <CategoryLabel emoji="✍️" label="姓名判断" color="cyan" />
+        <Link
+          href="/name-fortune-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-cyan-200 text-cyan-600 font-semibold text-sm text-center hover:bg-white transition-colors"
+        >
+          📖 姓名判断の基本知識を読む
+        </Link>
+        <Link
+          href="/name-fortune"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-cyan-200 hover:shadow-md hover:scale-[1.01]"
+        >
+          <div className="text-3xl">✍️</div>
+          <div>
+            <div className="font-bold text-sm text-cyan-800">姓名判断</div>
+            <div className="text-xs text-cyan-500 mt-0.5">名前の画数で五格・運勢を診断</div>
+          </div>
+          <div className="absolute right-4 text-cyan-400 text-sm">→</div>
         </Link>
       </CategorySection>
 

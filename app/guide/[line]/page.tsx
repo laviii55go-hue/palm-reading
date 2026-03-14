@@ -5,7 +5,7 @@ import AdBanner from "../../components/AdBanner";
 import RakutenWidget from "../../components/RakutenWidget";
 import { LINE_GUIDES, type LineKey } from "../../data/lineGuideData";
 
-const LINE_KEYS: LineKey[] = ["life-line", "heart-line", "head-line", "fate-line"];
+const LINE_KEYS: LineKey[] = ["life-line", "heart-line", "head-line", "fate-line", "marriage-line", "money-line"];
 
 export async function generateStaticParams() {
   return LINE_KEYS.map((line) => ({ line }));

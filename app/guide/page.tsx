@@ -8,7 +8,7 @@ import FooterLinks from "../components/FooterLinks";
 export const metadata: Metadata = {
   title: "手相の基本知識｜左手・右手の違いと主要な線の読み方",
   description:
-    "手相占いの基本をわかりやすく解説。左手と右手の意味の違い、生命線・感情線・頭脳線・運命線の見方、手の丘の意味、ほくろの基礎知識まで。初めての方でも手相を楽しめる入門ガイドです。",
+    "手相占いの基本をわかりやすく解説。左手と右手の意味の違い、生命線・感情線・頭脳線・運命線・結婚線・財運線の見方、手の丘の意味、ほくろの基礎知識まで。初めての方でも手相を楽しめる入門ガイドです。",
 };
 
 const LINES = [
@@ -70,6 +70,34 @@ const LINES = [
       "ない・薄い → 運命線がない人も多い。自由な生き方を選んでいるサイン",
       "途中で変化している → 転職・転機・ライフスタイルの変化を示すことが多い",
       "二股に分かれている → 複数の才能や可能性を持つ",
+    ],
+  },
+  {
+    emoji: "💍",
+    name: "結婚線",
+    color: "pink",
+    border: "border-pink-200",
+    bg: "from-pink-50 to-fuchsia-50",
+    text: "text-pink-700",
+    summary: "小指の下・感情線の上にある横線。結婚運・恋愛の時期・パートナーとの関係性を示します。",
+    details: [
+      "1本でくっきり → 結婚運が安定。良縁のサイン",
+      "2本以上ある → 複数の恋愛経験や、重要な出会いの可能性",
+      "長い・上向きカーブ → 結婚運が良い。パートナーに恵まれやすい",
+    ],
+  },
+  {
+    emoji: "💰",
+    name: "財運線",
+    color: "amber",
+    border: "border-amber-200",
+    bg: "from-amber-50 to-yellow-50",
+    text: "text-amber-700",
+    summary: "小指の付け根から感情線に向かう縦線（水星線）。金運・商才・財産運を示します。",
+    details: [
+      "1本でくっきり長い → 金運が安定。コツコツ貯める力や商才がある",
+      "2本以上ある → 収入源が複数ある可能性。副業や投資で財を築くサイン",
+      "感情線まで届く → 金運が強い。努力が報われやすい",
     ],
   },
 ];
@@ -135,7 +163,7 @@ export default function GuidePage() {
           <ol className="divide-y divide-purple-50">
             {[
               { href: "#hands",   emoji: "🤲", label: "左手と右手、どちらを見る？" },
-              { href: "#lines",   emoji: "✍️", label: "主要な4本の線" },
+              { href: "#lines",   emoji: "✍️", label: "主要な線" },
               { href: "#hills",   emoji: "🏔️", label: "手の丘（マウント）の意味" },
               { href: "#faq",     emoji: "❓", label: "よくある質問" },
               { href: "#fortune", emoji: "🔮", label: "実際に手相診断を試す" },
@@ -189,7 +217,7 @@ export default function GuidePage() {
         {/* 主要4本線 */}
         <section id="lines" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
-            <span>✍️</span> 主要な4本の線
+            <span>✍️</span> 主要な線
           </h2>
 
           {/* 基本4線の画像 */}
@@ -232,6 +260,8 @@ export default function GuidePage() {
               { line: LINES[1], key: "heart-line" },
               { line: LINES[2], key: "head-line" },
               { line: LINES[3], key: "fate-line" },
+              { line: LINES[4], key: "marriage-line" },
+              { line: LINES[5], key: "money-line" },
             ].map(({ line, key }) => (
               <Link
                 key={line.name}
