@@ -1,9 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import { getDailyFortuneRanking } from "../data/dailyFortuneData";
+
+// 星座ID → 画像パス（牡羊座0〜魚座11）
+const ZODIAC_IMAGES: Record<number, string> = {
+  0: "/zodiac/aries.png",
+  1: "/zodiac/taurus.png",
+  2: "/zodiac/gemini.png",
+  3: "/zodiac/cancer.png",
+  4: "/zodiac/leo.png",
+  5: "/zodiac/virgo.png",
+  6: "/zodiac/libra.png",
+  7: "/zodiac/scorpio.png",
+  8: "/zodiac/sagittarius.png",
+  9: "/zodiac/capricorn.png",
+  10: "/zodiac/aquarius.png",
+  11: "/zodiac/pisces.png",
+};
 
 const CURRENT_YEAR = new Date().getFullYear();
 const CURRENT_MONTH = new Date().getMonth() + 1;
@@ -22,7 +39,10 @@ export default function DailyFortuneRankingPage() {
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50">
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <Link href="/" className="text-xs text-rose-700 hover:underline">← トップに戻る</Link>
+          <div className="flex justify-center gap-3">
+            <Link href="/" className="text-xs text-rose-700 hover:underline">← トップに戻る</Link>
+            <Link href="/daily-fortune-ranking-guide" className="text-xs text-rose-700 hover:underline">📖 ランキングの見方</Link>
+          </div>
           <h1 className="text-2xl font-black text-rose-900 mt-3">🏆 今日の運勢ランキング</h1>
           <p className="text-rose-700 text-sm">
             {CURRENT_YEAR}年{CURRENT_MONTH}月{CURRENT_DAY}日
@@ -30,7 +50,11 @@ export default function DailyFortuneRankingPage() {
         </div>
 
         <div className="bg-white rounded-3xl shadow-sm p-5 space-y-3">
-          <p className="text-center text-gray-600 text-sm">12星座の今日の運勢をランキング形式で表示</p>
+          <p className="text-center text-gray-600 text-xs leading-relaxed">
+            その日の惑星配置（トランシット）をもとに
+            <br />
+            12星座の運勢をランキング表示
+          </p>
           {ranking.map(({ rank, sign, advice }) => {
             const style = RANK_STYLES[rank] ?? { bg: "bg-white", text: "text-gray-700", border: "border-gray-200" };
             const href = `/daily-fortune?m=${sign.month}&d=${sign.day}`;
@@ -43,7 +67,15 @@ export default function DailyFortuneRankingPage() {
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black ${style.text} shrink-0`}>
                   {rank}
                 </div>
-                <div className="text-2xl shrink-0">{sign.emoji}</div>
+                <div className="w-12 h-12 shrink-0 relative">
+                  <Image
+                    src={ZODIAC_IMAGES[sign.id] ?? "/zodiac/aries.png"}
+                    alt={sign.name}
+                    fill
+                    className="object-contain"
+                    sizes="48px"
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
                   <div className={`font-bold ${style.text}`}>{sign.name}</div>
                   <div className="text-xs text-gray-500 mt-0.5">{advice}</div>

@@ -2,12 +2,29 @@
 
 import { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import { getDailyFortune } from "../data/dailyFortuneData";
 import { NUMEROLOGY_DATA } from "../data/numerologyData";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
+
+// 星座ID → 画像パス（牡羊座0〜魚座11）
+const ZODIAC_IMAGES: Record<number, string> = {
+  0: "/zodiac/aries.png",
+  1: "/zodiac/taurus.png",
+  2: "/zodiac/gemini.png",
+  3: "/zodiac/cancer.png",
+  4: "/zodiac/leo.png",
+  5: "/zodiac/virgo.png",
+  6: "/zodiac/libra.png",
+  7: "/zodiac/scorpio.png",
+  8: "/zodiac/sagittarius.png",
+  9: "/zodiac/capricorn.png",
+  10: "/zodiac/aquarius.png",
+  11: "/zodiac/pisces.png",
+};
 
 type Mode = "numerology" | "zodiac";
 
@@ -218,8 +235,17 @@ function DailyFortuneContent() {
                 </div>
               )}
               {fortune.type === "zodiac" && fortune.sign && (
-                <div className="text-2xl font-black">
-                  {fortune.sign.emoji} {fortune.sign.name}
+                <div className="flex items-center justify-center gap-3">
+                  <div className="relative w-14 h-14 shrink-0">
+                    <Image
+                      src={ZODIAC_IMAGES[fortune.sign.id] ?? "/zodiac/aries.png"}
+                      alt={fortune.sign.name}
+                      fill
+                      className="object-contain"
+                      sizes="56px"
+                    />
+                  </div>
+                  <span className="text-2xl font-black">{fortune.sign.name}</span>
                 </div>
               )}
             </div>

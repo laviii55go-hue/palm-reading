@@ -216,6 +216,12 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
         <CategoryLabel emoji="📅" label="日々使える" color="teal" />
         <FortuneRankingLink />
         <Link
+          href="/daily-fortune-ranking-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-teal-200 text-teal-600 font-semibold text-sm text-center hover:bg-white transition-colors"
+        >
+          📖 運勢ランキングの見方を読む
+        </Link>
+        <Link
           href="/daily-fortune"
           className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-teal-200 hover:shadow-md hover:scale-[1.01]"
         >

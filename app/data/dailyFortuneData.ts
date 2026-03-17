@@ -1,5 +1,12 @@
 // ─── 今日の運勢 データ ─────────────────────────────────────────
 
+import {
+  Body,
+  Ecliptic,
+  EclipticGeoMoon,
+  GeoVector,
+  SunPosition,
+} from "astronomy-engine";
 import { calcLifePathNumber } from "./numerologyData";
 
 // 日付からシードを生成（同じ日は同じ結果）
@@ -126,31 +133,127 @@ export function getDailyFortune(
   return { type: "unknown" as const, love, money, work, total };
 }
 
-// ランキング用の一言アドバイス
-const ADVICE_PATTERNS = [
-  "今日は新しい一歩を踏み出して",
-  "穏やかに過ごすのが吉",
-  "チャンスを逃さずに",
-  "無理せずリフレッシュを",
-  "直感を信じて動いてみて",
-  "人との繋がりを大切に",
-  "自分を労わる一日に",
-  "小さな幸せを感じて",
-  "前向きな気持ちで",
-  "焦らずゆっくりと",
-  "感謝の気持ちを忘れずに",
-  "笑顔で過ごすと運気アップ",
-];
+// ランキング用の一言アドバイス（充実版）
+const PLANET_NAMES = ["太陽", "月", "水星", "金星", "火星", "木星", "土星"] as const;
 
-// 今日の星座運勢ランキング（1位〜12位、同じ日付なら同じ結果）
+// 順位別アドバイス（1位・2-3位・4-6位・7-12位）
+const ADVICE_BY_RANK = {
+  top: [
+    "今日はトップの運気。新しい挑戦に最適な一日",
+    "天体のエネルギーが集中。思い切った行動が吉",
+    "運気が最高潮。大切な決断やアピールに",
+    "チャンスの波に乗って。積極的に動いて",
+    "今日の流れを味方に。リーダーシップを発揮して",
+    "好機到来。直感を信じて一歩踏み出して",
+  ],
+  upper: [
+    "好調な一日。無理のない範囲で前進を",
+    "運気上昇中。小さなチャンスを見逃さずに",
+    "調子に乗りすぎず、着実に進めて",
+    "人との協力が運を呼ぶ。繋がりを大切に",
+    "穏やかな勢い。焦らず丁寧に過ごして",
+    "良い流れが来ている。感謝の気持ちで",
+  ],
+  middle: [
+    "安定した一日。普段のペースで過ごして",
+    "無理せずリフレッシュ。心身を整える日に",
+    "小さな幸せを感じて。日常を丁寧に",
+    "焦らずゆっくりと。自分を労わる一日に",
+    "人との繋がりを大切に。穏やかに過ごして",
+    "前向きな気持ちで。できることからコツコツと",
+  ],
+  lower: [
+    "落ち着いて過ごすのが吉。無理は禁物",
+    "静かな一日。内省や準備に充てて",
+    "焦らず今できることを。明日に備えて",
+    "穏やかに。心身の休息を心がけて",
+    "小さな一歩でOK。自分を責めずに",
+    "流れに任せて。リラックスして過ごして",
+  ],
+} as const;
+
+// 天体滞在時の補足フレーズ
+const PLANET_ADVICE: Record<string, string[]> = {
+  太陽: ["活力が満ちる", "自我が輝く", "リーダーシップ発揮のチャンス"],
+  月: ["感情が豊かに", "直感が冴える", "心が落ち着く"],
+  水星: ["コミュニケーション運アップ", "アイデアが浮かぶ", "学びのチャンス"],
+  金星: ["恋愛・調和に恵まれる", "美意識が高まる", "人気運上昇"],
+  火星: ["行動力が高まる", "情熱を注げる", "決断のタイミング"],
+  木星: ["幸運の波が来る", "拡大・成長のチャンス", "楽観的に"],
+  土星: ["着実に積み上げる", "責任感が強まる", "忍耐が実を結ぶ"],
+};
+
+// 黄経（0〜360度）を星座ID（0=牡羊座〜11=魚座）に変換
+function longitudeToSignIndex(lon: number): number {
+  return Math.floor((lon % 360) / 30) % 12;
+}
+
+// 西洋占星術トランシットベースの今日の星座運勢ランキング（1位〜12位）
+// その日の惑星配置（太陽・月・惑星の黄経）から各星座の運勢スコアを算出
 export function getDailyFortuneRanking(year: number, month: number, day: number) {
+  // その日の正午UTCで惑星位置を計算（同じ日は同じ結果）
+  const date = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
+
+  // 各天体の黄経を取得（占星術では地球から見た黄道経度を使用）
+  const sunLon = SunPosition(date).elon;
+  const moonLon = EclipticGeoMoon(date).lon;
+  const planetBodies = [
+    { body: Body.Mercury, weight: 1 },
+    { body: Body.Venus, weight: 2 },
+    { body: Body.Mars, weight: 2 },
+    { body: Body.Jupiter, weight: 2 },
+    { body: Body.Saturn, weight: 1 },
+  ] as const;
+
+  const planetLons: number[] = [];
+  for (const { body } of planetBodies) {
+    const vec = GeoVector(body, date, true);
+    const ecl = Ecliptic(vec);
+    planetLons.push(ecl.elon);
+  }
+
+  // 各星座のスコアを計算（天体がその星座にいるほど加点）
+  const weights = [3, 3, 1, 2, 2, 2, 1]; // Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn
+  const allLons = [sunLon, moonLon, ...planetLons];
+
   const baseSeed = getDateSeed(year, month, day);
   const scores = ZODIAC_BOUNDARIES.map((sign) => {
-    const signSeed = baseSeed + sign.id * 100000;
-    const s = seededIndex(signSeed, 1000) + seededIndex(signSeed + 1, 1000) + seededIndex(signSeed + 2, 1000) + seededIndex(signSeed + 3, 1000);
-    const advice = ADVICE_PATTERNS[seededIndex(signSeed + 4, ADVICE_PATTERNS.length)];
-    return { sign, score: s, advice };
+    let score = 0;
+    const planetsInSign: string[] = [];
+    for (let i = 0; i < allLons.length; i++) {
+      if (longitudeToSignIndex(allLons[i]) === sign.id) {
+        score += weights[i];
+        planetsInSign.push(PLANET_NAMES[i]);
+      }
+    }
+    return { sign, score, planetsInSign };
   });
-  scores.sort((a, b) => b.score - a.score);
-  return scores.map((item, i) => ({ rank: i + 1, ...item }));
+
+  // スコア降順、同点は星座ID昇順で安定ソート
+  scores.sort((a, b) => (b.score !== a.score ? b.score - a.score : a.sign.id - b.sign.id));
+
+  // 順位と天体情報をもとに一言アドバイスを生成
+  return scores.map((item, i) => {
+    const rank = i + 1;
+    const rankTier: keyof typeof ADVICE_BY_RANK =
+      rank === 1 ? "top" : rank <= 3 ? "upper" : rank <= 6 ? "middle" : "lower";
+    const rankAdvices = ADVICE_BY_RANK[rankTier];
+    const rankAdvice = rankAdvices[seededIndex(baseSeed + item.sign.id * 100, rankAdvices.length)];
+
+    let advice: string;
+    if (item.planetsInSign.length > 0) {
+      const planets = item.planetsInSign.slice(0, 2).join("・");
+      const mainPlanet = item.planetsInSign[0];
+      const planetPhrases = PLANET_ADVICE[mainPlanet];
+      const phrase = planetPhrases
+        ? planetPhrases[seededIndex(baseSeed + item.sign.id * 7, planetPhrases.length)]
+        : "";
+      advice = phrase
+        ? `${planets}が滞在。${phrase}。${rankAdvice}`
+        : `${planets}が滞在。${rankAdvice}`;
+    } else {
+      advice = rankAdvice;
+    }
+    return { rank, ...item, advice };
+  });
 }
