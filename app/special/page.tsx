@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import TopBannerLink from "../components/TopBannerLink";
 import Image from "next/image";
 import Link from "next/link";
 import { SPECIAL_LINE_DEFINITIONS, SpecialLineDefinition } from "../data/specialLines";
@@ -101,7 +102,7 @@ export default function SpecialPage() {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <Link href="/" className="text-purple-400 text-sm hover:underline">← 手相診断に戻る</Link>
+          <TopBannerLink />
           <h1 className="text-2xl font-bold text-purple-900 mt-2">✨ 特殊手相チェッカー</h1>
           <p className="text-gray-500 text-sm mt-1">あなたの手にある？幸運の特別な手相</p>
         </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -76,8 +77,8 @@ export default function NumerologyGuidePage() {
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
 
-        <div className="text-center">
-          <Link href="/" className="text-violet-500 text-sm hover:underline">← トップへ</Link>
+        <div className="flex justify-start">
+          <TopBannerLink />
         </div>
 
         {/* タイトル */}

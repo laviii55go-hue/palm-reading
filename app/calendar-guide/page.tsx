@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -55,9 +56,9 @@ export default function CalendarGuidePage() {
       {/* ヘッダー */}
       <div className="bg-white border-b border-amber-100 sticky top-0 z-10">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex gap-3">
-            <Link href="/" className="text-amber-600 text-sm hover:underline">← トップへ</Link>
-            <Link href="/calendar" className="text-amber-600 text-sm hover:underline">開運カレンダーへ</Link>
+          <div className="flex items-center gap-2">
+            <TopBannerLink />
+            <Link href="/calendar" className="text-amber-600 text-xs border border-amber-300 rounded-full px-3 py-1 hover:bg-amber-50 transition-colors">📅 占いへ</Link>
           </div>
           <span className="text-xs text-gray-400">開運カレンダー入門ガイド</span>
         </div>

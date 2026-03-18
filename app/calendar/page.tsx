@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   getRokuyo,
@@ -28,8 +29,8 @@ export default function CalendarPage() {
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
           <div className="flex items-center justify-between gap-2">
-            <Link href="/" className="text-xs text-amber-700 hover:underline">← トップに戻る</Link>
-            <Link href="/calendar-guide" className="text-xs text-amber-700 hover:underline">📖 ガイド</Link>
+            <TopBannerLink />
+            <Link href="/calendar-guide" className="text-xs text-amber-600 border border-amber-300 rounded-full px-3 py-1 hover:bg-amber-50 transition-colors">📖 ガイド</Link>
           </div>
           <h1 className="text-2xl font-black text-amber-900 mt-3">📅 開運カレンダー</h1>
           <p className="text-amber-700 text-sm">六曜で吉日をチェック</p>

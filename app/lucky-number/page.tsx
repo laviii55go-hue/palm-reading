@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -207,9 +208,12 @@ export default function LuckyNumberPage() {
     <div className="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <Link href="/" className="text-violet-300 text-sm hover:text-violet-200 hover:underline">← トップに戻る</Link>
-            <Link href="/numerology-guide" className="text-violet-300 text-xs hover:text-violet-200 hover:underline border border-violet-600 rounded-full px-3 py-1">📖 数秘術ガイド</Link>
+          <div className="flex items-center justify-between mb-3 gap-2">
+            <TopBannerLink />
+            <div className="flex gap-2">
+              <Link href="/numerology-guide" className="text-violet-300 text-xs border border-violet-600 rounded-full px-3 py-1 hover:bg-violet-500/20 transition-colors">📖 ガイド</Link>
+              <Link href="/numerology-guide/articles" className="text-violet-300 text-xs border border-violet-600 rounded-full px-3 py-1 hover:bg-violet-500/20 transition-colors">📝 コラム</Link>
+            </div>
           </div>
           <div className="rounded-2xl overflow-hidden shadow-lg shadow-black/30">
             <Image
@@ -367,14 +371,65 @@ export default function LuckyNumberPage() {
                   <p className="text-gray-600 text-sm leading-relaxed">{personalEntry.career}</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl border border-purple-200 bg-purple-50 p-3 text-center">
-                    <p className="text-purple-600 text-xs font-medium">相性の良い数字</p>
-                    <p className="text-purple-800 font-black text-lg mt-1">{personalEntry.compatible.join(" ・ ")}</p>
+                {/* 相性（詳細） */}
+                <div className="rounded-2xl border-2 border-violet-100 bg-white p-5">
+                  <p className="font-bold text-violet-800 flex items-center gap-2 mb-3">
+                    <span>💞</span> 相性
+                  </p>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-green-600 font-semibold mb-2">相性が良い数字</p>
+                      <div className="flex flex-wrap gap-2">
+                        {personalEntry.compatible.map((n) => {
+                          const other = NUMEROLOGY_DATA[n];
+                          return (
+                            <Link
+                              key={n}
+                              href={`/numerology-guide/${n}`}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-1.5 text-sm text-green-800 hover:bg-green-200 transition-colors"
+                            >
+                              <span className="font-bold">{n}</span>
+                              <span className="text-xs">{other?.title ?? ""}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs text-rose-600 font-semibold mb-2">相性が難しい数字</p>
+                      <div className="flex flex-wrap gap-2">
+                        {personalEntry.incompatible.map((n) => {
+                          const other = NUMEROLOGY_DATA[n];
+                          return (
+                            <Link
+                              key={n}
+                              href={`/numerology-guide/${n}`}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-rose-100 px-3 py-1.5 text-sm text-rose-800 hover:bg-rose-200 transition-colors"
+                            >
+                              <span className="font-bold">{n}</span>
+                              <span className="text-xs">{other?.title ?? ""}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-3 text-center">
-                    <p className="text-gray-500 text-xs font-medium">ラッキーカラー</p>
-                    <p className="text-gray-700 font-bold text-sm mt-1">{personalEntry.luckyColor}</p>
+                </div>
+
+                {/* ラッキー（詳細） */}
+                <div className="rounded-2xl border-2 border-amber-100 bg-amber-50/50 p-5">
+                  <p className="font-bold text-amber-800 flex items-center gap-2 mb-3">
+                    <span>🍀</span> ラッキー
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-amber-600 font-semibold mb-1">ラッキーカラー</p>
+                      <p className="text-sm font-medium text-gray-800">{personalEntry.luckyColor}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-amber-600 font-semibold mb-1">ラッキーアイテム</p>
+                      <p className="text-sm font-medium text-gray-800">{personalEntry.luckyItem}</p>
+                    </div>
                   </div>
                 </div>
 
@@ -390,9 +445,9 @@ export default function LuckyNumberPage() {
                 <div className="rounded-2xl border-2 border-purple-300 bg-white p-4">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-xl">✨</span>
-                    <p className="font-bold text-purple-700 text-sm">開運アイテム</p>
+                    <p className="font-bold text-purple-700 text-sm">開運アイテムを探す</p>
                   </div>
-                  <p className="text-gray-500 text-xs mb-3">ラッキーアイテム：{personalEntry.luckyItem}</p>
+                  <p className="text-gray-500 text-xs mb-3">ラッキー「{personalEntry.luckyItem}」に合う開運グッズ</p>
                   <div className="text-center text-xs text-gray-400 mb-2">⭐⭐⭐⭐⭐ おすすめ度</div>
                   <a
                     href={buildAffiliateUrl(personalEntry.rakutenKeyword)}

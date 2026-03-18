@@ -4,6 +4,7 @@ import { useState, KeyboardEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 
@@ -106,8 +107,8 @@ export default function DreamPage() {
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-indigo-300 text-sm hover:text-indigo-200 hover:underline">← トップに戻る</Link>
-            <Link href="/dream-guide" className="text-indigo-300 text-xs hover:text-indigo-200 hover:underline border border-indigo-600 rounded-full px-3 py-1">📖 夢占いガイド</Link>
+            <TopBannerLink />
+            <Link href="/dream-guide" className="text-indigo-300 text-xs border border-indigo-600 rounded-full px-3 py-1 hover:bg-indigo-500/20 transition-colors">📖 ガイド</Link>
           </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/30">
             <Image

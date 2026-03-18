@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -47,13 +48,9 @@ export default function TarotGuidePage() {
       {/* ヘッダー */}
       <div className="bg-white border-b border-violet-100 sticky top-0 z-10">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex gap-3">
-            <Link href="/" className="text-violet-500 text-sm hover:underline">
-              ← トップへ
-            </Link>
-            <Link href="/tarot" className="text-violet-500 text-sm hover:underline">
-              タロット占いへ
-            </Link>
+          <div className="flex items-center gap-2">
+            <TopBannerLink />
+            <Link href="/tarot" className="text-violet-600 text-xs border border-violet-300 rounded-full px-3 py-1 hover:bg-violet-50 transition-colors">🎴 占いへ</Link>
           </div>
           <span className="text-xs text-gray-400">タロット入門ガイド</span>
         </div>
@@ -109,16 +106,18 @@ export default function TarotGuidePage() {
           </p>
           <div className="grid grid-cols-2 gap-2">
             {TAROT_MAJOR_ARCANA.map((card) => (
-              <div
+              <Link
                 key={card.id}
-                className="flex items-center gap-2 rounded-xl p-3 bg-white border border-violet-100"
+                href={`/tarot-guide/card/${card.id}`}
+                className="flex items-center gap-2 rounded-xl p-3 bg-white border border-violet-100 hover:border-violet-300 hover:bg-violet-50 transition-colors"
               >
                 <span className="text-xl">{card.emoji}</span>
                 <div>
                   <span className="font-bold text-violet-800 text-sm">{card.name}</span>
                   <span className="text-gray-400 text-xs ml-1">({card.id})</span>
                 </div>
-              </div>
+                <span className="text-violet-400 text-xs ml-auto">→</span>
+              </Link>
             ))}
           </div>
         </section>

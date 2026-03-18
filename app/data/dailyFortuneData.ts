@@ -7,7 +7,6 @@ import {
   GeoVector,
   SunPosition,
 } from "astronomy-engine";
-import { calcLifePathNumber } from "./numerologyData";
 
 // 日付からシードを生成（同じ日は同じ結果）
 function getDateSeed(year: number, month: number, day: number): number {
@@ -99,38 +98,21 @@ export function getZodiacSign(month: number, day: number): (typeof ZODIAC_BOUNDA
 }
 
 export function getDailyFortune(
-  type: "numerology" | "zodiac",
   year: number,
   month: number,
   day: number,
-  birthYear?: number,
-  birthMonth?: number,
-  birthDay?: number
+  birthMonth: number,
+  birthDay: number
 ) {
   const seed = getDateSeed(year, month, day);
-  const love = FORTUNE_PATTERNS.love[seededIndex(seed, FORTUNE_PATTERNS.love.length)];
-  const money = FORTUNE_PATTERNS.money[seededIndex(seed + 1, FORTUNE_PATTERNS.money.length)];
-  const work = FORTUNE_PATTERNS.work[seededIndex(seed + 2, FORTUNE_PATTERNS.work.length)];
-  const total = FORTUNE_PATTERNS.total[seededIndex(seed + 3, FORTUNE_PATTERNS.total.length)];
-
-  if (type === "numerology" && birthYear != null && birthMonth != null && birthDay != null) {
-    const num = calcLifePathNumber(birthYear, birthMonth, birthDay);
-    const numStr = num > 9 ? String(num) : String(num);
-    return { type: "numerology" as const, num: numStr, love, money, work, total };
-  }
-
-  if (type === "zodiac" && birthMonth != null && birthDay != null) {
-    const sign = getZodiacSign(birthMonth, birthDay);
-    // 星座ごとに運勢を変える：日付シードに星座IDを加算
-    const zodiacSeed = seed + sign.id * 100000;
-    const zodiacLove = FORTUNE_PATTERNS.love[seededIndex(zodiacSeed, FORTUNE_PATTERNS.love.length)];
-    const zodiacMoney = FORTUNE_PATTERNS.money[seededIndex(zodiacSeed + 1, FORTUNE_PATTERNS.money.length)];
-    const zodiacWork = FORTUNE_PATTERNS.work[seededIndex(zodiacSeed + 2, FORTUNE_PATTERNS.work.length)];
-    const zodiacTotal = FORTUNE_PATTERNS.total[seededIndex(zodiacSeed + 3, FORTUNE_PATTERNS.total.length)];
-    return { type: "zodiac" as const, sign, love: zodiacLove, money: zodiacMoney, work: zodiacWork, total: zodiacTotal };
-  }
-
-  return { type: "unknown" as const, love, money, work, total };
+  const sign = getZodiacSign(birthMonth, birthDay);
+  // 星座ごとに運勢を変える：日付シードに星座IDを加算
+  const zodiacSeed = seed + sign.id * 100000;
+  const love = FORTUNE_PATTERNS.love[seededIndex(zodiacSeed, FORTUNE_PATTERNS.love.length)];
+  const money = FORTUNE_PATTERNS.money[seededIndex(zodiacSeed + 1, FORTUNE_PATTERNS.money.length)];
+  const work = FORTUNE_PATTERNS.work[seededIndex(zodiacSeed + 2, FORTUNE_PATTERNS.work.length)];
+  const total = FORTUNE_PATTERNS.total[seededIndex(zodiacSeed + 3, FORTUNE_PATTERNS.total.length)];
+  return { type: "zodiac" as const, sign, love, money, work, total };
 }
 
 // ランキング用の一言アドバイス（充実版）

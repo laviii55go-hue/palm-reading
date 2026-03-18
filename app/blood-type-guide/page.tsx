@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -49,13 +50,9 @@ export default function BloodTypeGuidePage() {
       {/* ヘッダー */}
       <div className="bg-white border-b border-rose-100 sticky top-0 z-10">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex gap-3">
-            <Link href="/" className="text-rose-600 text-sm hover:underline">
-              ← トップへ
-            </Link>
-            <Link href="/blood-type" className="text-rose-600 text-sm hover:underline">
-              血液型占いへ
-            </Link>
+          <div className="flex items-center gap-2">
+            <TopBannerLink />
+            <Link href="/blood-type" className="text-rose-600 text-xs border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">🩸 占いへ</Link>
           </div>
           <span className="text-xs text-gray-400">血液型占い入門ガイド</span>
         </div>

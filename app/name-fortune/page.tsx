@@ -3,9 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
-import { GAKU_LABELS } from "../data/nameFortuneData";
+import {
+  GAKU_LABELS,
+  getJinkakuExplanation,
+  getSoukakuExplanation,
+} from "../data/nameFortuneData";
 
 type Phase = "input" | "result";
 
@@ -20,6 +25,7 @@ type ApiResult = {
   input: { surname: string; givenName: string };
   strokes: { surname: number[]; givenName: number[] };
   gaku: GakuResult[];
+  overall?: { score: number; comment: string };
 };
 
 const ROW_H = 48;
@@ -306,15 +312,8 @@ export default function NameFortunePage() {
     <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white">
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-cyan-600 text-sm hover:underline">
-            ← トップに戻る
-          </Link>
-          <Link
-            href="/name-fortune-guide"
-            className="text-cyan-600 text-xs hover:underline border border-cyan-300 rounded-full px-3 py-1"
-          >
-            📖 ガイド
-          </Link>
+          <TopBannerLink />
+          <Link href="/name-fortune-guide" className="text-cyan-600 text-xs border border-cyan-300 rounded-full px-3 py-1 hover:bg-cyan-50 transition-colors">📖 ガイド</Link>
         </div>
 
         <div className="text-center space-y-2">
@@ -379,6 +378,54 @@ export default function NameFortunePage() {
             <div className="space-y-6">
               {/* 図解版：縦書き＋括弧で五格を視覚化 */}
               <NameDiagramResult result={result} />
+
+              {/* 総合判定 */}
+              {result.overall && (
+                <div className="rounded-2xl border-2 border-cyan-300 bg-gradient-to-br from-cyan-50 to-teal-50 p-5">
+                  <p className="text-xs font-bold text-cyan-600 mb-2">総合判定</p>
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="text-4xl font-black text-cyan-700">
+                      {result.overall.score}
+                    </span>
+                    <span className="text-lg font-medium text-cyan-600">点</span>
+                  </div>
+                  <p className="text-sm text-cyan-800 leading-relaxed">
+                    {result.overall.comment}
+                  </p>
+                </div>
+              )}
+
+              {/* 人格・総格の解説 */}
+              {(() => {
+                const jinkaku = result.gaku.find((g) => g.key === "jinkaku");
+                const soukaku = result.gaku.find((g) => g.key === "soukaku");
+                if (!jinkaku || !soukaku) return null;
+                const jinkakuDesc = getJinkakuExplanation(jinkaku.value, jinkaku.fortune);
+                const soukakuDesc = getSoukakuExplanation(soukaku.value, soukaku.fortune);
+                return (
+                  <div className="space-y-3">
+                    <p className="font-bold text-cyan-700 text-sm">人格・総格の解説</p>
+                    <div className="rounded-2xl border-2 border-cyan-200 bg-cyan-50/50 p-4 space-y-4">
+                      <div>
+                        <p className="text-xs font-bold text-cyan-600 mb-1">
+                          人格 {jinkaku.value}画（{jinkaku.fortune.label}）
+                        </p>
+                        <p className="text-sm text-cyan-800 leading-relaxed">
+                          {jinkakuDesc}
+                        </p>
+                      </div>
+                      <div className="border-t border-cyan-200 pt-4">
+                        <p className="text-xs font-bold text-cyan-600 mb-1">
+                          総格 {soukaku.value}画（{soukaku.fortune.label}）
+                        </p>
+                        <p className="text-sm text-cyan-800 leading-relaxed">
+                          {soukakuDesc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* 五格の運勢（詳細） */}
               <div className="space-y-3">

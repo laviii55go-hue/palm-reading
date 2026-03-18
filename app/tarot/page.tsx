@@ -2,12 +2,22 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import { getDailyTarotCards } from "../data/tarotData";
 import type { TarotCard } from "../data/tarotData";
 
 type CardState = { card: TarotCard; isReversed: boolean; flipped: boolean };
+
+const SITE_URL = "https://jade-torte-9b5cde.netlify.app";
+
+function buildShareText(result: CardState): string {
+  const pos = result.isReversed ? "逆位置" : "正位置";
+  const general = result.isReversed ? result.card.reversed.general : result.card.upright.general;
+  return `今日のタロットは【${result.card.name}】${pos}でした！\n✨ ${general}\n\n手のひらの予言者で占ってみて 👉 ${SITE_URL}/tarot`;
+}
 
 export default function TarotPage() {
   const [cards, setCards] = useState<CardState[] | null>(null);
@@ -40,6 +50,28 @@ export default function TarotPage() {
     setSelectedResult(null);
   };
 
+  const handleShare = async () => {
+    if (!selectedResult) return;
+    const text = buildShareText(selectedResult);
+    try {
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share({
+          title: `今日のタロット【${selectedResult.card.name}】`,
+          text,
+          url: `${SITE_URL}/tarot`,
+        });
+      } else {
+        await navigator.clipboard.writeText(text);
+        alert("結果をコピーしました！");
+      }
+    } catch (err) {
+      if ((err as Error).name !== "AbortError") {
+        await navigator.clipboard.writeText(text).catch(() => {});
+        alert("結果をコピーしました！");
+      }
+    }
+  };
+
   if (!cards) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 flex items-center justify-center">
@@ -52,13 +84,19 @@ export default function TarotPage() {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50">
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <div className="flex justify-center gap-3">
-            <Link href="/" className="text-xs text-purple-700 hover:underline">
-              ← トップに戻る
-            </Link>
-            <Link href="/tarot-guide" className="text-xs text-purple-700 hover:underline">
-              📖 タロットの見方
-            </Link>
+          <div className="flex items-center justify-between">
+            <TopBannerLink />
+            <Link href="/tarot-guide" className="text-xs text-purple-600 border border-purple-300 rounded-full px-3 py-1 hover:bg-purple-50 transition-colors">📖 ガイド</Link>
+          </div>
+          <div className="mt-4 rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/tarot-top.png"
+              alt="タロット占い"
+              width={600}
+              height={300}
+              className="w-full h-auto object-cover"
+              priority
+            />
           </div>
           <h1 className="text-2xl font-black text-purple-900 mt-3">
             🎴 タロット3択占い
@@ -101,6 +139,12 @@ export default function TarotPage() {
                     {selectedResult.isReversed ? "（逆位置）" : "（正位置）"}
                   </span>
                 </div>
+                <Link
+                  href={`/tarot-guide/card/${selectedResult.card.id}`}
+                  className="inline-block mt-2 text-xs text-purple-600 hover:underline"
+                >
+                  📖 このカードの詳細解説を見る
+                </Link>
               </div>
 
               <div className="space-y-3">
@@ -138,12 +182,20 @@ export default function TarotPage() {
                 </div>
               </div>
 
-              <button
-                onClick={handleReset}
-                className="w-full py-3 rounded-2xl border-2 border-purple-200 text-purple-600 font-semibold text-sm hover:bg-purple-50 transition-colors"
-              >
-                もう一度占う
-              </button>
+              <div className="flex gap-3">
+                <button
+                  onClick={handleShare}
+                  className="flex-1 py-3 rounded-2xl border-2 border-purple-200 text-purple-600 font-semibold text-sm hover:bg-purple-50 transition-colors flex items-center justify-center gap-2"
+                >
+                  📤 結果をシェア
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="flex-1 py-3 rounded-2xl border-2 border-purple-200 text-purple-600 font-semibold text-sm hover:bg-purple-50 transition-colors"
+                >
+                  もう一度占う
+                </button>
+              </div>
             </div>
           )}
         </div>

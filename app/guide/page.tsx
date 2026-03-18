@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 import Image from "next/image";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
@@ -136,7 +137,7 @@ export default function GuidePage() {
       {/* ヘッダー */}
       <div className="bg-white border-b border-purple-100 sticky top-0 z-10">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="text-purple-500 text-sm hover:underline">← 占いトップ</Link>
+          <TopBannerLink />
           <span className="text-xs text-gray-400">手相入門ガイド</span>
         </div>
       </div>

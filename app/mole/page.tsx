@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MOLE_AREAS } from "../data/moleAreas";
 import FooterLinks from "../components/FooterLinks";
+import TopBannerLink from "../components/TopBannerLink";
 
 type Phase = "select" | "detail" | "result";
 
@@ -114,7 +115,7 @@ export default function MolePage() {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-4">
       <div className="w-full max-w-lg">
         <div className="text-center mb-6">
-          <Link href="/" className="text-purple-400 text-sm hover:underline">← トップに戻る</Link>
+          <TopBannerLink />
           <h1 className="text-2xl font-bold text-purple-900 mt-2">🔵 手のほくろ占い</h1>
           <p className="text-gray-500 text-sm mt-1">ほくろの位置から運勢を鑑定します</p>
         </div>

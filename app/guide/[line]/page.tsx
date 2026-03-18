@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../../components/TopBannerLink";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AdBanner from "../../components/AdBanner";
@@ -32,9 +33,9 @@ export default async function LineGuidePage({ params }: { params: Promise<{ line
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <div className="bg-white border-b border-purple-100 sticky top-0 z-10">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex gap-3">
-            <Link href="/" className="text-purple-500 text-sm hover:underline">← トップへ</Link>
-            <Link href="/guide" className="text-purple-500 text-sm hover:underline">手相ガイド</Link>
+          <div className="flex items-center gap-2">
+            <TopBannerLink />
+            <Link href="/guide" className="text-purple-600 text-xs border border-purple-300 rounded-full px-3 py-1 hover:bg-purple-50 transition-colors">📖 ガイド</Link>
           </div>
           <span className="text-xs text-gray-400">線別ガイド</span>
         </div>

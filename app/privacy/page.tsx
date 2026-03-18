@@ -1,9 +1,13 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-12 px-4">
       <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-lg p-8">
+        <div className="mb-6">
+          <TopBannerLink />
+        </div>
         <h1 className="text-2xl font-bold text-purple-900 mb-6">プライバシーポリシー</h1>
 
         <div className="space-y-6 text-gray-700 text-sm leading-relaxed">
@@ -50,14 +54,12 @@ export default function PrivacyPage() {
           <p className="text-gray-400 text-xs pt-4">制定日：2026年3月8日</p>
         </div>
 
-        <div className="mt-8 text-center space-x-4">
+        <div className="mt-8 flex items-center justify-center gap-4">
           <Link href="/changelog" className="text-purple-600 hover:underline text-sm">
             更新履歴
           </Link>
           <span className="text-gray-300">|</span>
-          <Link href="/" className="text-purple-600 hover:underline text-sm">
-            ← トップに戻る
-          </Link>
+          <TopBannerLink />
         </div>
       </div>
     </div>

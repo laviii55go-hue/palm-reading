@@ -1,5 +1,9 @@
 import { MetadataRoute } from "next";
 import { PERSONALITY_TYPE_CODES } from "./data/personalityData";
+import { NUMEROLOGY_DATA } from "./data/numerologyData";
+import { TAROT_MAJOR_ARCANA } from "./data/tarotData";
+import { getVisibleArticles as getNumerologyVisibleArticles } from "./numerology-guide/articles/articlesConfig";
+import { getVisibleArticles as getPersonalityVisibleArticles } from "./personality-guide/articles/articlesConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://jade-torte-9b5cde.netlify.app";
@@ -11,12 +15,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const numerologyNumUrls = Object.keys(NUMEROLOGY_DATA).map((num) => ({
+    url: `${baseUrl}/numerology-guide/${num}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const tarotCardUrls = TAROT_MAJOR_ARCANA.map((card) => ({
+    url: `${baseUrl}/tarot-guide/card/${card.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/guides`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/guide`,
@@ -62,6 +86,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/palm-quiz`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/ai-palm`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.85,
@@ -120,6 +150,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    ...tarotCardUrls,
     {
       url: `${baseUrl}/dream`,
       lastModified: new Date(),
@@ -192,6 +223,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/articles`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/numerology-guide/articles`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/personality-guide/articles`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    ...getNumerologyVisibleArticles().map((a) => ({
+      url: `${baseUrl}/numerology-guide/articles/${a.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...getPersonalityVisibleArticles().map((a) => ({
+      url: `${baseUrl}/personality-guide/articles/${a.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     ...personalityTypeUrls,
     {
       url: `${baseUrl}/privacy`,

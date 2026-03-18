@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import LayoutClient from "./components/LayoutClient";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,7 +57,7 @@ export default function RootLayout({
       <head>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased pb-16`}
       >
         {/* Google AdSense: beforeInteractive で初期HTMLに含め審査対応 */}
         <Script
@@ -64,7 +65,9 @@ export default function RootLayout({
           strategy="beforeInteractive"
           crossOrigin="anonymous"
         />
-        {children}
+        <LayoutClient>
+          {children}
+        </LayoutClient>
         {process.env.NODE_ENV === 'production' && process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

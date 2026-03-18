@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   ANIMALS,
@@ -262,8 +263,8 @@ export default function AnimalFortunePage() {
         {/* ヘッダー */}
         <div className="text-center space-y-1">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-xs text-green-500 hover:underline">← トップに戻る</Link>
-            <Link href="/animal-guide" className="text-xs text-green-600 border border-green-300 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">📖 動物占いガイド</Link>
+            <TopBannerLink />
+            <Link href="/animal-guide" className="text-xs text-green-600 border border-green-300 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">📖 ガイド</Link>
           </div>
           <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
             <Image

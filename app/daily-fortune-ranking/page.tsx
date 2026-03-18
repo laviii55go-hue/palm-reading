@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import { getDailyFortuneRanking } from "../data/dailyFortuneData";
 
@@ -39,9 +40,19 @@ export default function DailyFortuneRankingPage() {
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50">
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <div className="flex justify-center gap-3">
-            <Link href="/" className="text-xs text-rose-700 hover:underline">← トップに戻る</Link>
-            <Link href="/daily-fortune-ranking-guide" className="text-xs text-rose-700 hover:underline">📖 ランキングの見方</Link>
+          <div className="flex items-center justify-between">
+            <TopBannerLink />
+            <Link href="/daily-fortune-ranking-guide" className="text-xs text-rose-600 border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">📖 ガイド</Link>
+          </div>
+          <div className="mt-4 rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/daily-fortune-ranking-top.png"
+              alt="今日の運勢ランキング"
+              width={600}
+              height={300}
+              className="w-full h-auto object-cover"
+              priority
+            />
           </div>
           <h1 className="text-2xl font-black text-rose-900 mt-3">🏆 今日の運勢ランキング</h1>
           <p className="text-rose-700 text-sm">

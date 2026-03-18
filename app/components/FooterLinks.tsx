@@ -8,6 +8,10 @@ interface FooterLinksProps {
 export default function FooterLinks({ className = "text-center mt-4", linkClassName = "text-gray-400 text-xs hover:underline" }: FooterLinksProps) {
   return (
     <div className={className}>
+      <Link href="/guides" className={linkClassName}>
+        基本知識まとめ
+      </Link>
+      <span className="text-gray-300 mx-2">|</span>
       <Link href="/privacy" className={linkClassName}>
         プライバシーポリシー
       </Link>

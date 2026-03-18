@@ -16,6 +16,7 @@ import {
   STROKE_FORTUNE,
   normalizeStroke,
   HIRAGANA_STROKES,
+  getOverallAssessment,
 } from "../../data/nameFortuneData";
 
 function getStrokeCount(char: string): number | null {
@@ -115,44 +116,49 @@ export async function POST(req: NextRequest) {
     const gaikakuN = normalizeStroke(gaikaku);
     const soukakuN = normalizeStroke(soukaku);
 
+    const gaku = [
+      {
+        key: "tenkaku",
+        name: "天格",
+        value: tenkakuN,
+        fortune: STROKE_FORTUNE[tenkakuN],
+      },
+      {
+        key: "jinkaku",
+        name: "人格",
+        value: jinkakuN,
+        fortune: STROKE_FORTUNE[jinkakuN],
+      },
+      {
+        key: "chikaku",
+        name: "地格",
+        value: chikakuN,
+        fortune: STROKE_FORTUNE[chikakuN],
+      },
+      {
+        key: "gaikaku",
+        name: "外格",
+        value: gaikakuN,
+        fortune: STROKE_FORTUNE[gaikakuN],
+      },
+      {
+        key: "soukaku",
+        name: "総格",
+        value: soukakuN,
+        fortune: STROKE_FORTUNE[soukakuN],
+      },
+    ];
+
+    const overall = getOverallAssessment(gaku);
+
     const result = {
       input: { surname: seimei, givenName: namae },
       strokes: {
         surname: seimeiStrokes,
         givenName: namaeStrokes,
       },
-      gaku: [
-        {
-          key: "tenkaku",
-          name: "天格",
-          value: tenkakuN,
-          fortune: STROKE_FORTUNE[tenkakuN],
-        },
-        {
-          key: "jinkaku",
-          name: "人格",
-          value: jinkakuN,
-          fortune: STROKE_FORTUNE[jinkakuN],
-        },
-        {
-          key: "chikaku",
-          name: "地格",
-          value: chikakuN,
-          fortune: STROKE_FORTUNE[chikakuN],
-        },
-        {
-          key: "gaikaku",
-          name: "外格",
-          value: gaikakuN,
-          fortune: STROKE_FORTUNE[gaikakuN],
-        },
-        {
-          key: "soukaku",
-          name: "総格",
-          value: soukakuN,
-          fortune: STROKE_FORTUNE[soukakuN],
-        },
-      ],
+      gaku,
+      overall: { score: overall.score, comment: overall.comment },
     };
 
     return NextResponse.json(result);

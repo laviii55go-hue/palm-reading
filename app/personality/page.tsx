@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
+import TopBannerLink from "../components/TopBannerLink";
 import {
   QUIZ_QUESTIONS,
   QUIZ_QUESTIONS_FULL,
@@ -61,8 +62,11 @@ export default function PersonalityPage() {
         {/* ヘッダー */}
         <div className="text-center space-y-1">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-xs text-teal-600 hover:underline">← トップに戻る</Link>
-            <Link href="/personality-guide" className="text-xs text-teal-600 border border-teal-300 rounded-full px-3 py-1 hover:bg-teal-50 transition-colors">📖 ガイド</Link>
+            <TopBannerLink />
+            <div className="flex gap-2">
+              <Link href="/personality-guide" className="text-xs text-teal-600 border border-teal-300 rounded-full px-3 py-1 hover:bg-teal-50 transition-colors">📖 ガイド</Link>
+              <Link href="/personality-guide/articles" className="text-xs text-teal-600 border border-teal-300 rounded-full px-3 py-1 hover:bg-teal-50 transition-colors">📝 コラム</Link>
+            </div>
           </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/20">
             <Image

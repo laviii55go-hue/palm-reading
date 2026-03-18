@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import { QUIZ_QUESTIONS, QUIZ_RESULTS } from "../data/palmQuizData";
 
@@ -59,7 +60,7 @@ export default function PalmQuizPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
         <div className="max-w-md mx-auto px-4 py-6 space-y-6">
           <div className="text-center">
-            <Link href="/" className="text-xs text-purple-600 hover:underline">← トップに戻る</Link>
+            <TopBannerLink />
             <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
             <p className="text-purple-600 text-sm mt-1">どちらの手で診断しますか？</p>
           </div>
@@ -100,7 +101,7 @@ export default function PalmQuizPage() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
         <div className="max-w-md mx-auto px-4 py-6 space-y-6">
           <div className="text-center">
-            <Link href="/" className="text-xs text-purple-600 hover:underline">← トップに戻る</Link>
+            <TopBannerLink />
             <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
             <p className="text-purple-600 text-sm">
               {selectedHand === "left" ? "左手" : "右手"}の診断結果
@@ -153,7 +154,7 @@ export default function PalmQuizPage() {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <Link href="/" className="text-xs text-purple-600 hover:underline">← トップに戻る</Link>
+          <TopBannerLink />
           <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
           <p className="text-purple-600 text-sm">
             あなたの手相から性格タイプを診断（{step + 1}/{QUIZ_QUESTIONS.length}）

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
+import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -37,12 +38,8 @@ export default function BloodTypePage() {
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
         {/* ヘッダー */}
         <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-rose-600 text-sm hover:underline"
-          >
-            ← トップに戻る
-          </Link>
+          <TopBannerLink />
+          <Link href="/blood-type-guide" className="text-rose-600 text-xs border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">📖 ガイド</Link>
         </div>
 
         <div className="text-center space-y-2">

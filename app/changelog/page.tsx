@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TopBannerLink from "../components/TopBannerLink";
 
 export const metadata = {
   title: "更新履歴｜手のひらの予言者",
@@ -6,6 +7,18 @@ export const metadata = {
 };
 
 const CHANGELOG = [
+  {
+    date: "2026-03-18",
+    items: [
+      "AI手相診断ページを新設（/ai-palm）",
+      "トップの手相占いを簡易手相タイプ診断・AI手相診断の2リンクに変更",
+      "姓名判断に総合判定（スコア＋一言コメント）を追加",
+      "姓名判断に人格・総格の解説を追加（主要な画数から）",
+      "トップのクイックリンク（今日の運勢・タロット等）を削除（下部メニューで代替）",
+      "占いメニューに簡易手相タイプ診断・AI手相診断を追加",
+      "サイトマップを更新（/guides、数秘術各数字、タロットカード各ページを追加）",
+    ],
+  },
   {
     date: "2026-03-14",
     items: [
@@ -61,14 +74,12 @@ export default function ChangelogPage() {
           ))}
         </div>
 
-        <div className="mt-8 text-center space-x-4">
+        <div className="mt-8 flex items-center justify-center gap-4">
           <Link href="/privacy" className="text-purple-600 hover:underline text-sm">
             プライバシーポリシー
           </Link>
           <span className="text-gray-300">|</span>
-          <Link href="/" className="text-purple-600 hover:underline text-sm">
-            ← トップに戻る
-          </Link>
+          <TopBannerLink />
         </div>
       </div>
     </div>
