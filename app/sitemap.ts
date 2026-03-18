@@ -2,8 +2,8 @@ import { MetadataRoute } from "next";
 import { PERSONALITY_TYPE_CODES } from "./data/personalityData";
 import { NUMEROLOGY_DATA } from "./data/numerologyData";
 import { TAROT_MAJOR_ARCANA } from "./data/tarotData";
-import { getVisibleArticles as getNumerologyVisibleArticles } from "./numerology-guide/articles/articlesConfig";
-import { getVisibleArticles as getPersonalityVisibleArticles } from "./personality-guide/articles/articlesConfig";
+import { ARTICLES as NUMEROLOGY_ARTICLES } from "./numerology-guide/articles/articlesConfig";
+import { ARTICLES as PERSONALITY_ARTICLES } from "./personality-guide/articles/articlesConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://jade-torte-9b5cde.netlify.app";
@@ -241,13 +241,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.85,
     },
-    ...getNumerologyVisibleArticles().map((a) => ({
+    ...NUMEROLOGY_ARTICLES.map((a) => ({
       url: `${baseUrl}/numerology-guide/articles/${a.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...getPersonalityVisibleArticles().map((a) => ({
+    ...PERSONALITY_ARTICLES.map((a) => ({
       url: `${baseUrl}/personality-guide/articles/${a.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
@@ -265,6 +265,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/site-map`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
     },
   ];
 }
