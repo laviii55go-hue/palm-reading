@@ -116,6 +116,7 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
           <a href="#animal" className="px-3 py-1.5 rounded-full bg-green-100 text-green-700 text-xs font-medium hover:bg-green-200">動物占い</a>
           <a href="#blood-type" className="px-3 py-1.5 rounded-full bg-rose-100 text-rose-700 text-xs font-medium hover:bg-rose-200">血液型占い</a>
           <a href="#name-fortune" className="px-3 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-xs font-medium hover:bg-cyan-200">姓名判断</a>
+          <a href="#tarot" className="px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-xs font-medium hover:bg-violet-200">タロット占い</a>
           <a href="#daily" className="px-3 py-1.5 rounded-full bg-amber-100 text-amber-700 text-xs font-medium hover:bg-amber-200">運勢ランキング</a>
         </div>
       </div>
@@ -318,6 +319,28 @@ export default function FortuneSelect({ selected, onSelect, onStart }: Props) {
       </CategorySection>
 
       <AdBanner />
+
+      {/* ── タロット占い ── */}
+      <CategorySection id="tarot" color="violet">
+        <CategoryLabel emoji="🎴" label="タロット占い" color="violet" />
+        <Link
+          href="/tarot-guide"
+          className="block w-full py-2.5 rounded-xl border-2 border-violet-200 text-violet-600 font-semibold text-sm text-center hover:bg-white transition-colors"
+        >
+          📖 タロットの基本知識を読む
+        </Link>
+        <Link
+          href="/tarot"
+          className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-white border-violet-200 hover:shadow-md hover:scale-[1.01]"
+        >
+          <div className="text-3xl">🎴</div>
+          <div>
+            <div className="font-bold text-sm text-violet-800">タロット3択占い</div>
+            <div className="text-xs text-violet-500 mt-0.5">直感で1枚選んで今日の運勢を占う</div>
+          </div>
+          <div className="absolute right-4 text-violet-400 text-sm">→</div>
+        </Link>
+      </CategorySection>
 
       {/* ── 動物占い ── */}
       <CategorySection id="animal" color="green">

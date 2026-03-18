@@ -109,6 +109,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/tarot`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tarot-guide`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/dream`,
       lastModified: new Date(),
       changeFrequency: "monthly",
