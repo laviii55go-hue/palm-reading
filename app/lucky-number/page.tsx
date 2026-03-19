@@ -89,6 +89,53 @@ const COMPAT_CATEGORIES = [
   { key: "family", label: "家族の相性", emoji: "🏠" },
 ];
 
+const COMPAT_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33] as const;
+
+type CompatInputMode = "birthdate" | "number";
+
+function NumberSelector({
+  label,
+  selectedNum,
+  onSelect,
+  accentColor,
+}: {
+  label: string;
+  selectedNum: number;
+  onSelect: (n: number) => void;
+  accentColor: "purple" | "pink";
+}) {
+  const isPurple = accentColor === "purple";
+  return (
+    <div className="space-y-2">
+      <p className={`text-sm font-bold ${isPurple ? "text-purple-700" : "text-pink-600"}`}>{label}</p>
+      <div className="grid grid-cols-4 gap-2">
+        {COMPAT_NUMBERS.map((n) => {
+          const entry = NUMEROLOGY_DATA[n];
+          const isSelected = selectedNum === n;
+          return (
+            <button
+              key={n}
+              type="button"
+              onClick={() => onSelect(n)}
+              className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 transition-all ${
+                isSelected
+                  ? isPurple
+                    ? "border-purple-500 bg-purple-100 shadow-md"
+                    : "border-pink-500 bg-pink-100 shadow-md"
+                  : "border-gray-200 bg-white hover:bg-gray-50"
+              }`}
+            >
+              <span className="text-lg">{entry.emoji}</span>
+              <span className={`text-sm font-black ${isPurple ? "text-purple-700" : "text-pink-600"}`}>{n}</span>
+              <span className="text-[10px] text-gray-500 truncate w-full text-center">{entry.title}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function StarScore({ score }: { score: number }) {
   return (
     <div className="flex gap-0.5">
@@ -113,12 +160,15 @@ export default function LuckyNumberPage() {
 
   // ── 相性診断 ──
   const [compatPhase, setCompatPhase] = useState<CompatPhase>("input");
+  const [compatInputMode, setCompatInputMode] = useState<CompatInputMode>("birthdate");
   const [myYear, setMyYear] = useState("");
   const [myMonth, setMyMonth] = useState("");
   const [myDay, setMyDay] = useState("");
   const [partnerYear, setPartnerYear] = useState("");
   const [partnerMonth, setPartnerMonth] = useState("");
   const [partnerDay, setPartnerDay] = useState("");
+  const [compatMyNum, setCompatMyNum] = useState(0);
+  const [compatPartnerNum, setCompatPartnerNum] = useState(0);
   const [myNum, setMyNum] = useState(0);
   const [partnerNum, setPartnerNum] = useState(0);
   const [compatError, setCompatError] = useState<string | null>(null);
@@ -158,18 +208,27 @@ export default function LuckyNumberPage() {
   // ── ハンドラ：相性 ──
   const handleCompatSubmit = () => {
     setCompatError(null);
-    const my = parseInt(myYear), mm = parseInt(myMonth), md = parseInt(myDay);
-    const py = parseInt(partnerYear), pm = parseInt(partnerMonth), pd = parseInt(partnerDay);
-    if (!my || !mm || !md || my < 1900 || my > CURRENT_YEAR || mm < 1 || mm > 12 || md < 1 || md > 31) {
-      setCompatError("あなたの生年月日を正しく入力してください");
-      return;
+    if (compatInputMode === "birthdate") {
+      const my = parseInt(myYear), mm = parseInt(myMonth), md = parseInt(myDay);
+      const py = parseInt(partnerYear), pm = parseInt(partnerMonth), pd = parseInt(partnerDay);
+      if (!my || !mm || !md || my < 1900 || my > CURRENT_YEAR || mm < 1 || mm > 12 || md < 1 || md > 31) {
+        setCompatError("あなたの生年月日を正しく入力してください");
+        return;
+      }
+      if (!py || !pm || !pd || py < 1900 || py > CURRENT_YEAR || pm < 1 || pm > 12 || pd < 1 || pd > 31) {
+        setCompatError("相手の生年月日を正しく入力してください");
+        return;
+      }
+      setMyNum(calcLifePathNumber(my, mm, md));
+      setPartnerNum(calcLifePathNumber(py, pm, pd));
+    } else {
+      if (!compatMyNum || !compatPartnerNum) {
+        setCompatError("あなたと相手の数秘術№を選んでください");
+        return;
+      }
+      setMyNum(compatMyNum);
+      setPartnerNum(compatPartnerNum);
     }
-    if (!py || !pm || !pd || py < 1900 || py > CURRENT_YEAR || pm < 1 || pm > 12 || pd < 1 || pd > 31) {
-      setCompatError("相手の生年月日を正しく入力してください");
-      return;
-    }
-    setMyNum(calcLifePathNumber(my, mm, md));
-    setPartnerNum(calcLifePathNumber(py, pm, pd));
     setCompatPhase("result");
     setOpenCategory(null);
   };
@@ -178,13 +237,18 @@ export default function LuckyNumberPage() {
     setCompatPhase("input");
     setMyYear(""); setMyMonth(""); setMyDay("");
     setPartnerYear(""); setPartnerMonth(""); setPartnerDay("");
+    setCompatMyNum(0); setCompatPartnerNum(0);
     setCompatError(null);
     setOpenCategory(null);
   };
 
   const handleChangePartnerOnly = () => {
     setCompatPhase("input");
-    setPartnerYear(""); setPartnerMonth(""); setPartnerDay("");
+    if (compatInputMode === "birthdate") {
+      setPartnerYear(""); setPartnerMonth(""); setPartnerDay("");
+    } else {
+      setCompatPartnerNum(0);
+    }
     setCompatError(null);
     setOpenCategory(null);
   };
@@ -521,65 +585,119 @@ export default function LuckyNumberPage() {
               <div className="space-y-6">
                 <div className="text-center space-y-1">
                   <div className="text-4xl">💞</div>
-                  <p className="text-gray-600 text-sm mt-1">2人の生年月日から相性を診断します</p>
+                  <p className="text-gray-600 text-sm mt-1">2人の相性を診断します</p>
                 </div>
 
-                <div className={`rounded-2xl border-2 p-4 space-y-3 ${myYear && myMonth && myDay ? "border-purple-200 bg-purple-50/50" : "border-purple-200"}`}>
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-bold text-purple-700">👤 あなた</p>
-                    {myYear && myMonth && myDay && (
-                      <span className="text-xs text-purple-500 bg-purple-100 px-2 py-0.5 rounded-full">
-                        {myYear}/{myMonth}/{myDay} 入力済み
-                      </span>
-                    )}
-                  </div>
-                  <DateInputs
-                    labelYear="生まれ年" labelMonth="月" labelDay="日"
-                    valYear={myYear} valMonth={myMonth} valDay={myDay}
-                    setValYear={setMyYear} setValMonth={setMyMonth} setValDay={setMyDay}
-                  />
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      onClick={() => saveBirthDate(myYear, myMonth, myDay)}
-                      disabled={!myYear || !myMonth || !myDay}
-                      className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold disabled:opacity-40"
-                    >
-                      保存する
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        clearSavedBirthDate();
-                        setMyYear("");
-                        setMyMonth("");
-                        setMyDay("");
-                      }}
-                      className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold"
-                    >
-                      保存を解除
-                    </button>
-                  </div>
+                {/* 入力モード切替 */}
+                <div className="flex rounded-xl bg-gray-100 p-1 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setCompatInputMode("birthdate")}
+                    className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      compatInputMode === "birthdate" ? "bg-white text-purple-700 shadow" : "text-gray-500"
+                    }`}
+                  >
+                    📅 生年月日で選ぶ
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCompatInputMode("number")}
+                    className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      compatInputMode === "number" ? "bg-white text-purple-700 shadow" : "text-gray-500"
+                    }`}
+                  >
+                    🔢 数秘術№で選ぶ
+                  </button>
                 </div>
 
-                <div className="rounded-2xl border-2 border-pink-200 p-4 space-y-3">
-                  <p className="text-sm font-bold text-pink-600">💕 相手</p>
-                  <DateInputs
-                    labelYear="生まれ年" labelMonth="月" labelDay="日"
-                    valYear={partnerYear} valMonth={partnerMonth} valDay={partnerDay}
-                    setValYear={setPartnerYear} setValMonth={setPartnerMonth} setValDay={setPartnerDay}
-                  />
-                </div>
+                {compatInputMode === "birthdate" ? (
+                  <>
+                    <div className={`rounded-2xl border-2 p-4 space-y-3 ${myYear && myMonth && myDay ? "border-purple-200 bg-purple-50/50" : "border-purple-200"}`}>
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-bold text-purple-700">👤 あなた</p>
+                        {myYear && myMonth && myDay && (
+                          <span className="text-xs text-purple-500 bg-purple-100 px-2 py-0.5 rounded-full">
+                            {myYear}/{myMonth}/{myDay} 入力済み
+                          </span>
+                        )}
+                      </div>
+                      <DateInputs
+                        labelYear="生まれ年" labelMonth="月" labelDay="日"
+                        valYear={myYear} valMonth={myMonth} valDay={myDay}
+                        setValYear={setMyYear} setValMonth={setMyMonth} setValDay={setMyDay}
+                      />
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => saveBirthDate(myYear, myMonth, myDay)}
+                          disabled={!myYear || !myMonth || !myDay}
+                          className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold disabled:opacity-40"
+                        >
+                          保存する
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            clearSavedBirthDate();
+                            setMyYear("");
+                            setMyMonth("");
+                            setMyDay("");
+                          }}
+                          className="flex-1 py-2 rounded-xl border-2 border-purple-200 text-purple-600 text-sm font-semibold"
+                        >
+                          保存を解除
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="rounded-2xl border-2 border-pink-200 p-4 space-y-3">
+                      <p className="text-sm font-bold text-pink-600">💕 相手</p>
+                      <DateInputs
+                        labelYear="生まれ年" labelMonth="月" labelDay="日"
+                        valYear={partnerYear} valMonth={partnerMonth} valDay={partnerDay}
+                        setValYear={setPartnerYear} setValMonth={setPartnerMonth} setValDay={setPartnerDay}
+                      />
+                    </div>
+
+                    <button
+                      onClick={handleCompatSubmit}
+                      disabled={!myYear || !myMonth || !myDay || !partnerYear || !partnerMonth || !partnerDay}
+                      className="w-full py-3 rounded-xl bg-pink-500 text-white font-bold text-lg disabled:opacity-40 hover:bg-pink-600 transition-colors shadow-md"
+                    >
+                      相性を診断する →
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <div className="rounded-2xl border-2 border-purple-200 p-4 space-y-3">
+                      <NumberSelector
+                        label="👤 あなた"
+                        selectedNum={compatMyNum}
+                        onSelect={setCompatMyNum}
+                        accentColor="purple"
+                      />
+                    </div>
+
+                    <div className="rounded-2xl border-2 border-pink-200 p-4 space-y-3">
+                      <NumberSelector
+                        label="💕 相手"
+                        selectedNum={compatPartnerNum}
+                        onSelect={setCompatPartnerNum}
+                        accentColor="pink"
+                      />
+                    </div>
+
+                    <button
+                      onClick={handleCompatSubmit}
+                      disabled={!compatMyNum || !compatPartnerNum}
+                      className="w-full py-3 rounded-xl bg-pink-500 text-white font-bold text-lg disabled:opacity-40 hover:bg-pink-600 transition-colors shadow-md"
+                    >
+                      相性を診断する →
+                    </button>
+                  </>
+                )}
 
                 {compatError && <p className="text-red-500 text-sm text-center">{compatError}</p>}
-
-                <button
-                  onClick={handleCompatSubmit}
-                  disabled={!myYear || !myMonth || !myDay || !partnerYear || !partnerMonth || !partnerDay}
-                  className="w-full py-3 rounded-xl bg-pink-500 text-white font-bold text-lg disabled:opacity-40 hover:bg-pink-600 transition-colors shadow-md"
-                >
-                  相性を診断する →
-                </button>
 
                 <AdBanner />
                 <RakutenWidget />
@@ -593,31 +711,57 @@ export default function LuckyNumberPage() {
 
                 {/* 2人のナンバー表示 */}
                 <div className="flex items-center justify-center gap-4">
-                  <button
-                    onClick={() => goToPersonalResult(myYear, myMonth, myDay)}
-                    className="text-center flex-1 rounded-2xl border-2 border-purple-200 bg-purple-50 p-3 hover:bg-purple-100 hover:shadow-md transition-all active:scale-95"
-                  >
-                    <div className="text-2xl">{myEntry.emoji}</div>
-                    <div className="text-2xl font-black text-purple-700">{myNum}</div>
-                    <div className="text-xs text-purple-600 font-medium">{myEntry.title}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">
-                      あなた（{myYear}/{myMonth}/{myDay}）
-                    </div>
-                    <div className="text-[10px] text-purple-400 mt-1">タップで個人鑑定 →</div>
-                  </button>
+                  {compatInputMode === "birthdate" && myYear && myMonth && myDay ? (
+                    <button
+                      onClick={() => goToPersonalResult(myYear, myMonth, myDay)}
+                      className="text-center flex-1 rounded-2xl border-2 border-purple-200 bg-purple-50 p-3 hover:bg-purple-100 hover:shadow-md transition-all active:scale-95"
+                    >
+                      <div className="text-2xl">{myEntry.emoji}</div>
+                      <div className="text-2xl font-black text-purple-700">{myNum}</div>
+                      <div className="text-xs text-purple-600 font-medium">{myEntry.title}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">
+                        あなた（{myYear}/{myMonth}/{myDay}）
+                      </div>
+                      <div className="text-[10px] text-purple-400 mt-1">タップで個人鑑定 →</div>
+                    </button>
+                  ) : (
+                    <Link
+                      href={`/numerology-guide/${myNum}`}
+                      className="text-center flex-1 rounded-2xl border-2 border-purple-200 bg-purple-50 p-3 hover:bg-purple-100 hover:shadow-md transition-all active:scale-95 block"
+                    >
+                      <div className="text-2xl">{myEntry.emoji}</div>
+                      <div className="text-2xl font-black text-purple-700">{myNum}</div>
+                      <div className="text-xs text-purple-600 font-medium">{myEntry.title}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">あなた（№{myNum}）</div>
+                      <div className="text-[10px] text-purple-400 mt-1">詳細を見る →</div>
+                    </Link>
+                  )}
                   <div className="text-3xl text-pink-400">×</div>
-                  <button
-                    onClick={() => goToPersonalResult(partnerYear, partnerMonth, partnerDay)}
-                    className="text-center flex-1 rounded-2xl border-2 border-pink-200 bg-pink-50 p-3 hover:bg-pink-100 hover:shadow-md transition-all active:scale-95"
-                  >
-                    <div className="text-2xl">{partnerEntry.emoji}</div>
-                    <div className="text-2xl font-black text-pink-600">{partnerNum}</div>
-                    <div className="text-xs text-pink-600 font-medium">{partnerEntry.title}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">
-                      相手（{partnerYear}/{partnerMonth}/{partnerDay}）
-                    </div>
-                    <div className="text-[10px] text-pink-400 mt-1">タップで個人鑑定 →</div>
-                  </button>
+                  {compatInputMode === "birthdate" && partnerYear && partnerMonth && partnerDay ? (
+                    <button
+                      onClick={() => goToPersonalResult(partnerYear, partnerMonth, partnerDay)}
+                      className="text-center flex-1 rounded-2xl border-2 border-pink-200 bg-pink-50 p-3 hover:bg-pink-100 hover:shadow-md transition-all active:scale-95"
+                    >
+                      <div className="text-2xl">{partnerEntry.emoji}</div>
+                      <div className="text-2xl font-black text-pink-600">{partnerNum}</div>
+                      <div className="text-xs text-pink-600 font-medium">{partnerEntry.title}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">
+                        相手（{partnerYear}/{partnerMonth}/{partnerDay}）
+                      </div>
+                      <div className="text-[10px] text-pink-400 mt-1">タップで個人鑑定 →</div>
+                    </button>
+                  ) : (
+                    <Link
+                      href={`/numerology-guide/${partnerNum}`}
+                      className="text-center flex-1 rounded-2xl border-2 border-pink-200 bg-pink-50 p-3 hover:bg-pink-100 hover:shadow-md transition-all active:scale-95 block"
+                    >
+                      <div className="text-2xl">{partnerEntry.emoji}</div>
+                      <div className="text-2xl font-black text-pink-600">{partnerNum}</div>
+                      <div className="text-xs text-pink-600 font-medium">{partnerEntry.title}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">相手（№{partnerNum}）</div>
+                      <div className="text-[10px] text-pink-400 mt-1">詳細を見る →</div>
+                    </Link>
+                  )}
                 </div>
 
                 {/* 総合スコア */}

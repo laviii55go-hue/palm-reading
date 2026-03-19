@@ -205,18 +205,23 @@ export default function NumerologyGuidePage() {
           </h2>
           <div className="grid grid-cols-1 gap-3">
             {NUMBERS.map((n) => (
-              <div key={n.num} className={`rounded-2xl border-2 ${n.border} bg-gradient-to-br ${n.color} p-4`}>
+              <Link
+                key={n.num}
+                href={`/numerology-guide/${n.num}`}
+                className={`block rounded-2xl border-2 ${n.border} bg-gradient-to-br ${n.color} p-4 hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all`}
+              >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 rounded-full bg-white flex items-center justify-center font-black text-lg ${n.text} shadow-sm shrink-0`}>
                     {n.num}
                   </div>
                   <div className="text-2xl">{n.emoji}</div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className={`font-bold text-sm ${n.text}`}>{n.title}</p>
                     <p className="text-gray-500 text-xs mt-0.5">{n.keywords}</p>
                   </div>
+                  <span className="text-gray-400 text-sm shrink-0">→</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="text-right">
@@ -234,19 +239,24 @@ export default function NumerologyGuidePage() {
           </p>
           <div className="space-y-3">
             {MASTER_NUMBERS.map((m) => (
-              <div key={m.num} className="rounded-2xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 to-amber-50 p-4">
+              <Link
+                key={m.num}
+                href={`/numerology-guide/${m.num}`}
+                className="block rounded-2xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 to-amber-50 p-4 hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all"
+              >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center font-black text-sm text-white shadow-sm shrink-0">
                     {m.num}
                   </div>
                   <div className="text-2xl">{m.emoji}</div>
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <span className="text-xs bg-yellow-200 text-yellow-800 px-2 py-0.5 rounded-full font-bold">Master</span>
                     <p className="font-bold text-sm text-yellow-800 mt-0.5">{m.title}</p>
                   </div>
+                  <span className="text-gray-400 text-sm shrink-0">→</span>
                 </div>
                 <p className="text-gray-600 text-xs leading-relaxed">{m.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="text-right">
