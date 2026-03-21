@@ -48,6 +48,12 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  icons: {
+    icon: "/app-icon.png",
+    shortcut: "/app-icon.png",
+    apple: "/app-icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({

@@ -1,0 +1,23 @@
+{
+  "name": "手のひらの予言者",
+  "short_name": "手のひらの予言者",
+  "description": "手相・夢占い・動物占い・数秘術など多彩な占いが無料で楽しめる総合占いサイト",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "/app-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
