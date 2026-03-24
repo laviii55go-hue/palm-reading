@@ -1,5 +1,7 @@
 // ─── タロット大アルカナ22枚 ─────────────────────────────────
 
+import { getDailyFortuneRanking } from "./dailyFortuneData";
+
 export type TarotCard = {
   id: number;
   name: string;
@@ -109,5 +111,195 @@ export function getTarotResult(cardId: number, isReversed: boolean): {
     love: data.love,
     work: data.work,
     advice: data.advice,
+  };
+}
+
+// ─── タロット AI 解釈強化（テーマ・プロンプト・フォールバック） ─────────────────
+
+export const TAROT_THEMES = [
+  {
+    id: "love",
+    label: "恋愛",
+    emoji: "❤️",
+    promptContext: "恋愛・片思い・パートナーシップ・出会い・復縁に関する視点で",
+    description: "気になるあの人のこと、今の関係性…",
+  },
+  {
+    id: "work",
+    label: "仕事",
+    emoji: "💼",
+    promptContext: "仕事・キャリア・転職・職場の人間関係・成長に関する視点で",
+    description: "仕事の悩み、今後のキャリア…",
+  },
+  {
+    id: "relationship",
+    label: "人間関係",
+    emoji: "🤝",
+    promptContext: "友人・家族・職場の人間関係・コミュニケーションに関する視点で",
+    description: "身近な人との関わり方…",
+  },
+  {
+    id: "general",
+    label: "全般",
+    emoji: "🔮",
+    promptContext: "今日一日の運勢・総合的なメッセージとして",
+    description: "今のあなたへのメッセージ",
+  },
+] as const;
+
+export type TarotThemeId = (typeof TAROT_THEMES)[number]["id"];
+
+export function isValidTarotThemeId(id: string): id is TarotThemeId {
+  return TAROT_THEMES.some((t) => t.id === id);
+}
+
+/** AIプロンプト用：今日の天体ランキング要約 */
+export function getCelestialPromptContext(): string {
+  try {
+    const now = new Date();
+    const ranking = getDailyFortuneRanking(now.getFullYear(), now.getMonth() + 1, now.getDate());
+    const top = ranking[0];
+    const planets = top.planetsInSign.length > 0 ? top.planetsInSign.join("・") : "各天体は分散気味";
+    return `今日の運勢トップは${top.sign.name}。${planets}が関係する配置の傾向。${top.advice}`;
+  } catch {
+    return "天体データは利用できません。カードの意味を中心に解釈してください。";
+  }
+}
+
+/** フォールバック用の短い天体メッセージ */
+export function getCelestialFallbackNote(): string {
+  try {
+    const now = new Date();
+    const ranking = getDailyFortuneRanking(now.getFullYear(), now.getMonth() + 1, now.getDate());
+    const top = ranking[0];
+    if (top.planetsInSign.length > 0) {
+      return `今日の星は、${top.sign.name}に${top.planetsInSign[0]}のエネルギーが寄り添う配置です。`;
+    }
+    return `今日の星は、${top.sign.name}にやさしい流れを届けています。`;
+  } catch {
+    return "今日の星は、静かにあなたの背中を押してくれています。";
+  }
+}
+
+const FALLBACK_KEYWORDS: Record<TarotThemeId, string[]> = {
+  love: ["想い", "対話", "ペース"],
+  work: ["計画", "行動", "成長"],
+  relationship: ["傾聴", "境界線", "感謝"],
+  general: ["直感", "バランス", "一歩"],
+};
+
+export type TarotAiApiResponse = {
+  cardName: string;
+  cardNumber: number;
+  isReversed: boolean;
+  theme: string;
+  interpretation: string;
+  celestialNote: string;
+  advice: string;
+  keywords: string[];
+  fallback: boolean;
+};
+
+/** AI失敗時：既存テンプレートでレスポンスを組み立て */
+export function buildTarotFallbackResponse(
+  cardId: number,
+  isReversed: boolean,
+  themeId: string
+): TarotAiApiResponse {
+  const base = getTarotResult(cardId, isReversed);
+  if (!base) throw new Error("invalid card");
+  const tid = isValidTarotThemeId(themeId) ? themeId : "general";
+  const mainText =
+    tid === "love"
+      ? base.love
+      : tid === "work"
+        ? base.work
+        : tid === "relationship"
+          ? base.general
+          : base.general;
+  const interpretation = `今日のあなたに「${base.cardName}」が${base.isReversed ? "逆位置" : "正位置"}で現れました。${mainText}`;
+  const keywords = FALLBACK_KEYWORDS[tid];
+  return {
+    cardName: base.cardName,
+    cardNumber: cardId,
+    isReversed: base.isReversed,
+    theme: tid,
+    interpretation,
+    celestialNote: getCelestialFallbackNote(),
+    advice: base.advice,
+    keywords,
+    fallback: true,
+  };
+}
+
+export function getSeasonContext(month: number): string {
+  if (month >= 3 && month <= 5) return "春";
+  if (month >= 6 && month <= 8) return "夏";
+  if (month >= 9 && month <= 11) return "秋";
+  return "冬";
+}
+
+const WEEKDAYS_JA = ["日", "月", "火", "水", "木", "金", "土"] as const;
+
+/** AI用ユーザープロンプト（設計書の構成に準拠） */
+export function buildTarotAiUserPrompt(params: {
+  cardName: string;
+  isReversed: boolean;
+  themeLabel: string;
+  themeContext: string;
+  celestialInfo: string;
+  month: number;
+  day: number;
+  dayOfWeek: string;
+  seasonContext: string;
+}): string {
+  const pos = params.isReversed ? "逆位置" : "正位置";
+  return `あなたは占いサイト「手のひらの予言者」のタロット占い師です。
+ユーザーが引いたカードをもとに、パーソナライズされた解釈を提供してください。
+
+【引かれたカード】
+・カード名：${params.cardName}
+・位置：${pos}
+
+【テーマ】
+・${params.themeLabel}（${params.themeContext}）
+
+【今日の天体配置】
+・${params.celestialInfo}
+
+【季節・時期】
+・${params.month}月${params.day}日（${params.dayOfWeek}曜日）
+・${params.seasonContext}の季節
+
+【出力形式】
+必ず次のJSONのみを返してください（説明文やマークダウンは付けない）:
+{
+  "interpretation": "メイン解釈（200〜300文字程度）",
+  "celestialNote": "天体からのひとこと（50〜80文字）",
+  "advice": "アドバイス（30〜50文字）",
+  "keywords": ["キーワード1", "キーワード2", "キーワード3"]
+}
+
+【絶対条件】
+・占い師としての権威性を保ちつつ、温かみのある文体
+・不安を煽らない（逆位置でもポジティブな要素を必ず含める）
+・具体的な日付や金額の予言はしない
+・他の占いサイトの名前を出さない
+・interpretation ではテーマに沿い、「あなた」に語りかけ、天体配置を自然に織り交ぜる
+・celestialNote は「今日の星は〜」のような書き出しを推奨`;
+}
+
+export function getNowForTarotPrompt(): {
+  month: number;
+  day: number;
+  dayOfWeek: string;
+  seasonContext: string;
+} {
+  const now = new Date();
+  return {
+    month: now.getMonth() + 1,
+    day: now.getDate(),
+    dayOfWeek: WEEKDAYS_JA[now.getDay()],
+    seasonContext: getSeasonContext(now.getMonth() + 1),
   };
 }

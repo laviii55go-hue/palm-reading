@@ -25,6 +25,7 @@ const MENU_ITEMS = [
       { href: "/personality", label: "16タイプ性格診断", emoji: "🧠" },
       { href: "/animal", label: "動物占い", emoji: "🐾" },
       { href: "/lucky-number", label: "数秘術占い", emoji: "🔢" },
+      { href: "/dinosaur-fortune", label: "恐竜占い", emoji: "🦖" },
     ],
   },
   {

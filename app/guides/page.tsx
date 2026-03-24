@@ -15,6 +15,7 @@ const GUIDE_ITEMS = [
   { href: "/daily-fortune-ranking-guide", emoji: "🏆", label: "今日の運勢ランキング", desc: "トランシット占星術の見方" },
   { href: "/calendar-guide", emoji: "📅", label: "開運カレンダー", desc: "六曜・吉日の見方" },
   { href: "/numerology-guide", emoji: "🔢", label: "数秘術", desc: "運命数・ライフパスナンバー" },
+  { href: "/dinosaur-guide", emoji: "🦖", label: "恐竜占い", desc: "数秘術ベース・12種類の恐竜タイプ" },
   { href: "/numerology-guide/articles", emoji: "📝", label: "数秘術コラム", desc: "グループランキングなど記事一覧" },
   { href: "/personality-guide", emoji: "🧠", label: "16タイプ性格診断", desc: "MBTIベースの性格タイプ" },
   { href: "/personality-guide/articles", emoji: "📝", label: "16タイプコラム", desc: "リーダーシップ・恋愛運ランキングなど記事一覧" },

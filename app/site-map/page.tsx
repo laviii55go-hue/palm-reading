@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import TopBannerLink from "../components/TopBannerLink";
 import { PERSONALITY_TYPE_CODES } from "../data/personalityData";
 import { NUMEROLOGY_DATA } from "../data/numerologyData";
+import { DINOSAUR_DATA } from "../data/dinosaurData";
 import { TAROT_MAJOR_ARCANA } from "../data/tarotData";
 import { ARTICLES as NUMEROLOGY_ARTICLES } from "../numerology-guide/articles/articlesConfig";
 import { ARTICLES as PERSONALITY_ARTICLES } from "../personality-guide/articles/articlesConfig";
@@ -24,6 +25,8 @@ const STATIC_PAGES = [
   { href: "/ai-palm", label: "AI手相診断" },
   { href: "/numerology-guide", label: "数秘術ガイド" },
   { href: "/lucky-number", label: "数秘術占い" },
+  { href: "/dinosaur-fortune", label: "恐竜占い" },
+  { href: "/dinosaur-guide", label: "恐竜占いガイド" },
   { href: "/personality", label: "16タイプ性格診断" },
   { href: "/personality-guide", label: "16タイプガイド" },
   { href: "/tarot", label: "タロット3択占い" },
@@ -138,6 +141,23 @@ export default function SitemapPage() {
                 </Link>
               </li>
             ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-bold text-slate-700 mb-3">恐竜占い（タイプ別）</h2>
+          <ul className="grid grid-cols-2 gap-2 text-sm">
+            {Object.keys(DINOSAUR_DATA).map((num) => {
+              const n = Number(num);
+              const d = DINOSAUR_DATA[n];
+              return (
+                <li key={num}>
+                  <Link href={`/dinosaur-guide/${num}`} className="text-violet-600 hover:underline">
+                    {d.emoji} {d.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </section>
 

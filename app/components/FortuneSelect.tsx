@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getDailyFortuneRanking } from "../data/dailyFortuneData";
@@ -95,12 +95,17 @@ function FortuneLink({
   title,
   desc,
   color,
+  imageSrc,
+  imageAlt,
 }: {
   href: string;
-  emoji: string;
+  emoji?: string;
   title: string;
-  desc: string;
+  desc: ReactNode;
   color: CategoryColor;
+  /** 指定時は左に画像を表示（絵文字の代わり） */
+  imageSrc?: string;
+  imageAlt?: string;
 }) {
   const s = CATEGORY_STYLES[color];
   return (
@@ -108,7 +113,19 @@ function FortuneLink({
       href={href}
       className={`relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all ${s.panelGradient} ${s.panelBorder} hover:shadow-md hover:scale-[1.01]`}
     >
-      <div className="text-3xl">{emoji}</div>
+      {imageSrc ? (
+        <div className="shrink-0 w-12 h-12 rounded-lg overflow-hidden border border-violet-200/70 shadow-sm bg-white">
+          <Image
+            src={imageSrc}
+            alt={imageAlt ?? title}
+            width={48}
+            height={48}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div className="text-3xl">{emoji}</div>
+      )}
       <div>
         <div className={`font-bold text-sm ${s.text}`}>{title}</div>
         <div className="text-xs text-gray-600 mt-0.5">{desc}</div>
@@ -143,9 +160,16 @@ export default function FortuneSelect() {
           <FortuneRankingLink />
           <FortuneLink
             href="/tarot"
-            emoji="🎴"
             title="タロット3択占い"
-            desc="直感で1枚選んで今日の運勢を占う"
+            imageSrc="/tarot-back.png"
+            imageAlt="タロットカード"
+            desc={
+              <>
+                恋愛・仕事・人間関係・全般からテーマを選び、直感で1枚。
+                <br />
+                AIが今日の星と解釈します
+              </>
+            }
             color="violet"
           />
           <FortuneLink

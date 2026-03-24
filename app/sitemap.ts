@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { PERSONALITY_TYPE_CODES } from "./data/personalityData";
 import { NUMEROLOGY_DATA } from "./data/numerologyData";
+import { DINOSAUR_DATA } from "./data/dinosaurData";
 import { TAROT_MAJOR_ARCANA } from "./data/tarotData";
 import { ARTICLES as NUMEROLOGY_ARTICLES } from "./numerology-guide/articles/articlesConfig";
 import { ARTICLES as PERSONALITY_ARTICLES } from "./personality-guide/articles/articlesConfig";
@@ -17,6 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const numerologyNumUrls = Object.keys(NUMEROLOGY_DATA).map((num) => ({
     url: `${baseUrl}/numerology-guide/${num}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  const dinosaurNumUrls = Object.keys(DINOSAUR_DATA).map((num) => ({
+    url: `${baseUrl}/dinosaur-guide/${num}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -108,6 +116,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/dinosaur-fortune`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/dinosaur-guide`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    ...dinosaurNumUrls,
     {
       url: `${baseUrl}/calendar`,
       lastModified: new Date(),
