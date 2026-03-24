@@ -20,7 +20,10 @@ type ParsedAi = {
 };
 
 function parseTarotAiJson(text: string): ParsedAi {
-  const jsonMatch = text.match(/\{[\s\S]*\}/);
+  let raw = text.trim();
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (fenced) raw = fenced[1].trim();
+  const jsonMatch = raw.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error("JSON not found");
   const obj = JSON.parse(jsonMatch[0]) as Record<string, unknown>;
   const interpretation = String(obj.interpretation ?? "").trim();
@@ -36,13 +39,14 @@ function parseTarotAiJson(text: string): ParsedAi {
 
 type Provider = "openai" | "anthropic" | "gemini";
 
-function pickProvider(): Provider | null {
-  const available: Provider[] = [];
-  if (process.env.OPENAI_API_KEY) available.push("openai");
-  if (process.env.ANTHROPIC_API_KEY) available.push("anthropic");
-  if (process.env.GEMINI_API_KEY) available.push("gemini");
-  if (available.length === 0) return null;
-  return available[Math.floor(Math.random() * available.length)];
+/** 安定した優先順。1つ目が失敗したら次を試す（本番でランダム1回失敗→テンプレになるのを防ぐ） */
+function getProvidersInPriorityOrder(): Provider[] {
+  const order: Provider[] = ["openai", "anthropic", "gemini"];
+  return order.filter((p) => {
+    if (p === "openai") return Boolean(process.env.OPENAI_API_KEY?.trim());
+    if (p === "anthropic") return Boolean(process.env.ANTHROPIC_API_KEY?.trim());
+    return Boolean(process.env.GEMINI_API_KEY?.trim());
+  });
 }
 
 async function callOpenAiJson(prompt: string): Promise<string> {
@@ -93,6 +97,21 @@ async function runTarotAi(prompt: string, provider: Provider): Promise<ParsedAi>
   else if (provider === "anthropic") raw = await callAnthropicJson(prompt);
   else raw = await callGeminiJson(prompt);
   return parseTarotAiJson(raw);
+}
+
+async function runTarotAiTryProvidersInOrder(prompt: string): Promise<ParsedAi> {
+  const providers = getProvidersInPriorityOrder();
+  if (providers.length === 0) throw new Error("no AI provider keys");
+  let lastErr: unknown;
+  for (const provider of providers) {
+    try {
+      return await runTarotAi(prompt, provider);
+    } catch (e) {
+      lastErr = e;
+      console.error(`tarot AI failed (${provider}):`, e);
+    }
+  }
+  throw lastErr;
 }
 
 /** GET: 従来のテンプレート応答（外部互換・テーマなし） */
@@ -161,14 +180,14 @@ export async function POST(req: NextRequest) {
       seasonContext,
     });
 
-    const provider = pickProvider();
-    if (!provider) {
+    const providers = getProvidersInPriorityOrder();
+    if (providers.length === 0) {
       const fb = buildTarotFallbackResponse(cardId, isReversed, themeRaw);
       return NextResponse.json(fb);
     }
 
     try {
-      const parsed = await runTarotAi(prompt, provider);
+      const parsed = await runTarotAiTryProvidersInOrder(prompt);
       const keywords =
         parsed.keywords.length >= 3
           ? parsed.keywords.slice(0, 3)
