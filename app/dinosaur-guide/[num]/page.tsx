@@ -6,6 +6,7 @@ import AdBanner from "../../components/AdBanner";
 import RakutenWidget from "../../components/RakutenWidget";
 import { DINOSAUR_DATA } from "../../data/dinosaurData";
 
+
 const VALID_NUMBERS = Object.keys(DINOSAUR_DATA).map(Number);
 
 type Props = { params: Promise<{ num: string }> };
@@ -40,13 +41,18 @@ export default async function DinosaurNumberPage({ params }: Props) {
   const isMaster = [11, 22, 33].includes(numId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
-      <div className="bg-white border-b border-emerald-100 sticky top-0 z-10">
+    <div className="relative min-h-screen">
+      <div
+        className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/dinosaur-bg.png')" }}
+        aria-hidden
+      />
+      <div className="bg-slate-950/90 border-b border-cyan-700/40 sticky top-0 z-10 backdrop-blur">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <Link href="/dinosaur-guide" className="text-emerald-600 text-sm hover:underline">
+          <Link href="/dinosaur-guide" className="text-cyan-200 text-sm hover:underline">
             ← 恐竜図鑑
           </Link>
-          <Link href="/dinosaur-fortune" className="text-emerald-600 text-xs hover:underline">
+          <Link href="/dinosaur-fortune" className="text-cyan-200 text-xs hover:underline">
             診断する
           </Link>
         </div>
@@ -83,8 +89,8 @@ export default async function DinosaurNumberPage({ params }: Props) {
           <p className="text-gray-700 text-sm leading-relaxed">{data.personality}</p>
         </section>
 
-        <section className="rounded-2xl border-2 border-green-100 bg-green-50/50 p-5">
-          <h2 className="font-bold text-green-800 flex items-center gap-2 mb-3">
+        <section className="rounded-2xl border-2 border-emerald-100 bg-white p-5">
+          <h2 className="font-bold text-emerald-800 flex items-center gap-2 mb-3">
             <span>✨</span> 強み
           </h2>
           <ul className="space-y-2">
@@ -97,8 +103,8 @@ export default async function DinosaurNumberPage({ params }: Props) {
           </ul>
         </section>
 
-        <section className="rounded-2xl border-2 border-amber-100 bg-amber-50/50 p-5">
-          <h2 className="font-bold text-amber-800 flex items-center gap-2 mb-3">
+        <section className="rounded-2xl border-2 border-emerald-100 bg-white p-5">
+          <h2 className="font-bold text-emerald-800 flex items-center gap-2 mb-3">
             <span>💡</span> 注意したい点
           </h2>
           <ul className="space-y-2">
@@ -111,15 +117,15 @@ export default async function DinosaurNumberPage({ params }: Props) {
           </ul>
         </section>
 
-        <section className="rounded-2xl border-2 border-pink-100 bg-pink-50/50 p-5">
-          <h2 className="font-bold text-pink-800 flex items-center gap-2 mb-3">
+        <section className="rounded-2xl border-2 border-emerald-100 bg-white p-5">
+          <h2 className="font-bold text-emerald-800 flex items-center gap-2 mb-3">
             <span>💕</span> 恋愛傾向
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">{data.love}</p>
         </section>
 
-        <section className="rounded-2xl border-2 border-blue-100 bg-blue-50/50 p-5">
-          <h2 className="font-bold text-blue-800 flex items-center gap-2 mb-3">
+        <section className="rounded-2xl border-2 border-emerald-100 bg-white p-5">
+          <h2 className="font-bold text-emerald-800 flex items-center gap-2 mb-3">
             <span>💼</span> 仕事・適職
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">{data.career}</p>
@@ -177,7 +183,7 @@ export default async function DinosaurNumberPage({ params }: Props) {
           </div>
         </section>
 
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-4 text-xs text-gray-600">
+        <div className="rounded-2xl border-2 border-emerald-100 bg-white p-4 text-xs text-gray-600">
           <p className="font-semibold text-emerald-700 mb-1">📖 診断の仕組みについて</p>
           <p>この恐竜タイプは、数秘術の計算で出る「{data.number}」に対応しています。詳しくは<Link href="/dinosaur-guide#how" className="text-emerald-600 hover:underline font-medium">恐竜図鑑の仕組み</Link>をご覧ください。</p>
         </div>
@@ -191,7 +197,7 @@ export default async function DinosaurNumberPage({ params }: Props) {
           </Link>
           <Link
             href="/dinosaur-guide"
-            className="block w-full py-3 rounded-xl border-2 border-emerald-300 text-emerald-700 font-semibold text-center hover:bg-emerald-50 transition-colors"
+            className="block w-full py-3 rounded-xl border-2 border-emerald-300 bg-white/90 text-emerald-700 font-semibold text-center hover:bg-white transition-colors"
           >
             ← 恐竜図鑑に戻る
           </Link>

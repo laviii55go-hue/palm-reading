@@ -19,7 +19,7 @@ const GUIDE_ITEMS = [
   { href: "/numerology-guide/articles", emoji: "📝", label: "数秘術コラム", desc: "グループランキングなど記事一覧" },
   { href: "/personality-guide", emoji: "🧠", label: "16タイプ性格診断", desc: "MBTIベースの性格タイプ" },
   { href: "/personality-guide/articles", emoji: "📝", label: "16タイプコラム", desc: "リーダーシップ・恋愛運ランキングなど記事一覧" },
-  { href: "/tarot-guide", emoji: "🎴", label: "タロット占い", desc: "大アルカナ22枚の意味" },
+  { href: "/tarot-guide", emoji: "🔮", label: "タロット占い", desc: "大アルカナ22枚の意味" },
   { href: "/dream-guide", emoji: "🌙", label: "夢占い", desc: "夢のキーワードから読み解く" },
   { href: "/animal-guide", emoji: "🐾", label: "動物占い", desc: "60種の動物キャラ" },
   { href: "/blood-type-guide", emoji: "🩸", label: "血液型占い", desc: "A・B・O・AB型の性格・相性" },

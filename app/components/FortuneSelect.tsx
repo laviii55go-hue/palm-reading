@@ -235,6 +235,27 @@ export default function FortuneSelect() {
             desc="生年月日で運命数を読み解く"
             color="violet"
           />
+          <FortuneLink
+            href="/dinosaur-fortune"
+            emoji="🦖"
+            title="恐竜占い"
+            desc="生年月日から恐竜タイプを診断"
+            color="teal"
+          />
+          <FortuneLink
+            href="/dinosaur-fortune?tab=collection"
+            emoji="📖"
+            title="マイ図鑑"
+            desc="診断して集めた恐竜カードを確認"
+            color="cyan"
+          />
+          <FortuneLink
+            href="/dinosaur-guide"
+            emoji="📚"
+            title="恐竜図鑑"
+            desc="全タイプの性格・特徴を解説"
+            color="indigo"
+          />
         </div>
       </section>
 

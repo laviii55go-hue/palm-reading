@@ -12,7 +12,7 @@ const MENU_ITEMS = [
     emoji: "☀️",
     links: [
       { href: "/daily-fortune-ranking", label: "今日の運勢ランキング", emoji: "🏆" },
-      { href: "/tarot", label: "タロット3択占い", emoji: "🎴" },
+      { href: "/tarot", label: "タロット3択占い", emoji: "🔮" },
       { href: "/calendar", label: "開運カレンダー", emoji: "📅" },
     ],
   },
@@ -26,6 +26,8 @@ const MENU_ITEMS = [
       { href: "/animal", label: "動物占い", emoji: "🐾" },
       { href: "/lucky-number", label: "数秘術占い", emoji: "🔢" },
       { href: "/dinosaur-fortune", label: "恐竜占い", emoji: "🦖" },
+      { href: "/dinosaur-fortune?tab=collection", label: "マイ図鑑", emoji: "📖" },
+      { href: "/dinosaur-guide", label: "恐竜図鑑", emoji: "📚" },
     ],
   },
   {

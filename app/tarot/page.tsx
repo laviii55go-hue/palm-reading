@@ -169,7 +169,7 @@ export default function TarotPage() {
             />
           </div>
           <h1 className="text-2xl font-black text-purple-900 mt-3">
-            🎴 タロット3択占い
+            タロット3択占い
           </h1>
           <p className="text-purple-600 text-sm mt-1">
             テーマを選び、直感で1枚。AIが今日の星とともに解釈します
@@ -225,6 +225,7 @@ export default function TarotPage() {
                   key={i}
                   type="button"
                   onClick={() => handleCardClick(i)}
+                  aria-label={`${i + 1}枚目のカードを選ぶ`}
                   className="w-24 h-36 rounded-xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-purple-400"
                 >
                   <img

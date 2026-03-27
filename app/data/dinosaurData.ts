@@ -3,6 +3,9 @@
  * 生年月日から算出したライフパスナンバーに対応する恐竜タイプ
  */
 
+import type { DinosaurStats } from "./dinosaurElementData";
+import { DINOSAUR_CHARACTER_PATHS } from "./dinosaurCharacterAssets";
+
 export type DinosaurEntry = {
   number: number;
   name: string;
@@ -19,6 +22,8 @@ export type DinosaurEntry = {
   incompatible: number[];
   luckyColor: string;
   shortDesc: string; // 動画・SNS用の短いキャッチ
+  /** トレカ能力値のベース（属性ボーナスと加算、最大10） */
+  baseStats: DinosaurStats;
 };
 
 export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
@@ -27,7 +32,7 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     name: "ティラノサウルス",
     nameEn: "Tyrannosaurus",
     emoji: "🦖",
-    image: "/dinosaur/1.png",
+    image: DINOSAUR_CHARACTER_PATHS[1],
     keywords: ["リーダーシップ", "独立心", "行動力", "一番乗り"],
     personality:
       "最強のティラノサウルス！行列は先頭、何でも一番乗りが当たり前のキミ。強い意志と行動力で周りを引っ張っていける存在だよ。でも実はさみしがり屋な一面も。仲間がいるともっと力を発揮できるんだ！",
@@ -39,12 +44,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [2, 8],
     luckyColor: "赤・ゴールド",
     shortDesc: "最強のティラノ！一番が好きなリーダータイプ",
+    baseStats: { attack: 9, defense: 6, speed: 7, intelligence: 5, kindness: 4, luck: 6 },
   },
   2: {
     number: 2,
     name: "マイアサウラ",
     nameEn: "Maiasaura",
     emoji: "🦕",
+    image: DINOSAUR_CHARACTER_PATHS[2],
     keywords: ["協調性", "思いやり", "子育て", "平和"],
     personality:
       "マイアサウラのキミは、みんなが笑顔なら幸せ！困ってる人を放っておけない、いつも聞き役の優しい存在。争いが大嫌いで、平和が一番だよね。でもランチのメニューを決めるの、ちょっと苦手かも？",
@@ -56,13 +63,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [1, 5],
     luckyColor: "白・ピンク",
     shortDesc: "子育ての化石！みんなを支える優しいタイプ",
+    baseStats: { attack: 3, defense: 7, speed: 4, intelligence: 5, kindness: 8, luck: 5 },
   },
   3: {
     number: 3,
     name: "プテラノドン",
     nameEn: "Pteranodon",
     emoji: "🦅",
-    image: "/dinosaur/3.png",
+    image: DINOSAUR_CHARACTER_PATHS[3],
     keywords: ["創造性", "社交性", "楽しい", "表現力"],
     personality:
       "空飛ぶプテラノドン！楽しいことがだーい好きなキミ。人生はパーティー！面白いアイデアが次から次へと溢れてくる。周りを笑顔にする力を持ってるよ。あ、でも昨日のブームはもう終わっちゃったかも？飽きるの、ちょっと早いんだよね！",
@@ -74,13 +82,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [4, 7],
     luckyColor: "黄色・オレンジ",
     shortDesc: "空を飛ぶ！楽しいことが大好きな明るいタイプ",
+    baseStats: { attack: 5, defense: 4, speed: 8, intelligence: 5, kindness: 6, luck: 7 },
   },
   4: {
     number: 4,
     name: "アンキロサウルス",
     nameEn: "Ankylosaurus",
     emoji: "🦎",
-    image: "/dinosaur/4.png",
+    image: DINOSAUR_CHARACTER_PATHS[4],
     keywords: ["堅実", "計画", "忍耐", "守り"],
     personality:
       "アンキロサウルスのキミは、計画通りに進めるのが得意！コツコツ積み上げるのが好きで、装甲のようにしっかり守る力がある。地味に見えても、これが一番確実なんだよ。ただ、予定外のことが起きるとちょっとパニックかも？",
@@ -92,12 +101,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [3, 5],
     luckyColor: "緑・茶色",
     shortDesc: "装甲で守る！コツコツ確実派",
+    baseStats: { attack: 4, defense: 8, speed: 3, intelligence: 6, kindness: 5, luck: 5 },
   },
   5: {
     number: 5,
     name: "ヴェロキラプトル",
     nameEn: "Velociraptor",
     emoji: "🦂",
+    image: DINOSAUR_CHARACTER_PATHS[5],
     keywords: ["変化", "スピード", "冒険", "自由"],
     personality:
       "ラプトルだ！変化・刺激・スピードが大好きなキミ。止まったら死んじゃうぜ！新しいこと、面白い場所、何でも首を突っ込むスタイル。世界は広い！全部見てみたいよね。落ち着きがない？よく言われるよ。だって楽しいことが多すぎるんだもん！",
@@ -109,13 +120,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [2, 4],
     luckyColor: "青・ターコイズ",
     shortDesc: "俊敏！変化と冒険が大好きなスピードスター",
+    baseStats: { attack: 8, defense: 4, speed: 9, intelligence: 5, kindness: 4, luck: 7 },
   },
   6: {
     number: 6,
     name: "トリケラトプス",
     nameEn: "Triceratops",
     emoji: "🦏",
-    image: "/dinosaur/6.png",
+    image: DINOSAUR_CHARACTER_PATHS[6],
     keywords: ["愛情", "責任", "守る", "奉仕"],
     personality:
       "トリケラトプスのキミは、家族や仲間を絶対守る！相談に乗るのが大好きで、みんなの役に立ちたい、それだけなの。角で守るように、大切な人を守り抜く力があるよ。お節介？ついつい世話しすぎちゃうのよね。愛ゆえに！",
@@ -127,13 +139,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [1, 5],
     luckyColor: "ピンク・ローズ",
     shortDesc: "3本の角で守る！家族想いの頼れるタイプ",
+    baseStats: { attack: 4, defense: 7, speed: 4, intelligence: 5, kindness: 9, luck: 6 },
   },
   7: {
     number: 7,
     name: "ステゴサウルス",
     nameEn: "Stegosaurus",
     emoji: "🦕",
-    image: "/dinosaur/7.png",
+    image: DINOSAUR_CHARACTER_PATHS[7],
     keywords: ["知性", "分析", "内省", "独自性"],
     personality:
       "ステゴサウルスのキミは、一人の時間が大切。背中の板のように、独自のスタイルを持ってる。物事の裏側を分析するのが好きで、納得いかないことは徹底的に調べる。理屈っぽい？それはキミの理解不足かも？……冗談だよ。じっくり考えるのが得意なんだ！",
@@ -145,13 +158,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [1, 4],
     luckyColor: "紫・インディゴ",
     shortDesc: "背中の板が特徴！じっくり考える知的なタイプ",
+    baseStats: { attack: 3, defense: 6, speed: 5, intelligence: 9, kindness: 5, luck: 6 },
   },
   8: {
     number: 8,
     name: "スピノサウルス",
     nameEn: "Spinosaurus",
     emoji: "🐊",
-    image: "/dinosaur/8.png",
+    image: DINOSAUR_CHARACTER_PATHS[8],
     keywords: ["野心", "成功", "勝利", "実行力"],
     personality:
       "スピノサウルスのキミは、成功と勝利が大好き！やるからにはトップを狙う。困難？それはキミを燃えさせるスパイスだ！背中の帆のように、大きく目立つ存在になりたいんだよね。休みの日？動いてる時間の方が楽しいでしょ！",
@@ -163,13 +177,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [1, 9],
     luckyColor: "黒・ゴールド",
     shortDesc: "最大級の肉食！成功と勝利を追いかけるタイプ",
+    baseStats: { attack: 8, defense: 6, speed: 6, intelligence: 5, kindness: 3, luck: 7 },
   },
   9: {
     number: 9,
     name: "ブラキオサウルス",
     nameEn: "Brachiosaurus",
     emoji: "🦕",
-    image: "/dinosaur/9.png",
+    image: DINOSAUR_CHARACTER_PATHS[9],
     keywords: ["包容力", "平和", "奉仕", "広い心"],
     personality:
       "ブラキオサウルスのキミは、世界が平和でありますように……。首が長いように、広い視野でみんなの気持ちがわかる。すべてを受け入れる大きな心を持ってるよ。え？今何の話してた？ごめん、ちょっと空を見上げてた。高いところが好きなんだ！",
@@ -181,12 +196,14 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [8],
     luckyColor: "金・白",
     shortDesc: "首が長い！広い心でみんなを包み込むタイプ",
+    baseStats: { attack: 4, defense: 5, speed: 4, intelligence: 6, kindness: 9, luck: 8 },
   },
   11: {
     number: 11,
     name: "パラサウロロフス",
     nameEn: "Parasaurolophus",
     emoji: "🦴",
+    image: DINOSAUR_CHARACTER_PATHS[11],
     keywords: ["直感", "感受性", "インスピレーション", "繊細"],
     personality:
       "パラサウロロフスのキミは、言葉より先に「ピン」とくる！頭の crest で音を感じるように、人の気持ちや場の空気をぜんぶ受け取っちゃう。でも感じすぎて、たまに自分のことがわからなくなるんだよね。情報量が多すぎる！",
@@ -198,29 +215,33 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [1, 5],
     luckyColor: "ラベンダー・銀",
     shortDesc: "頭の crest が特徴！直感力バツグンの繊細タイプ",
+    baseStats: { attack: 4, defense: 5, speed: 5, intelligence: 7, kindness: 7, luck: 6 },
   },
   22: {
     number: 22,
-    name: "アルゼンチノサウルス",
-    nameEn: "Argentinosaurus",
-    emoji: "🦕",
-    keywords: ["壮大", "ビジョン", "建設", "カリスマ"],
+    name: "ケツァルコアトルス",
+    nameEn: "Quetzalcoatlus",
+    emoji: "🦅",
+    image: DINOSAUR_CHARACTER_PATHS[22],
+    keywords: ["壮大", "ビジョン", "天空", "カリスマ"],
     personality:
-      "アルゼンチノサウルスのキミは、地上最大級！夢は理想の楽園を作ること。壮大な計画を、ちゃんと形にできる。それがキミの使命だもの。ただ、スケールがデカすぎて周りがついてこないのよね。当然じゃない？キミは先を歩いてるんだから！",
-    strengths: ["大きな夢を描ける", "やるときはやる", "人を惹きつける", "みんなを動かせる"],
-    weaknesses: ["理想が高すぎる", "みんながついてこない", "プレッシャーを感じやすい"],
-    love: "大きな愛で包み込む恋人。一緒に夢を追いかけるパートナーが理想！",
-    career: "経営者・建築家・政治家・大きなプロジェクトを動かす仕事に向いてるよ！",
+      "ケツァルコアトルスのキミは、大空サイズのスケール！地上の常識じゃ測れない夢を、高い視点からぜんぶ見渡して描ける。翼を広げるみたいに、理想の輪郭を大きく広げられるのが才能。ただ、飛びすぎて足元が見えなくなることもあるよ。着地のタイミング、忘れないでね。",
+    strengths: ["大きな夢を描ける", "全体を見渡せる", "人を惹きつける", "みんなを動かせる"],
+    weaknesses: ["理想が高すぎる", "現場とズレやすい", "プレッシャーを感じやすい"],
+    love: "大きな愛で包み込む恋人。一緒に高みを目指せるパートナーが理想！",
+    career: "経営者・プロデューサー・都市計画・大きなプロジェクトを動かす仕事に向いてるよ！",
     compatible: [2, 4, 8],
     incompatible: [1, 9],
     luckyColor: "エメラルド・金",
-    shortDesc: "地上最大級！壮大な夢を形にするタイプ",
+    shortDesc: "大空級のスケール！壮大なビジョンを描くタイプ",
+    baseStats: { attack: 7, defense: 6, speed: 4, intelligence: 6, kindness: 6, luck: 7 },
   },
   33: {
     number: 33,
     name: "オヴィラプトル",
     nameEn: "Oviraptor",
     emoji: "🥚",
+    image: DINOSAUR_CHARACTER_PATHS[33],
     keywords: ["愛", "奉仕", "慈愛", "無条件の愛"],
     personality:
       "オヴィラプトルのキミは、愛！全人類に愛を！卵を守るように、誰かのために動くのが呼吸するくらい自然なんだ。これがキミの生き方！自分のこと？後回しでいっか！って気づいたら全部あげちゃうんだよね。優しさの塊だよ！",
@@ -232,6 +253,7 @@ export const DINOSAUR_DATA: Record<number, DinosaurEntry> = {
     incompatible: [1, 8],
     luckyColor: "金・白・ローズ",
     shortDesc: "卵を守る！愛と奉仕の心が強いタイプ",
+    baseStats: { attack: 4, defense: 5, speed: 5, intelligence: 6, kindness: 9, luck: 7 },
   },
 };
 

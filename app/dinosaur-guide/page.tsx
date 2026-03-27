@@ -6,6 +6,7 @@ import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import { DINOSAUR_DATA } from "../data/dinosaurData";
+import { ELEMENT_DATA, ELEMENT_NUMBERS } from "../data/dinosaurElementData";
 
 export const metadata: Metadata = {
   title: "恐竜占い｜12種類の恐竜タイプ一覧・性格・相性",
@@ -27,19 +28,24 @@ const NUMBERS = [
 
 const MASTER_NUMBERS = [
   { num: 11, name: "パラサウロロフス", emoji: "🦴" },
-  { num: 22, name: "アルゼンチノサウルス", emoji: "🦕" },
+  { num: 22, name: "ケツァルコアトルス", emoji: "🦅" },
   { num: 33, name: "オヴィラプトル", emoji: "🥚" },
 ];
 
 export default function DinosaurGuidePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
-      <div className="bg-white border-b border-emerald-100 sticky top-0 z-10">
+    <div className="relative min-h-screen">
+      <div
+        className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/dinosaur-bg.png')" }}
+        aria-hidden
+      />
+      <div className="bg-slate-950/90 border-b border-cyan-700/40 sticky top-0 z-10 backdrop-blur">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/dinosaur-fortune" className="text-emerald-600 text-sm hover:underline">
+          <Link href="/dinosaur-fortune" className="text-cyan-200 text-sm hover:underline">
             ← 恐竜占いへ
           </Link>
-          <span className="text-xs text-gray-400">恐竜図鑑</span>
+          <span className="text-xs text-cyan-200/70">恐竜図鑑</span>
         </div>
       </div>
 
@@ -48,10 +54,19 @@ export default function DinosaurGuidePage() {
           <TopBannerLink />
         </div>
 
-        <div id="top" className="text-center space-y-2">
-          <div className="text-5xl">🦖🦕</div>
-          <h1 className="text-2xl font-bold text-emerald-900 leading-tight">恐竜占い 図鑑</h1>
-          <p className="text-gray-500 text-sm">
+        <div id="top" className="text-center space-y-3 rounded-2xl border border-cyan-400/40 bg-gradient-to-br from-slate-900 via-indigo-900 to-cyan-900 p-4 shadow-xl shadow-cyan-900/30">
+          <div className="rounded-xl overflow-hidden border border-cyan-300/50 shadow-md shadow-cyan-500/20">
+            <Image
+              src="/dinosaur-top.png"
+              alt="恐竜図鑑トップ"
+              width={720}
+              height={360}
+              className="w-full h-auto object-cover"
+              priority
+            />
+          </div>
+          <h1 className="text-2xl font-black text-cyan-50 leading-tight tracking-wide">恐竜占い 図鑑</h1>
+          <p className="text-cyan-100/80 text-sm">
             12種類の恐竜タイプ一覧
           </p>
         </div>
@@ -76,8 +91,67 @@ export default function DinosaurGuidePage() {
           </Link>
         </section>
 
+        <section id="elements" className="rounded-2xl border-2 border-violet-200 bg-gradient-to-br from-violet-50 to-white p-5 space-y-3">
+          <h2 className="font-bold text-violet-900 flex items-center gap-2">
+            <span>✨</span> バースデーナンバー（属性）
+          </h2>
+          <h3 className="font-bold text-violet-900 text-sm">属性（バースデーナンバー）とは？</h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            恐竜占いでは、生まれた<strong>「日」</strong>の数字から<strong>バースデーナンバー</strong>を出し、炎・水・風など11種類の<strong>属性</strong>をくっつけています。恐竜タイプ12種 × 属性11種で、
+            <strong>132通り</strong>の組み合わせ。キミだけのカードになるんだよ！
+          </p>
+          <h3 className="font-bold text-violet-900 text-sm pt-1">バースデーナンバーの出し方</h3>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            <strong>生まれた日（1〜31）</strong>だけを使います。日が2桁なら、その桁を足して1桁（またはマスター数の11・22）になるまで繰り返します。11日・22日生まれは、その日付のままバースデーナンバーが11または22になります。
+          </p>
+          <div className="rounded-xl bg-white/80 p-3 text-xs text-gray-600 space-y-2">
+            <div>
+              <p className="font-semibold text-violet-700 mb-0.5">例：8日生まれ</p>
+              <p>8 → そのまま → 鉄（属性8）</p>
+            </div>
+            <div>
+              <p className="font-semibold text-violet-700 mb-0.5">例：17日生まれ</p>
+              <p>1+7 = 8 → 鉄（属性8）</p>
+            </div>
+            <div>
+              <p className="font-semibold text-violet-700 mb-0.5">例：11日生まれ</p>
+              <p>11 → そのまま → 星（属性11）</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500">
+            ※ライフパス（恐竜タイプ）は生年月日全体の計算、属性は「日」だけの計算です。図鑑の
+            <Link href="/dinosaur-guide#how" className="text-violet-700 font-medium hover:underline">
+              恐竜占いの仕組み
+            </Link>
+            もあわせてどうぞ。
+          </p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            {ELEMENT_NUMBERS.map((n) => {
+              const el = ELEMENT_DATA[n];
+              return (
+                <li
+                  key={n}
+                  className="flex items-start gap-2 rounded-xl bg-white/80 border border-violet-100 px-3 py-2"
+                >
+                  <span className="text-lg shrink-0">{el.emoji}</span>
+                  <span>
+                    <span className="font-bold text-violet-900">{el.name}</span>
+                    <span className="text-gray-500"> — {el.talent}</span>
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <Link
+            href="/dinosaur-fortune"
+            className="block text-center text-violet-700 text-sm font-semibold hover:underline"
+          >
+            🦖 恐竜占いで診断する →
+          </Link>
+        </section>
+
         <section className="space-y-4">
-          <h2 className="text-lg font-bold text-emerald-800 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2 drop-shadow-md">
             <span>🦖</span> 基本の9タイプ
           </h2>
           <div className="grid grid-cols-1 gap-3">
@@ -104,7 +178,7 @@ export default function DinosaurGuidePage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-lg font-bold text-emerald-800 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2 drop-shadow-md">
             <span>⚡</span> レアタイプ（マスター恐竜）
           </h2>
           <div className="space-y-3">
