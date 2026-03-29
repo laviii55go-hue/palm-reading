@@ -5,7 +5,7 @@ import AdBanner from "../components/AdBanner";
 export const metadata: Metadata = {
   title: "記事一覧｜手のひらの予言者",
   description:
-    "数秘術・16タイプ性格診断など、占いをテーマにしたコラム・記事一覧。ランキング形式の解説や相性の組み合わせなど、楽しく読める記事をお届けします。",
+    "数秘術・16タイプ性格診断・タロットなど、占いをテーマにしたコラム・記事一覧。ランキング形式の解説や相性の組み合わせなど、楽しく読める記事をお届けします。",
 };
 
 const ARTICLE_CATEGORIES = [
@@ -21,7 +21,12 @@ const ARTICLE_CATEGORIES = [
     label: "16タイプコラム",
     desc: "性格タイプ別の恋愛・仕事・才能ランキング",
   },
-  // 将来: タロット、夢占いなどの記事カテゴリを追加
+  {
+    href: "/tarot-guide/articles",
+    emoji: "🔮",
+    label: "タロットコラム",
+    desc: "3択タロットの楽しみ方・大アルカナの意味を深掘り",
+  },
 ] as const;
 
 export default function ArticlesPage() {

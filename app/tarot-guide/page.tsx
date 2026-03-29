@@ -50,7 +50,7 @@ export default function TarotGuidePage() {
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <TopBannerLink />
-            <Link href="/tarot" className="text-violet-600 text-xs border border-violet-300 rounded-full px-3 py-1 hover:bg-violet-50 transition-colors">🎴 占いへ</Link>
+            <Link href="/tarot" className="text-violet-600 text-xs border border-violet-300 rounded-full px-3 py-1 hover:bg-violet-50 transition-colors">🔮 占いへ</Link>
           </div>
           <span className="text-xs text-gray-400">タロット入門ガイド</span>
         </div>
@@ -59,7 +59,7 @@ export default function TarotGuidePage() {
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
         {/* タイトル */}
         <div id="top" className="text-center space-y-2">
-          <div className="text-5xl">🎴</div>
+          <div className="text-5xl">🔮</div>
           <h1 className="text-2xl font-black text-violet-900">タロット占いとは？</h1>
           <p className="text-violet-600 text-sm">大アルカナ22枚の意味と正逆位置 入門ガイド</p>
         </div>
@@ -84,7 +84,7 @@ export default function TarotGuidePage() {
         {/* タロットとは */}
         <section id="what" className="space-y-4">
           <h2 className="text-xl font-black text-violet-900 border-b-2 border-violet-200 pb-2">
-            🎴 タロット占いとは？
+            🔮 タロット占いとは？
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">
             タロットは、15世紀頃のヨーロッパで生まれたカードを使った占術です。
@@ -211,7 +211,7 @@ export default function TarotGuidePage() {
 
         {/* 実際に試す */}
         <div className="bg-gradient-to-br from-violet-500 to-purple-600 rounded-3xl p-6 text-white text-center space-y-4">
-          <div className="text-4xl">🎴</div>
+          <div className="text-4xl">🔮</div>
           <div className="font-black text-xl">タロット3択占いを試す</div>
           <p className="text-violet-200 text-sm">
             大アルカナから3枚。直感で1枚選んで今日の運勢を占う
@@ -220,7 +220,7 @@ export default function TarotGuidePage() {
             href="/tarot"
             className="block bg-white text-violet-600 font-bold py-3 rounded-2xl hover:bg-violet-50 transition-colors"
           >
-            🎴 タロット占いを始める →
+            🔮 タロット占いを始める →
           </Link>
         </div>
 

@@ -138,7 +138,7 @@ export default async function TarotCardDetailPage({ params }: Props) {
             href="/tarot"
             className="block bg-white text-violet-600 font-bold py-3 rounded-2xl hover:bg-violet-50 transition-colors"
           >
-            🎴 タロット占いを始める →
+            🔮 タロット占いを始める →
           </Link>
         </div>
       </div>

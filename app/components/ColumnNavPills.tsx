@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type Variant = "numerology" | "personality";
+type Variant = "numerology" | "personality" | "tarot";
 
 const STYLES = {
   numerology: {
@@ -8,6 +8,9 @@ const STYLES = {
   },
   personality: {
     base: "border-teal-300 bg-teal-50 text-teal-700 hover:bg-teal-100",
+  },
+  tarot: {
+    base: "border-purple-300 bg-purple-50 text-purple-700 hover:bg-purple-100",
   },
 } as const;
 
@@ -21,6 +24,11 @@ const LINKS = {
     { href: "/personality", label: "16タイプ診断" },
     { href: "/articles", label: "記事一覧（共通）" },
     { href: "/personality-guide", label: "ガイド" },
+  ],
+  tarot: [
+    { href: "/tarot", label: "タロット占い" },
+    { href: "/articles", label: "記事一覧（共通）" },
+    { href: "/tarot-guide", label: "ガイド" },
   ],
 } as const;
 
