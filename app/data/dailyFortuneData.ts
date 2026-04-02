@@ -170,6 +170,12 @@ function longitudeToSignIndex(lon: number): number {
   return Math.floor((lon % 360) / 30) % 12;
 }
 
+// 同スコア時の日替わりタイブレーカー用ハッシュ
+function tiebreaker(seed: number, signId: number): number {
+  const x = Math.sin((seed + 1) * (signId + 1) * 9301 + 49297) * 233280;
+  return x - Math.floor(x);
+}
+
 // 西洋占星術トランシットベースの今日の星座運勢ランキング（1位〜12位）
 // その日の惑星配置（太陽・月・惑星の黄経）から各星座の運勢スコアを算出
 export function getDailyFortuneRanking(year: number, month: number, day: number) {
@@ -211,8 +217,13 @@ export function getDailyFortuneRanking(year: number, month: number, day: number)
     return { sign, score, planetsInSign };
   });
 
-  // スコア降順、同点は星座ID昇順で安定ソート
-  scores.sort((a, b) => (b.score !== a.score ? b.score - a.score : a.sign.id - b.sign.id));
+  // スコア降順、同点は日替わりシャッフルで順位決定
+  const seed = getDateSeed(year, month, day);
+  scores.sort((a, b) =>
+    b.score !== a.score
+      ? b.score - a.score
+      : tiebreaker(seed, a.sign.id) - tiebreaker(seed, b.sign.id)
+  );
 
   // 順位と天体情報をもとに一言アドバイスを生成
   return scores.map((item, i) => {
