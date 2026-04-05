@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { DINOSAUR_DATA } from "../data/dinosaurData";
@@ -16,6 +17,7 @@ type CardItem = {
 };
 
 export default function DinosaurCollection({ onBattle }: { onBattle?: () => void } = {}) {
+  const router = useRouter();
   const [entries, setEntries] = useState<CollectionEntry[]>([]);
   const [filter, setFilter] = useState<FilterType>("all");
 
@@ -101,12 +103,13 @@ export default function DinosaurCollection({ onBattle }: { onBattle?: () => void
             {f.label}
           </button>
         ))}
-        <Link
-          href="/dinosaur-fortune?tab=personal&mode=input"
+        <button
+          type="button"
+          onClick={() => router.push("/dinosaur-fortune?tab=personal&mode=input&t=" + Date.now())}
           className="px-3 py-1.5 rounded-full text-xs font-bold border border-emerald-400 bg-emerald-500 text-white hover:bg-emerald-600 transition-colors"
         >
           🦖 恐竜占いをする
-        </Link>
+        </button>
       </div>
 
       <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
