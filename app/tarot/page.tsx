@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import TopBannerLink from "../components/TopBannerLink";
 import RakutenWidget from "../components/RakutenWidget";
-import { getDailyTarotCards, TAROT_THEMES, type TarotThemeId } from "../data/tarotData";
+import { getDailyTarotCards, TAROT_THEMES, TAROT_CARD_IMAGES, TAROT_BACK_IMAGE, type TarotThemeId } from "../data/tarotData";
 import type { TarotCard } from "../data/tarotData";
 
 type CardState = { card: TarotCard; isReversed: boolean; flipped: boolean };
@@ -19,7 +20,7 @@ type AiResult = {
   fallback: boolean;
 };
 
-const SITE_URL = "https://jade-torte-9b5cde.netlify.app";
+const SITE_URL = "https://uranai-tenohira.jp";
 
 function buildShareText(
   cardName: string,
@@ -31,12 +32,14 @@ function buildShareText(
   return `今日のタロット【${themeLabel}】\n【${cardName}】${pos}\n\n✨ ${interpretation.slice(0, 120)}${interpretation.length > 120 ? "…" : ""}\n\n手のひらの予言者 👉 ${SITE_URL}/tarot`;
 }
 
-export default function TarotPage() {
+function TarotPageInner() {
+  const searchParams = useSearchParams();
   const [theme, setTheme] = useState<TarotThemeId | null>(null);
   const [cards, setCards] = useState<CardState[] | null>(null);
   const [selectedResult, setSelectedResult] = useState<CardState | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
   const [aiResult, setAiResult] = useState<AiResult | null>(null);
+  const [pickHandled, setPickHandled] = useState(false);
 
   const initCards = useCallback(() => {
     const daily = getDailyTarotCards();
@@ -54,6 +57,30 @@ export default function TarotPage() {
   useEffect(() => {
     if (theme) initCards();
   }, [theme, initCards]);
+
+  // X投稿からの pick パラメータ対応: ?pick=1/2/3&theme=general
+  useEffect(() => {
+    if (pickHandled || !cards || !theme) return;
+    const pick = searchParams.get("pick");
+    if (!pick) return;
+    const pickIndex = parseInt(pick, 10) - 1;
+    if (pickIndex >= 0 && pickIndex < cards.length) {
+      setPickHandled(true);
+      handleCardClick(pickIndex);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cards, theme, pickHandled, searchParams]);
+
+  // X投稿からの theme パラメータ自動選択
+  useEffect(() => {
+    if (theme) return;
+    const t = searchParams.get("theme") as TarotThemeId | null;
+    if (t && TAROT_THEMES.some((th) => th.id === t)) {
+      setTheme(t);
+    } else if (searchParams.get("pick")) {
+      setTheme("general");
+    }
+  }, [searchParams, theme]);
 
   const handleSelectTheme = (id: TarotThemeId) => {
     setTheme(id);
@@ -132,7 +159,7 @@ export default function TarotPage() {
           </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="/tarot-top.png"
+              src="/tarot-top.webp"
               alt="タロット占い"
               width={600}
               height={300}
@@ -141,18 +168,56 @@ export default function TarotPage() {
             />
           </div>
           <h1 className="text-2xl font-black text-purple-900 mt-3">
-            3択タロット占い｜無料
+            タロット占い｜無料
           </h1>
           <p className="text-purple-600 text-sm mt-1">
-            大アルカナから直感で1枚。AIが今日の星とともに、あなただけの運勢を解釈します
+            大アルカナ22枚で占う5つのメニュー。ワンカード・YES/NO・恋愛・仕事・AI3択
           </p>
         </div>
 
-        {/* テーマ選択 */}
+        {/* タロットメニュー */}
+        {!theme && (
+          <div className="grid grid-cols-2 gap-3">
+            <Link
+              href="/tarot/one-card"
+              className="rounded-2xl border-2 border-purple-200 bg-white/80 p-4 hover:border-purple-400 hover:shadow-md transition-all active:scale-[0.98]"
+            >
+              <div className="text-2xl mb-1">🔮</div>
+              <div className="font-bold text-purple-900 text-sm">ワンカード</div>
+              <div className="text-[11px] text-purple-600/80 mt-1">今日の1枚を引く</div>
+            </Link>
+            <Link
+              href="/tarot/yes-no"
+              className="rounded-2xl border-2 border-purple-200 bg-white/80 p-4 hover:border-purple-400 hover:shadow-md transition-all active:scale-[0.98]"
+            >
+              <div className="text-2xl mb-1">✅</div>
+              <div className="font-bold text-purple-900 text-sm">YES / NO</div>
+              <div className="text-[11px] text-purple-600/80 mt-1">質問に答える1枚引き</div>
+            </Link>
+            <Link
+              href="/tarot/love"
+              className="rounded-2xl border-2 border-rose-200 bg-white/80 p-4 hover:border-rose-400 hover:shadow-md transition-all active:scale-[0.98]"
+            >
+              <div className="text-2xl mb-1">💕</div>
+              <div className="font-bold text-rose-900 text-sm">恋愛タロット</div>
+              <div className="text-[11px] text-rose-600/80 mt-1">3枚で恋の行方を占う</div>
+            </Link>
+            <Link
+              href="/tarot/work"
+              className="rounded-2xl border-2 border-sky-200 bg-white/80 p-4 hover:border-sky-400 hover:shadow-md transition-all active:scale-[0.98]"
+            >
+              <div className="text-2xl mb-1">💼</div>
+              <div className="font-bold text-sky-900 text-sm">仕事タロット</div>
+              <div className="text-[11px] text-sky-600/80 mt-1">3枚でキャリアを占う</div>
+            </Link>
+          </div>
+        )}
+
+        {/* 3択テーマ選択 */}
         {!theme && (
           <div className="bg-white/90 rounded-3xl shadow-sm p-5 space-y-4">
             <p className="text-center text-purple-800 font-bold text-sm">
-              まず、占いたいテーマを選んでください
+              3択AIタロット占い &#8212; テーマを選んでください
             </p>
             <div className="grid grid-cols-2 gap-3">
               {TAROT_THEMES.map((t) => (
@@ -200,9 +265,11 @@ export default function TarotPage() {
                   aria-label={`${i + 1}枚目のカードを選ぶ`}
                   className="w-24 h-36 rounded-xl overflow-hidden shadow-lg hover:scale-105 hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-purple-400"
                 >
-                  <img
-                    src="/tarot-back.png"
+                  <Image
+                    src={TAROT_BACK_IMAGE}
                     alt="タロットカード"
+                    width={96}
+                    height={144}
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -245,6 +312,13 @@ export default function TarotPage() {
                   {selectedResult.isReversed ? "（逆位置）" : "（正位置）"}
                 </span>
               </div>
+              <Image
+                src={TAROT_CARD_IMAGES[selectedResult.card.id]}
+                alt={selectedResult.card.name}
+                width={160}
+                height={280}
+                className={`rounded-xl shadow-lg ${selectedResult.isReversed ? 'rotate-180' : ''}`}
+              />
               <Link
                 href={`/tarot-guide/card/${selectedResult.card.id}`}
                 className="block w-full text-xs text-purple-600 hover:underline py-1 leading-snug"
@@ -376,14 +450,19 @@ export default function TarotPage() {
 
         {/* SEO テキストセクション */}
         <section className="bg-white/80 rounded-3xl shadow-sm p-5 space-y-3 text-sm text-purple-800/80 leading-relaxed">
-          <h2 className="font-bold text-purple-900 text-base">3択タロット占いとは？</h2>
+          <h2 className="font-bold text-purple-900 text-base">無料タロット占い 5つのメニュー</h2>
           <p>
-            3択タロット占い（三択タロット）は、大アルカナ22枚の中からランダムに選ばれた3枚のカードから、直感で1枚を選ぶ無料の占いです。
-            毎日カードが入れ替わるので、日替わりで今日の運勢を占うことができます。
+            当サイトでは大アルカナ22枚のオリジナルカードを使った5種類のタロット占いを完全無料で提供しています。
           </p>
+          <ul className="space-y-1.5 text-sm">
+            <li><Link href="/tarot/one-card" className="text-purple-700 underline hover:text-purple-900 font-medium">ワンカードタロット</Link> — 毎日1枚引いて今日のメッセージを受け取る日替わり占い</li>
+            <li><Link href="/tarot/yes-no" className="text-purple-700 underline hover:text-purple-900 font-medium">YES/NOタロット</Link> — 質問を唱えてカードを引くだけ。迷いにシンプルに答えます</li>
+            <li><Link href="/tarot/love" className="text-purple-700 underline hover:text-purple-900 font-medium">恋愛タロット</Link> — 過去・現在・未来の3枚スプレッドで恋の行方を読み解きます</li>
+            <li><Link href="/tarot/work" className="text-purple-700 underline hover:text-purple-900 font-medium">仕事タロット</Link> — 現状・課題・アドバイスの3枚スプレッドでキャリアを占います</li>
+            <li><span className="font-medium">3択AIタロット</span> — AIが天体配置とカードを組み合わせ、あなただけの解釈をお届けします</li>
+          </ul>
           <p>
-            恋愛・仕事・総合・アドバイスの4つのテーマに対応しており、選んだテーマとカードの組み合わせに応じてAIがあなただけの解釈をお届けします。
-            正位置・逆位置も反映されるため、同じカードでも日によって異なるメッセージが届きます。
+            正位置・逆位置も反映されるため、同じカードでも毎回異なるメッセージが届きます。
           </p>
           <p className="text-xs text-purple-600/60">
             <Link href="/tarot-guide" className="underline hover:text-purple-800">タロット大アルカナ22枚の詳しい意味はこちら →</Link>
@@ -391,5 +470,13 @@ export default function TarotPage() {
         </section>
       </div>
     </div>
+  );
+}
+
+export default function TarotPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 flex items-center justify-center"><p className="text-purple-600">読み込み中...</p></div>}>
+      <TarotPageInner />
+    </Suspense>
   );
 }

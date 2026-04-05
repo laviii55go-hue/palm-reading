@@ -33,7 +33,7 @@ type DinosaurBattleProps = {
   onBack: () => void;
 };
 
-const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/dinosaur-fortune";
+const PAGE_URL = "https://uranai-tenohira.jp/dinosaur-fortune";
 
 export default function DinosaurBattle({ collection, onBack }: DinosaurBattleProps) {
   const [phase, setPhase] = useState<BattlePhase>("select");

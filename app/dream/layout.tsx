@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "夢占い【無料】夢の意味を診断",
     description: "昨日見た夢のキーワードから意味を無料で診断。夢占いの基本から詳しい解説まで。",
-    url: "https://jade-torte-9b5cde.netlify.app/dream",
+    url: "https://uranai-tenohira.jp/dream",
     siteName: "手のひらの予言者",
     images: [
       {
-        url: "https://jade-torte-9b5cde.netlify.app/dream-top.png",
+        url: "https://uranai-tenohira.jp/dream-top.webp",
         width: 1200,
         height: 630,
         alt: "夢占い",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "夢占い【無料】夢の意味を診断",
     description: "昨日見た夢のキーワードから意味を無料で診断。夢占いの基本から詳しい解説まで。",
-    images: ["https://jade-torte-9b5cde.netlify.app/dream-top.png"],
+    images: ["https://uranai-tenohira.jp/dream-top.webp"],
   },
 };
 

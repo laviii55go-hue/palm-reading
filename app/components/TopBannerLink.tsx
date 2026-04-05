@@ -5,7 +5,7 @@ export default function TopBannerLink() {
   return (
     <Link href="/" className="block">
       <Image
-        src="/top-banner.png"
+        src="/top-banner.webp"
         alt="手のひらの予言者 - トップへ戻る"
         width={200}
         height={60}

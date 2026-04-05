@@ -27,7 +27,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#DC2626",
-    bgImage: "/dinosaur/battle/field_volcano.png",
+    bgImage: "/dinosaur/battle/field_volcano.webp",
   },
   {
     id: "glacier",
@@ -38,7 +38,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#3B82F6",
-    bgImage: "/dinosaur/battle/field_glacier.png",
+    bgImage: "/dinosaur/battle/field_glacier.webp",
   },
   {
     id: "jungle",
@@ -49,7 +49,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#16A34A",
-    bgImage: "/dinosaur/battle/field_jungle.png",
+    bgImage: "/dinosaur/battle/field_jungle.webp",
   },
   {
     id: "deepsea",
@@ -60,7 +60,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#1E3A8A",
-    bgImage: "/dinosaur/battle/field_deepsea.png",
+    bgImage: "/dinosaur/battle/field_deepsea.webp",
   },
   {
     id: "thundercloud",
@@ -71,7 +71,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#EAB308",
-    bgImage: "/dinosaur/battle/field_thundercloud.png",
+    bgImage: "/dinosaur/battle/field_thundercloud.webp",
   },
   {
     id: "ruins",
@@ -82,7 +82,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.2,
     disadvantagePenalty: 1.0,
     bgColor: "#7C3AED",
-    bgImage: "/dinosaur/battle/field_ruins.png",
+    bgImage: "/dinosaur/battle/field_ruins.webp",
   },
   {
     id: "mine",
@@ -93,7 +93,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#78716C",
-    bgImage: "/dinosaur/battle/field_mine.png",
+    bgImage: "/dinosaur/battle/field_mine.webp",
   },
   {
     id: "wasteland",
@@ -104,7 +104,7 @@ export const BATTLE_FIELDS: BattleField[] = [
     advantageBonus: 1.25,
     disadvantagePenalty: 0.8,
     bgColor: "#D97706",
-    bgImage: "/dinosaur/battle/field_wasteland.png",
+    bgImage: "/dinosaur/battle/field_wasteland.webp",
   },
 ];
 

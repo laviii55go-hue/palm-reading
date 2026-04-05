@@ -18,7 +18,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "masukake",
     name: "ますかけ線",
     emoji: "⚡",
-    image: "/lines/ますかけ線.png",
+    image: "/lines/ますかけ線.webp",
     description: "感情線と頭脳線が一本につながった希少な手相",
     questions: [
       {
@@ -61,7 +61,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "sun",
     name: "太陽線",
     emoji: "☀️",
-    image: "/lines/太陽線.png",
+    image: "/lines/太陽線.webp",
     description: "薬指の下に縦に走る線",
     questions: [
       {
@@ -95,7 +95,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "buddha",
     name: "仏眼",
     emoji: "👁️",
-    image: "/lines/仏眼.png",
+    image: "/lines/仏眼.webp",
     description: "指の第一関節に現れる目のような模様",
     questions: [
       {
@@ -133,7 +133,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "mystic",
     name: "神秘十字",
     emoji: "✝️",
-    image: "/lines/神秘十字.png",
+    image: "/lines/神秘十字.webp",
     description: "感情線と頭脳線の間に現れる十字の印",
     questions: [
       {
@@ -167,7 +167,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "mars",
     name: "火星線",
     emoji: "🔥",
-    image: "/lines/火星線.png",
+    image: "/lines/火星線.webp",
     description: "生命線の内側に沿って走る線",
     questions: [
       {
@@ -192,7 +192,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "double",
     name: "二重生命線",
     emoji: "💫",
-    image: "/lines/二重生命線.png",
+    image: "/lines/二重生命線.webp",
     description: "生命線が二本並行して走っている状態",
     questions: [
       {
@@ -225,7 +225,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "money",
     name: "財運線",
     emoji: "💰",
-    image: "/lines/財運線.png",
+    image: "/lines/財運線.webp",
     description: "小指の付け根から感情線に向かう縦線（水星線）",
     questions: [
       {
@@ -267,7 +267,7 @@ export const SPECIAL_LINE_DEFINITIONS: SpecialLineDefinition[] = [
     key: "marriage",
     name: "結婚線",
     emoji: "💍",
-    image: "/lines/結婚線.png",
+    image: "/lines/結婚線.webp",
     description: "小指の下・感情線の上にある横線",
     questions: [
       {

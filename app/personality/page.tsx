@@ -21,7 +21,7 @@ type Phase = "start" | "quiz" | "result";
 type QuizMode = "short" | "full";
 type Tab = "quiz" | "compatibility";
 
-const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/personality";
+const PAGE_URL = "https://uranai-tenohira.jp/personality";
 
 function TypeSelector({
   label,
@@ -134,7 +134,7 @@ export default function PersonalityPage() {
           </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/20">
             <Image
-              src="/personality-top.png"
+              src="/personality-top.webp"
               alt="16タイプ性格診断"
               width={600}
               height={300}

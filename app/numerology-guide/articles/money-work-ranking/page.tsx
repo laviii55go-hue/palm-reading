@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術で金運・仕事運ランキング",
     description: "4・8・22など、お金・キャリアに強いライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/money-work-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/money-work-ranking",
   },
 };
 

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "大アルカナ22枚の意味一覧｜正位置・逆位置を完全解説",
     description:
       "タロット大アルカナ22枚すべての意味を正位置・逆位置に分けて解説。愚者から世界まで、カード1枚ずつの象徴とメッセージがわかる完全ガイド。",
-    url: "https://jade-torte-9b5cde.netlify.app/tarot-guide/articles/major-arcana-complete",
+    url: "https://uranai-tenohira.jp/tarot-guide/articles/major-arcana-complete",
   },
 };
 

@@ -19,7 +19,7 @@ type PersonalPhase = "input" | "result";
 type CompatPhase = "input" | "result";
 
 const CURRENT_YEAR = new Date().getFullYear();
-const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/animal";
+const PAGE_URL = "https://uranai-tenohira.jp/animal";
 
 type SubtypeTheme = {
   cardGradient: string;
@@ -268,7 +268,7 @@ export default function AnimalFortunePage() {
           </div>
           <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
             <Image
-              src="/animal-top.png"
+              src="/animal-top.webp"
               alt="動物占い"
               width={600}
               height={300}

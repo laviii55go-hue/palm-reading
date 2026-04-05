@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプでリーダーシップが強いランキング",
     description: "ENTJ・ESTJ・ENFJなど、先頭に立つ力を持つ16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/leadership-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/leadership-ranking",
   },
 };
 

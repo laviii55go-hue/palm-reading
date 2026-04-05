@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプで癒し系・相談相手向きランキング",
     description: "INFJ・ISFJ・ENFJなど、話を聞く・支える役割が得意な16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/healing-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/healing-ranking",
   },
 };
 

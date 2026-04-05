@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx next:*)",
+      "Read(//c/Users/lavii/HarvestStudio/作業管理/作業履歴/**)",
+      "Read(//c/Users/lavii/HarvestStudio/作業管理/設計書・レポート/**)"
+    ]
+  }
+}

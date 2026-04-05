@@ -139,7 +139,7 @@ export default function SpecialPage() {
                       </div>
                     )}
                     <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2 bg-white">
-                      <Image src={line.image} alt={line.name} fill unoptimized className="object-contain" />
+                      <Image src={line.image} alt={line.name} fill className="object-contain" />
                     </div>
                     <div className="text-lg mb-0.5">{line.emoji}</div>
                     <div className="font-bold text-sm text-purple-800">{line.name}</div>
@@ -172,7 +172,6 @@ export default function SpecialPage() {
                     width={800}
                     height={560}
                     quality={100}
-                    unoptimized
                     priority
                     className="w-full h-auto object-contain"
                   />

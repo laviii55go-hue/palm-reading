@@ -5,7 +5,7 @@ export const QUIZ_QUESTIONS = [
     id: "heart",
     emoji: "💕",
     lineName: "感情線",
-    image: "/lines/感情線.png",
+    image: "/lines/感情線.webp",
     question: "感情線の長さは？",
     options: [
       { value: "short", label: "短い（中指の下あたりまで）", type: "practical" },
@@ -17,7 +17,7 @@ export const QUIZ_QUESTIONS = [
     id: "life",
     emoji: "💚",
     lineName: "生命線",
-    image: "/lines/生命線.png",
+    image: "/lines/生命線.webp",
     question: "生命線の弧の大きさは？",
     options: [
       { value: "large", label: "大きい（手のひらを広く囲む）", type: "active" },
@@ -29,7 +29,7 @@ export const QUIZ_QUESTIONS = [
     id: "head",
     emoji: "🧠",
     lineName: "頭脳線",
-    image: "/lines/知能線.png",
+    image: "/lines/知能線.webp",
     question: "頭脳線の向きは？",
     options: [
       { value: "straight", label: "まっすぐ横に伸びる", type: "logical" },
@@ -41,7 +41,7 @@ export const QUIZ_QUESTIONS = [
     id: "fate",
     emoji: "⭐",
     lineName: "運命線",
-    image: "/lines/運命線.png",
+    image: "/lines/運命線.webp",
     question: "運命線の状態は？",
     options: [
       { value: "clear", label: "くっきりはっきりある", type: "career" },
@@ -53,7 +53,7 @@ export const QUIZ_QUESTIONS = [
     id: "start",
     emoji: "✋",
     lineName: "生命線・頭脳線",
-    image: "/lines/基本4線.png",
+    image: "/lines/基本4線.webp",
     question: "生命線と頭脳線の始まりは？",
     options: [
       { value: "connected", label: "くっついている", type: "cautious" },
@@ -64,7 +64,7 @@ export const QUIZ_QUESTIONS = [
     id: "heart_shape",
     emoji: "💗",
     lineName: "感情線",
-    image: "/lines/感情線.png",
+    image: "/lines/感情線.webp",
     question: "感情線の形は？",
     options: [
       { value: "curve_up", label: "先端が上向きにカーブ", type: "romantic" },

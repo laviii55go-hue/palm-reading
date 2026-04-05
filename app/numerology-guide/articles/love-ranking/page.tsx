@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術で恋愛運が良いランキング",
     description: "2・6・9など、恋愛・パートナーシップ向きのライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/love-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/love-ranking",
   },
 };
 

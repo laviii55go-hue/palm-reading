@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプで金運・仕事運ランキング",
     description: "ENTJ・ESTJ・INTJなど、お金・キャリアに強い16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/money-work-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/money-work-ranking",
   },
 };
 

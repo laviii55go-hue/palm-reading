@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術の相性の組み合わせ解説",
     description: "「1と2の相性」「3と7の相性」など、代表的な数字の組み合わせを数秘術の観点から記事形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/compatibility-pairs",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/compatibility-pairs",
   },
 };
 

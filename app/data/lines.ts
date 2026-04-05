@@ -5,7 +5,7 @@ export const LINE_DEFINITIONS: Record<LineKey, LineDefinition> = {
     lineKey: "lifeLine",
     title: "生命線",
     description: "親指の付け根を囲むように走る線です",
-    image: "/lines/生命線.png",
+    image: "/lines/生命線.webp",
     questions: [
       {
         key: "lifeLine_present",
@@ -51,7 +51,7 @@ export const LINE_DEFINITIONS: Record<LineKey, LineDefinition> = {
     lineKey: "heartLine",
     title: "感情線",
     description: "小指側から人差し指に向かって横に走る線です",
-    image: "/lines/感情線.png",
+    image: "/lines/感情線.webp",
     questions: [
       {
         key: "heartLine_present",
@@ -98,7 +98,7 @@ export const LINE_DEFINITIONS: Record<LineKey, LineDefinition> = {
     lineKey: "headLine",
     title: "頭脳線",
     description: "生命線の上から横に走る線です",
-    image: "/lines/知能線.png",
+    image: "/lines/知能線.webp",
     questions: [
       {
         key: "headLine_present",
@@ -145,7 +145,7 @@ export const LINE_DEFINITIONS: Record<LineKey, LineDefinition> = {
     lineKey: "fateLine",
     title: "運命線",
     description: "手首から中指に向かって縦に走る線です",
-    image: "/lines/運命線.png",
+    image: "/lines/運命線.webp",
     questions: [
       {
         key: "fateLine_present",
@@ -182,7 +182,7 @@ export const LINE_DEFINITIONS: Record<LineKey, LineDefinition> = {
     lineKey: "marriageLine",
     title: "結婚線",
     description: "小指の下・感情線の上にある短い横線です",
-    image: "/lines/結婚線.png",
+    image: "/lines/結婚線.webp",
     questions: [
       {
         key: "marriageLine_present",
@@ -229,7 +229,7 @@ export const LINE_DEFINITIONS: Record<LineKey, LineDefinition> = {
     lineKey: "moneyLine",
     title: "財運線",
     description: "小指の付け根から感情線に向かう短い縦線です（水星線）",
-    image: "/lines/財運線.png",
+    image: "/lines/財運線.webp",
     questions: [
       {
         key: "moneyLine_present",

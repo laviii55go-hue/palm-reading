@@ -49,7 +49,6 @@ export default function LineStep({
             width={800}
             height={560}
             quality={100}
-            unoptimized
             priority
             className="w-full h-auto object-contain"
           />

@@ -225,12 +225,11 @@ export default function GuidePage() {
           <div className="flex justify-center">
             <div className="w-full max-w-xs rounded-2xl overflow-hidden border-2 border-purple-100 bg-white shadow-sm">
               <Image
-                src="/lines/基本4線.png"
+                src="/lines/基本4線.webp"
                 alt="手相の主要4本線（生命線・感情線・頭脳線・運命線）"
                 width={800}
                 height={1000}
                 quality={100}
-                unoptimized
                 priority
                 className="w-full h-auto object-contain"
               />

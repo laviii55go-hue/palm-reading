@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプで恋愛運が良いランキング",
     description: "ENFP・ESFJ・INFPなど、恋愛・パートナーシップ向きの16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/love-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/love-ranking",
   },
 };
 

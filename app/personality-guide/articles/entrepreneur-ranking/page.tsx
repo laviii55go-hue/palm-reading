@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプで独立・起業家向きランキング",
     description: "ENTP・ESTP・ENTJなど、一人で動く・起業向きの16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/entrepreneur-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/entrepreneur-ranking",
   },
 };
 

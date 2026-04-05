@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${t.code}（${t.nickname}）の性格・特徴【16タイプ性格診断】`,
       description: `${t.code}（${t.nickname}）タイプの性格、恋愛、仕事、強み・弱みを解説。`,
-      url: `https://jade-torte-9b5cde.netlify.app/personality-guide/${type}`,
+      url: `https://uranai-tenohira.jp/personality-guide/${type}`,
     },
   };
 }

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://jade-torte-9b5cde.netlify.app";
+const SITE_URL = "https://uranai-tenohira.jp";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "手のひらの予言者【総合占いで、あなたの未来を楽しく紐解く】",
     description: "手相・夢占い・動物占い・数秘術など多彩な占いが無料で楽しめる総合占いサイト。生年月日や手相から恋愛運・金運・仕事運を診断します。",
-    url: "https://jade-torte-9b5cde.netlify.app/",
+    url: "https://uranai-tenohira.jp/",
     siteName: "手のひらの予言者",
     images: [
       {
-        url: "https://jade-torte-9b5cde.netlify.app/og-image-v2.png",
+        url: "https://uranai-tenohira.jp/og-image-v2.webp",
         width: 1200,
         height: 630,
         alt: "手のひらの予言者 AI手相占い",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "手のひらの予言者【総合占いで、あなたの未来を楽しく紐解く】",
     description: "手相・夢占い・動物占い・数秘術など多彩な占いが無料で楽しめる総合占いサイト。生年月日や手相から恋愛運・金運・仕事運を診断します。",
-    images: ["https://jade-torte-9b5cde.netlify.app/og-image-v2.png"],
+    images: ["https://uranai-tenohira.jp/og-image-v2.webp"],
   },
   robots: {
     index: true,

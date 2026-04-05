@@ -28,7 +28,7 @@ type Tab = "personal" | "collection" | "battle";
 type PersonalPhase = "input" | "result";
 
 const CURRENT_YEAR = new Date().getFullYear();
-const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/dinosaur-fortune";
+const PAGE_URL = "https://uranai-tenohira.jp/dinosaur-fortune";
 function DateInputs({
   labelYear,
   labelMonth,
@@ -268,7 +268,7 @@ export default function DinosaurFortunePage() {
       outCtx.drawImage(img, PADDING, PADDING);
 
       const link = document.createElement("a");
-      link.download = `恐竜占い_${personalElement.name}の${personalEntry.name}.png`;
+      link.download = `恐竜占い_${personalElement.name}の${personalEntry.name}.webp`;
       link.href = outputCanvas.toDataURL("image/png");
       link.click();
     } catch (error) {
@@ -312,7 +312,7 @@ export default function DinosaurFortunePage() {
     <div className="relative min-h-screen flex flex-col items-center p-4">
       <div
         className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/dinosaur-bg.png')" }}
+        style={{ backgroundImage: "url('/dinosaur-bg.webp')" }}
         aria-hidden
       />
       <div className="w-full max-w-lg">
@@ -333,7 +333,7 @@ export default function DinosaurFortunePage() {
             <span className="absolute bottom-8 right-6 text-cyan-100/70 text-xs animate-pulse [animation-delay:1100ms]">✧</span>
 
             <Image
-              src="/dinosaur/characters/01_tyrannosaurus.png"
+              src="/dinosaur/characters/01_tyrannosaurus.webp"
               alt=""
               width={120}
               height={120}
@@ -341,7 +341,7 @@ export default function DinosaurFortunePage() {
               className="absolute -left-3 top-12 opacity-35 rotate-[-8deg] pointer-events-none select-none"
             />
             <Image
-              src="/dinosaur/characters/10_quetzalcoatlus.png"
+              src="/dinosaur/characters/10_quetzalcoatlus.webp"
               alt=""
               width={140}
               height={140}
@@ -349,7 +349,7 @@ export default function DinosaurFortunePage() {
               className="absolute -right-6 top-10 opacity-30 rotate-[10deg] pointer-events-none select-none"
             />
             <Image
-              src="/dinosaur/characters/06_triceratops.png"
+              src="/dinosaur/characters/06_triceratops.webp"
               alt=""
               width={110}
               height={110}
@@ -359,7 +359,7 @@ export default function DinosaurFortunePage() {
 
             <div className="rounded-xl overflow-hidden border border-cyan-300/50 shadow-md shadow-cyan-500/20 mb-3 relative z-10">
               <Image
-                src="/dinosaur-top.png"
+                src="/dinosaur-top.webp"
                 alt="恐竜占いトップ"
                 width={720}
                 height={360}

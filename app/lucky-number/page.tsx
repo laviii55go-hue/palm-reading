@@ -22,7 +22,7 @@ type PersonalPhase = "input" | "result";
 type CompatPhase = "input" | "result";
 
 const CURRENT_YEAR = new Date().getFullYear();
-const PAGE_URL = "https://jade-torte-9b5cde.netlify.app/lucky-number";
+const PAGE_URL = "https://uranai-tenohira.jp/lucky-number";
 
 type DateInputsProps = {
   labelYear: string; labelMonth: string; labelDay: string;
@@ -281,7 +281,7 @@ export default function LuckyNumberPage() {
           </div>
           <div className="rounded-2xl overflow-hidden shadow-lg shadow-black/30">
             <Image
-              src="/numerology-top.png"
+              src="/numerology-top.webp"
               alt="数秘術占い"
               width={600}
               height={300}

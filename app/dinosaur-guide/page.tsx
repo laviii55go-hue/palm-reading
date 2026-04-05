@@ -37,7 +37,7 @@ export default function DinosaurGuidePage() {
     <div className="relative min-h-screen">
       <div
         className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/dinosaur-bg.png')" }}
+        style={{ backgroundImage: "url('/dinosaur-bg.webp')" }}
         aria-hidden
       />
       <div className="bg-slate-950/90 border-b border-cyan-700/40 sticky top-0 z-10 backdrop-blur">
@@ -57,7 +57,7 @@ export default function DinosaurGuidePage() {
         <div id="top" className="text-center space-y-3 rounded-2xl border border-cyan-400/40 bg-gradient-to-br from-slate-900 via-indigo-900 to-cyan-900 p-4 shadow-xl shadow-cyan-900/30">
           <div className="rounded-xl overflow-hidden border border-cyan-300/50 shadow-md shadow-cyan-500/20">
             <Image
-              src="/dinosaur-top.png"
+              src="/dinosaur-top.webp"
               alt="恐竜図鑑トップ"
               width={720}
               height={360}

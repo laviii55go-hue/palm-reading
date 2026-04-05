@@ -10,6 +10,33 @@ export type TarotCard = {
   reversed: { general: string; love: string; work: string; advice: string };
 };
 
+export const TAROT_CARD_IMAGES: Record<number, string> = {
+  0: "/tarot/00_the_fool.webp",
+  1: "/tarot/01_the_magician.webp",
+  2: "/tarot/02_the_high_priestess.webp",
+  3: "/tarot/03_the_empress.webp",
+  4: "/tarot/04_the_emperor.webp",
+  5: "/tarot/05_the_hierophant.webp",
+  6: "/tarot/06_the_lovers.webp",
+  7: "/tarot/07_the_chariot.webp",
+  8: "/tarot/08_strength.webp",
+  9: "/tarot/09_the_hermit.webp",
+  10: "/tarot/10_wheel_of_fortune.webp",
+  11: "/tarot/11_justice.webp",
+  12: "/tarot/12_the_hanged_man.webp",
+  13: "/tarot/13_death.webp",
+  14: "/tarot/14_temperance.webp",
+  15: "/tarot/15_the_devil.webp",
+  16: "/tarot/16_the_tower.webp",
+  17: "/tarot/17_the_star.webp",
+  18: "/tarot/18_the_moon.webp",
+  19: "/tarot/19_the_sun.webp",
+  20: "/tarot/20_judgement.webp",
+  21: "/tarot/21_the_world.webp",
+};
+
+export const TAROT_BACK_IMAGE = "/tarot/back.webp";
+
 export const TAROT_MAJOR_ARCANA: TarotCard[] = [
   { id: 0, name: "愚者", emoji: "🃏", upright: { general: "新しいスタートや冒険のチャンス。純粋な心で一歩を踏み出せば、思いがけない幸運が訪れます。", love: "新しい出会いや恋の始まりの予感。素直な気持ちで相手に接することが吉。", work: "新しいプロジェクトや挑戦に最適。経験不足を恐れず、直感を信じて動いて。", advice: "過去に縛られず、今この瞬間を大切に。直感に従って動いてみて。" }, reversed: { general: "軽率な行動に注意。よく考えずに飛び込むと失敗のリスクが。慎重に。", love: "一方的な思い込みや軽い気持ちは禁物。相手の気持ちを確かめて。", work: "計画不足や準備不足に注意。焦らず着実に進めることが大切。", advice: "一度立ち止まって状況を冷静に見直して。衝動的な判断は避けて。" } },
   { id: 1, name: "魔術師", emoji: "✨", upright: { general: "才能と創造力が開花する時。あなたのスキルを最大限に活かせるチャンス到来。", love: "魅力が高まり、相手の心を掴む力がアップ。積極的なアプローチが吉。", work: "アイデアや企画が形になりやすい日。リーダーシップを発揮して。", advice: "あなたには必要なものはすべて揃っている。自信を持って行動を。" }, reversed: { general: "才能を活かしきれていない可能性。自己アピールが足りないかも。", love: "誤解やすれ違いに注意。コミュニケーションを丁寧に。", work: "準備不足や計画の甘さが露呈しやすい。見直しを。", advice: "焦らず基礎を固めて。小手先のテクニックより誠実さを。" } },
@@ -60,6 +87,7 @@ export const TAROT_CARD_HISTORY: Record<number, string> = {
   20: "審判（Judgement）は20番。ラッパを吹く天使と蘇る人々は、再生と覚醒を表します。最後の審判のイメージが反映され、過去の決断の結果と新しい始まりを象徴します。",
   21: "世界（The World）は21番。大アルカナの完結を表します。四大元素を統合した姿として、一つのサイクルの成就と、次のステージへの準備を象徴します。",
 };
+
 
 // 日付シード（同じ日は同じ結果）
 function getDateSeed(): number {

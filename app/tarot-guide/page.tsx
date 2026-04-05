@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import TopBannerLink from "../components/TopBannerLink";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
-import { TAROT_MAJOR_ARCANA } from "../data/tarotData";
+import { TAROT_MAJOR_ARCANA, TAROT_CARD_IMAGES } from "../data/tarotData";
 
 export const metadata: Metadata = {
   title: "タロット占いとは？大アルカナ22枚の意味と正逆位置【入門ガイド】",
@@ -111,7 +112,14 @@ export default function TarotGuidePage() {
                 href={`/tarot-guide/card/${card.id}`}
                 className="flex items-center gap-2 rounded-xl p-3 bg-white border border-violet-100 hover:border-violet-300 hover:bg-violet-50 transition-colors"
               >
-                <span className="text-xl">{card.emoji}</span>
+                <Image
+                  src={TAROT_CARD_IMAGES[card.id]}
+                  alt={card.name}
+                  width={60}
+                  height={100}
+                  className="w-[40px] h-[60px] object-cover rounded-md shrink-0"
+                />
+                <span className="text-lg">{card.emoji}</span>
                 <div>
                   <span className="font-bold text-violet-800 text-sm">{card.name}</span>
                   <span className="text-gray-400 text-xs ml-1">({card.id})</span>

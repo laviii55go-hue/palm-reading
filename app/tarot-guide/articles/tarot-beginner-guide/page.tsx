@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "タロット占い初心者ガイド｜無料で始める大アルカナ入門",
     description:
       "タロット占いを初めてやる方向けの入門ガイド。大アルカナとは何か、3択占いの仕組み、無料で楽しむ方法まで解説します。",
-    url: "https://jade-torte-9b5cde.netlify.app/tarot-guide/articles/tarot-beginner-guide",
+    url: "https://uranai-tenohira.jp/tarot-guide/articles/tarot-beginner-guide",
   },
 };
 

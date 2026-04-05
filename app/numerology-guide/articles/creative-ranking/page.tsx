@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術でクリエイティブ才能ランキング",
     description: "3・9・11など、表現・創作に向いているライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/creative-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/creative-ranking",
   },
 };
 

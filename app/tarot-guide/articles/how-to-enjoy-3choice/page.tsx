@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "3択タロット占いの当たる引き方｜直感を信じるコツ",
     description:
       "3択タロットで「当たった！」と感じるための引き方のコツ。直感の磨き方、テーマ選びのポイント、カードの読み方まで解説します。",
-    url: "https://jade-torte-9b5cde.netlify.app/tarot-guide/articles/how-to-enjoy-3choice",
+    url: "https://uranai-tenohira.jp/tarot-guide/articles/how-to-enjoy-3choice",
   },
 };
 

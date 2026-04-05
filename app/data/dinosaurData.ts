@@ -11,7 +11,7 @@ export type DinosaurEntry = {
   name: string;
   nameEn: string;
   emoji: string;
-  image?: string; // /dinosaur/1.png など。なければ絵文字を使用
+  image?: string; // /dinosaur/1.webp など。なければ絵文字を使用
   keywords: string[];
   personality: string;
   strengths: string[];

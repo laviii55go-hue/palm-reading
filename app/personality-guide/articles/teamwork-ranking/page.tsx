@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプでチームワーク・協調性ランキング",
     description: "ESFJ・ENFJ・ISFJなど、集団で活躍する16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/teamwork-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/teamwork-ranking",
   },
 };
 

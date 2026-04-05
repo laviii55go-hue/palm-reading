@@ -5,20 +5,20 @@
 
 /** ライフパス番号 → 画像パス（未配置時は 404 になるので、配置後に表示される） */
 export const DINOSAUR_CHARACTER_PATHS: Record<number, string> = {
-  1: "/dinosaur/characters/01_tyrannosaurus.png",
-  2: "/dinosaur/characters/02_maiasaura.png",
-  3: "/dinosaur/characters/03_pteranodon.png",
-  4: "/dinosaur/characters/04_ankylosaurus.png",
-  5: "/dinosaur/characters/05_velociraptor.png",
-  6: "/dinosaur/characters/06_triceratops.png",
-  7: "/dinosaur/characters/07_stegosaurus.png",
-  8: "/dinosaur/characters/08_spinosaurus.png",
-  9: "/dinosaur/characters/09_brachiosaurus.png",
-  11: "/dinosaur/characters/11_parasaurolophus.png",
+  1: "/dinosaur/characters/01_tyrannosaurus.webp",
+  2: "/dinosaur/characters/02_maiasaura.webp",
+  3: "/dinosaur/characters/03_pteranodon.webp",
+  4: "/dinosaur/characters/04_ankylosaurus.webp",
+  5: "/dinosaur/characters/05_velociraptor.webp",
+  6: "/dinosaur/characters/06_triceratops.webp",
+  7: "/dinosaur/characters/07_stegosaurus.webp",
+  8: "/dinosaur/characters/08_spinosaurus.webp",
+  9: "/dinosaur/characters/09_brachiosaurus.webp",
+  11: "/dinosaur/characters/11_parasaurolophus.webp",
   /** 指示書の 10_ケツァルコアトルス（翼竜） */
-  22: "/dinosaur/characters/10_quetzalcoatlus.png",
+  22: "/dinosaur/characters/10_quetzalcoatlus.webp",
   /** 指示書の 12_オヴィラプトル */
-  33: "/dinosaur/characters/12_oviraptor.png",
+  33: "/dinosaur/characters/12_oviraptor.webp",
 };
 
 /**
@@ -32,5 +32,5 @@ export function getDinosaurImagePath(
   const basePath = DINOSAUR_CHARACTER_PATHS[dinoNumber];
   if (!basePath) return "";
   if (emotion === "normal") return basePath;
-  return basePath.replace(".png", `_${emotion}.png`);
+  return basePath.replace(".webp", `_${emotion}.webp`);
 }

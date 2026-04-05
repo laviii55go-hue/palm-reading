@@ -160,12 +160,11 @@ export default function MolePage() {
               <div className="flex justify-center">
                 <div className="relative w-full max-w-sm rounded-xl overflow-hidden border border-purple-100 bg-white shadow-sm">
                   <Image
-                    src={activeSide === "palm" ? "/lines/ほくろ.png" : "/lines/ほくろ甲.png"}
+                    src={activeSide === "palm" ? "/lines/ほくろ.webp" : "/lines/ほくろ甲.webp"}
                     alt={activeSide === "palm" ? "手のひらのほくろエリア図" : "手の甲のほくろエリア図"}
                     width={800}
                     height={800}
                     quality={100}
-                    unoptimized
                     priority
                     className="w-full h-auto object-contain"
                   />

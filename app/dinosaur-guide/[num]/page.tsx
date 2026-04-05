@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${data.name}｜恐竜占い`,
       description: `${data.name}の性格、恋愛、仕事、相性を解説。`,
-      url: `https://jade-torte-9b5cde.netlify.app/dinosaur-guide/${numId}`,
+      url: `https://uranai-tenohira.jp/dinosaur-guide/${numId}`,
     },
   };
 }
@@ -44,7 +44,7 @@ export default async function DinosaurNumberPage({ params }: Props) {
     <div className="relative min-h-screen">
       <div
         className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/dinosaur-bg.png')" }}
+        style={{ backgroundImage: "url('/dinosaur-bg.webp')" }}
         aria-hidden
       />
       <div className="bg-slate-950/90 border-b border-cyan-700/40 sticky top-0 z-10 backdrop-blur">

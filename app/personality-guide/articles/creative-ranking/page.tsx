@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "16タイプでクリエイティブ才能ランキング",
     description: "INFP・ENFP・ENTPなど、表現・創作に向いている16タイプをランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/personality-guide/articles/creative-ranking",
+    url: "https://uranai-tenohira.jp/personality-guide/articles/creative-ranking",
   },
 };
 

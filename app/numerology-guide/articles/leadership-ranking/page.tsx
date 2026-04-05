@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術でリーダーシップが強いランキング",
     description: "1・8・22など、先頭に立つ力を持つライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/leadership-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/leadership-ranking",
   },
 };
 

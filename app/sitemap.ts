@@ -8,7 +8,7 @@ import { ARTICLES as PERSONALITY_ARTICLES } from "./personality-guide/articles/a
 import { ARTICLES as TAROT_ARTICLES } from "./tarot-guide/articles/articlesConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://jade-torte-9b5cde.netlify.app";
+  const baseUrl = "https://uranai-tenohira.jp";
 
   const personalityTypeUrls = PERSONALITY_TYPE_CODES.map((code) => ({
     url: `${baseUrl}/personality-guide/${code}`,
@@ -164,7 +164,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/tarot`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 0.8,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/tarot/one-card`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/tarot/yes-no`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/tarot/love`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/tarot/work`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/tarot-guide`,

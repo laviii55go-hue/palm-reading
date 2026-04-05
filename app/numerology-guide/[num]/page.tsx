@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `ライフパスナンバー【${numId}】${data.title}｜数秘術`,
       description: `${data.title}の性格、恋愛、仕事、相性を解説。`,
-      url: `https://jade-torte-9b5cde.netlify.app/numerology-guide/${numId}`,
+      url: `https://uranai-tenohira.jp/numerology-guide/${numId}`,
     },
   };
 }

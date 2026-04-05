@@ -10,21 +10,21 @@ type SmokeEffectProps = {
 
 const SMOKE_LAYERS = [
   {
-    src: "/dinosaur/battle/smoke_1.png",
+    src: "/dinosaur/battle/smoke_1.webp",
     alt: "煙（大）",
     className: "w-[55%] sm:w-[50%]",
     animation: "smoke-drift-1 3s ease-in-out infinite",
     delay: "0s",
   },
   {
-    src: "/dinosaur/battle/smoke_2.png",
+    src: "/dinosaur/battle/smoke_2.webp",
     alt: "煙（中）",
     className: "w-[40%]",
     animation: "smoke-drift-2 2.5s ease-in-out infinite",
     delay: "0.5s",
   },
   {
-    src: "/dinosaur/battle/smoke_3.png",
+    src: "/dinosaur/battle/smoke_3.webp",
     alt: "煙（小）",
     className: "w-[35%]",
     animation: "smoke-drift-3 2s ease-in-out infinite",

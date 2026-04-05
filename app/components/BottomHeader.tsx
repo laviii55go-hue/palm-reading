@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { useFortuneMenu } from "./FortuneMenuContext";
 
 const NAV_LINKS = [
-  { href: "/", label: "トップ", icon: "/icons/icon01.png" },
-  { href: "/daily-fortune-ranking", label: "今日の運勢", icon: "/icons/icon02.png" },
-  { href: "/guides", label: "基本知識", icon: "/icons/icon04.png" },
-  { href: "/articles", label: "記事", icon: "/icons/icon05.png" },
+  { href: "/", label: "トップ", icon: "/icons/icon01.webp" },
+  { href: "/daily-fortune-ranking", label: "今日の運勢", icon: "/icons/icon02.webp" },
+  { href: "/guides", label: "基本知識", icon: "/icons/icon04.webp" },
+  { href: "/articles", label: "記事", icon: "/icons/icon05.webp" },
 ] as const;
 
 export default function BottomHeader() {
@@ -32,7 +32,7 @@ export default function BottomHeader() {
                 isActive ? "text-violet-600 font-semibold bg-violet-100" : "text-slate-500 hover:text-slate-700"
               }`}
             >
-              <Image src={icon} alt="" width={32} height={32} className="w-8 h-8 object-contain" unoptimized />
+              <Image src={icon} alt="" width={32} height={32} className="w-8 h-8 object-contain" />
               <span className="mt-0.5 truncate max-w-full text-[10px]">{label}</span>
             </Link>
           );
@@ -45,7 +45,7 @@ export default function BottomHeader() {
           }`}
           aria-label={isOpen ? "占い一覧を閉じる" : "占い一覧を開く"}
         >
-          <Image src="/icons/icon03.png" alt="" width={32} height={32} className="w-8 h-8 object-contain" unoptimized />
+          <Image src="/icons/icon03.webp" alt="" width={32} height={32} className="w-8 h-8 object-contain" />
           <span className="mt-0.5 truncate max-w-full">占い</span>
         </button>
         {NAV_LINKS.slice(2).map(({ href, label, icon }) => {
@@ -58,7 +58,7 @@ export default function BottomHeader() {
                 isActive ? "text-violet-600 font-semibold bg-violet-100" : "text-slate-500 hover:text-slate-700"
               }`}
             >
-              <Image src={icon} alt="" width={32} height={32} className="w-8 h-8 object-contain" unoptimized />
+              <Image src={icon} alt="" width={32} height={32} className="w-8 h-8 object-contain" />
               <span className="mt-0.5 truncate max-w-full text-[10px]">{label}</span>
             </Link>
           );

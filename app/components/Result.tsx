@@ -53,7 +53,7 @@ export default function Result({ result, fortuneType, selections, onReset }: Pro
     setHarshOpen((prev) => !prev);
   };
 
-  const siteUrl = "https://jade-torte-9b5cde.netlify.app/";
+  const siteUrl = "https://uranai-tenohira.jp/";
   const hashtags = `#手相占い #占い好きな人と繋がりたい #AI手相`;
   const suffix = `\n\n無料で試せるよ👇\n${siteUrl}\n${hashtags}`;
 

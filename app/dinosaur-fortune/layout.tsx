@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     title: "恐竜占い【無料】生年月日であなたの恐竜タイプを診断",
     description:
       "ライフパスで恐竜タイプ12種、バースデーナンバーで属性11種。132通りの組み合わせでトレカ風に診断。相性も無料。",
-    url: "https://jade-torte-9b5cde.netlify.app/dinosaur-fortune",
+    url: "https://uranai-tenohira.jp/dinosaur-fortune",
     siteName: "手のひらの予言者",
     images: [
       {
-        url: "https://jade-torte-9b5cde.netlify.app/og-image-v2.png",
+        url: "https://uranai-tenohira.jp/og-image-v2.webp",
         width: 1200,
         height: 630,
         alt: "恐竜占い",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "恐竜占い【無料】生年月日であなたの恐竜タイプを診断",
     description:
       "恐竜タイプ12種×属性11種の132通りトレカ風診断。相性も無料。",
-    images: ["https://jade-torte-9b5cde.netlify.app/og-image-v2.png"],
+    images: ["https://uranai-tenohira.jp/og-image-v2.webp"],
   },
 };
 

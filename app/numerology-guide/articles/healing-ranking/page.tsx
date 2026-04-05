@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術で癒し系・相談相手向きランキング",
     description: "2・6・33など、話を聞く・支える役割が得意なライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/healing-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/healing-ranking",
   },
 };
 

@@ -112,7 +112,7 @@ export default function DreamPage() {
           </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/30">
             <Image
-              src="/dream-top.png"
+              src="/dream-top.webp"
               alt="夢占い"
               width={600}
               height={300}
@@ -245,7 +245,7 @@ export default function DreamPage() {
               <RakutenWidget />
 
               {(() => {
-                const pageUrl = "https://jade-torte-9b5cde.netlify.app/dream";
+                const pageUrl = "https://uranai-tenohira.jp/dream";
                 const tag = keywords.length > 0 ? `「${keywords.slice(0, 2).join("・")}」` : "";
                 const shareText = `🌙 夢占い結果${tag}\n${narrative.slice(0, 60)}...\n\nあなたの夢も診断してみてください👇\n${pageUrl}\n#夢占い #夢診断 #占い好きな人と繋がりたい`;
                 const xUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;

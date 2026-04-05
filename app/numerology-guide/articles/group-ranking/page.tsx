@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術でグループ・集団行動に向いているランキング",
     description: "協調性が高い数字、チームで活躍するライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/group-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/group-ranking",
   },
 };
 

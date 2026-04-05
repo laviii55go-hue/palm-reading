@@ -9,18 +9,18 @@ import { getDailyFortuneRanking } from "../data/dailyFortuneData";
 
 // 星座ID → 画像パス（牡羊座0〜魚座11）
 const ZODIAC_IMAGES: Record<number, string> = {
-  0: "/zodiac/aries.png",
-  1: "/zodiac/taurus.png",
-  2: "/zodiac/gemini.png",
-  3: "/zodiac/cancer.png",
-  4: "/zodiac/leo.png",
-  5: "/zodiac/virgo.png",
-  6: "/zodiac/libra.png",
-  7: "/zodiac/scorpio.png",
-  8: "/zodiac/sagittarius.png",
-  9: "/zodiac/capricorn.png",
-  10: "/zodiac/aquarius.png",
-  11: "/zodiac/pisces.png",
+  0: "/zodiac/aries.webp",
+  1: "/zodiac/taurus.webp",
+  2: "/zodiac/gemini.webp",
+  3: "/zodiac/cancer.webp",
+  4: "/zodiac/leo.webp",
+  5: "/zodiac/virgo.webp",
+  6: "/zodiac/libra.webp",
+  7: "/zodiac/scorpio.webp",
+  8: "/zodiac/sagittarius.webp",
+  9: "/zodiac/capricorn.webp",
+  10: "/zodiac/aquarius.webp",
+  11: "/zodiac/pisces.webp",
 };
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -46,7 +46,7 @@ export default function DailyFortuneRankingPage() {
           </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg">
             <Image
-              src="/daily-fortune-ranking-top.png"
+              src="/daily-fortune-ranking-top.webp"
               alt="今日の運勢ランキング"
               width={600}
               height={300}
@@ -80,7 +80,7 @@ export default function DailyFortuneRankingPage() {
                 </div>
                 <div className="w-12 h-12 shrink-0 relative">
                   <Image
-                    src={ZODIAC_IMAGES[sign.id] ?? "/zodiac/aries.png"}
+                    src={ZODIAC_IMAGES[sign.id] ?? "/zodiac/aries.webp"}
                     alt={sign.name}
                     fill
                     className="object-contain"

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "数秘術で独立・起業家向きランキング",
     description: "1・5・8など、一人で動く・起業向きのライフパスナンバーを数秘術の観点からランキング形式で解説。",
-    url: "https://jade-torte-9b5cde.netlify.app/numerology-guide/articles/entrepreneur-ranking",
+    url: "https://uranai-tenohira.jp/numerology-guide/articles/entrepreneur-ranking",
   },
 };
 

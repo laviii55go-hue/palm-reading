@@ -141,7 +141,7 @@ export default function FortuneSelect() {
       <div id="top" className="text-center scroll-mt-0">
         <div className="rounded-2xl overflow-hidden shadow-md mb-4">
           <Image
-            src="/title-top.png"
+            src="/title-top.webp"
             alt="手のひらの予言者"
             width={600}
             height={300}
@@ -160,14 +160,14 @@ export default function FortuneSelect() {
           <FortuneRankingLink />
           <FortuneLink
             href="/tarot"
-            title="タロット3択占い"
-            imageSrc="/tarot-back.png"
+            title="タロット占い"
+            imageSrc="/tarot-back.webp"
             imageAlt="タロットカード"
             desc={
               <>
-                恋愛・仕事・人間関係・全般からテーマを選び、直感で1枚。
+                ワンカード・YES/NO・恋愛・仕事・AI3択の5メニュー。
                 <br />
-                AIが今日の星と解釈します
+                大アルカナ22枚で今日の運勢を占おう
               </>
             }
             color="violet"
