@@ -4,6 +4,7 @@ import TopBannerLink from "../components/TopBannerLink";
 export const metadata = {
   title: "更新履歴｜手のひらの予言者",
   description: "手のひらの予言者の更新履歴です。",
+  robots: { index: false, follow: true },
 };
 
 const CHANGELOG = [
