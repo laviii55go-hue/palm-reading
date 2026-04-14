@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "恋愛タロット占い【無料】3枚で恋の行方を占う",
     description: "片思い・交際中・復縁に対応。大アルカナ3枚スプレッドで過去・現在・未来の恋愛を読み解きます。",
+    images: [
+      {
+        url: "https://uranai-tenohira.jp/tarot-top.webp",
+        width: 1200,
+        height: 630,
+        alt: "恋愛タロット占い｜手のひらの予言者",
+      },
+    ],
   },
 };
 

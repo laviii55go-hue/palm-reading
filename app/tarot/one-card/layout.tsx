@@ -9,6 +9,14 @@ export const metadata: Metadata = {
     title: "今日のワンカードタロット占い【無料】1枚引き",
     description:
       "毎日1枚のタロットカードを引いて今日のメッセージを受け取ろう。大アルカナ22枚から日替わりカードが恋愛・仕事の行動アドバイスをお届け。",
+    images: [
+      {
+        url: "https://uranai-tenohira.jp/tarot-top.webp",
+        width: 1200,
+        height: 630,
+        alt: "ワンカードタロット占い｜手のひらの予言者",
+      },
+    ],
   },
 };
 

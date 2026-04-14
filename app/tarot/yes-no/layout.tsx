@@ -17,6 +17,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "YES/NOタロット占い【無料】1枚で答えがわかる",
     description: "質問を唱えてカードを1枚引くだけ。正位置=YES、逆位置=NOであなたの迷いに答えます。",
+    images: [
+      {
+        url: "https://uranai-tenohira.jp/tarot-top.webp",
+        width: 1200,
+        height: 630,
+        alt: "YES/NOタロット占い｜手のひらの予言者",
+      },
+    ],
   },
 };
 

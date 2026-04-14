@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "仕事タロット占い【無料】3枚でキャリアを占う",
     description: "転職・チーム・金運に対応。大アルカナ3枚スプレッドで現状・課題・アドバイスを読み解きます。",
+    images: [
+      {
+        url: "https://uranai-tenohira.jp/tarot-top.webp",
+        width: 1200,
+        height: 630,
+        alt: "仕事タロット占い｜手のひらの予言者",
+      },
+    ],
   },
 };
 
