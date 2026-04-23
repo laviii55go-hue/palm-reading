@@ -107,67 +107,17 @@ export function getFortuneItems(fortuneType: FortuneType): FortuneItems {
   }
 }
 
-export function buildAffiliateUrl(keyword: string): string {
-  const searchUrl = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(keyword)}/`;
-  return `${AFFILIATE_BASE}${encodeURIComponent(searchUrl)}`;
+// Vercel Hobby プラン 商用利用NG規約（Fair Use Guidelines）対応のため無効化（2026/04/23）
+// 収益化見込みが立った段階で Vercel Pro 切替＋元の実装復活
+export function buildAffiliateUrl(_keyword: string): string {
+  return "#";
 }
 
 interface Props {
   fortuneType: FortuneType;
 }
 
-export default function RakutenFortuneItems({ fortuneType }: Props) {
-  const fortuneItems = getFortuneItems(fortuneType);
-
-  return (
-    <section className="rounded-2xl border-2 border-pink-200 bg-gradient-to-br from-pink-50 to-rose-50 p-4 space-y-4">
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex items-start gap-2">
-          <span className="text-2xl" aria-hidden="true">
-            🛍️
-          </span>
-          <div>
-            <p className="text-xs font-bold text-pink-700">{fortuneItems.title}</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-gray-600">{fortuneItems.lead}</p>
-          </div>
-        </div>
-        <span className="text-[11px] text-gray-400 font-medium">PR</span>
-      </div>
-
-      <div className="grid gap-3 sm:grid-cols-2">
-        {fortuneItems.items.map((item) => {
-          const href = buildAffiliateUrl(item.keyword);
-          return (
-            <a
-              key={item.keyword}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block rounded-xl border border-pink-100 bg-white/80 p-3 shadow-sm transition duration-150 hover:-translate-y-0.5 hover:border-pink-300 hover:shadow-md"
-            >
-              <div className="mb-1 flex items-center justify-between gap-2">
-                <p className="text-xs font-semibold text-pink-700">{item.label}</p>
-                <span className="text-[10px] text-gray-400">楽天市場</span>
-              </div>
-              <p className="text-[11px] leading-relaxed text-gray-600 mb-2">{item.description}</p>
-              <div className="flex items-center justify-between text-[11px] text-pink-600">
-                <span className="inline-flex items-center gap-1">
-                  <span>楽天で詳しく見る</span>
-                  <span className="transition-transform duration-150 group-hover:translate-x-0.5">
-                    ↗
-                  </span>
-                </span>
-                <span className="text-[10px] text-gray-400">広告リンク</span>
-              </div>
-            </a>
-          );
-        })}
-      </div>
-
-      <p className="text-[10px] leading-relaxed text-gray-400">
-        ※リンク先は楽天市場の検索結果ページです。商品購入などにより、サイト運営者に報酬が発生する場合があります。
-      </p>
-    </section>
-  );
+export default function RakutenFortuneItems(_props: Props) {
+  return null;
 }
 
