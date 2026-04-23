@@ -56,6 +56,43 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "手のひらの予言者",
+  alternateName: "手相・タロット・数秘術・16タイプ性格診断の総合占いサイト",
+  url: SITE_URL,
+  description: "手相・タロット・数秘術・動物占い・16タイプ性格診断など多彩な占いが無料で楽しめる総合占いサイト。",
+  inLanguage: "ja",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/site-map?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "ハーベストラボ",
+    alternateName: "Harvest Lab",
+    url: SITE_URL,
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ハーベストラボ",
+  alternateName: "Harvest Lab",
+  url: SITE_URL,
+  description: "モバイルアプリ及びウェブサービスの企画・開発・運営を行う個人事業主。占い・自己理解ツールを中心に無料コンテンツを提供。",
+  foundingDate: "2026-02-25",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    availableLanguage: ["Japanese"],
+    url: `${SITE_URL}/contact`,
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,17 +100,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <head>
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased pb-16`}
       >
-        {/* Google AdSense: beforeInteractive で初期HTMLに含め審査対応 */}
-        <Script
+        {/* JSON-LD 構造化データ（body内配置がNext.js 16推奨・hydrationエラー回避） */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        {/* Google AdSense: Vercel Hobby プラン 商用利用NG規約（Fair Use Guidelines で AdSense 名指しNG）対応のため無効化（2026/04/23） */}
+        {/* 収益化見込み（十分な流入）が確認でき Vercel Pro に切替後、下記をコメントアウト解除して再申請 */}
+        {/* <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3965931075265436"
           strategy="beforeInteractive"
           crossOrigin="anonymous"
-        />
+        /> */}
         <LayoutClient>
           {children}
         </LayoutClient>
