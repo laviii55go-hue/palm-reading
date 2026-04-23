@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import Image from "next/image";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
@@ -134,13 +134,14 @@ const FAQS = [
 export default function GuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-purple-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <TopBannerLink />
-          <span className="text-xs text-gray-400">手相入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="palm"
+        subText="手相占い入門ガイド"
+        links={[
+          { type: "fortune", href: "/" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
 
@@ -317,6 +318,33 @@ export default function GuidePage() {
           </div>
         </section>
 
+        {/* 監修・参考文献 */}
+        <section id="references" className="space-y-4 scroll-mt-16">
+          <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
+            <span>📚</span> 監修・参考文献
+          </h2>
+          <div className="rounded-2xl border-2 border-purple-100 bg-white p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              当サイトの手相占いは、<strong>西洋手相学（キロマンシー）</strong>と<strong>東洋手相学</strong>の両方の伝統を基盤にしています。西洋手相学は古代ギリシャ・ローマから続く占術で、生命線・感情線・頭脳線などの主要な線の解釈が体系化されています。
+            </p>
+            <p>
+              手相の各線（生命線・感情線・頭脳線・運命線・結婚線・太陽線・財運線など）の意味は、<strong>広く流通している手相の解釈書</strong>を参考に、現代的な文脈で読み解いています。
+            </p>
+            <p>
+              左右の手の意味づけ（左手＝生まれ持った性質・潜在能力、右手＝現在の姿・後天的な努力）は、<strong>東洋手相学の伝統的な解釈</strong>に沿っています。
+            </p>
+            <p>
+              AI手相診断では、<strong>生成AIによる画像解析</strong>を用いて手相の線を認識し、上記の伝統的な解釈と組み合わせてメッセージを生成しています。ただし、AIの解析精度には限界があるため、参考情報としてお楽しみください。
+            </p>
+            <p className="text-xs text-gray-500 pt-2 border-t border-gray-100">
+              ※ 解釈文の編集・校閲は運営者が行っています。
+            </p>
+          </div>
+          <div className="text-right">
+            <a href="#top" className="text-xs text-purple-400 hover:text-purple-600 hover:underline">△ TOPに戻る</a>
+          </div>
+        </section>
+
         {/* よくある質問 */}
         <section id="faq" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-purple-800 flex items-center gap-2">
@@ -339,19 +367,12 @@ export default function GuidePage() {
         <section id="fortune" className="rounded-2xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-indigo-50 p-5 text-center space-y-3 scroll-mt-16">
           <div className="text-3xl">🔮</div>
           <p className="font-bold text-purple-800">基礎がわかったら、実際に試してみよう</p>
-          <p className="text-gray-500 text-xs">AIが手相から運勢を無料で鑑定します</p>
           <Link
-            href="/"
+            href="/palm-quiz"
             className="block w-full py-3 rounded-xl bg-purple-600 text-white font-bold text-sm hover:bg-purple-700 transition-colors shadow-md"
           >
-            手相診断を始める →
+            簡易手相タイプ診断を始める →
           </Link>
-          <div className="grid grid-cols-2 gap-2 pt-1">
-            <Link href="/palm-quiz" className="text-xs text-purple-500 hover:underline">📋 【簡易】手相タイプ診断</Link>
-            <Link href="/special" className="text-xs text-purple-500 hover:underline">✨ 特殊手相</Link>
-            <Link href="/mole" className="text-xs text-purple-500 hover:underline">🔵 ほくろ占い</Link>
-            <Link href="/dream" className="text-xs text-purple-500 hover:underline">🌙 夢占い</Link>
-          </div>
         </section>
 
         <AdBanner />

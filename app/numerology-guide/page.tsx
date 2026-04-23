@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -67,19 +67,17 @@ const FAQS = [
 export default function NumerologyGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-violet-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/lucky-number" className="text-violet-500 text-sm hover:underline">← 数秘術占いへ</Link>
-          <span className="text-xs text-gray-400">数秘術入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="numerology"
+        subText="数秘術入門ガイド"
+        links={[
+          { type: "fortune", href: "/lucky-number" },
+          { type: "articles", href: "/numerology-guide/articles" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
-
-        <div className="flex justify-start">
-          <TopBannerLink />
-        </div>
 
         {/* タイトル */}
         <div id="top" className="text-center space-y-2">
@@ -326,6 +324,33 @@ export default function NumerologyGuidePage() {
           </div>
         </section>
 
+        {/* 監修・参考文献 */}
+        <section id="references" className="space-y-4 scroll-mt-16">
+          <h2 className="text-lg font-bold text-violet-800 flex items-center gap-2">
+            <span>📚</span> 監修・参考文献
+          </h2>
+          <div className="rounded-2xl border-2 border-violet-100 bg-white p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              当サイトの数秘術占いは、<strong>ピタゴラス式数秘術</strong>を基盤としています。古代ギリシャの哲学者ピタゴラスが「万物は数である」と説いたことから発展した数体系で、生年月日の各桁を1桁になるまで足し合わせる「ライフパスナンバー」が中心になります。
+            </p>
+            <p>
+              1〜9の数字には、それぞれ<strong>古代から続く象徴的な性質</strong>が託されています。1＝開拓、2＝調和、3＝表現、4＝安定、5＝自由、6＝愛、7＝探求、8＝成功、9＝博愛——この性質の組み合わせで、個人の傾向や相性を読み解いていきます。
+            </p>
+            <p>
+              マスターナンバー（11・22・33）の扱いは、<strong>現代数秘術の主流解釈</strong>に沿って、1桁に還元せずそのまま読み取ります。11は直感、22は建築家、33は奉仕のマスターティーチャーという位置づけです。
+            </p>
+            <p>
+              相性診断については、数字の<strong>「性質の重なり方」</strong>を基に、現代数秘術で一般的に語られる組み合わせ表を参考に設計しています。
+            </p>
+            <p className="text-xs text-gray-500 pt-2 border-t border-gray-100">
+              ※ 解釈文は運営者が監修・編集を行っています。
+            </p>
+          </div>
+          <div className="text-right">
+            <a href="#top" className="text-xs text-violet-400 hover:text-violet-600 hover:underline">△ TOPに戻る</a>
+          </div>
+        </section>
+
         {/* よくある質問 */}
         <section id="faq" className="space-y-4 scroll-mt-16">
           <h2 className="text-lg font-bold text-violet-800 flex items-center gap-2">
@@ -355,9 +380,8 @@ export default function NumerologyGuidePage() {
           >
             数秘術占いを始める →
           </Link>
-          <div className="grid grid-cols-3 gap-2 pt-1">
+          <div className="grid grid-cols-2 gap-2 pt-1">
             <Link href="/"       className="text-xs text-violet-500 hover:underline">🖐 手相診断</Link>
-            <Link href="/dream"  className="text-xs text-violet-500 hover:underline">🌙 夢占い</Link>
             <Link href="/guide"  className="text-xs text-violet-500 hover:underline">📖 手相ガイド</Link>
           </div>
         </section>

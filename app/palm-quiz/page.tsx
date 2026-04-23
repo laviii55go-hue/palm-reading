@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import { QUIZ_QUESTIONS, QUIZ_RESULTS } from "../data/palmQuizData";
 
@@ -58,9 +58,14 @@ export default function PalmQuizPage() {
   if (selectedHand === null) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+        <PageHeader
+          variant="fortune"
+          theme="palm"
+          subText="手相タイプ診断"
+          links={[{ type: "guide", href: "/guide" }]}
+        />
         <div className="max-w-md mx-auto px-4 py-6 space-y-6">
           <div className="text-center">
-            <TopBannerLink />
             <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
             <p className="text-purple-600 text-sm mt-1">どちらの手で診断しますか？</p>
           </div>
@@ -88,8 +93,6 @@ export default function PalmQuizPage() {
               </button>
             </div>
           </div>
-
-          <AdBanner />
         </div>
       </div>
     );
@@ -99,9 +102,14 @@ export default function PalmQuizPage() {
     const r = QUIZ_RESULTS[result];
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+        <PageHeader
+          variant="fortune"
+          theme="palm"
+          subText="手相タイプ診断"
+          links={[{ type: "guide", href: "/guide" }]}
+        />
         <div className="max-w-md mx-auto px-4 py-6 space-y-6">
           <div className="text-center">
-            <TopBannerLink />
             <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
             <p className="text-purple-600 text-sm">
               {selectedHand === "left" ? "左手" : "右手"}の診断結果
@@ -130,18 +138,18 @@ export default function PalmQuizPage() {
             </div>
           </div>
 
-          <Link
-            href="/"
-            className="block w-full py-4 rounded-2xl bg-purple-600 text-white font-bold text-center shadow-md"
-          >
-            🔮 手相診断を始める
-          </Link>
           <button
             onClick={handleReset}
-            className="block w-full py-3 rounded-2xl border-2 border-purple-200 text-purple-600 font-semibold text-sm"
+            className="block w-full py-4 rounded-2xl bg-purple-600 text-white font-bold text-center shadow-md"
           >
-            もう一度診断する
+            🔮 もう一度診断する
           </button>
+          <Link
+            href="/"
+            className="block w-full py-3 rounded-2xl border-2 border-purple-200 text-purple-600 font-semibold text-sm text-center"
+          >
+            他の占いを試す
+          </Link>
 
           <AdBanner />
           <RakutenWidget />
@@ -152,9 +160,14 @@ export default function PalmQuizPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+      <PageHeader
+        variant="fortune"
+        theme="palm"
+        subText="手相タイプ診断"
+        links={[{ type: "guide", href: "/guide" }]}
+      />
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <TopBannerLink />
           <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
           <p className="text-purple-600 text-sm">
             あなたの手相から性格タイプを診断（{step + 1}/{QUIZ_QUESTIONS.length}）
@@ -200,8 +213,6 @@ export default function PalmQuizPage() {
             ← {step > 0 ? "前の質問に戻る" : "手の選択に戻る"}
           </button>
         </div>
-
-        <AdBanner />
       </div>
     </div>
   );

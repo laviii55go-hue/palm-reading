@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -15,7 +15,6 @@ import {
   PERSONAL_YEAR_DATA,
   getCompatibility,
 } from "../data/numerologyData";
-import { buildAffiliateUrl } from "../components/RakutenFortuneItems";
 
 type Tab = "personal" | "compatibility";
 type PersonalPhase = "input" | "result";
@@ -269,16 +268,19 @@ export default function LuckyNumberPage() {
   const compat = myNum && partnerNum ? getCompatibility(myNum, partnerNum) : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-4">
-      <div className="w-full max-w-lg">
+    <div className="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-0">
+      <PageHeader
+        variant="fortune"
+        theme="numerology"
+        subText="数秘術占い"
+        dark
+        links={[
+          { type: "guide", href: "/numerology-guide" },
+          { type: "articles", href: "/numerology-guide/articles" },
+        ]}
+      />
+      <div className="w-full max-w-lg p-4">
         <div className="text-center mb-6">
-          <div className="flex items-center justify-between mb-3 gap-2">
-            <TopBannerLink />
-            <div className="flex gap-2">
-              <Link href="/numerology-guide" className="text-violet-300 text-xs border border-violet-600 rounded-full px-3 py-1 hover:bg-violet-500/20 transition-colors">📖 ガイド</Link>
-              <Link href="/numerology-guide/articles" className="text-violet-300 text-xs border border-violet-600 rounded-full px-3 py-1 hover:bg-violet-500/20 transition-colors">📝 コラム</Link>
-            </div>
-          </div>
           <div className="rounded-2xl overflow-hidden shadow-lg shadow-black/30">
             <Image
               src="/numerology-top.webp"
@@ -381,9 +383,6 @@ export default function LuckyNumberPage() {
                     📖 数秘術の基本知識を読む →
                   </Link>
                 </div>
-
-                <AdBanner />
-                <RakutenWidget />
               </div>
             ) : personalEntry && yearEntry ? (
               <div className="space-y-5">
@@ -506,23 +505,6 @@ export default function LuckyNumberPage() {
                   <p className="text-gray-600 text-sm leading-relaxed">{yearEntry.message}</p>
                 </div>
 
-                <div className="rounded-2xl border-2 border-purple-300 bg-white p-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xl">✨</span>
-                    <p className="font-bold text-purple-700 text-sm">開運アイテムを探す</p>
-                  </div>
-                  <p className="text-gray-500 text-xs mb-3">ラッキー「{personalEntry.luckyItem}」に合う開運グッズ</p>
-                  <div className="text-center text-xs text-gray-400 mb-2">⭐⭐⭐⭐⭐ おすすめ度</div>
-                  <a
-                    href={buildAffiliateUrl(personalEntry.rakutenKeyword)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full py-2.5 rounded-xl bg-red-500 text-white font-bold text-sm text-center hover:bg-red-600 transition-colors"
-                  >
-                    楽天で開運アイテムを見る →
-                  </a>
-                </div>
-
                 <button
                   onClick={() => {
                     setMyYear(year);
@@ -540,9 +522,6 @@ export default function LuckyNumberPage() {
                 >
                   💞 相性診断へ（相手の情報を入力） →
                 </button>
-
-                <AdBanner />
-                <RakutenWidget />
 
                 {(() => {
                   const shareText = `🔢 数秘術占い結果\nライフパスナンバー【${lifePathNum}】${personalEntry.emoji} ${personalEntry.title}\n${personalEntry.keywords.slice(0, 3).join("・")}\n📅 ${CURRENT_YEAR}年のテーマ：${yearEntry.theme}\n\nあなたも試してみてください👇\n${PAGE_URL}\n#数秘術 #占い好きな人と繋がりたい #生年月日占い`;
@@ -573,8 +552,11 @@ export default function LuckyNumberPage() {
                 </button>
 
                 <Link href="/" className="block w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm text-center hover:bg-purple-700 transition-colors">
-                  🔮 手相診断を始める
+                  🔮 他の占いを試す
                 </Link>
+
+                <AdBanner />
+                <RakutenWidget />
               </div>
             ) : null
           )}
@@ -698,9 +680,6 @@ export default function LuckyNumberPage() {
                 )}
 
                 {compatError && <p className="text-red-500 text-sm text-center">{compatError}</p>}
-
-                <AdBanner />
-                <RakutenWidget />
               </div>
             ) : compat && myEntry && partnerEntry ? (
               <div className="space-y-5">
@@ -805,9 +784,6 @@ export default function LuckyNumberPage() {
                   ))}
                 </div>
 
-                <AdBanner />
-                <RakutenWidget />
-
                 {/* シェアボタン */}
                 {(() => {
                   const shareText = `💞 数秘術 相性診断結果\nライフパスナンバー【${myNum}】×【${partnerNum}】\n総合相性：${"★".repeat(compat.score)}${"☆".repeat(5 - compat.score)}\n\nあなたも試してみてください👇\n${PAGE_URL}\n#数秘術 #相性診断 #占い好きな人と繋がりたい`;
@@ -844,8 +820,11 @@ export default function LuckyNumberPage() {
                 </div>
 
                 <Link href="/" className="block w-full py-3 rounded-xl bg-purple-600 text-white font-semibold text-sm text-center hover:bg-purple-700 transition-colors">
-                  🔮 手相診断を始める
+                  🔮 他の占いを試す
                 </Link>
+
+                <AdBanner />
+                <RakutenWidget />
               </div>
             ) : null
           )}

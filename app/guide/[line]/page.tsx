@@ -114,7 +114,7 @@ export default async function LineGuidePage({ params }: { params: Promise<{ line
           href="/"
           className="block w-full py-4 rounded-2xl bg-purple-600 text-white font-bold text-center shadow-md hover:bg-purple-700 transition-colors"
         >
-          🔮 手相診断を始める
+          🔮 他の占いを試す
         </Link>
 
         <AdBanner />

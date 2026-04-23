@@ -21,7 +21,6 @@ const MENU_ITEMS = [
     emoji: "🔍",
     links: [
       { href: "/palm-quiz", label: "簡易手相タイプ診断", emoji: "📋" },
-      { href: "/ai-palm", label: "AI手相診断", emoji: "🔮" },
       { href: "/personality", label: "16タイプ性格診断", emoji: "🧠" },
       { href: "/animal", label: "動物占い", emoji: "🐾" },
       { href: "/lucky-number", label: "数秘術占い", emoji: "🔢" },
@@ -34,11 +33,8 @@ const MENU_ITEMS = [
     label: "気になったら",
     emoji: "✨",
     links: [
-      { href: "/dream", label: "夢占い", emoji: "🌙" },
       { href: "/blood-type", label: "血液型占い", emoji: "🩸" },
       { href: "/name-fortune", label: "姓名判断", emoji: "✍️" },
-      { href: "/mole", label: "ほくろ占い", emoji: "🔵" },
-      { href: "/special", label: "特殊手相", emoji: "✨" },
     ],
   },
   {

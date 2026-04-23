@@ -451,10 +451,10 @@ export default function LoveTarotPage() {
                       3択タロット占い
                     </Link>
                     <Link
-                      href="/ai-palm"
+                      href="/palm-quiz"
                       className="text-center py-2.5 rounded-xl bg-amber-50 text-amber-700 text-xs font-medium hover:bg-amber-100 transition-colors"
                     >
-                      AI手相占い
+                      簡易手相タイプ診断
                     </Link>
                     <Link
                       href="/daily-fortune-ranking"

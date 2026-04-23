@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -113,16 +113,14 @@ const TOC = [
 export default function DreamGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-indigo-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <TopBannerLink />
-            <Link href="/dream" className="text-indigo-600 text-xs border border-indigo-300 rounded-full px-3 py-1 hover:bg-indigo-50 transition-colors">🌙 占いへ</Link>
-          </div>
-          <span className="text-xs text-gray-400">夢占い入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="dream"
+        subText="夢占い入門ガイド"
+        links={[
+          { type: "fortune", href: "/dream" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
 
@@ -310,19 +308,6 @@ export default function DreamGuidePage() {
         </section>
 
         <RakutenWidget />
-
-        {/* 実際に試す */}
-        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-6 text-white text-center space-y-4">
-          <div className="text-4xl">🌙</div>
-          <div className="font-black text-xl">実際に夢占いを試す</div>
-          <p className="text-indigo-200 text-sm">見た夢のキーワードを入力するとAIが詳しく解釈します</p>
-          <Link
-            href="/dream"
-            className="block bg-white text-indigo-600 font-bold py-3 rounded-2xl hover:bg-indigo-50 transition-colors"
-          >
-            🌙 夢占いを始める →
-          </Link>
-        </div>
 
         <div className="text-center">
           <a href="#top" className="text-indigo-400 text-sm hover:underline">△ TOPに戻る</a>

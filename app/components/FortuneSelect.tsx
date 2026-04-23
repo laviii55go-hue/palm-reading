@@ -165,7 +165,7 @@ export default function FortuneSelect() {
             imageAlt="タロットカード"
             desc={
               <>
-                ワンカード・YES/NO・恋愛・仕事・AI3択の5メニュー。
+                ワンカード・YES/NO・恋愛・仕事・3択の5メニュー。
                 <br />
                 大アルカナ22枚で今日の運勢を占おう
               </>
@@ -200,17 +200,6 @@ export default function FortuneSelect() {
                 <div className="text-xs text-purple-500 mt-0.5">6問であなたの手相タイプを診断</div>
               </div>
               <div className="absolute right-4 text-purple-400 text-sm">→</div>
-            </Link>
-            <Link
-              href="/ai-palm"
-              className="relative flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200 hover:shadow-md hover:scale-[1.01]"
-            >
-              <div className="text-3xl">🔮</div>
-              <div>
-                <div className="font-bold text-sm text-violet-800">AI手相診断</div>
-                <div className="text-xs text-violet-500 mt-0.5">総合運・恋愛運など運勢を選んで手相を入力</div>
-              </div>
-              <div className="absolute right-4 text-violet-400 text-sm">→</div>
             </Link>
           </CategorySection>
 
@@ -265,13 +254,6 @@ export default function FortuneSelect() {
       <section id="more">
         <GroupLabel emoji="✨" label="気になったら" />
         <div className="space-y-4">
-          <FortuneLink
-            href="/dream"
-            emoji="🌙"
-            title="夢占い"
-            desc="見た夢からメッセージを読み解く"
-            color="indigo"
-          />
           <FortuneLink
             href="/blood-type"
             emoji="🩸"
