@@ -171,24 +171,8 @@ export default function AiPalmPage() {
                   <div className="text-xs text-blue-400 mt-0.5">手のほくろの位置で診断</div>
                   <div className="absolute bottom-2 right-3 text-blue-400 text-xs">→</div>
                 </Link>
-                <a
-                  href="https://px.a8.net/svt/ejp?a8mat=4AZAW7+8XI3G2+2PEO+1BTR0X"
-                  rel="nofollow"
-                  target="_blank"
-                  className="relative p-4 rounded-2xl border-2 text-left transition-all bg-white border-gray-200 hover:border-purple-300 hover:shadow-md hover:scale-[1.02] block"
-                >
-                  <p className="text-xs text-gray-400 mb-1">PR</p>
-                  <div className="text-2xl mb-1">🔮</div>
-                  <div className="font-bold text-sm text-purple-700">占い鑑定</div>
-                  <div className="text-xs text-gray-500 mt-0.5">実績700万件・プロに頼む</div>
-                  <div className="absolute bottom-2 right-3 text-purple-400 text-xs">→</div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    style={{ border: 0, position: "absolute", width: 1, height: 1, opacity: 0 }}
-                    src="https://www14.a8.net/0.gif?a8mat=4AZAW7+8XI3G2+2PEO+1BTR0X"
-                    alt=""
-                  />
-                </a>
+                {/* Vercel Hobby プラン 商用利用NG規約対応のため A8.net 広告タイル（占い鑑定 PR枠）を削除（2026/04/23） */}
+                {/* 収益化見込みが立った段階で Vercel Pro 切替＋元の <a href="https://px.a8.net/svt/ejp?a8mat=..."> 復活 */}
               </div>
 
               <button
