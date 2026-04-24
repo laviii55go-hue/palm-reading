@@ -63,6 +63,14 @@ export default function MoneyWorkRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               16タイプの特性から、お金・キャリアに強い順にランキングしました。仕事選びやキャリアのヒントとして参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                この記事では、ランキングを紹介したうえで、私が色々な人を見てきて感じる<strong>「お金との付き合い方には3種類ある」</strong>という話や、<strong>ランキング下位のタイプほど自分に合った稼ぎ方を見つけると強い</strong>という話を書いています。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                「仕事運ランキング下位だから自分はお金に縁がない」と決めつけるのはちょっと早いです。ぜひ最後まで読んでもらえたら嬉しいです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -125,6 +133,68 @@ export default function MoneyWorkRankingArticlePage() {
                 下位のタイプだから金運が悪いわけではありません。ESFPは接客で、INFPは創作で、それぞれの形で価値を生み出しています。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              💰 お金との付き合い方には3種類ある
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              お金との向き合い方にも、16タイプによって<strong>大きく3つの方向性</strong>があると感じます。「お金を増やす」という一つの言葉の中に、まったく異なる行動パターンが隠れています。
+            </p>
+            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+              <div>
+                <p className="font-semibold text-teal-800">① 攻めの運用型（ENTJ・ENTP・ESTP・INTJ）</p>
+                <p>リスクを取って大きく増やすアプローチ。投資・起業・新規事業で成果を出すタイプ。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">② 守りの積立型（ISTJ・ESTJ・ISFJ・INFJ）</p>
+                <p>コツコツ堅実に積み上げるアプローチ。長期投資・貯金・ローン返済などで力を発揮するタイプ。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">③ 好きで稼ぐ型（INFP・ENFP・ISFP・ESFP）</p>
+                <p>「好きなこと」を仕事にしてお金につなげるアプローチ。クリエイティブ・接客・エンタメ・福祉などで輝く。</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              問題は、<strong>自分に合わない型を他人から押し付けられたときに苦しくなる</strong>ことです。守りの積立型の人が「今どきは攻めないとダメだよ」と投資を勧められて疲弊したり、好きで稼ぐ型の人が「もっと効率よく稼げる仕事にしたら？」と言われて自分を見失ったり。<strong>自分のタイプに合った付き合い方をすること</strong>が、長い目で見ると一番お金とも仲良くなれる方法だと思います。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌱 下位タイプは「小さな経済圏」で勝負すると強い
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで下位になっている<strong>INFP・ISFP・ESFP</strong>といったタイプは、一般的な「仕事運」の尺度で測ると確かに低めに見えます。でも、<strong>「大きな会社で出世する」「効率的に組織で稼ぐ」</strong>という前提が変わった瞬間、状況はがらりと変わります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              たとえばINFPの人が、好きな分野で少数の熱心なファンに向けてコンテンツを届ける——そういう「小さな経済圏」では、このタイプの持つ世界観の強さがそのまま収益に変わります。ISFPのデザインや美的感覚も、同じように「分かる人に届けば高く買ってもらえる」世界です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ESFPの場を盛り上げる力は、接客やエンタメで直接的にお金になる才能です。大きな組織の中で評価されにくくても、「一人の顧客を楽しませる」仕事では圧倒的な強みになります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              <strong>ランキングが下のタイプは、「大きな組織で稼ぐ」ではなく「自分の色で稼ぐ」に軸を変えると、急に景色が変わる</strong>——これは私が強く伝えたい視点です。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌀 仕事運・金運は「環境との噛み合わせ」で決まる
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              最後に、ちょっと哲学的な話を。私はこのランキングを眺めていて、<strong>仕事運や金運は「タイプ」単体で決まるのではなく、「タイプ × 環境」の噛み合わせで決まる</strong>と感じています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ENTJが大企業の経営陣にいれば上位ランキングの威力を発揮しますが、クリエイティブなスタートアップの中ではENTPやENFPのほうが光るかもしれません。ISTJが事務職で盤石な信頼を築ける一方、変化の激しいIT業界ではISTPのほうが適応できる。<strong>同じタイプでも、どの環境にいるかで仕事運・金運は大きく変わる</strong>のです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              だから、このランキングで下位だったとしても、<strong>「自分のタイプが活きる環境を選び直す」</strong>という発想で、いつでもリセットできます。転職・副業・独立・引っ越し——環境を変えるチャンスは意外とたくさんあります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              占いや診断は、「今の環境に合わせて自分を変える」のではなく、<strong>「自分に合う環境を選ぶための地図」</strong>として使ってもらえたら、もっと楽に生きられる人が増えるんじゃないかと思っています。今のあなたが苦しいなら、タイプのせいではなく、環境との噛み合わせが今たまたまズレているだけ、かもしれません。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

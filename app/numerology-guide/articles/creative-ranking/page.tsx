@@ -43,25 +43,33 @@ export default function CreativeRankingArticlePage() {
         <article>
           <header className="space-y-4">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-              <p className="text-violet-400 text-xs font-bold uppercase tracking-wider">
+              <p className="text-violet-600 text-xs font-bold uppercase tracking-wider">
                 数秘術コラム
               </p>
               {publishedDate && (
-                <p className="text-slate-400 text-xs">
+                <p className="text-gray-500 text-xs">
                   📅 {publishedDate} 掲載
                 </p>
               )}
             </div>
-            <h1 className="text-2xl font-black text-white leading-tight">
+            <h1 className="text-2xl font-black text-violet-900 leading-tight">
               数秘術でクリエイティブ才能ランキング
             </h1>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               ライフパスナンバーごとの特性から、表現・創作に向いている順にランキングしました。アート・音楽・文章・デザインなど、クリエイティブな活動の参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                数秘術の創造性は、<strong>数字それぞれの「表現の方向性」</strong>で形が変わります。生まれた数字によって「自分にとって自然に出てくる表現」が違うので、他人の才能と比べるよりも、自分の方向を知ることが先決です。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                この記事では、ランキングを紹介したあと、<strong>数字ごとのクリエイティブの形</strong>や、<strong>ランキング下位の数字ならではの創造力</strong>についても書いています。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
-            <h2 className="text-lg font-bold text-white border-b-2 border-violet-600/50 pb-2">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
               📊 ランキング一覧
             </h2>
             <div className="space-y-4">
@@ -70,31 +78,31 @@ export default function CreativeRankingArticlePage() {
                 const rank = i + 1;
                 const rankStyle =
                   rank === 1
-                    ? "bg-amber-500/20 border-amber-400/50 text-amber-100"
+                    ? "bg-amber-100 border-amber-300 text-amber-900"
                     : rank <= 3
-                    ? "bg-amber-500/10 border-amber-400/30 text-amber-50"
-                    : "bg-white/10 border-violet-600/30 text-slate-200";
+                    ? "bg-amber-50 border-amber-200 text-amber-800"
+                    : "bg-white border-violet-200 text-gray-800";
                 return (
                   <div
                     key={item.num}
                     className={`rounded-2xl border-2 p-4 ${rankStyle}`}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-white/20 border-2 border-violet-500/50 flex items-center justify-center font-black text-white shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-violet-100 border-2 border-violet-300 flex items-center justify-center font-black text-violet-700 shrink-0">
                         {rank}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
                           <span className="text-2xl">{data?.emoji ?? "🔢"}</span>
-                          <span className="font-bold text-white">
+                          <span className="font-bold text-violet-900">
                             ライフパスナンバー【{item.num}】{data?.title ?? ""}
                           </span>
                         </div>
-                        <p className="text-slate-200 text-sm leading-relaxed">
+                        <p className="text-gray-700 text-sm leading-relaxed">
                           {item.reason}
                         </p>
                         {data?.keywords && (
-                          <p className="text-xs text-violet-400 mt-2">
+                          <p className="text-xs text-violet-600 mt-2">
                             {data.keywords.slice(0, 3).join("・")}
                           </p>
                         )}
@@ -107,24 +115,77 @@ export default function CreativeRankingArticlePage() {
           </section>
 
           <section className="mt-10 space-y-4">
-            <h2 className="text-lg font-bold text-white border-b-2 border-violet-600/50 pb-2">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
               💡 ランキングの見方
             </h2>
-            <div className="rounded-2xl bg-white/10 border border-violet-600/30 p-4 space-y-3">
-              <p className="text-slate-200 text-sm leading-relaxed">
+            <div className="rounded-2xl bg-white border border-violet-200 p-4 space-y-3">
+              <p className="text-gray-700 text-sm leading-relaxed">
                 このランキングは、数秘術における各ライフパスナンバーの<strong>創造性・表現力・美的センス・インスピレーション</strong>などの特性を総合的に考慮したものです。
               </p>
-              <p className="text-slate-200 text-sm leading-relaxed">
+              <p className="text-gray-700 text-sm leading-relaxed">
                 下位の数字だからクリエイティブになれないわけではありません。4は堅実な設計で、22は壮大なビジョンで、それぞれの形で創造しています。自分の表現スタイルを見つけましょう。
               </p>
             </div>
           </section>
 
           <section className="mt-10 space-y-4">
-            <h2 className="text-lg font-bold text-white border-b-2 border-violet-600/50 pb-2">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🎨 数字ごとの「クリエイティブの形」
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              数秘術では、ライフパスナンバーによって<strong>表現の得意分野</strong>がはっきりと分かれます。「自分には創造性がない」と感じる人も、実は別の数字が持つ形を参考にしているだけで、自分の形に気づいていないことが多いです。
+            </p>
+            <div className="rounded-2xl bg-white border border-violet-200 p-4 text-sm text-gray-700 leading-relaxed space-y-2">
+              <p><strong className="text-violet-700">3（表現者）</strong>：言葉・歌・SNS・プレゼン。「外に出す」ことで磨かれる創造性。</p>
+              <p><strong className="text-violet-700">9（普遍）</strong>：物語・映画・絵本。大きなテーマを深く描く創造性。</p>
+              <p><strong className="text-violet-700">11（直感）</strong>：インスピレーション・ビジョン。説明しきれないものを掴む創造性。</p>
+              <p><strong className="text-violet-700">6（愛）</strong>：料理・インテリア・ギフト。「誰かを想う」ことから生まれる創造性。</p>
+              <p><strong className="text-violet-700">5（自由）</strong>：旅・イベント・コラボ。動きの中から次の一手が生まれる創造性。</p>
+              <p><strong className="text-violet-700">7（探求）</strong>：研究・分析・哲学。孤独な思考の果てに立ち上がる創造性。</p>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              「創造性」というたった一つの言葉の裏に、これだけ違う顔があるんですよね。<strong>自分にフィットする形を見つけられれば、表現はぐっと楽になる</strong>——それが数秘術から受け取れる大きなヒントです。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🌱 ランキング下位の数字にも「独自の創造力」がある
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで下位になっている<strong>8（実行力）・22（ビジョン）・4（堅実）</strong>は、「アートや音楽を作る」という意味では派手に見えにくいかもしれません。でも、<strong>「創造する」という行為の幅を広げて見る</strong>と、これらの数字にも確かな創造力があります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              8の人が生み出すのは<strong>「ビジネスモデルという作品」</strong>。誰かの生活を変える仕組みを作ることは、絵を描くのとはまた違う形の創造です。22の人が描くのは<strong>「未来という設計図」</strong>。存在しない世界を構想し、それを現実にする行為は最大級の創造力と言えます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              4の人が作り上げるのは<strong>「仕組みという作品」</strong>。日々を滑らかに回す手順を地道に組み立てる力も、れっきとした創造の一形態です。ランキング下位だからと諦めるのではなく、<strong>自分の数字に合った創造のジャンルを探してみる</strong>——そこに発見があります。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🌀 数秘術との、ちょうどいい距離感
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              数秘術は生まれた日から決まる数字なので、結果を読むと「自分にはこれしかできないのかな」と窮屈に感じる人もいるかもしれません。でも私は、数字は<strong>「自然に湧いてくる方向を教えてくれる地図」</strong>であって、「他の方向を禁止する鎖」ではないと思っています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              創造性は、数字とは違うベクトルで後から身につけることもできます。大事なのは、<strong>「まず自分の数字に素直に出してみる」</strong>こと。無理に下位の数字が得意な分野に挑むより、自分の数字の得意ゾーンで一度手応えを掴んだほうが、創造性は確実に育ちます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ランキングを見て嬉しい気持ちも、落ち込む気持ちも、どちらも大切な感情です。それをきっかけに、今日ひとつ何かを作ってみる——それだけで、数秘術はとても優しい存在になってくれるはずです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              そしてもうひとつ、覚えておいてほしいのが<strong>「創造性は出し続けることで育つ」</strong>というシンプルな事実です。数字が何であれ、手を止めた瞬間に創造性は錆びつきます。逆に、下位の数字の人でも、毎日少しずつ何かを作り続ければ、自分の数字に合った表現の筋道が見えてきます。数秘術の結果は入り口にすぎず、続けるかどうかはいつだって自分次第。その意味で、占いは「始めるきっかけ」として最高のツールだなと私は思っています。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
               🔢 あなたのライフパスナンバーを調べる
             </h2>
-            <p className="text-slate-300 text-sm">
+            <p className="text-gray-600 text-sm">
               生年月日からライフパスナンバーを計算し、性格・相性・今年のテーマまで診断できます。
             </p>
             <Link

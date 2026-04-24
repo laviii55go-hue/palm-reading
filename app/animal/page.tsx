@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   ANIMALS,
@@ -258,14 +258,19 @@ export default function AnimalFortunePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+      <PageHeader
+        variant="fortune"
+        theme="animal"
+        subText="動物占い"
+        links={[
+          { type: "guide", href: "/animal-guide" },
+          { type: "articles", href: "/animal-guide/articles" },
+        ]}
+      />
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
 
-        {/* ヘッダー */}
+        {/* タイトル・ヒーロー画像 */}
         <div className="text-center space-y-1">
-          <div className="flex items-center justify-between">
-            <TopBannerLink />
-            <Link href="/animal-guide" className="text-xs text-green-600 border border-green-300 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">📖 ガイド</Link>
-          </div>
           <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
             <Image
               src="/animal-top.webp"
@@ -357,7 +362,6 @@ export default function AnimalFortunePage() {
                   </button>
                   <p className="text-xs text-center text-gray-400">60種類の動物キャラから診断します</p>
                 </div>
-                <AdBanner />
               </>
             )}
 
@@ -428,9 +432,6 @@ export default function AnimalFortunePage() {
                   💞 相性診断へ行く（相手の情報入力）
                 </button>
 
-                <AdBanner />
-                <RakutenWidget />
-
                 {/* シェアボタン */}
                 <div className="bg-white rounded-3xl shadow-sm p-5 space-y-3">
                   <p className="text-center text-sm font-bold text-gray-600">結果をシェアする</p>
@@ -458,6 +459,9 @@ export default function AnimalFortunePage() {
                 >
                   別の生年月日で診断する
                 </button>
+
+                <AdBanner />
+                <RakutenWidget />
               </div>
             )}
           </>
@@ -531,7 +535,6 @@ export default function AnimalFortunePage() {
                     💞 相性を診断する
                   </button>
                 </div>
-                <AdBanner />
               </>
             )}
 
@@ -591,9 +594,6 @@ export default function AnimalFortunePage() {
                   <p className="text-gray-600 text-sm leading-relaxed">{compat.love}</p>
                 </div>
 
-                <AdBanner />
-                <RakutenWidget />
-
                 {/* シェアボタン */}
                 <div className="bg-white rounded-3xl shadow-sm p-5 space-y-3">
                   <p className="text-center text-sm font-bold text-gray-600">結果をシェアする</p>
@@ -629,6 +629,9 @@ export default function AnimalFortunePage() {
                     最初からやり直す
                   </button>
                 </div>
+
+                <AdBanner />
+                <RakutenWidget />
               </div>
             )}
           </>

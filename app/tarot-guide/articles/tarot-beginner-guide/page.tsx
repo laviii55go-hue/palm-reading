@@ -44,6 +44,14 @@ export default function TarotBeginnerGuidePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               タロット占いを始めたい人向けの入門記事。大アルカナとは何か、どう読むか、3択占いの楽しみ方まで解説します。
             </p>
+            <div className="rounded-2xl border border-purple-200 bg-purple-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                タロットに興味はあるけれど、「難しそう」「怖い結果が出たらどうしよう」と足踏みしてしまう人は少なくありません。この記事は、そういう<strong>最初の一歩を優しく踏み出したい人</strong>のために書いています。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                基礎知識のあとに、<strong>初心者が陥りやすい罠</strong>や、<strong>タロットと健康的に付き合うコツ</strong>もまとめました。特別な知識はいりません、どうぞ気軽に読み進めてください。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-4">
@@ -151,6 +159,53 @@ export default function TarotBeginnerGuidePage() {
                 AIは大アルカナの伝統的な解釈と、その日の天体配置を組み合わせてメッセージを生成しています。占い師の「感覚」とは異なりますが、毎回異なる角度からの気づきを得られるのがAIタロットの面白さです。
               </p>
             </div>
+          </section>
+
+          <section className="mt-8 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🌱 初心者が陥りがちな3つの罠
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              タロットを始めたばかりの頃に、多くの人がハマってしまう<strong>3つの罠</strong>があります。先に知っておくと、健やかな距離感でタロットを楽しめます。
+            </p>
+            <div className="space-y-3">
+              <div className="rounded-2xl border-2 border-purple-100 bg-white p-4 space-y-2">
+                <h3 className="font-bold text-purple-900 text-sm">罠1: 同じことを何度も引いて「当たり」を探す</h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  「今のカード微妙だから、もう1回引こう」を繰り返すと、結局どれが本物のメッセージか分からなくなります。<strong>1つの問いには1回だけ</strong>——それがタロットとの信頼関係の作り方です。
+                </p>
+              </div>
+              <div className="rounded-2xl border-2 border-purple-100 bg-white p-4 space-y-2">
+                <h3 className="font-bold text-purple-900 text-sm">罠2: 悪いカードが出たら落ち込んで終わる</h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  塔や死神、悪魔のようなカードが出ると、それだけで1日ネガティブに過ごしてしまうことがあります。でも<strong>これらのカードは「変化の合図」</strong>であって、ダメ出しではありません。「何を変えるタイミングかな？」と質問を切り替えると、急に建設的なメッセージに変わります。
+                </p>
+              </div>
+              <div className="rounded-2xl border-2 border-purple-100 bg-white p-4 space-y-2">
+                <h3 className="font-bold text-purple-900 text-sm">罠3: タロット任せで決断をまる投げする</h3>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  大事な決断の全責任をタロットに委ねてしまうと、結果が外れたときの失望が大きくなります。<strong>タロットはあくまで「自分の直感を引き出すための鏡」</strong>で、決断の主役は自分自身。カードの言葉と自分の気持ちの両方を並べて考えるのが、健康的な付き合い方です。
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-8 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🌀 「誰かのため」に引く前に気をつけたいこと
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              タロットに慣れてくると、「家族や友人のことも占ってみよう」という気持ちが湧いてきます。これは自然なことですが、いくつか注意点があります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              まず、<strong>本人の同意なしに占うのはやめた方がいい</strong>というのが、多くのタロット使いが共有している暗黙のルールです。ご家族や恋人の未来を黙って占うと、結果によって自分の接し方が変わってしまい、それが相手に伝わってしまうからです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              もうひとつ、<strong>アドバイスとして伝えるとき、カードの言葉をそのまま流用しない</strong>。たとえば塔が出たからといって「あなたに大きな転換が来るよ」と告げるのは、相手を不安にさせるだけになりがちです。<strong>自分の中でカードを噛み砕き、受け取ったヒントを自分の言葉で話す</strong>ほうがずっと優しい伝わり方になります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              タロットは<strong>自分との対話の道具</strong>として使うのが一番シンプルで安全。他人への助言ツールにしようとすると、思わぬトラブルになることもあるので、最初のうちは自分のために使うことから始めるのがおすすめです。慣れてきて、相手からリクエストがあった場合だけ引く——くらいのルールを自分で決めておくと安心です。
+            </p>
           </section>
 
           <section className="mt-8 space-y-4">

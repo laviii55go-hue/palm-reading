@@ -20,6 +20,14 @@ export default function FooterLinks({ className = "text-center mt-4", linkClassN
         サイトマップ
       </Link>
       <span className="text-gray-300 mx-2">|</span>
+      <Link href="/about" className={linkClassName}>
+        運営者情報
+      </Link>
+      <span className="text-gray-300 mx-2">|</span>
+      <Link href="/contact" className={linkClassName}>
+        お問い合わせ
+      </Link>
+      <span className="text-gray-300 mx-2">|</span>
       <Link href="/privacy" className={linkClassName}>
         プライバシーポリシー
       </Link>

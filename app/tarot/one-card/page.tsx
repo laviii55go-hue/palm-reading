@@ -281,8 +281,6 @@ export default function OneCardPage() {
                   </a>
                 </div>
 
-                <AdBanner />
-
                 {/* もう一度引く & 導線 */}
                 <div className="space-y-3 pt-2">
                   <button
@@ -308,6 +306,7 @@ export default function OneCardPage() {
                   </div>
                 </div>
 
+                <AdBanner />
                 <RakutenWidget />
               </div>
             )}
@@ -317,7 +316,6 @@ export default function OneCardPage() {
         {/* フッター導線（intro/back時） */}
         {phase !== "revealed" && (
           <div className="mt-12 space-y-4">
-            <AdBanner />
             <div className="text-center space-y-2">
               <Link
                 href="/tarot"
@@ -338,6 +336,7 @@ export default function OneCardPage() {
                 手のひらの予言者トップへ →
               </Link>
             </div>
+            <AdBanner />
             <RakutenWidget />
           </div>
         )}

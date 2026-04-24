@@ -6,6 +6,7 @@ import { TAROT_MAJOR_ARCANA } from "./data/tarotData";
 import { ARTICLES as NUMEROLOGY_ARTICLES } from "./numerology-guide/articles/articlesConfig";
 import { ARTICLES as PERSONALITY_ARTICLES } from "./personality-guide/articles/articlesConfig";
 import { ARTICLES as TAROT_ARTICLES } from "./tarot-guide/articles/articlesConfig";
+import { ARTICLES as ANIMAL_ARTICLES } from "./animal-guide/articles/articlesConfig";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://uranai-tenohira.jp";
@@ -216,6 +217,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/animal-guide/articles`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    ...ANIMAL_ARTICLES.map((a) => ({
+      url: `${baseUrl}/animal-guide/articles/${a.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    {
       url: `${baseUrl}/blood-type`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -289,15 +302,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...personalityTypeUrls,
     {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/changelog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
       priority: 0.5,
     },
     {

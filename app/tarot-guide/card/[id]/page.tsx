@@ -10,6 +10,7 @@ import {
   TAROT_CARD_IMAGES,
 } from "../../../data/tarotData";
 import { TAROT_CARD_SEO } from "../../../data/tarotSeoData";
+import { TAROT_CARD_PERSONAL } from "../../../data/tarotPersonalData";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -41,6 +42,7 @@ export default async function TarotCardDetailPage({ params }: Props) {
 
   const history = TAROT_CARD_HISTORY[cardId] ?? "";
   const seo = TAROT_CARD_SEO[cardId];
+  const personal = TAROT_CARD_PERSONAL[cardId];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white">
@@ -85,6 +87,34 @@ export default async function TarotCardDetailPage({ params }: Props) {
           </h2>
           <p className="text-gray-700 text-sm leading-relaxed">{history}</p>
         </section>
+
+        {/* 独自メッセージ：このカードを引いたあなたへ */}
+        {personal && (
+          <section className="space-y-4">
+            <h2 className="text-lg font-bold text-violet-900 border-b-2 border-violet-200 pb-2">
+              💫 このカードを引いたあなたへ
+            </h2>
+            <div className="rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 border-2 border-violet-200 p-5">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {personal.personalMessage}
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-white border border-violet-100 p-5 shadow-sm">
+              <p className="font-bold text-violet-700 text-sm mb-2">🕰 こんな時に引くと意味があるカード</p>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {personal.whenToDraw}
+              </p>
+            </div>
+
+            <div className="rounded-2xl bg-amber-50 border border-amber-100 p-5">
+              <p className="font-bold text-amber-700 text-sm mb-2">🌱 日常での受け取り方ミニエピソード</p>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {personal.miniEpisode}
+              </p>
+            </div>
+          </section>
+        )}
 
         {/* 正位置の意味 */}
         <section className="space-y-3">

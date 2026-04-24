@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -47,16 +47,14 @@ const TOC = [
 export default function BloodTypeGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-rose-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <TopBannerLink />
-            <Link href="/blood-type" className="text-rose-600 text-xs border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">🩸 占いへ</Link>
-          </div>
-          <span className="text-xs text-gray-400">血液型占い入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="blood-type"
+        subText="血液型占い入門ガイド"
+        links={[
+          { type: "fortune", href: "/blood-type" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
         {/* タイトル */}

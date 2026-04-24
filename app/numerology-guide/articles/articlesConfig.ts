@@ -9,7 +9,7 @@
 //   "2026-03-25" → 3/18〜3/25の記事を表示
 //   "9999-12-31" → 全記事を表示（開発・確認用）
 //
-export const ARTICLE_CUTOFF_DATE = "2026-03-27";
+export const ARTICLE_CUTOFF_DATE = "2026-04-21";
 
 export const ARTICLES = [
   { slug: "group-ranking", emoji: "👥", title: "数秘術でグループ・集団行動に向いているランキング", desc: "協調性が高い数字、チームで活躍するライフパスナンバーをランキング形式で解説。", publishedAt: "2026-03-18" },
@@ -20,6 +20,7 @@ export const ARTICLES = [
   { slug: "healing-ranking", emoji: "🕊️", title: "数秘術で癒し系・相談相手向きランキング", desc: "2・6・33など、話を聞く・支える役割が得意なライフパスナンバーをランキング形式で解説。", publishedAt: "2026-04-22" },
   { slug: "creative-ranking", emoji: "✨", title: "数秘術でクリエイティブ才能ランキング", desc: "3・9・11など、表現・創作に向いているライフパスナンバーをランキング形式で解説。", publishedAt: "2026-04-29" },
   { slug: "compatibility-pairs", emoji: "💞", title: "数秘術の相性の組み合わせ解説", desc: "「1と2の相性」「3と7の相性」など、代表的な数字の組み合わせを記事形式で解説。", publishedAt: "2026-05-06" },
+  { slug: "personal-year-cycle", emoji: "🌀", title: "数秘術の9年サイクル｜個人年数で知る「今年のあなたのテーマ」", desc: "数秘術の個人年数（Personal Year Number）の計算方法と、1年〜9年それぞれの意味を解説。人生を9年単位の波として捉える考え方を紹介。", publishedAt: "2026-04-21" },
 ] as const;
 
 export function formatArticleDate(isoDate: string): string {

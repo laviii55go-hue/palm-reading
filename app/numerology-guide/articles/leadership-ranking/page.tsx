@@ -59,6 +59,14 @@ export default function LeadershipRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               ライフパスナンバーごとの特性から、先頭に立つ力・リーダーシップが強い順にランキングしました。仕事、チーム、プロジェクトなどでリードする場面の参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                数秘術では、「リーダーシップ」にも数字ごとに<strong>まったく違う顔</strong>があります。前に立って引っ張るだけがリーダーではなく、後ろから支える、横に並んで歩く、そんなリーダーシップもあります。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                この記事では、ランキングのあとに、<strong>数字ごとのリーダーシップの形</strong>や、<strong>ランキング下位の数字にも確かなリーダーシップがある</strong>という話を書いています。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -119,6 +127,59 @@ export default function LeadershipRankingArticlePage() {
                 下位の数字だからリーダーになれないわけではありません。2は調和型、7は分析型など、リーダーシップのスタイルは数字によって異なります。自分の強みを活かしたリーダー像を探してみてください。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              👑 数字ごとの「リーダーシップの形」
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              リーダーシップは、数字によって発揮される場面も、発揮のされ方も大きく違います。ランキング上位の数字も、それぞれ<strong>リードする領域</strong>がはっきり分かれています。
+            </p>
+            <div className="rounded-2xl bg-white border border-violet-200 p-4 text-sm text-gray-700 leading-relaxed space-y-2">
+              <p><strong className="text-violet-700">8（成功者）</strong>：結果を出すリーダーシップ。「数字で勝つ」組織づくりが得意。</p>
+              <p><strong className="text-violet-700">22（建築家）</strong>：構想を具現化するリーダーシップ。長期プロジェクトの司令塔。</p>
+              <p><strong className="text-violet-700">1（開拓者）</strong>：ゼロから始めるリーダーシップ。誰もやっていない道を切り開く。</p>
+              <p><strong className="text-violet-700">11（直感）</strong>：ビジョンで鼓舞するリーダーシップ。「そっちじゃない」と方向を示す。</p>
+              <p><strong className="text-violet-700">4（堅実）</strong>：基盤を作るリーダーシップ。組織の土台をじっくり整える。</p>
+              <p><strong className="text-violet-700">9（普遍）</strong>：理念で繋ぐリーダーシップ。「なぜこれをやるのか」を語る。</p>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              同じ「強いリーダー」でも、これだけ違う形があります。<strong>どのタイプのリーダーが自分に向いているか</strong>を知っておけば、組織の中で無理なく力を発揮できます。無理に別の数字のリーダー像に寄せようとすると、本来の強みが薄まってしまうので注意。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🌱 ランキング下位の数字にも「別の形のリーダー」がある
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで下位になっている<strong>33（奉仕）・5（自由）・7（探求）</strong>は、「表舞台に立つリーダー」としては向きにくい数字かもしれません。でも、<strong>リーダーという言葉の定義を広げる</strong>と、これらの数字にも独特のリーダーシップが見えてきます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              33の人は、<strong>「人を育てるリーダーシップ」</strong>。先頭に立つのではなく、メンバー一人一人を後ろから照らして伸ばす、教育者のような立ち位置です。直接指示を出さなくても、関わった人が自然に成長していく力があります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              5の人は、<strong>「変化を起こすリーダーシップ」</strong>。停滞している組織に新しい風を吹き込み、「このままじゃダメだ」と気づかせる存在です。組織のトップには向かなくても、組織を柔軟にする上では欠かせない存在。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              7の人は、<strong>「知恵で導くリーダーシップ」</strong>。表舞台には立たないけれど、意思決定の裏で鋭い洞察を提供し、組織を賢くする参謀のような役割を担えます。裏方だから価値がないのではなく、裏方だからこそ見える景色があるんです。優れたリーダーの背後には、たいてい7的な参謀が一人は控えていると言われるほどです。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🌀 リーダーシップは、時期によっても形を変える
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              数秘術のライフパスナンバーは生年月日から決まる固定の数字ですが、<strong>リーダーシップの発揮の仕方は年齢や経験によって変わっていく</strong>ものです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              若い頃は「1」的な開拓者として先頭を走っていた人が、年齢を重ねるうちに「9」的な理念を語る人になったり。ずっとサポート役だった人が、あるタイミングで「22」的な大きな構想を語り始めることもあります。数字は<strong>「得意な走り方の傾向」</strong>を示してくれるだけで、リーダーシップそのものは練習と経験で育っていきます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ランキング上位だからといって、いきなり完璧なリーダーになれるわけでもありません。<strong>数字はスタート地点、育てていくのは自分自身</strong>——そう考えると、下位の数字の人も、ゆっくり自分のリーダーシップを育てていけると思えてきます。今のポジションがしっくり来ないなら、もしかしたら別の形のリーダーシップを試すタイミングなのかもしれません。自分の数字が示す「自然な領域」から少しずらして、一歩踏み出してみる——そんな使い方も数秘術の味わい深い側面だなと思っています。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

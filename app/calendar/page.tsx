@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   getRokuyo,
@@ -16,6 +16,15 @@ import {
 const MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
 
+const ROKUYO_SLUG: Record<string, string> = {
+  "大安": "taian",
+  "友引": "tomobiki",
+  "先勝": "senshou",
+  "先負": "senbu",
+  "赤口": "shakkou",
+  "仏滅": "butsumetsu",
+};
+
 export default function CalendarPage() {
   const now = new Date();
   const [year, setYear] = useState(now.getFullYear());
@@ -26,12 +35,14 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
+      <PageHeader
+        variant="fortune"
+        theme="calendar"
+        subText="開運カレンダー"
+        links={[{ type: "guide", href: "/calendar-guide" }]}
+      />
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <div className="flex items-center justify-between gap-2">
-            <TopBannerLink />
-            <Link href="/calendar-guide" className="text-xs text-amber-600 border border-amber-300 rounded-full px-3 py-1 hover:bg-amber-50 transition-colors">📖 ガイド</Link>
-          </div>
           <h1 className="text-2xl font-black text-amber-900 mt-3">📅 開運カレンダー</h1>
           <p className="text-amber-700 text-sm">六曜で吉日をチェック</p>
         </div>
@@ -77,12 +88,16 @@ export default function CalendarPage() {
                   for (let d = 1; d <= days; d++) {
                     const rokuyo = getRokuyo(year, month, d);
                     const style = getRokuyoStyle(rokuyo);
+                    const slug = ROKUYO_SLUG[rokuyo];
                     week.push(
                       <td key={d} className="p-1">
-                        <div className={`rounded-lg p-1.5 text-center border ${style.border} ${style.bg}`}>
+                        <Link
+                          href={slug ? `/calendar-guide#rokuyo-${slug}` : "/calendar-guide"}
+                          className={`block rounded-lg p-1.5 text-center border ${style.border} ${style.bg} hover:brightness-95 transition-all`}
+                        >
                           <div className={`font-bold ${style.text}`}>{d}</div>
                           <div className="text-[10px]">{rokuyo}</div>
-                        </div>
+                        </Link>
                       </td>
                     );
                     if (week.length === 7) {
@@ -101,14 +116,20 @@ export default function CalendarPage() {
           </div>
 
           <div className="space-y-2 pt-2 border-t border-amber-100">
-            <p className="text-amber-800 font-bold text-sm">六曜の意味</p>
+            <p className="text-amber-800 font-bold text-sm">六曜の意味（タップでガイドへ）</p>
             {Object.entries(ROKUYO_DESC).map(([name, desc]) => {
               const s = getRokuyoStyle(name);
+              const slug = ROKUYO_SLUG[name];
               return (
-                <div key={name} className={`rounded-lg px-3 py-2 ${s.bg} ${s.border} border`}>
+                <Link
+                  key={name}
+                  href={slug ? `/calendar-guide#rokuyo-${slug}` : "/calendar-guide"}
+                  className={`block rounded-lg px-3 py-2 ${s.bg} ${s.border} border hover:brightness-95 transition-all`}
+                >
                   <span className={`font-bold ${s.text}`}>{name}</span>
                   <span className="text-gray-600 text-xs ml-2">{desc}</span>
-                </div>
+                  <span className="text-amber-500 text-xs ml-1">→</span>
+                </Link>
               );
             })}
           </div>

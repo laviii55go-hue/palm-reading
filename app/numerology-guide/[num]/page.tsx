@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import AdBanner from "../../components/AdBanner";
 import RakutenWidget from "../../components/RakutenWidget";
 import { NUMEROLOGY_DATA } from "../../data/numerologyData";
+import { NUMEROLOGY_PERSONAL } from "../../data/numerologyPersonalData";
 
 const VALID_NUMBERS = Object.keys(NUMEROLOGY_DATA).map(Number);
 
@@ -37,6 +38,7 @@ export default async function NumerologyNumberPage({ params }: Props) {
   if (!data || !VALID_NUMBERS.includes(numId)) notFound();
 
   const isMaster = [11, 22, 33].includes(numId);
+  const personal = NUMEROLOGY_PERSONAL[numId];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white">
@@ -80,6 +82,38 @@ export default async function NumerologyNumberPage({ params }: Props) {
             ))}
           </div>
         </div>
+
+        {/* 独自メッセージ */}
+        {personal && (
+          <>
+            <section className="rounded-2xl bg-gradient-to-br from-violet-50 to-purple-50 border-2 border-violet-200 p-5">
+              <h2 className="font-bold text-violet-800 flex items-center gap-2 mb-3">
+                <span>💫</span> この数字を持つあなたへ
+              </h2>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {personal.personalMessage}
+              </p>
+            </section>
+
+            <section className="rounded-2xl border-2 border-violet-100 bg-white p-5">
+              <h2 className="font-bold text-violet-800 flex items-center gap-2 mb-3">
+                <span>🕰</span> 人生の節目でどう現れるか
+              </h2>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {personal.lifeStage}
+              </p>
+            </section>
+
+            <section className="rounded-2xl border-2 border-amber-100 bg-amber-50/50 p-5">
+              <h2 className="font-bold text-amber-800 flex items-center gap-2 mb-3">
+                <span>🌱</span> この数字の人生のレッスン
+              </h2>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {personal.lifeLesson}
+              </p>
+            </section>
+          </>
+        )}
 
         {/* 性格 */}
         <section className="rounded-2xl border-2 border-violet-100 bg-white p-5">

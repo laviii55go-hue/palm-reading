@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -35,13 +35,13 @@ export default function BloodTypePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white">
+      <PageHeader
+        variant="fortune"
+        theme="blood-type"
+        subText="血液型占い"
+        links={[{ type: "guide", href: "/blood-type-guide" }]}
+      />
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
-        {/* ヘッダー */}
-        <div className="flex items-center justify-between">
-          <TopBannerLink />
-          <Link href="/blood-type-guide" className="text-rose-600 text-xs border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">📖 ガイド</Link>
-        </div>
-
         <div className="text-center space-y-2">
           <div className="text-5xl">🩸</div>
           <h1 className="text-2xl font-bold text-rose-800">血液型占い</h1>

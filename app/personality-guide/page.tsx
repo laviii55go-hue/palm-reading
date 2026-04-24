@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -101,16 +101,15 @@ export default function PersonalityGuidePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-teal-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <TopBannerLink />
-            <Link href="/personality" className="text-teal-600 text-xs border border-teal-300 rounded-full px-3 py-1 hover:bg-teal-50 transition-colors">🧠 診断へ</Link>
-          </div>
-          <span className="text-xs text-gray-400">入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="personality"
+        subText="16タイプ入門ガイド"
+        links={[
+          { type: "fortune", href: "/personality", label: "診断へ" },
+          { type: "articles", href: "/personality-guide/articles" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
 
@@ -207,6 +206,30 @@ export default function PersonalityGuidePage() {
         </section>
 
         <AdBanner />
+
+        {/* 監修・参考文献 */}
+        <section id="references" className="space-y-4">
+          <h2 className="text-xl font-black text-teal-900 border-b-2 border-teal-200 pb-2">
+            📚 監修・参考文献
+          </h2>
+          <div className="bg-white rounded-2xl p-5 border border-teal-100 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              当サイトの16タイプ性格診断は、<strong>MBTI（Myers-Briggs Type Indicator）</strong>の4軸理論を基盤にしています。心理学者カール・ユングの「タイプ論」（1921年）を、キャサリン・クック・ブリッグスとイザベル・ブリッグス・マイヤーズが実用的な指標として体系化したものが基礎となっています。
+            </p>
+            <p>
+              4つの軸（E外向／I内向・S感覚／N直観・T思考／F感情・J判断／P知覚）の組み合わせによって<strong>16タイプに分類</strong>する考え方は、世界中で広く用いられている人格理解のフレームです。
+            </p>
+            <p>
+              各タイプの性格描写・恋愛傾向・仕事傾向については、<strong>現代のタイプ論研究や一般的なMBTI解釈書籍</strong>で広く流通している特徴をベースに、当サイトで独自に整理・日本語で記述しています。
+            </p>
+            <p>
+              ※ 本診断はMBTI公式の有料アセスメントではなく、4軸の考え方をもとにした簡易版の診断ツールです。正式なMBTI診断をご希望の方は、公式資格を持つプロフェッショナルにご相談ください。
+            </p>
+            <p className="text-xs text-gray-500 pt-2 border-t border-gray-100">
+              ※ 最終的な文章の編集・推敲は運営者が行っています。
+            </p>
+          </div>
+        </section>
 
         {/* FAQ */}
         <section id="faq" className="space-y-4">

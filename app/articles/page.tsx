@@ -27,6 +27,12 @@ const ARTICLE_CATEGORIES = [
     label: "タロットコラム",
     desc: "3択タロットの楽しみ方・大アルカナの意味を深掘り",
   },
+  {
+    href: "/animal-guide/articles",
+    emoji: "🐾",
+    label: "動物占いコラム",
+    desc: "12動物×5サブタイプの60種類を使いこなすコツ",
+  },
 ] as const;
 
 export default function ArticlesPage() {

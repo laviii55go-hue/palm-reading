@@ -63,6 +63,14 @@ export default function HealingRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               16タイプの特性から、話を聞く・支える役割が得意な順にランキングしました。カウンセラー・ヒーラー・相談役を目指す方の参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                この記事では、ランキングを紹介したうえで、私が感じてきた<strong>「癒しにも4タイプある」</strong>という話や、<strong>ランキング下位のタイプだからこそ持っている「別の癒しの形」</strong>について書いています。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                癒されることも、癒すことも、人生の大事な部分です。ぜひ自分に合う「癒し方」を見つけてもらえたら嬉しいです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -125,6 +133,72 @@ export default function HealingRankingArticlePage() {
                 下位のタイプだから人を支えられないわけではありません。ENTJはリードで、ESTPは行動で、それぞれの形で人を支えています。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌿 「癒し」にも4タイプある
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              人を癒す力にも、よく見ると<strong>4つの異なる方向性</strong>があると感じています。ランキング上位のタイプは、それぞれ得意な癒し方が違います。
+            </p>
+            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+              <div>
+                <p className="font-semibold text-teal-800">① 洞察型（INFJ・INFP）</p>
+                <p>相手の本音や本質に気づいてくれる癒し。「あなたは本当はこう感じているんじゃない？」と静かに言語化してくれる。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">② 献身型（ISFJ・ESFJ）</p>
+                <p>言葉より行動で寄り添う癒し。そっとお茶を淹れてくれる、疲れた日に夕飯を作ってくれる、そういう種類。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">③ 共感型（ENFJ・ISFP）</p>
+                <p>相手の感情に同じ温度で寄り添う癒し。「わかるよ、つらかったよね」と一緒に感じてくれる。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">④ 空気型（ENFP・ESFP）</p>
+                <p>一緒にいるだけで場を明るくしてくれる癒し。「なんかあの人といると元気になる」という種類の癒し。</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              どれが正解ということはなく、<strong>自分が欲しい癒しと、相手が出せる癒しが噛み合うか</strong>が大切です。洞察型の人に「黙って隣にいてほしい」と頼んでも噛み合わないし、空気型の人に「深く内省する手伝い」を期待してもズレます。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌱 ランキング下位のタイプだからこそ出せる癒し
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで下位になっている<strong>ENTJ・ESFP・ESTP・ISTP・ESTJ</strong>あたりのタイプは、「感情的な寄り添いは苦手」と書かれていて、少し傷つくかもしれません。でも、こういうタイプの人にも<strong>「このタイプだから出せる癒し」</strong>が確かにあります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ENTJやESTJの「冷静に解決策を提示してくれる力」は、パニックになっている人にとって最高の癒しです。「今こうすればいい」と示してもらえることで、感情的な沼から一歩抜け出せる人はたくさんいます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ESTPやESFPの「今の楽しさに引き込んでくれる力」は、過去を引きずりがちな人にとっての救いになります。落ち込んでいるときに「とりあえず一緒にご飯食べ行こ！」と連れ出してくれる友達の存在は、どんな深い話よりも救われることがありますよね。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ISTPの「黙って淡々と動いてくれる力」も、疲れ果てた人にとっての癒しです。<strong>人を癒す方法は「感情的に寄り添う」だけじゃない</strong>——これが、ランキング下位のタイプにも読み取ってほしいメッセージです。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌀 「癒せる人」ほど、自分の癒しも大事にしてほしい
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              最後に、ランキング上位の癒しタイプの人に向けた話を少しだけ。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              INFJ・ISFJ・ENFJといった上位タイプは、人の感情を受け取る力が強いぶん、<strong>自分のエネルギーを消耗しやすい</strong>という側面があります。相手の話を聞いてあげることで、自分が疲れてしまう経験は、きっと誰にも覚えがあると思います。気づかないうちに相手の重いものを背負い込んで、夜になると理由もなく涙が出てしまう——そんな夜を何度も過ごしてきた方は、少なくないはずです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              だからこそ、癒す側の人ほど<strong>「自分を癒す時間」をしっかり確保する</strong>ことが大事です。好きな音楽を聴く、お風呂に長く浸かる、黙って一人でカフェに行く、占いや診断で自分の状態を可視化してみる——どんな方法でもいいから、自分を守るルーチンを一つ持っておく。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              占いや診断は、<strong>「今の自分、ちょっと疲れてるな」と気づくためのセルフチェック</strong>としても使えるツールです。人を癒すあなた自身が、まず満たされていますように——そう願いながら、この記事を書いています。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

@@ -63,6 +63,14 @@ export default function TeamworkRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               16タイプの特性から、チームワーク・グループ活動・集団行動に向いている順にランキングしました。仕事のチーム、サークル、ボランティアなど、集団で動く場面での参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                この記事を書いている私は、<strong>趣味のチーム活動と過去のプロジェクト仕事の両方で「タイプが違う人同士がどう噛み合うか」を間近で見てきた</strong>ので、その体験を織り交ぜながらランキングを紹介します。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                とくに<strong>ランキング下位のタイプほどチームで光る瞬間がある</strong>という話は、ぜひ最後まで読んでほしいところです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -125,6 +133,78 @@ export default function TeamworkRankingArticlePage() {
                 下位のタイプだから集団行動が苦手というわけではありません。INTJは戦略で、ESTPは行動で、それぞれ集団に貢献できます。自分の強みを活かすことが大切です。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌀 チーム活動で「配役」が見えるようになった話
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              以前参加していた趣味のチーム活動で、一時期この16タイプ診断が流行ったことがありました。待ち時間の雑談で誰かが診断を始めたのがきっかけで、気がつけば全員の結果をなんとなく共有している状態になっていたんです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              そうすると、それまで「なんとなく場の雰囲気を作ってくれる人」「細かく気遣いしてくれる人」「状況を冷静に整理してくれる人」と感じていたメンバーの役割が、<strong>タイプという言葉で急に輪郭を持ってきた</strong>んですよね。
+            </p>
+            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700 leading-relaxed space-y-2">
+              <p>・<strong>ESFJ／ENFJ</strong>タイプのメンバーは、声かけや連絡の取りまとめを自然にやってくれる「場を作る人」。</p>
+              <p>・<strong>ISFJ／ISTJ</strong>タイプは、裏方作業を黙々と引き受ける「土台を支える人」。</p>
+              <p>・<strong>ENFP／ESFP</strong>タイプは、失敗も笑いに変えて空気を軽くしてくれる「ムードメーカー」。</p>
+              <p>・<strong>INTJ／ISTP</strong>タイプは、冷静に状況を見て的確な指示を出してくれる「参謀」。</p>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              全員がESFJだったら裏方作業は誰もやらないし、全員がINTJだったら場が盛り上がらない。<strong>タイプがバラけているチームこそ、実は機能する</strong>——ランキング下位のタイプにも絶対に必要な役割があるのだと、この経験で実感しました。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              💼 仕事のプロジェクトチームでも同じ光景を見た
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              過去にプロジェクト単位で動く仕事に関わっていた頃にも、同じような光景がありました。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              企画や方向性を決めるフェーズで光るのは、<strong>ENFJやENTJのような人を動かすのが得意なタイプ</strong>と、<strong>INFJやINTJのように本質を掘るタイプ</strong>の組み合わせ。そこから実務フェーズに入ると、黙々と手を動かす<strong>ISTJやISTP</strong>が一気に頼もしくなります。問題が起きた土壇場で、淡々と原因を追いかけて修正するタイプの人の存在感は本当にありがたかった。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              一方で、雰囲気を作る<strong>ESFJ・ENFP</strong>がいないチームは、会議や雑談の空気がどうにもピリつく。スキルだけではチームは回らないんだなと痛感した経験です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              こうして振り返ると、趣味のチーム活動と仕事のプロジェクトで、<strong>機能している「役割の配分」は意外と似ている</strong>と気づきます。遊びであれ、仕事であれ、人が集まって何かを成す場では、やっぱり同じ原理が働いているんですね。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🎯 「協調性ランキング下位」が教えてくれること
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで最下位になっている<strong>ESTP</strong>や、下位に並ぶ<strong>INTJ・INTP・ISFP</strong>は、「協調性」という単一の尺度で見ると確かに点数が低くなるタイプです。でも、それは<strong>「集団に合わせて動く」という軸で測った場合の話</strong>でしかありません。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              実際のチームで見ると、こういう人たちは<strong>誰も思いつかない突破口を開いてくれる存在</strong>だったりします。みんなが「どうするどうする」となっているときに、ESTPがひとりサラッと動いて流れを変えたり、INTJが全体のゴールを描き直してくれたり。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              <strong>協調性が高い＝良いチームメンバー、ではない</strong>と、いまの私は思います。協調性が高すぎると、全員が同じ意見に流れてしまう「集団思考」のリスクも出てきます。ランキング下位の独立性が、チームを健全にブレーキをかける役割を果たしている——そんな見方もあっていいはずです。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌱 自分のタイプを知ると、チームで居場所が見つかる
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              最後に、16タイプ診断をチームの文脈で使うときの私なりの使い方を紹介させてください。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              私は診断するたびに結果が少し揺らぐタイプで、ランキング上位に入ることが多いです。でも「雰囲気を作る役」が向いていると言われても、調子が悪い日もあれば、静かにしていたい日もあります。ランキングや診断結果は、<strong>「絶対こうあるべき」という鎖ではなく、「こういう自分でもいいんだな」という許可証</strong>として使うといいなと思っています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              逆に「自分は下位タイプだから協調性がない」と落ち込む必要もまったくなくて、<strong>そのタイプでしか出せない色がチームには必要</strong>です。あなたが静かに戦略を考えるタイプなら、その戦略が誰かの動きを助けています。あなたが細かく気遣うタイプなら、その気遣いが誰かの疲れを救っています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              <strong>チームはランキング上位だけで回らない。</strong>そのことをぜひ、自分のタイプを知る入り口として持ち帰ってもらえたら嬉しいです。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

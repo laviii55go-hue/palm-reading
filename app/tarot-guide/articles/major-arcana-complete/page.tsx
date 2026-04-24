@@ -48,6 +48,14 @@ export default function MajorArcanaCompletePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               0番「愚者」から21番「世界」まで、一枚一枚が「人生の旅路」を物語のように表現しています。
             </p>
+            <div className="rounded-2xl border border-purple-200 bg-purple-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                この記事では、22枚の意味一覧に加えて、<strong>大アルカナの「愚者の旅」としての構造</strong>、<strong>22枚を3つのグループに分けて理解するコツ</strong>、<strong>毎日のタロットで大アルカナがどう効いてくるか</strong>などを書いています。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                「一覧を見ても意味が頭に入らない」と感じる方にこそ、後半の構造の話が役に立つはずです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -108,6 +116,92 @@ export default function MajorArcanaCompletePage() {
                 </p>
               </div>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🌀 大アルカナは「愚者の旅」という一本の物語
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              大アルカナ22枚は、実はバラバラの意味を持つカードの寄せ集めではありません。<strong>0番の愚者が1番の魔術師、2番の女教皇……と順番に出会いながら、最終的に21番の世界に至る</strong>——そんな「愚者の旅（フールズジャーニー）」という物語として読むことができます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              0番の愚者は、純粋で身軽で、何も持たずに旅立つ若者。1番の魔術師からは「能動性」を、2番の女教皇からは「直観」を学びます。やがて3番の女帝で「豊かさ」を知り、4番の皇帝で「秩序」を身につけ、物語は進んでいきます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              そして13番の死神、16番の塔のような<strong>「破壊と再生のカード」</strong>を経て、愚者は成熟し、最後の21番「世界」で完成と統合を迎えます。このストーリーを一度掴んでおくと、タロットで引いたカードが<strong>「旅のどのあたりのメッセージか」</strong>を直感的に読み取れるようになります。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🎴 22枚を「3つのグループ」に分けて理解する
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              22枚を一度に覚えようとすると大変なので、<strong>3つのグループ</strong>に分けて捉えるのが私のおすすめです。愚者の旅を「3つの章」に分ける見方で、多くの入門書でも紹介されています。
+            </p>
+            <div className="rounded-2xl bg-white border border-purple-200 p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+              <div>
+                <p className="font-semibold text-purple-800">第1章：外の世界との出会い（0〜7番）</p>
+                <p>愚者・魔術師・女教皇・女帝・皇帝・教皇・恋人・戦車。世の中の仕組みを学び、社会的な役割を身につける段階。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-800">第2章：内面との対話（8〜14番）</p>
+                <p>力・隠者・運命の輪・正義・吊るされた男・死神・節制。内側に潜り、自分の真実や変容と向き合う段階。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-800">第3章：統合と完成（15〜21番）</p>
+                <p>悪魔・塔・星・月・太陽・審判・世界。内と外が統合され、真の自由と完成に至る段階。</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このグループ分けを知っておくと、<strong>「いま自分はどの章の試練を味わっているか」</strong>という視点でカードを読めるようになります。塔が出たら「第3章の大きな転換期かも」、吊るされた男が出たら「第2章の内省の時期かも」という具合です。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              ✨ 特に気になる「4つの転換点」のカード
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              22枚の中でも、引いたときにドキッとしやすい<strong>4つの転換点のカード</strong>があります。初心者のうちは怖く感じることが多いので、落ち着いて読み解くコツをここに置いておきます。
+            </p>
+            <div className="rounded-2xl bg-white border border-purple-200 p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+              <div>
+                <p className="font-semibold text-purple-800">13番「死神」</p>
+                <p>死を意味するのではなく、<strong>「終わりと始まり」</strong>を告げるカード。古いやり方を手放して新しい段階に進む準備ができた、というメッセージです。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-800">15番「悪魔」</p>
+                <p>悪運ではなく、<strong>「執着・依存」</strong>に気づかせてくれるカード。手放したいのに手放せない何かがあるとき、冷静にそれを見つめるきっかけをくれます。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-800">16番「塔」</p>
+                <p>破壊の象徴に見えますが、実は<strong>「古い価値観が崩れる瞬間」</strong>。新しい土台を築くためには一度壊れるしかない、という真実を教えてくれるカード。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-purple-800">18番「月」</p>
+                <p>不安・混乱の象徴ですが、<strong>「まだ見えていないものに目を向けて」</strong>という促し。闇の中に真実の手がかりが隠れている、という読み方ができます。</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              これらのカードは怖いものではなく、<strong>人生の深い場所に連れて行ってくれる案内役</strong>。出たときは落ち込むのではなく、「今、何かを変えるタイミングなのかもしれない」と受け取ってみてください。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🌱 毎日のタロットで大アルカナが出たときの受け取り方
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              当サイトの3択タロットでは大アルカナ22枚のみを使っているので、引いたカードはすべて<strong>「人生の大きな流れに関するメッセージ」</strong>という位置づけになります。軽い日常のことを聞いても、そこには大きな示唆が返ってきやすいんです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              たとえば「太陽」が出たら、<strong>「あなたは自分の光を出していい時期にいる」</strong>という応援のカード。月が出たら、<strong>「見えない不安があるかも、その奥を確かめてみて」</strong>という内省のカード。塔が出たら、<strong>「今、大きな価値観の転換が起きようとしている」</strong>というサイン。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              22枚のうちどれが出ても、<strong>あなたの人生の今の章とちゃんと繋がっています</strong>。一覧だけ読むと「ただの意味の羅列」に見えても、愚者の旅という物語と3つの章を頭に入れておけば、カードが急に親しみやすくなります。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

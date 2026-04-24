@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import { getDailyFortune } from "../data/dailyFortuneData";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
@@ -71,12 +71,17 @@ function DailyFortuneContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50">
+      <PageHeader
+        variant="fortune"
+        theme="daily"
+        subText="今日の運勢"
+        links={[
+          { type: "fortune", href: "/daily-fortune-ranking", label: "ランキング", icon: "🏆" },
+          { type: "guide", href: "/daily-fortune-ranking-guide" },
+        ]}
+      />
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
         <div className="text-center">
-          <div className="flex items-center justify-between gap-2">
-            <TopBannerLink />
-            <Link href="/daily-fortune-ranking" className="text-xs text-rose-600 border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">🏆 ランキング</Link>
-          </div>
           <h1 className="text-2xl font-black text-rose-900 mt-3">📆 今日の運勢</h1>
           <p className="text-rose-700 text-sm">
             {CURRENT_YEAR}年{CURRENT_MONTH}月{CURRENT_DAY}日
@@ -153,7 +158,6 @@ function DailyFortuneContent() {
                 🏆 今日の運勢ランキング
               </Link>
             </div>
-            <AdBanner />
           </>
         )}
 
@@ -194,9 +198,6 @@ function DailyFortuneContent() {
               </div>
             </div>
 
-            <AdBanner />
-            <RakutenWidget />
-
             <Link
               href="/daily-fortune-ranking"
               className="block w-full py-3 rounded-2xl border-2 border-amber-200 text-amber-700 font-semibold text-sm text-center hover:bg-amber-50"
@@ -209,6 +210,9 @@ function DailyFortuneContent() {
             >
               別の星座で見る
             </button>
+
+            <AdBanner />
+            <RakutenWidget />
           </div>
         )}
       </div>

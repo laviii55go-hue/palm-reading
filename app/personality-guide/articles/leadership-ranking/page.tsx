@@ -63,6 +63,14 @@ export default function LeadershipRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               16タイプの特性から、先頭に立つ力・リーダーシップが強い順にランキングしました。仕事、チーム、プロジェクトなどでリードする場面の参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                この記事では、ランキングを紹介したうえで、私がこれまで色々なチームや場で見てきた<strong>「4種類のリーダー像」</strong>や、<strong>「リーダー向きじゃない」と諦めている人にこそ読んでほしい話</strong>を書いています。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                ランキングは一つの見方にすぎません。下位タイプでも「そのタイプにしか担えないリーダーシップ」があるので、ぜひ最後まで読んでもらえたら嬉しいです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -125,6 +133,75 @@ export default function LeadershipRankingArticlePage() {
                 下位のタイプだからリーダーになれないわけではありません。ISFPは創造型、INFPは信念型など、リーダーシップのスタイルはタイプによって異なります。自分の強みを活かしたリーダー像を探してみてください。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              👑 「リーダー」には4種類いる、という話
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              これまで色々なチームや集まりに関わってきて、「リーダー」と呼べる人にも<strong>大きく分けて4種類</strong>いると感じるようになりました。ランキング上位の人たちは、実はそれぞれ違う種類のリーダーだったりします。
+            </p>
+            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+              <div>
+                <p className="font-semibold text-teal-800">① ビジョン型リーダー（ENTJ・INTJ）</p>
+                <p>目標を描いて「あっちに行くぞ」と旗を立てる人。3年先、5年先を見据えて動く。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">② 組織型リーダー（ESTJ・ISTJ）</p>
+                <p>ルールと手順を整えて、チームが迷わず動ける仕組みを作る人。現場の安心感を作る。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">③ 共感型リーダー（ENFJ・ESFJ）</p>
+                <p>メンバーの気持ちを汲み取って、一人一人が動きやすくなる環境を整える人。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">④ ひらめき型リーダー（ENTP・ENFP）</p>
+                <p>新しい切り口を次々に持ち込んで、チームの可能性を広げる人。停滞を打破する役。</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              どれが正解ということはなく、<strong>チームが置かれたフェーズと目的に応じて、必要なリーダー像は変わる</strong>んですよね。立ち上げ期はビジョン型、運営期は組織型、停滞期はひらめき型、疲弊期は共感型——というふうに。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌱 「リーダー向きじゃない」と諦めている人へ
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ランキング下位になっている<strong>ISFP・INFP・ESFP</strong>あたりのタイプの方は、「やっぱり自分はリーダーには向かないんだ」と受け取ってしまうかもしれません。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              でも、私はこう思います。このランキングで測られている「リーダーシップ」は、<strong>「組織を正面から動かす力」という特定の定義に絞った場合のランキング</strong>でしかありません。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              たとえば、ISFPの美的感覚に惹きつけられて人が集まってくる「カリスマ型」のリーダーもいれば、INFPの価値観の強さが周囲を動かす「信念型」のリーダーもいます。ESFPの場を盛り上げる力は、疲弊したチームを生き返らせる「空気のリーダー」としてかけがえのない存在です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              <strong>リーダーとは、前に立つ人ではなく、人が自然についていきたくなる人</strong>——そう考えると、ランキング下位のタイプにも、それぞれの形のリーダーシップが確かにあります。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌀 リーダーシップも、時期によって揺らぐ
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              占いや診断全般に対する私の考え方にも通じる話ですが、<strong>リーダーシップの発揮のしかたは、人生のフェーズや状況によって揺らぐもの</strong>だと思っています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              若い頃は前に立ってグイグイ引っ張るスタイルが得意だった人が、年齢を重ねるうちに後ろからそっと支える共感型に変わっていく。逆に、ずっとサポート役だった人が、あるタイミングで急にビジョンを語り始める——そういう変化は珍しくありません。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              だから16タイプの結果も、「私は◯◯タイプだからリーダーになれない」と決めつけるのではなく、<strong>「今の自分に合うリーダーシップの出し方はこれかもしれない」というヒント</strong>として使うのがいちばん健康的だと思います。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ランキングを見て落ち込んだ日も、「今日は運勢が悪かっただけ、明日また別の自分で頑張ろう」くらいの距離感で付き合ってもらえたら嬉しいです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              私自身、なにか新しいことを始めるたびに「自分のリーダーシップの出し方ってこれでいいのかな」と悩む瞬間があります。そんな時にこの診断を開いて、「ああ、自分は前に立つより、アイデアで支えるほうが向いてるんだよな」と再確認する——そういう使い方をしています。診断は答えを押し付けるものではなく、<strong>迷ったときに立ち戻る自分の地図</strong>。そういう存在として付き合ってもらえるのが一番だなと思っています。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

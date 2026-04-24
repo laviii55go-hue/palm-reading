@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -46,16 +46,15 @@ const TOC = [
 export default function TarotGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-violet-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <TopBannerLink />
-            <Link href="/tarot" className="text-violet-600 text-xs border border-violet-300 rounded-full px-3 py-1 hover:bg-violet-50 transition-colors">🔮 占いへ</Link>
-          </div>
-          <span className="text-xs text-gray-400">タロット入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="tarot"
+        subText="タロット入門ガイド"
+        links={[
+          { type: "fortune", href: "/tarot" },
+          { type: "articles", href: "/tarot-guide/articles" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
         {/* タイトル */}
@@ -193,6 +192,27 @@ export default function TarotGuidePage() {
                 <p className="text-gray-600 text-xs leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* 監修・参考文献 */}
+        <section id="references" className="space-y-4">
+          <h2 className="text-xl font-black text-violet-900 border-b-2 border-violet-200 pb-2">
+            📚 監修・参考文献
+          </h2>
+          <div className="bg-white rounded-2xl p-5 border border-violet-100 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              当サイトのタロット占いは、<strong>ライダー・ウェイト版（Waite-Smith Tarot）</strong>の伝統的な象徴体系を基に解釈しています。1909年にアーサー・エドワード・ウェイトが発表し、パメラ・コールマン・スミスが描いたこのカード体系は、現代タロット解釈の基準として世界中で広く用いられています。
+            </p>
+            <p>
+              正位置・逆位置の意味は、<strong>ウェイトの著作『The Pictorial Key to the Tarot』</strong>（1910年）の記述を基礎としつつ、現代的な解釈の流れや日本語圏での一般的な理解を織り交ぜています。
+            </p>
+            <p>
+              カードの象徴分析には、<strong>ユング心理学の元型論（アーキタイプ）</strong>や、大アルカナが「愚者の旅（フールズジャーニー）」として一本の物語を描くという解釈フレームを参考にしています。
+            </p>
+            <p className="text-xs text-gray-500 pt-2 border-t border-gray-100">
+              ※ AIによる解釈補助を用いる場合も、最終的な解釈文の調整・校閲は運営者が行っています。
+            </p>
           </div>
         </section>
 

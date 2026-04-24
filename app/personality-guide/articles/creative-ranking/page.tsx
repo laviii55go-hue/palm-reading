@@ -63,6 +63,14 @@ export default function CreativeRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               16タイプの特性から、表現・創作に向いている順にランキングしました。アート・音楽・文章・デザインなど、クリエイティブな活動の参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                この記事を書いている私は、個人で文章を書いたり、ちょっとしたモノづくりをしたりするのが好きなタイプです。そういう経験のなかで、<strong>「クリエイティブには実は3種類ある」</strong>と感じるようになりました。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                ランキングの紹介のあとに、その3種類の話や、<strong>ランキング下位のタイプにこそ強い創造性がある</strong>という話を書いています。読み物として楽しんでもらえたら嬉しいです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -125,6 +133,65 @@ export default function CreativeRankingArticlePage() {
                 下位のタイプだからクリエイティブになれないわけではありません。ESTJは組織設計で、ISTJは堅実な構築で、それぞれの形で創造しています。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🎨 クリエイティブには3種類ある
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ひとくちに「クリエイティブ」と言っても、私は大きく分けて<strong>3つの方向性</strong>があると思っています。ランキング上位のタイプも、それぞれ得意な方向が違います。
+            </p>
+            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700 leading-relaxed space-y-3">
+              <div>
+                <p className="font-semibold text-teal-800">① 感情・世界観を表現するクリエイティブ（INFP・ISFP・INFJ）</p>
+                <p>心の奥にある景色を絵や音楽、文章にして差し出す方向。「自分の中にしかない色」で勝負するタイプ。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">② アイデア・発想で切り開くクリエイティブ（ENFP・ENTP・INTP）</p>
+                <p>誰も思いつかない組み合わせや切り口を持ってくる方向。既存のものをつなぎ直すことで新しい価値を作るタイプ。</p>
+              </div>
+              <div>
+                <p className="font-semibold text-teal-800">③ 実装・形にするクリエイティブ（ISTP・INTJ・ISTJ）</p>
+                <p>アイデアや世界観を具体物に落とし込む方向。物の構造や仕組みを理解して「動くもの」を作るタイプ。</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              本当に強いクリエイティブは、この3つが<strong>バランスよく組み合わさったとき</strong>に生まれることが多いなと感じます。一人で全部やろうとして苦しくなるときは、自分が得意じゃない方向を誰かと補い合うのも立派なクリエイティブのやり方です。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌱 ランキング下位にも確かな創造性がある
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで下位になっているのは<strong>ESFJ・ISTJ・ESTJ・ISFJ・ENTJ</strong>あたり。一見すると「管理・実行タイプで創造性が低い」と読めるかもしれません。でも、私はそうは思いません。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ESFJやISFJが家族や友人のためにさりげなく作る料理、記念日のプレゼントの選び方、場に合わせた一言——これらは立派な創造性だと思います。「誰かの笑顔を想像して、そこにフィットするものを形にする力」は、アートでも音楽でもない形のクリエイティブです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ISTJやESTJが業務フローや家事の手順を「もっと楽に回るように」と組み替えていくのも創造性の一種。<strong>仕組みを設計するクリエイティブ</strong>とでも言えばいいでしょうか。表に出にくいけれど、日常を支えているのはこういう人たちの見えない創造力だったりします。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ENTJが長期ビジョンを描いて、そこに向けて組織を動かす力も、広い意味ではクリエイティブと呼んでいいはず。「まだ存在していない未来」を頭の中に作り出して、それを現実に変えていく作業だからです。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌀 創造性は「出し方」を変えると伸びる
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              私自身、何かを作っているとき「他の人みたいに絵を描くのは得意じゃないな」と思うことがあります。でも文章なら書ける、企画なら立てられる、仕組みなら組める——<strong>出し方を変えるだけで、自分の中の創造性は必ずどこかに出口を見つけてくれる</strong>というのが、色々なものを作ってきて得た実感です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングも、「自分は何位だから創造性がある／ない」と白黒つけるのではなく、<strong>「自分にとって自然に湧いてくる創造の方向はどれか」を知る地図</strong>として使ってもらえたら嬉しいです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              絵が描けなくても、音楽が作れなくても、あなたが今日そこで誰かのために選んだ言葉や、作ったごはんや、組み立てた予定表——それはすべて、あなたのクリエイティブの結晶です。そこに気づけるかどうかで、毎日の手応えはずいぶん変わると思っています。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

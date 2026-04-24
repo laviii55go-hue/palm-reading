@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type Variant = "numerology" | "personality" | "tarot";
+type Variant = "numerology" | "personality" | "tarot" | "animal";
 
 const STYLES = {
   numerology: {
@@ -11,6 +11,9 @@ const STYLES = {
   },
   tarot: {
     base: "border-purple-300 bg-purple-50 text-purple-700 hover:bg-purple-100",
+  },
+  animal: {
+    base: "border-green-300 bg-green-50 text-green-700 hover:bg-green-100",
   },
 } as const;
 
@@ -29,6 +32,11 @@ const LINKS = {
     { href: "/tarot", label: "タロット占い" },
     { href: "/articles", label: "記事一覧（共通）" },
     { href: "/tarot-guide", label: "ガイド" },
+  ],
+  animal: [
+    { href: "/animal", label: "動物占い" },
+    { href: "/articles", label: "記事一覧（共通）" },
+    { href: "/animal-guide", label: "ガイド" },
   ],
 } as const;
 

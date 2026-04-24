@@ -7,7 +7,7 @@ import { toPng } from "html-to-image";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import { calcLifePathNumber } from "../data/numerologyData";
@@ -309,23 +309,23 @@ export default function DinosaurFortunePage() {
   }, [personalEntry, personalElement, personalPhase]);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center p-4">
+    <div className="relative min-h-screen flex flex-col items-center p-0">
       <div
         className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/dinosaur-bg.webp')" }}
         aria-hidden
       />
-      <div className="w-full max-w-lg">
+      <PageHeader
+        variant="fortune"
+        theme="dinosaur"
+        subText="恐竜占い"
+        dark
+        links={[
+          { type: "guide", href: "/dinosaur-guide", label: "恐竜ずかん" },
+        ]}
+      />
+      <div className="w-full max-w-lg p-4">
         <div className="text-center mb-6">
-          <div className="flex items-center justify-between mb-3 gap-2">
-            <TopBannerLink />
-            <Link
-              href="/dinosaur-guide"
-              className="text-emerald-100 text-xs border border-emerald-400/70 rounded-full px-3 py-1 hover:bg-emerald-500/20 transition-colors"
-            >
-              📚 恐竜ずかん
-            </Link>
-          </div>
           <div className="relative rounded-2xl overflow-hidden border border-cyan-300/40 shadow-xl shadow-indigo-950/60 bg-gradient-to-b from-slate-900 via-indigo-900 to-emerald-800 p-5">
             <span className="absolute top-4 left-5 text-yellow-200/80 text-xs animate-pulse">✦</span>
             <span className="absolute top-8 right-8 text-cyan-100/70 text-sm animate-pulse [animation-delay:300ms]">✧</span>
@@ -460,9 +460,6 @@ export default function DinosaurFortunePage() {
                     📖 恐竜図鑑で仕組みを見る →
                   </Link>
                 </div>
-
-                <AdBanner />
-                <RakutenWidget />
               </div>
             ) : personalEntry && personalElement && personalMergedStats ? (
               <div className="space-y-5">

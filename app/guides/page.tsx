@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 
 export const metadata: Metadata = {
@@ -29,9 +29,13 @@ const GUIDE_ITEMS = [
 export default function GuidesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <PageHeader
+        variant="guide"
+        theme="neutral"
+        subText="基本知識まとめ"
+      />
       <div className="max-w-lg mx-auto px-4 py-8 space-y-8">
         <div className="text-center">
-          <TopBannerLink />
           <h1 className="text-2xl font-black text-slate-800 mt-4">📖 占いの基本知識まとめ</h1>
           <p className="text-slate-600 text-sm mt-1">
             各占いの入門ガイドをまとめました

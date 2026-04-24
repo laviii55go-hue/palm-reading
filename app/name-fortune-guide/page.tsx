@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -45,15 +45,12 @@ const TOC = [
 export default function NameFortuneGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white">
-      <div className="bg-white border-b border-cyan-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <TopBannerLink />
-            <Link href="/name-fortune" className="text-cyan-600 text-xs border border-cyan-300 rounded-full px-3 py-1 hover:bg-cyan-50 transition-colors">✍️ 占いへ</Link>
-          </div>
-          <span className="text-xs text-gray-400">姓名判断入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="name-fortune"
+        subText="姓名判断入門ガイド"
+        links={[{ type: "fortune", href: "/name-fortune" }]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
         <div id="top" className="text-center space-y-2">

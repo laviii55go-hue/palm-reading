@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import {
   QUIZ_QUESTIONS,
   QUIZ_QUESTIONS_FULL,
@@ -122,16 +122,18 @@ export default function PersonalityPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-50">
+      <PageHeader
+        variant="fortune"
+        theme="personality"
+        subText="16タイプ性格診断"
+        links={[
+          { type: "guide", href: "/personality-guide" },
+          { type: "articles", href: "/personality-guide/articles" },
+        ]}
+      />
       <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        {/* ヘッダー */}
+        {/* タイトル・ヒーロー画像 */}
         <div className="text-center space-y-1">
-          <div className="flex items-center justify-between">
-            <TopBannerLink />
-            <div className="flex gap-2">
-              <Link href="/personality-guide" className="text-xs text-teal-600 border border-teal-300 rounded-full px-3 py-1 hover:bg-teal-50 transition-colors">📖 ガイド</Link>
-              <Link href="/personality-guide/articles" className="text-xs text-teal-600 border border-teal-300 rounded-full px-3 py-1 hover:bg-teal-50 transition-colors">📝 コラム</Link>
-            </div>
-          </div>
           <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/20">
             <Image
               src="/personality-top.webp"
@@ -213,7 +215,6 @@ export default function PersonalityPage() {
                   相性を診断する →
                 </button>
               </div>
-              <AdBanner />
             </div>
           ) : compatResult && compatMyType && compatPartnerType ? (
             <div className="space-y-5">
@@ -271,9 +272,6 @@ export default function PersonalityPage() {
                 </div>
               </div>
 
-              <AdBanner />
-              <RakutenWidget />
-
               <div className="bg-white rounded-3xl shadow-sm p-5 space-y-3">
                 <p className="text-center text-sm font-bold text-gray-600">結果をシェアする</p>
                 {(() => {
@@ -306,6 +304,9 @@ export default function PersonalityPage() {
               >
                 別の組み合わせで診断する
               </button>
+
+              <AdBanner />
+              <RakutenWidget />
             </div>
           ) : null
         )}
@@ -337,7 +338,6 @@ export default function PersonalityPage() {
                 </button>
               </div>
             </div>
-            <AdBanner />
           </>
         )}
 
@@ -410,9 +410,6 @@ export default function PersonalityPage() {
               </div>
             </div>
 
-            <AdBanner />
-            <RakutenWidget />
-
             {/* 相性診断へ */}
             <button
               onClick={() => {
@@ -457,6 +454,9 @@ export default function PersonalityPage() {
             >
               もう一度診断する
             </button>
+
+            <AdBanner />
+            <RakutenWidget />
           </div>
         )}
       </div>

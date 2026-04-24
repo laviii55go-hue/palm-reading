@@ -7,13 +7,15 @@ export default function ArticlePageLayout({
   variant,
 }: {
   children: React.ReactNode;
-  variant: "numerology" | "personality" | "tarot";
+  variant: "numerology" | "personality" | "tarot" | "animal";
 }) {
   const bgClass =
     variant === "numerology"
       ? "min-h-screen bg-gradient-to-b from-violet-50 to-white"
       : variant === "tarot"
       ? "min-h-screen bg-gradient-to-b from-purple-50 via-violet-50 to-white"
+      : variant === "animal"
+      ? "min-h-screen bg-gradient-to-b from-green-50 to-white"
       : "min-h-screen bg-gradient-to-b from-teal-50 to-white";
 
   return (

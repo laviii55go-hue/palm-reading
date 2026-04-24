@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -67,16 +67,15 @@ const TOC = [
 export default function AnimalGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      {/* ヘッダー */}
-      <div className="bg-white border-b border-green-100 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <TopBannerLink />
-            <Link href="/animal" className="text-green-600 text-xs border border-green-300 rounded-full px-3 py-1 hover:bg-green-50 transition-colors">🐾 占いへ</Link>
-          </div>
-          <span className="text-xs text-gray-400">動物占い入門ガイド</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="animal"
+        subText="動物占い入門ガイド"
+        links={[
+          { type: "fortune", href: "/animal" },
+          { type: "articles", href: "/animal-guide/articles" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
 
@@ -242,6 +241,30 @@ export default function AnimalGuidePage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 text-center">※個別の相性は動物占いページの相性診断でご確認ください</p>
+        </section>
+
+        {/* 監修・参考文献 */}
+        <section id="references" className="space-y-4">
+          <h2 className="text-xl font-black text-green-900 border-b-2 border-green-200 pb-2">
+            📚 監修・参考文献
+          </h2>
+          <div className="bg-white rounded-2xl p-5 border border-green-100 text-sm text-gray-700 leading-relaxed space-y-3">
+            <p>
+              当サイトの動物占いは、<strong>四柱推命の干支・十二運を発展させた現代占術</strong>をベースにしつつ、当サイトで<strong>60種類のキャラクター（12動物 × 5サブタイプ）</strong>に独自に再編しています。
+            </p>
+            <p>
+              12種類の動物キャラは、<strong>古代から東アジアで用いられてきた動物象徴学</strong>や、各動物の生態的特徴を組み合わせて、現代の生活に応用しやすいよう性格傾向を整理しています。
+            </p>
+            <p>
+              5つのサブタイプ（黒・白・赤・青・金）は、<strong>五行思想</strong>と<strong>現代の色彩心理学</strong>を参考に、同じ動物の中でも異なる個性が生まれる仕組みを表現しています。
+            </p>
+            <p>
+              相性診断は、動物同士の<strong>本能的な相互関係</strong>（肉食・草食・空・陸・水といった生態圏）と、<strong>サブタイプ同士の相性</strong>を組み合わせて設計しています。
+            </p>
+            <p className="text-xs text-gray-500 pt-2 border-t border-gray-100">
+              ※ キャラクター文章・相性文はすべて運営者が監修・編集しています。
+            </p>
+          </div>
         </section>
 
         {/* FAQ */}

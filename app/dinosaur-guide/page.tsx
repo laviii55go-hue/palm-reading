@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import type { Metadata } from "next";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
@@ -40,19 +40,17 @@ export default function DinosaurGuidePage() {
         style={{ backgroundImage: "url('/dinosaur-bg.webp')" }}
         aria-hidden
       />
-      <div className="bg-slate-950/90 border-b border-cyan-700/40 sticky top-0 z-10 backdrop-blur">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/dinosaur-fortune" className="text-cyan-200 text-sm hover:underline">
-            ← 恐竜占いへ
-          </Link>
-          <span className="text-xs text-cyan-200/70">恐竜図鑑</span>
-        </div>
-      </div>
+      <PageHeader
+        variant="guide"
+        theme="dinosaur"
+        subText="恐竜図鑑"
+        dark
+        links={[
+          { type: "fortune", href: "/dinosaur-fortune", label: "恐竜占いへ", icon: "🦖" },
+        ]}
+      />
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-10">
-        <div className="flex justify-start">
-          <TopBannerLink />
-        </div>
 
         <div id="top" className="text-center space-y-3 rounded-2xl border border-cyan-400/40 bg-gradient-to-br from-slate-900 via-indigo-900 to-cyan-900 p-4 shadow-xl shadow-cyan-900/30">
           <div className="rounded-xl overflow-hidden border border-cyan-300/50 shadow-md shadow-cyan-500/20">

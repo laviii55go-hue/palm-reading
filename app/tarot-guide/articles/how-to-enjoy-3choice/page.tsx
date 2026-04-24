@@ -44,6 +44,14 @@ export default function HowToEnjoy3ChoicePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               3択タロットで「当たった！」と感じるための引き方のコツ。直感の磨き方と、テーマ選びで変わる占いの深さを解説します。
             </p>
+            <div className="rounded-2xl border border-purple-200 bg-purple-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                3択タロットは、<strong>「3枚の中から気になる1枚を選ぶ」</strong>というシンプルな仕組みの中に、直感を磨くための豊かな装置が詰まっています。ただ楽しむだけでも十分ですが、少しコツを知っておくと、毎日の気持ちがちょっと軽くなります。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                この記事では、引き方のコツに加えて、<strong>私自身が毎朝のタロット習慣で変わったこと</strong>や、<strong>「当てにいかない」タロットとの付き合い方</strong>を書いています。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-4">
@@ -136,6 +144,54 @@ export default function HowToEnjoy3ChoicePage() {
             </div>
             <p className="text-gray-700 text-sm leading-relaxed">
               テーマを変えて同じ日に何度か引いても構いません。違うテーマで引くと、同じカードでも全く違う解釈が返ってくるのが3択タロットの面白さです。
+            </p>
+          </section>
+
+          <section className="mt-8 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🌱 毎朝タロットを引く習慣で変わったこと
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              タロットを「たまに気が向いたとき」に引くのもいいのですが、私は<strong>毎朝1枚だけ引く</strong>というルーティンを持っていた時期があります。その経験から感じたことをいくつかお伝えします。
+            </p>
+            <div className="rounded-2xl bg-white border border-purple-200 p-4 text-sm text-gray-700 leading-relaxed space-y-2">
+              <p>・<strong>1日の方向感が定まる</strong>：朝のカードが、その日の「テーマ」として自然に意識に残る。</p>
+              <p>・<strong>出来事の解釈が優しくなる</strong>：「今日は待つカードだったな」と思えば、思い通りに進まない日も受け入れやすい。</p>
+              <p>・<strong>自分の感情に気づきやすくなる</strong>：同じカードが出たとき、前回と今回で受け取り方が違うと、自分の変化に気づける。</p>
+              <p>・<strong>悪いカードへの耐性がつく</strong>：塔や死神が出ても、「これは何かの転換の合図だな」と落ち着いて受け取れるようになる。</p>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              毎朝引くと、カードが<strong>「自分との対話の道具」</strong>になってきます。当たる／当たらないという議論から離れて、日記代わりの静かなツールとして使えるようになる——この感覚に辿り着けるのが、毎日引く習慣の一番の恩恵だと思います。
+            </p>
+          </section>
+
+          <section className="mt-8 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🌀 「当てにいかない」タロットとの付き合い方
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              タロットに慣れ始めると、「当てたい」という気持ちが強くなる時期があります。でも、<strong>「当てにいく」引き方はタロット本来の使い方ではない</strong>というのが、私の中での結論です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              タロットは未来を予言するツールというより、<strong>「今の自分の潜在意識を見える形にする鏡」</strong>です。同じ問いを投げかけても、今日と明日で自分の状態が変われば、読み取れるメッセージも変わります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              だから「昨日と違うカードが出たから外れた」とは考えなくていい。<strong>昨日の自分と今日の自分は、別の自分なんです。</strong>その違いを映し出してくれるタロットは、実はとても誠実なツールだと私は思っています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              「当たってほしい」という気持ちが強すぎるときほど、結果に一喜一憂してしまいます。そういうときは、一度タロットから距離を置いて、<strong>「自分は今、何を抱えているのか」</strong>を先に見つめてみるのもおすすめです。
+            </p>
+          </section>
+
+          <section className="mt-8 space-y-4">
+            <h2 className="text-lg font-bold text-purple-800 border-b-2 border-purple-200 pb-2">
+              🎴 3択の向こうにある「偶然」の意味
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              3択タロットで「なぜ自分はこのカードを選んだのか」を考えるとき、偶然という言葉を超えた何かを感じることがあります。カードの順番は毎日変わり、あなたがその日たまたま目にした3枚から、たまたま1枚を選んだ——この<strong>偶然の連鎖</strong>に意味を見出すか、ただの確率として流すかは、あなた次第です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              私自身は、「意味がある」側に寄って楽しむほうが、毎日が豊かになると感じています。偶然を必然として読み取ろうとすると、出来事の解像度が上がり、日常の中にちょっとしたメッセージが見つかるようになります。この<strong>「日常に意味を見出す目」</strong>こそが、タロットがくれる一番の贈り物かもしれません。
             </p>
           </section>
 

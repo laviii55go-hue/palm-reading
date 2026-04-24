@@ -63,6 +63,14 @@ export default function LoveRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               16タイプの特性から、恋愛・パートナーシップに向いている順にランキングしました。恋愛の傾向や相性のヒントとして参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-teal-100 bg-teal-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                ちなみに、この記事を書いている私は<strong>診断するたびに結果がちょっと揺らぐタイプ</strong>で、上位ランキングを見て「え、私そんなに恋愛向きの顔してたっけ？」と驚いたのが出発点でした。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                ランキングのあとに、<strong>趣味のチーム活動で16タイプ診断が流行った話</strong>や、「これは占いより統計学に近いな」と感じた理由、そして<strong>占いに不信感があるあなたに</strong>16タイプ診断をおすすめしたい理由も書きました。読み物として楽しんでもらえたら嬉しいです。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -125,6 +133,88 @@ export default function LoveRankingArticlePage() {
                 下位のタイプだから恋愛運が悪いわけではありません。ENTJは対等な関係を、ISTPは自由な関係を求めるなど、それぞれの恋愛スタイルがあります。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌀 チーム活動で起きた16タイプブームの話
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ちょっと脱線した話をひとつ。以前、趣味で参加しているチーム活動の場で、一時期この16タイプ診断が静かに流行ったことがありました。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              きっかけは待ち時間の雑談。誰かがスマホで診断サイトを開いて「私INFJだった」と言い出したら、連鎖的に「えっ、やってみる」「私もやる」が広がって、その日はすっかり結果を見せ合う時間になっていました。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              そうすると、「あ〜、だからあの人の声かけはあのタイミングなんだ」「自分と真逆のタイプじゃん、あの時のすれ違いってそういうことだったのかも」みたいな<strong>納得が一気に起こる</strong>んです。その後のやり取りにも少し影響があって、「この人は静かに考えてから動くタイプだから、急かさずに待とう」と自然に意識するようになりました。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              恋愛ランキングで言えば、「1位のENFPタイプの人は確かに雰囲気を明るくしてくれるし、16位のENTJタイプの人は全体を引っ張る力を持っている」——どちらも必要で、どちらが上ということでもない。<strong>ランキングはあくまで「恋愛という切り口」で並べただけ</strong>で、ほかの切り口なら全然違う順番になるんだなと実感した出来事でした。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🔢 「16タイプ診断」は占いより統計学に近い
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              占いや診断をいろいろ触ってきた中で、私はこの16タイプ診断を<strong>占いというより統計学に近いもの</strong>だと感じています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              仕組みをざっくり言うと、「外向／内向」「感覚／直観」「思考／感情」「判断／知覚」という4つの軸それぞれ2択で、2の4乗＝16パターンに分類する——というシンプルな分類アルゴリズムです。
+            </p>
+            <div className="rounded-2xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700 leading-relaxed">
+              <p className="font-semibold text-gray-800 mb-2">4つの軸（全部2択）</p>
+              <ul className="space-y-1">
+                <li>・E（外向）↔ I（内向）</li>
+                <li>・S（感覚）↔ N（直観）</li>
+                <li>・T（思考）↔ F（感情）</li>
+                <li>・J（判断）↔ P（知覚）</li>
+              </ul>
+              <p className="mt-2 text-xs text-gray-500">→ 2 × 2 × 2 × 2 = 16タイプ</p>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ここに<strong>世界中で蓄積された何十万人、何百万人という回答データ</strong>が積み重なって、「このパターンの人はこういう恋愛傾向が出やすい」「この組み合わせは噛み合いやすい」という傾向が統計的に浮かび上がってきます。血液型4分類よりも細かく、十二星座より仕組みがはっきりしている。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              だから私は、16タイプ診断は「当たる／当たらない」で語るものではなく、<strong>自分を大きなデータの中に位置づけて眺めてみる地図</strong>のようなものだと思っています。ランキング1位という結果は、「あなたは恋愛が得意な人間です」という予言ではなく、「そのタイプの傾向として、恋愛に前向きに向かえる要素が多い」という統計的な傾向の話、という理解です。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🎯 「占いは信じない」人にこそ診断をおすすめしたい
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              私の身近にも、占いにまったく興味がない人がいます。「あなたのMBTIは？」と聞いても「知らない、やってない」で終わり。そういう反応は決して珍しくないと思います。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              そういう<strong>占いに不信感がある方</strong>にこそ、16タイプは入り口として向いていると思うんです。だって、これは厳密には占いではなく<strong>「診断」</strong>だから。カードをめくるわけでも星を読むわけでもなく、質問に答えるだけで、自分の思考パターンや行動傾向の見取り図ができあがります。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              そして<strong>自分のタイプを知ると、生きるのが少しラクになる</strong>場面があります。たとえばINFPの人が「私、人との雑談でどっと疲れるのは性格の欠陥じゃなくて、単に内向的だからだ」と気づけたら、その後の飲み会の向き合い方は変わります。ENTJの人が「自分は対等なパートナーシップを求めるタイプだから、ベタベタな関係を求める相手とは価値観が合わないんだ」と気づけたら、無理に相手に合わせてストレスを溜めなくて済みます。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              恋愛運ランキングも、<strong>自分の強みを活かせる恋愛スタイルはどこか</strong>を探すための地図として使ってもらえたら嬉しいです。順位が低いタイプだったとしても、それは「恋愛に不利」ではなく、「あなたの求める関係性が王道ルートとは違うだけ」というサインだと受け取ってください。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-teal-800 border-b-2 border-teal-200 pb-2">
+              🌱 占いとの、ちょうどいい距離感
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              最後に、私自身が占いと付き合ってきたなかで見つけた「距離感」の話を少しだけ。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              私は、占いは<strong>あくまでひとつのエンターテインメント</strong>として見ています。決定論のようにのめり込まないこと、そして「占いが全て」にならないように意識すること。これが自分の中のルールです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ただ、どうしようもなく落ち込んだ日には、そっと運勢のページを開きます。「今日の私はどうなってるかな？」「あ〜、運勢が悪い日だったのか。じゃあ今日のこの失敗もまあ仕方ない。明日また頑張ろう」——<strong>立ち直るきっかけづくり</strong>として、占いはとても優秀な相棒なんです。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングも、「1位だから恋愛絶対勝ち組」でも「16位だから恋愛詰んだ」でもなく、<strong>自分の傾向を知って明日の関係づくりに1歩踏み出すためのヒント</strong>として読んでもらえたら、書いた甲斐があります。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">

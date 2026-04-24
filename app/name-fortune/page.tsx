@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import PageHeader from "../components/PageHeader";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -310,12 +310,13 @@ export default function NameFortunePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white">
+      <PageHeader
+        variant="fortune"
+        theme="name-fortune"
+        subText="姓名判断"
+        links={[{ type: "guide", href: "/name-fortune-guide" }]}
+      />
       <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
-        <div className="flex items-center justify-between">
-          <TopBannerLink />
-          <Link href="/name-fortune-guide" className="text-cyan-600 text-xs border border-cyan-300 rounded-full px-3 py-1 hover:bg-cyan-50 transition-colors">📖 ガイド</Link>
-        </div>
-
         <div className="text-center space-y-2">
           <div className="text-5xl">✍️</div>
           <h1 className="text-2xl font-bold text-cyan-800">姓名判断</h1>

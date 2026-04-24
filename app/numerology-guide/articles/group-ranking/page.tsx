@@ -60,6 +60,14 @@ export default function GroupRankingArticlePage() {
             <p className="text-gray-600 text-sm leading-relaxed">
               ライフパスナンバーごとの特性から、チームワーク・グループ活動・集団行動に向いている順にランキングしました。仕事のチーム、サークル、ボランティアなど、集団で動く場面での参考にしてみてください。
             </p>
+            <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 mt-4">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                集団で活きる数字と、一人で輝く数字——数秘術では、この違いがわりとはっきり出ます。ただし、<strong>「集団に向いていない」と「集団の役に立たない」はイコールではありません</strong>。
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed mt-2">
+                この記事では、ランキングのあとに、<strong>数字ごとのチームでの役割</strong>や、<strong>ランキング下位の数字（1・5・7）が集団に与える価値</strong>、そして<strong>数秘術と距離感</strong>についても書いています。
+              </p>
+            </div>
           </header>
 
           <section className="mt-8 space-y-6">
@@ -120,6 +128,59 @@ export default function GroupRankingArticlePage() {
                 下位の数字だから集団行動が苦手というわけではありません。1番はリーダーとして、5番は自由な発想で、7番は深い分析で、それぞれ集団に貢献できます。自分の数字の強みを活かすことが大切です。
               </p>
             </div>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              👥 数字ごとの「チームでの役割」
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              同じ「チームに貢献する」といっても、数字ごとに<strong>担う役割がはっきり違います</strong>。全員が同じ役割をやろうとするとチームは回らないので、役割の違いを知っておくことはチーム設計の土台になります。
+            </p>
+            <div className="rounded-2xl bg-white border border-violet-200 p-4 text-sm text-gray-700 leading-relaxed space-y-2">
+              <p><strong className="text-violet-700">2（調和）</strong>：メンバー同士の橋渡し役。対立を和らげ、話を聞く。</p>
+              <p><strong className="text-violet-700">6（愛）</strong>：メンバーを気遣う世話役。差し入れ、声かけ、ケアを引き受ける。</p>
+              <p><strong className="text-violet-700">4（堅実）</strong>：仕組みを整える管理役。ルーティンを決めて回す。</p>
+              <p><strong className="text-violet-700">9（普遍）</strong>：チームの理念を掲げる役。「なぜこれをやるのか」を語る。</p>
+              <p><strong className="text-violet-700">3（表現）</strong>：場を盛り上げる賑やかし役。空気を軽くする。</p>
+              <p><strong className="text-violet-700">22（建築家）</strong>：長期プロジェクトの司令塔。大きな構想を持つ。</p>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              この6種類のうち、どれかひとつでも欠けるとチームは少し回りにくくなります。「自分の役割は何か」を数字から逆算できれば、<strong>チームに入るときの自分の立ち位置が明確になる</strong>——それが数秘術のチーム応用の嬉しいところです。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🌱 ランキング下位の数字も「チームに必要な存在」
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              このランキングで下位になっている<strong>1（開拓者）・5（自由人）・7（探求者）</strong>は、「集団行動が苦手」と書かれていて少し傷つくかもしれません。でも、こういう数字の人も、<strong>チームの中で独特の重要な役割</strong>を果たしています。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              1の人は、チームが停滞したときに<strong>「じゃあ、やるよ」と最初に動く</strong>存在です。集団の中にいても、自分の判断で一歩踏み出せるから、周りがついていくきっかけを作れる。これは協調性とは違う形の、大切な力です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              5の人は、チームに<strong>変化と刺激</strong>を持ち込む存在。「いつもこうだから」を壊して、新しい視点を入れてくれるから、停滞を防げます。7の人は、<strong>深く考える時間</strong>をチームに持ち込みます。みんなが勢いで動こうとしたとき、「ちょっと待って、これで合ってる？」と立ち止まらせる知恵の役割です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              <strong>協調性ランキング下位＝チームで無価値、ではない</strong>——むしろこれらの数字がいないチームは、同調圧力に弱くて柔軟性を失います。
+            </p>
+          </section>
+
+          <section className="mt-10 space-y-4">
+            <h2 className="text-lg font-bold text-violet-800 border-b-2 border-violet-200 pb-2">
+              🌀 数秘術と、ちょうどいい距離感
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              数秘術のランキングを見て「私はチームに向かない数字なんだ」と受け取ってしまうのは、ちょっともったいない読み方です。数字が教えてくれるのは、<strong>「自然にできること」と「意識して取り組むべきこと」</strong>の区別です。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              協調性が自然に出てくる数字の人は、その力を活かせばいい。協調性が出にくい数字の人は、意識的に「今日はチームに合わせよう」と選択できればそれで十分です。毎日完璧にやらなくていいし、数字通りに振る舞わなくてもいい。<strong>自然にできないことを意識的にやれること</strong>が、人の成長の本質だと私は思います。
+            </p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ランキングは、あなたを縛る鎖ではありません。自分の自然な立ち位置を知るための地図として、今日一歩でも前に進める材料として受け取ってもらえたら嬉しいです。チームでの役割は、その日ごとに変わっても全然OK。大切なのは「今の自分にできる形」を選ぶことだと思います。
+            </p>
           </section>
 
           <section className="mt-10 space-y-4">
