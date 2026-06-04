@@ -20,10 +20,12 @@ const MENU_ITEMS = [
     label: "自分を診断",
     emoji: "🔍",
     links: [
+      { href: "/jibun-koyomi", label: "じぶん暦（総合鑑定）", emoji: "🌈" },
       { href: "/palm-quiz", label: "簡易手相タイプ診断", emoji: "📋" },
       { href: "/personality", label: "16タイプ性格診断", emoji: "🧠" },
       { href: "/animal", label: "動物占い", emoji: "🐾" },
       { href: "/lucky-number", label: "数秘術占い", emoji: "🔢" },
+      { href: "/sanmeigaku", label: "算命学占い", emoji: "🌅" },
       { href: "/dinosaur-fortune", label: "恐竜占い", emoji: "🦖" },
       { href: "/dinosaur-fortune?tab=collection", label: "マイ図鑑", emoji: "📖" },
       { href: "/dinosaur-guide", label: "恐竜図鑑", emoji: "📚" },

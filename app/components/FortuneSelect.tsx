@@ -225,6 +225,20 @@ export default function FortuneSelect() {
             color="violet"
           />
           <FortuneLink
+            href="/jibun-koyomi"
+            emoji="🌈"
+            title="じぶん暦（総合鑑定）"
+            desc="算命学×数秘術のオリジナル統合タイプ診断"
+            color="indigo"
+          />
+          <FortuneLink
+            href="/sanmeigaku"
+            emoji="🌅"
+            title="算命学占い"
+            desc="生年月日で命式と今日の流れを診断"
+            color="amber"
+          />
+          <FortuneLink
             href="/dinosaur-fortune"
             emoji="🦖"
             title="恐竜占い"

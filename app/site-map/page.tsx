@@ -24,6 +24,8 @@ const STATIC_PAGES = [
   { href: "/palm-quiz", label: "簡易手相タイプ診断" },
   { href: "/numerology-guide", label: "数秘術ガイド" },
   { href: "/lucky-number", label: "数秘術占い" },
+  { href: "/sanmeigaku", label: "算命学占い" },
+  { href: "/jibun-koyomi", label: "じぶん暦（算命学×数秘術 総合鑑定）" },
   { href: "/dinosaur-fortune", label: "恐竜占い" },
   { href: "/dinosaur-guide", label: "恐竜占いガイド" },
   { href: "/personality", label: "16タイプ性格診断" },
