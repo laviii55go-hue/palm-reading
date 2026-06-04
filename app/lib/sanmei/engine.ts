@@ -222,6 +222,34 @@ export function branchInTenchusatsu(branchIndex: number, group: TenchusatsuGroup
   return group.includes(branch);
 }
 
+// 天中殺グループ → 該当する年支 index（連続する2支）
+const TENCHUSATSU_BRANCH_INDEXES: Record<TenchusatsuGroup, [number, number]> = {
+  子丑: [0, 1],
+  寅卯: [2, 3],
+  辰巳: [4, 5],
+  午未: [6, 7],
+  申酉: [8, 9],
+  戌亥: [10, 11],
+};
+
+export type TenchusatsuYears = {
+  startYear: number; // 天中殺2年間の開始年（立春区切り）
+  endYear: number;   // 終了年
+  isNow: boolean;    // 現在が天中殺期間中か
+};
+
+/** 次に来る（または現在進行中の）天中殺の年を求める。currentSanmeiYear は立春区切りの年 */
+export function nextTenchusatsuYears(group: TenchusatsuGroup, currentSanmeiYear: number): TenchusatsuYears {
+  const [first, second] = TENCHUSATSU_BRANCH_INDEXES[group];
+  const branchOf = (y: number) => (((y - 4) % 12) + 12) % 12;
+  const cur = branchOf(currentSanmeiYear);
+  if (cur === first) return { startYear: currentSanmeiYear, endYear: currentSanmeiYear + 1, isNow: true };
+  if (cur === second) return { startYear: currentSanmeiYear - 1, endYear: currentSanmeiYear, isNow: true };
+  let y = currentSanmeiYear + 1;
+  while (branchOf(y) !== first) y++;
+  return { startYear: y, endYear: y + 1, isNow: false };
+}
+
 // ── 鑑定結果（本人） ──────────────────────────────────
 
 export type SanmeiResult = {

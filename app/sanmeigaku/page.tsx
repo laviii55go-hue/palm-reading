@@ -8,9 +8,12 @@ import FooterLinks from "../components/FooterLinks";
 import {
   calcSanmei,
   calcFortune,
+  nextTenchusatsuYears,
   type SanmeiResult,
   type FortuneNow,
+  type TenchusatsuYears,
 } from "../lib/sanmei/engine";
+import { sanmeiYearNumber } from "../lib/sanmei/calendar";
 import {
   MAIN_STARS,
   SUB_STARS,
@@ -109,6 +112,7 @@ export default function SanmeigakuPage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<SanmeiResult | null>(null);
   const [fortune, setFortune] = useState<FortuneNow | null>(null);
+  const [tenchuYears, setTenchuYears] = useState<TenchusatsuYears | null>(null);
 
   useEffect(() => {
     const saved = getSavedBirthDate();
@@ -132,11 +136,18 @@ export default function SanmeigakuPage() {
       return;
     }
     const now = new Date();
-    setResult(calcSanmei(y, m, d));
+    const sanmeiResult = calcSanmei(y, m, d);
+    setResult(sanmeiResult);
     setFortune(
       calcFortune(
         { year: y, month: m, day: d },
         { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
+      )
+    );
+    setTenchuYears(
+      nextTenchusatsuYears(
+        sanmeiResult.tenchusatsu,
+        sanmeiYearNumber(now.getFullYear(), now.getMonth() + 1, now.getDate())
       )
     );
     setPhase("result");
@@ -355,8 +366,26 @@ export default function SanmeigakuPage() {
             <div className="bg-white rounded-3xl shadow-md p-5 space-y-2">
               <p className="font-bold text-stone-700 text-sm">🌙 あなたの天中殺：{tenchu.name}</p>
               <p className="text-gray-600 text-xs leading-relaxed">{tenchu.trait}</p>
+              {tenchuYears && (
+                <div
+                  className={`rounded-xl p-3 ${
+                    tenchuYears.isNow ? "bg-indigo-50 border border-indigo-200" : "bg-stone-50"
+                  }`}
+                >
+                  <p className="text-xs font-bold text-stone-700">
+                    {tenchuYears.isNow
+                      ? `🌙 いまは天中殺の期間中です（${tenchuYears.startYear}年〜${tenchuYears.endYear}年）`
+                      : `次の天中殺の年：${tenchuYears.startYear}年・${tenchuYears.endYear}年`}
+                  </p>
+                  <p className="text-gray-500 text-[10px] mt-0.5">
+                    {tenchuYears.isNow
+                      ? "焦って広げるより、学び・整理・足元固めがいっそう実りやすい2年間です。"
+                      : "前もって知っておくと、その2年間を「整える時間」として上手に使えます。"}
+                  </p>
+                </div>
+              )}
               <p className="text-gray-400 text-[10px]">
-                ※ 天中殺は「悪い時期」ではなく、整理・充電・学びに向く時間帯の目印です
+                ※ 天中殺は「悪い時期」ではなく、整理・充電・学びに向く時間帯の目印です（年の区切りは立春）
               </p>
             </div>
 

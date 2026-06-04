@@ -158,11 +158,16 @@ function jstNoonJd(year: number, month: number, day: number): number {
   return toJulianDay(year, month, day, 12 - 9); // JST正午 = UT 3:00
 }
 
-/** 年柱（立春区切り） */
-export function yearPillar(year: number, month: number, day: number): Pillar {
+/** 算命学上の年（立春区切り）。立春前は前年扱い */
+export function sanmeiYearNumber(year: number, month: number, day: number): number {
   const birthJd = jstNoonJd(year, month, day);
   const risshun = solarTermJd(year, SOLAR_TERMS[0]); // その年の立春
-  const sanmeiYear = birthJd >= risshun ? year : year - 1;
+  return birthJd >= risshun ? year : year - 1;
+}
+
+/** 年柱（立春区切り） */
+export function yearPillar(year: number, month: number, day: number): Pillar {
+  const sanmeiYear = sanmeiYearNumber(year, month, day);
   return makePillar((((sanmeiYear - 4) % 60) + 60) % 60);
 }
 
