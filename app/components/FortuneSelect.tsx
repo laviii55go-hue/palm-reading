@@ -239,6 +239,13 @@ export default function FortuneSelect() {
             color="amber"
           />
           <FortuneLink
+            href="/kyusei"
+            emoji="🧭"
+            title="九星気学占い"
+            desc="生年月日で本命星（一白水星〜九紫火星）を診断"
+            color="indigo"
+          />
+          <FortuneLink
             href="/dinosaur-fortune"
             emoji="🦖"
             title="恐竜占い"

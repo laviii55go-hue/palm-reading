@@ -26,6 +26,7 @@ const MENU_ITEMS = [
       { href: "/animal", label: "動物占い", emoji: "🐾" },
       { href: "/lucky-number", label: "数秘術占い", emoji: "🔢" },
       { href: "/sanmeigaku", label: "算命学占い", emoji: "🌅" },
+      { href: "/kyusei", label: "九星気学占い", emoji: "🧭" },
       { href: "/dinosaur-fortune", label: "恐竜占い", emoji: "🦖" },
       { href: "/dinosaur-fortune?tab=collection", label: "マイ図鑑", emoji: "📖" },
       { href: "/dinosaur-guide", label: "恐竜図鑑", emoji: "📚" },
