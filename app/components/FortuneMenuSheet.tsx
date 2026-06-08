@@ -1,57 +1,56 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useFortuneMenu } from "./FortuneMenuContext";
 
-const HEADER_HEIGHT = 56; // BottomHeader h-14
+const TOP_HEADER_HEIGHT = 64; // mobile top header h-16
+const BOTTOM_HEADER_HEIGHT = 56; // BottomHeader h-14
 
 const MENU_ITEMS = [
   {
-    label: "毎日チェック",
-    emoji: "☀️",
+    label: "今日のおすすめ",
     links: [
-      { href: "/daily-fortune-ranking", label: "今日の運勢ランキング", emoji: "🏆" },
-      { href: "/tarot", label: "タロット3択占い", emoji: "🔮" },
-      { href: "/calendar", label: "開運カレンダー", emoji: "📅" },
+      { href: "/daily-fortune-ranking", label: "今日の運勢ランキング", imageSrc: "/v2-banner-daily-ranking.png" },
+      { href: "/tarot", label: "タロット占い", imageSrc: "/v2-banner-tarot.png" },
+      { href: "/calendar", label: "開運カレンダー", imageSrc: "/v2-banner-calendar.png" },
     ],
   },
   {
     label: "自分を診断",
-    emoji: "🔍",
     links: [
-      { href: "/jibun-koyomi", label: "じぶん暦（総合鑑定）", emoji: "🌈" },
-      { href: "/palm-quiz", label: "簡易手相タイプ診断", emoji: "📋" },
-      { href: "/personality", label: "16タイプ性格診断", emoji: "🧠" },
-      { href: "/animal", label: "動物占い", emoji: "🐾" },
-      { href: "/lucky-number", label: "数秘術占い", emoji: "🔢" },
-      { href: "/sanmeigaku", label: "算命学占い", emoji: "🌅" },
-      { href: "/kyusei", label: "九星気学占い", emoji: "🧭" },
-      { href: "/dinosaur-fortune", label: "恐竜占い", emoji: "🦖" },
-      { href: "/dinosaur-fortune?tab=collection", label: "マイ図鑑", emoji: "📖" },
-      { href: "/dinosaur-guide", label: "恐竜図鑑", emoji: "📚" },
+      { href: "/jibun-koyomi", label: "じぶん暦", imageSrc: "/v2-diagnosis-jibun-koyomi.png" },
+      { href: "/palm-quiz", label: "手相タイプ診断", imageSrc: "/v2-diagnosis-palm.png" },
+      { href: "/personality", label: "16タイプ性格診断", imageSrc: "/v2-diagnosis-personality.png" },
+      { href: "/animal", label: "動物占い", imageSrc: "/v2-diagnosis-animal.png" },
+      { href: "/lucky-number", label: "数秘術占い", imageSrc: "/v2-diagnosis-numerology.png" },
+      { href: "/dinosaur-fortune", label: "恐竜占い", imageSrc: "/v2-diagnosis-dinosaur.png" },
+      { href: "/sanmeigaku", label: "算命学占い", imageSrc: "/v2-diagnosis-sanmeigaku.png" },
+      { href: "/kyusei", label: "九星気学占い", imageSrc: "/v2-diagnosis-kyusei.png" },
     ],
   },
   {
     label: "気になったら",
-    emoji: "✨",
     links: [
-      { href: "/blood-type", label: "血液型占い", emoji: "🩸" },
-      { href: "/name-fortune", label: "姓名判断", emoji: "✍️" },
+      { href: "/blood-type", label: "血液型占い", imageSrc: "/v2-diagnosis-blood-type.png" },
+      { href: "/name-fortune", label: "姓名判断", imageSrc: "/v2-diagnosis-name-fortune.png" },
     ],
   },
   {
     label: "その他",
-    emoji: "📖",
     links: [
-      { href: "/guides", label: "基本知識まとめ", emoji: "📖" },
-      { href: "/articles", label: "記事一覧", emoji: "📝" },
+      { href: "/guides", label: "基本知識まとめ", imageSrc: "/icons/icon04.webp" },
+      { href: "/articles", label: "記事一覧", imageSrc: "/icons/icon05.webp" },
     ],
   },
 ] as const;
 
 export default function FortuneMenuSheet() {
   const { isOpen, close } = useFortuneMenu();
+  const pathname = usePathname();
+  const opensFromTop = pathname === "/";
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -72,22 +71,31 @@ export default function FortuneMenuSheet() {
         role="button"
         tabIndex={0}
         onClick={close}
-        className="fixed left-0 right-0 top-0 z-[60] bg-black/20 transition-opacity duration-200"
-        style={{ bottom: HEADER_HEIGHT }}
+        className="fixed left-0 right-0 z-[60] bg-black/20 transition-opacity duration-200"
+        style={
+          opensFromTop
+            ? { top: TOP_HEADER_HEIGHT, bottom: 0 }
+            : { top: 0, bottom: BOTTOM_HEADER_HEIGHT }
+        }
         aria-hidden
       />
 
-      {/* ドロップダウン（ヘッダー直上・中央配置） */}
+      {/* ドロップダウン（トップは上部、それ以外は下部ナビに合わせる） */}
       <div
-        className="fixed left-1/2 -translate-x-1/2 z-[70] w-[min(320px,calc(100vw-32px))] max-h-[70vh] bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col"
-        style={{ bottom: HEADER_HEIGHT + 8 }}
+        className="fixed left-1/2 -translate-x-1/2 z-[70] w-[min(380px,calc(100vw-24px))] max-h-[calc(100vh-88px)] overflow-hidden rounded-[26px] border border-purple-100 bg-gradient-to-b from-white via-violet-50/80 to-rose-50/70 shadow-2xl shadow-purple-950/18 flex flex-col"
+        style={opensFromTop ? { top: TOP_HEADER_HEIGHT + 8 } : { bottom: BOTTOM_HEADER_HEIGHT + 8 }}
       >
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-200 shrink-0">
-          <h3 className="font-bold text-slate-800 text-sm">占い一覧</h3>
+        <div className="flex items-center justify-between border-b border-purple-100/80 bg-white/82 px-5 py-3.5 shrink-0 backdrop-blur">
+          <div>
+            <p className="text-[10px] font-black tracking-[0.18em] text-amber-400">FORTUNE MENU</p>
+            <h3 className="mt-0.5 text-[18px] font-black leading-none text-purple-950 [font-family:'Yu_Mincho','YuMincho','Hiragino_Mincho_ProN',serif]">
+              占い一覧
+            </h3>
+          </div>
           <button
             type="button"
             onClick={close}
-            className="p-2 -m-2 rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-700 transition-colors touch-manipulation"
+            className="grid h-9 w-9 place-items-center rounded-full bg-white text-purple-700 shadow-md shadow-purple-100 transition-colors hover:bg-purple-700 hover:text-white focus-visible:bg-purple-700 focus-visible:text-white focus-visible:outline-none touch-manipulation"
             aria-label="閉じる"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,24 +104,35 @@ export default function FortuneMenuSheet() {
           </button>
         </div>
 
-        <div className="overflow-y-auto overscroll-contain py-3 px-3 space-y-4">
+        <div className="overflow-y-auto overscroll-contain px-3.5 py-4 space-y-4">
           {MENU_ITEMS.map((group) => (
             <div key={group.label}>
-              <div className="flex items-center gap-1.5 mb-1.5 px-2">
-                <span className="text-base">{group.emoji}</span>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{group.label}</span>
+              <div className="mb-2 flex items-center justify-center gap-2 text-center">
+                <span className="text-amber-400">✦</span>
+                <span className="text-[13px] font-black tracking-wide text-purple-950 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif]">
+                  {group.label}
+                </span>
+                <span className="text-amber-400">✦</span>
               </div>
-              <div className="space-y-0.5">
+              <div className="grid grid-cols-2 gap-2">
                 {group.links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={close}
-                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-slate-800 hover:bg-slate-50 transition-colors"
+                    className="group relative min-h-[78px] overflow-hidden rounded-2xl border border-white bg-white/86 px-2.5 py-2.5 shadow-sm shadow-purple-100/70 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-200 hover:bg-white hover:shadow-md hover:shadow-purple-200/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-200"
                   >
-                    <span className="text-lg">{link.emoji}</span>
-                    <span className="font-medium text-sm">{link.label}</span>
-                    <span className="ml-auto text-slate-400 text-xs">→</span>
+                    <div className="absolute -bottom-2 -right-2 h-16 w-16 opacity-90 transition-transform duration-200 group-hover:scale-105">
+                      <Image src={link.imageSrc} alt="" fill sizes="64px" className="object-contain" />
+                    </div>
+                    <div className="relative z-10 flex min-h-[58px] flex-col">
+                      <span className="max-w-[5.8rem] text-[12px] font-black leading-[1.35] text-purple-950 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif]">
+                        {link.label}
+                      </span>
+                      <span className="mt-auto grid h-6 w-6 place-items-center rounded-full bg-violet-50 text-base font-black text-purple-700 shadow-sm shadow-purple-100 transition-colors group-hover:bg-purple-700 group-hover:text-white">
+                        ›
+                      </span>
+                    </div>
                   </Link>
                 ))}
               </div>

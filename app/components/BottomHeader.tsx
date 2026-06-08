@@ -16,9 +16,13 @@ export default function BottomHeader() {
   const pathname = usePathname();
   const { isOpen, toggle } = useFortuneMenu();
 
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-[80] border-t border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
+      className="fixed bottom-0 left-0 right-0 z-[80] border-t border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 md:hidden"
       aria-label="メインナビゲーション"
     >
       <div className="flex items-center justify-around h-14 max-w-lg mx-auto px-2">
