@@ -99,9 +99,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased pb-16 md:pb-0`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* JSON-LD 構造化データ（body内配置がNext.js 16推奨・hydrationエラー回避） */}
         <script
           type="application/ld+json"

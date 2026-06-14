@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import RakutenWidget from "../components/RakutenWidget";
 import { QUIZ_QUESTIONS, QUIZ_RESULTS } from "../data/palmQuizData";
 
@@ -54,20 +55,20 @@ export default function PalmQuizPage() {
     setResult(null);
   };
 
+  const shellProps = {
+    variant: "fortune" as const,
+    theme: "palm" as const,
+    subText: "手相タイプ診断",
+    links: [{ type: "guide" as const, href: "/guide" }],
+  };
+
   // 手の選択画面
   if (selectedHand === null) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
-        <PageHeader
-          variant="fortune"
-          theme="palm"
-          subText="手相タイプ診断"
-          links={[{ type: "guide", href: "/guide" }]}
-        />
-        <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-          <div className="text-center">
-            <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
-            <p className="text-purple-600 text-sm mt-1">どちらの手で診断しますか？</p>
+      <FortunePageShell {...shellProps}>
+          <div className="text-center space-y-2">
+            <h1 className={fortunePageTitle}>🖐 【簡易】手相タイプ診断</h1>
+            <p className={fortunePageDescription}>どちらの手で診断しますか？</p>
           </div>
 
           <div className="bg-white rounded-3xl shadow-lg p-6 space-y-4">
@@ -93,25 +94,17 @@ export default function PalmQuizPage() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
+      </FortunePageShell>
     );
   }
 
   if (result && QUIZ_RESULTS[result]) {
     const r = QUIZ_RESULTS[result];
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
-        <PageHeader
-          variant="fortune"
-          theme="palm"
-          subText="手相タイプ診断"
-          links={[{ type: "guide", href: "/guide" }]}
-        />
-        <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-          <div className="text-center">
-            <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
-            <p className="text-purple-600 text-sm">
+      <FortunePageShell {...shellProps}>
+          <div className="text-center space-y-2">
+            <h1 className={fortunePageTitle}>🖐 【簡易】手相タイプ診断</h1>
+            <p className={fortunePageDescription}>
               {selectedHand === "left" ? "左手" : "右手"}の診断結果
             </p>
           </div>
@@ -153,23 +146,15 @@ export default function PalmQuizPage() {
 
           <AdBanner />
           <RakutenWidget />
-        </div>
-      </div>
+      </FortunePageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
-      <PageHeader
-        variant="fortune"
-        theme="palm"
-        subText="手相タイプ診断"
-        links={[{ type: "guide", href: "/guide" }]}
-      />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        <div className="text-center">
-          <h1 className="text-2xl font-black text-purple-900 mt-3">🖐 【簡易】手相タイプ診断</h1>
-          <p className="text-purple-600 text-sm">
+    <FortunePageShell {...shellProps}>
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>🖐 【簡易】手相タイプ診断</h1>
+          <p className={fortunePageDescription}>
             あなたの手相から性格タイプを診断（{step + 1}/{QUIZ_QUESTIONS.length}）
           </p>
         </div>
@@ -213,7 +198,6 @@ export default function PalmQuizPage() {
             ← {step > 0 ? "前の質問に戻る" : "手の選択に戻る"}
           </button>
         </div>
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

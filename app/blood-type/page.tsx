@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -34,18 +34,16 @@ export default function BloodTypePage() {
         : "border-gray-200 bg-gray-50";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-rose-50 to-white">
-      <PageHeader
-        variant="fortune"
-        theme="blood-type"
-        subText="血液型占い"
-        links={[{ type: "guide", href: "/blood-type-guide" }]}
-      />
-      <div className="max-w-lg mx-auto px-4 py-6 space-y-6">
+    <FortunePageShell
+      variant="fortune"
+      theme="blood-type"
+      subText="血液型占い"
+      links={[{ type: "guide", href: "/blood-type-guide" }]}
+    >
         <div className="text-center space-y-2">
           <div className="text-5xl">🩸</div>
-          <h1 className="text-2xl font-bold text-rose-800">血液型占い</h1>
-          <p className="text-gray-500 text-sm">
+          <h1 className={fortunePageTitle}>血液型占い</h1>
+          <p className={fortunePageDescription}>
             血液型から性格・恋愛・相性を診断
           </p>
         </div>
@@ -318,7 +316,6 @@ export default function BloodTypePage() {
         <AdBanner />
         <RakutenWidget />
         <FooterLinks className="text-center" />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

@@ -3,19 +3,17 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useFortuneMenu } from "./FortuneMenuContext";
 
 const TOP_HEADER_HEIGHT = 64; // mobile top header h-16
-const BOTTOM_HEADER_HEIGHT = 56; // BottomHeader h-14
 
 const MENU_ITEMS = [
   {
     label: "今日のおすすめ",
     links: [
-      { href: "/daily-fortune-ranking", label: "今日の運勢ランキング", imageSrc: "/v2-banner-daily-ranking.png" },
-      { href: "/tarot", label: "タロット占い", imageSrc: "/v2-banner-tarot.png" },
-      { href: "/calendar", label: "開運カレンダー", imageSrc: "/v2-banner-calendar.png" },
+      { href: "/daily-fortune-ranking", label: "今日の運勢ランキング", imageSrc: "/v2-daily-moon.png" },
+      { href: "/tarot", label: "タロット占い", imageSrc: "/v2-daily-tarot-card.png" },
+      { href: "/calendar", label: "開運カレンダー", imageSrc: "/v2-daily-calendar.png" },
     ],
   },
   {
@@ -49,8 +47,6 @@ const MENU_ITEMS = [
 
 export default function FortuneMenuSheet() {
   const { isOpen, close } = useFortuneMenu();
-  const pathname = usePathname();
-  const opensFromTop = pathname === "/";
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -72,23 +68,19 @@ export default function FortuneMenuSheet() {
         tabIndex={0}
         onClick={close}
         className="fixed left-0 right-0 z-[60] bg-black/20 transition-opacity duration-200"
-        style={
-          opensFromTop
-            ? { top: TOP_HEADER_HEIGHT, bottom: 0 }
-            : { top: 0, bottom: BOTTOM_HEADER_HEIGHT }
-        }
+        style={{ top: TOP_HEADER_HEIGHT, bottom: 0 }}
         aria-hidden
       />
 
-      {/* ドロップダウン（トップは上部、それ以外は下部ナビに合わせる） */}
+      {/* ドロップダウン（上部ヘッダーに合わせる） */}
       <div
         className="fixed left-1/2 -translate-x-1/2 z-[70] w-[min(380px,calc(100vw-24px))] max-h-[calc(100vh-88px)] overflow-hidden rounded-[26px] border border-purple-100 bg-gradient-to-b from-white via-violet-50/80 to-rose-50/70 shadow-2xl shadow-purple-950/18 flex flex-col"
-        style={opensFromTop ? { top: TOP_HEADER_HEIGHT + 8 } : { bottom: BOTTOM_HEADER_HEIGHT + 8 }}
+        style={{ top: TOP_HEADER_HEIGHT + 8 }}
       >
         <div className="flex items-center justify-between border-b border-purple-100/80 bg-white/82 px-5 py-3.5 shrink-0 backdrop-blur">
           <div>
             <p className="text-[10px] font-black tracking-[0.18em] text-amber-400">FORTUNE MENU</p>
-            <h3 className="mt-0.5 text-[18px] font-black leading-none text-purple-950 [font-family:'Yu_Mincho','YuMincho','Hiragino_Mincho_ProN',serif]">
+            <h3 className="mt-0.5 text-[18px] font-black leading-none text-purple-950 [font-family:var(--font-jp-display)]">
               占い一覧
             </h3>
           </div>
@@ -109,7 +101,7 @@ export default function FortuneMenuSheet() {
             <div key={group.label}>
               <div className="mb-2 flex items-center justify-center gap-2 text-center">
                 <span className="text-amber-400">✦</span>
-                <span className="text-[13px] font-black tracking-wide text-purple-950 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif]">
+                <span className="text-[13px] font-black tracking-wide text-purple-950 [font-family:var(--font-jp-sans)]">
                   {group.label}
                 </span>
                 <span className="text-amber-400">✦</span>
@@ -126,7 +118,7 @@ export default function FortuneMenuSheet() {
                       <Image src={link.imageSrc} alt="" fill sizes="64px" className="object-contain" />
                     </div>
                     <div className="relative z-10 flex min-h-[58px] flex-col">
-                      <span className="max-w-[5.8rem] text-[12px] font-black leading-[1.35] text-purple-950 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif]">
+                      <span className="max-w-[5.8rem] text-[12px] font-black leading-[1.35] text-purple-950 [font-family:var(--font-jp-sans)]">
                         {link.label}
                       </span>
                       <span className="mt-auto grid h-6 w-6 place-items-center rounded-full bg-violet-50 text-base font-black text-purple-700 shadow-sm shadow-purple-100 transition-colors group-hover:bg-purple-700 group-hover:text-white">

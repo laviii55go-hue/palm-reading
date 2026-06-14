@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import AdBanner from "../components/AdBanner";
 import RakutenWidget from "../components/RakutenWidget";
-import PageHeader from "../components/PageHeader";
+import FortunePageHero from "../components/FortunePageHero";
+import FortunePageShell from "../components/FortunePageShell";
 import {
   QUIZ_QUESTIONS,
   QUIZ_QUESTIONS_FULL,
@@ -121,40 +121,28 @@ export default function PersonalityPage() {
   const result = resultCode ? PERSONALITY_TYPES[resultCode] : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-50">
-      <PageHeader
-        variant="fortune"
+    <FortunePageShell
+      variant="fortune"
+      theme="personality"
+      subText="16タイプ性格診断"
+      links={[
+        { type: "guide", href: "/personality-guide" },
+        { type: "articles", href: "/personality-guide/articles" },
+      ]}
+    >
+      <FortunePageHero
         theme="personality"
-        subText="16タイプ性格診断"
-        links={[
-          { type: "guide", href: "/personality-guide" },
-          { type: "articles", href: "/personality-guide/articles" },
-        ]}
+        imageSrc="/personality-top.webp"
+        title="🧠 16タイプ性格診断"
+        description={
+          activeTab === "compatibility"
+            ? "あなたと相手の16タイプを選んで相性を診断"
+            : quizMode
+              ? `${totalQ}問の質問であなたの性格タイプを診断`
+              : "8問 or 24問で性格タイプを診断"
+        }
       />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        {/* タイトル・ヒーロー画像 */}
-        <div className="text-center space-y-1">
-          <div className="mt-4 rounded-2xl overflow-hidden shadow-lg shadow-black/20">
-            <Image
-              src="/personality-top.webp"
-              alt="16タイプ性格診断"
-              width={600}
-              height={300}
-              className="w-full h-auto object-cover"
-              priority
-            />
-          </div>
-          <h1 className="text-2xl font-black text-teal-800 mt-3">🧠 16タイプ性格診断</h1>
-          <p className="text-teal-600 text-sm">
-            {activeTab === "compatibility"
-              ? "あなたと相手の16タイプを選んで相性を診断"
-              : quizMode
-                ? `${totalQ}問の質問であなたの性格タイプを診断`
-                : "8問 or 24問で性格タイプを診断"}
-          </p>
-
-          {/* タブ切替 */}
-          <div className="flex rounded-xl bg-teal-100/80 p-1 gap-1 mt-4">
+          <div className="flex rounded-xl border border-purple-100 bg-white/90 p-1 gap-1 shadow-sm shadow-purple-100/60">
             <button
               type="button"
               onClick={() => {
@@ -178,7 +166,6 @@ export default function PersonalityPage() {
               💞 相性診断
             </button>
           </div>
-        </div>
 
         {/* ═══ 相性診断タブ ═══ */}
         {activeTab === "compatibility" && (
@@ -459,7 +446,6 @@ export default function PersonalityPage() {
             <RakutenWidget />
           </div>
         )}
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

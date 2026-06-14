@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import { calcLifePathNumber } from "../data/numerologyData";
@@ -309,22 +309,22 @@ export default function DinosaurFortunePage() {
   }, [personalEntry, personalElement, personalPhase]);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center p-0">
+    <FortunePageShell
+      variant="fortune"
+      theme="dinosaur"
+      subText="恐竜占い"
+      dark
+      backgroundClassName="relative min-h-screen flex flex-col items-center p-0"
+      contentClassName="w-full max-w-lg p-4 pb-10 space-y-6"
+      links={[
+        { type: "guide", href: "/dinosaur-guide", label: "恐竜ずかん" },
+      ]}
+    >
       <div
         className="fixed inset-0 -z-10 bg-slate-100 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/dinosaur-bg.webp')" }}
         aria-hidden
       />
-      <PageHeader
-        variant="fortune"
-        theme="dinosaur"
-        subText="恐竜占い"
-        dark
-        links={[
-          { type: "guide", href: "/dinosaur-guide", label: "恐竜ずかん" },
-        ]}
-      />
-      <div className="w-full max-w-lg p-4">
         <div className="text-center mb-6">
           <div className="relative rounded-2xl overflow-hidden border border-cyan-300/40 shadow-xl shadow-indigo-950/60 bg-gradient-to-b from-slate-900 via-indigo-900 to-emerald-800 p-5">
             <span className="absolute top-4 left-5 text-yellow-200/80 text-xs animate-pulse">✦</span>
@@ -702,7 +702,6 @@ export default function DinosaurFortunePage() {
         </div>
 
         <FooterLinks className="text-center mt-4" linkClassName="text-emerald-200 text-xs hover:text-white hover:underline" />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

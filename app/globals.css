@@ -3,12 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-jp-sans: "BIZ UDPGothic", "Meiryo", "Yu Gothic", "YuGothic", "Hiragino Sans", sans-serif;
+  --font-jp-display: "BIZ UDPGothic", "Meiryo", "Yu Gothic", "YuGothic", "Hiragino Sans", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-jp-sans);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -22,7 +24,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jp-sans);
 }
 
 /* 恐竜占いトレカ：属性別キラキラボーダー（CSS のみ） */

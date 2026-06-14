@@ -3,7 +3,8 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import AdBanner from "../../components/AdBanner";
-import TopBannerLink from "../../components/TopBannerLink";
+import FortunePageShell from "../../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../../lib/fortuneDesign";
 import RakutenWidget from "../../components/RakutenWidget";
 import Image from "next/image";
 import { TAROT_MAJOR_ARCANA, TAROT_CARD_IMAGES, TAROT_BACK_IMAGE } from "../../data/tarotData";
@@ -118,34 +119,20 @@ export default function WorkTarotPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50">
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        {/* ヘッダー */}
-        <div className="text-center">
-          <div className="flex items-center justify-between">
-            <TopBannerLink />
-            <div className="flex gap-2">
-              <Link
-                href="/tarot"
-                className="text-xs text-blue-600 border border-blue-300 rounded-full px-3 py-1 hover:bg-blue-50 transition-colors"
-              >
-                3択タロット
-              </Link>
-              <Link
-                href="/tarot-guide"
-                className="text-xs text-blue-600 border border-blue-300 rounded-full px-3 py-1 hover:bg-blue-50 transition-colors"
-              >
-                ガイド
-              </Link>
-            </div>
-          </div>
-          <h1 className="text-2xl font-black text-indigo-900 mt-4">
-            仕事タロット
-          </h1>
-          <p className="text-blue-600 text-sm mt-1">
+    <FortunePageShell
+      theme="tarot"
+      subText="仕事タロット"
+      links={[
+        { type: "fortune", href: "/tarot", label: "タロットTOP" },
+        { type: "guide", href: "/tarot-guide" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>仕事タロット</h1>
+          <p className={fortunePageDescription}>
             大アルカナ3枚スプレッドで、あなたの仕事運を読み解きます
           </p>
-          <p className="text-blue-400 text-xs mt-1">
+          <p className="text-purple-950/60 text-xs">
             現状・課題・アドバイスの3枚があなたへのメッセージを届けます
           </p>
         </div>
@@ -487,7 +474,6 @@ export default function WorkTarotPage() {
             </Link>
           </p>
         </section>
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

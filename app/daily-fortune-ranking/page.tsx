@@ -3,8 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import TopBannerLink from "../components/TopBannerLink";
+import FortunePageHero from "../components/FortunePageHero";
+import FortunePageShell from "../components/FortunePageShell";
 import RakutenWidget from "../components/RakutenWidget";
+import { fortuneContentCard } from "../lib/fortuneDesign";
 import { getDailyFortuneRanking } from "../data/dailyFortuneData";
 
 // 星座ID → 画像パス（牡羊座0〜魚座11）
@@ -37,30 +39,24 @@ export default function DailyFortuneRankingPage() {
   const ranking = getDailyFortuneRanking(CURRENT_YEAR, CURRENT_MONTH, CURRENT_DAY);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50">
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        <div className="text-center">
-          <div className="flex items-center justify-between">
-            <TopBannerLink />
-            <Link href="/daily-fortune-ranking-guide" className="text-xs text-rose-600 border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors">📖 ガイド</Link>
-          </div>
-          <div className="mt-4 rounded-2xl overflow-hidden shadow-lg">
-            <Image
-              src="/daily-fortune-ranking-top.webp"
-              alt="今日の運勢ランキング"
-              width={600}
-              height={300}
-              className="w-full h-auto object-cover"
-              priority
-            />
-          </div>
-          <h1 className="text-2xl font-black text-rose-900 mt-3">🏆 今日の運勢ランキング</h1>
-          <p className="text-rose-700 text-sm">
-            {CURRENT_YEAR}年{CURRENT_MONTH}月{CURRENT_DAY}日
-          </p>
-        </div>
+    <FortunePageShell
+      variant="fortune"
+      theme="daily"
+      subText="今日の運勢ランキング"
+      links={[
+        { type: "guide", href: "/daily-fortune-ranking-guide" },
+        { type: "fortune", href: "/daily-fortune", label: "個人運勢", icon: "📆" },
+      ]}
+    >
+      <FortunePageHero
+        theme="daily"
+        badge="毎日更新"
+        imageSrc="/daily-fortune-ranking-top.webp"
+        title="🏆 今日の運勢ランキング"
+        description={`${CURRENT_YEAR}年${CURRENT_MONTH}月${CURRENT_DAY}日`}
+      />
 
-        <div className="bg-white rounded-3xl shadow-sm p-5 space-y-3">
+        <div className={`${fortuneContentCard} p-5 space-y-3`}>
           <p className="text-center text-gray-600 text-xs leading-relaxed">
             その日の惑星配置（トランシット）をもとに
             <br />
@@ -106,7 +102,6 @@ export default function DailyFortuneRankingPage() {
 
         <AdBanner />
         <RakutenWidget />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

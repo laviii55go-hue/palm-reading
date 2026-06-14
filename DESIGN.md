@@ -156,6 +156,22 @@ Tailwind 標準スケール使用。主要パターン：
 
 ## Component Patterns
 
+### Unified Fortune Page Shell（2026-06 トップページ統一）
+
+占いページは `FortunePageShell` + `PageHeader` + `SiteMobileHeader` でトップページと同じ雰囲気に統一。
+
+| コンポーネント | 役割 |
+|------|------|
+| `app/lib/fortuneDesign.ts` | 背景グラデーション・Yu Gothic/Mincho・カードスタイル等の共通トークン |
+| `FortunePageShell` | 背景 + PageHeader + コンテンツ幅（`max-w-lg` / `md:max-w-2xl`） |
+| `SiteMobileHeader` | モバイル固定ヘッダー（アプリアイコン + ページ名 + サイトマップ + 占いメニュー） |
+| `FortunePageHero` | ヒーロー画像 + タイトル + 説明文 |
+| `PageHeader` | デスクトップヘッダー + ピル型サブリンク |
+
+**ページ背景（標準）:** `fortunePageBackground` — トップと同じ温かみのある白〜ピンクグラデーション。テーマカラーは背景ではなくアクセント（ピル・バッジ・結果カード）に使用。
+
+**例外:** 数秘術（`lucky-number`）はダーク背景、恐竜占い（`dinosaur-fortune`）は背景画像を維持。いずれもヘッダーは共通。
+
 ### Page Layout（各占いページ共通）
 
 ```

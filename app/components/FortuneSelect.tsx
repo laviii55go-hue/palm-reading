@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { getDailyFortuneRanking } from "../data/dailyFortuneData";
-import AdBanner from "./AdBanner";
+import { POPULAR_FORTUNE_HREFS } from "../data/popularFortunes";
 
 type CategoryColor = "purple" | "indigo" | "green" | "violet" | "teal" | "amber" | "rose" | "cyan";
 
@@ -108,18 +108,20 @@ const GROUPS: FortuneGroup[] = [
         desc: "12星座の1位から12位までをチェック",
         color: "amber",
         emoji: "🏆",
-        imageSrc: "/daily-fortune-ranking-top.webp",
-        bannerSrc: "/v2-banner-daily-ranking.png",
+        imageSrc: "/v2-daily-moon.png",
+        iconSrc: "/v2-daily-moon.png",
+        bannerSrc: "/v2-daily-moon.png",
         badge: "毎日更新",
       },
       {
         href: "/tarot",
-        title: "タロット占い",
-        desc: "ワンカード・YES/NO・恋愛・仕事・3択",
+        title: "タロット占い 無料",
+        desc: "ワンカード・YES/NO・恋愛・仕事を無料で占う",
         color: "violet",
         emoji: "🔮",
-        imageSrc: "/tarot-top.webp",
-        bannerSrc: "/v2-banner-tarot.png",
+        imageSrc: "/v2-daily-tarot-card.png",
+        iconSrc: "/v2-daily-tarot-card.png",
+        bannerSrc: "/v2-daily-tarot-card.png",
       },
       {
         href: "/calendar",
@@ -166,8 +168,8 @@ const GROUPS: FortuneGroup[] = [
       },
       {
         href: "/animal",
-        title: "動物占い",
-        desc: "生年月日で60種の動物キャラを診断",
+        title: "動物占い 無料",
+        desc: "生年月日で60種類の動物キャラと相性を診断",
         color: "green",
         emoji: "🐾",
         imageSrc: "/animal-top.webp",
@@ -235,6 +237,17 @@ const GROUPS: FortuneGroup[] = [
   },
 ];
 
+const ALL_FORTUNE_ITEMS = GROUPS.flatMap((group) => group.items);
+
+const POPULAR_GROUP: FortuneGroup = {
+  id: "popular-fortunes",
+  label: "人気の占い一覧",
+  lead: "検索状況やアクセス状況を見ながら、手動で入れ替えるおすすめ枠です。",
+  items: POPULAR_FORTUNE_HREFS.map((href) => ALL_FORTUNE_ITEMS.find((item) => item.href === href)).filter(
+    (item): item is FortuneItem => Boolean(item)
+  ),
+};
+
 function FortuneRankingSummary() {
   const [ranking] = useState(() => {
     const now = new Date();
@@ -259,7 +272,7 @@ function FortuneRankingSummary() {
 
 function GroupNav() {
   return (
-    <nav className="hidden gap-2 overflow-x-auto px-1 py-2 md:static md:flex md:flex-wrap md:overflow-visible" aria-label="占いカテゴリ">
+    <nav className="hidden gap-2 overflow-x-auto px-1 py-2" aria-label="占いカテゴリ">
       {GROUPS.map((group) => (
         <a
           key={group.id}
@@ -281,7 +294,7 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
       <>
         <Link
           href={item.href}
-          className={`group relative flex min-h-[112px] overflow-hidden rounded-[22px] border ${style.panel} shadow-md shadow-purple-100/60 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-200 hover:shadow-lg hover:shadow-purple-200/70 focus-visible:outline-none focus-visible:ring-2 ${style.ring} md:hidden`}
+          className={`group relative flex min-h-[112px] overflow-hidden rounded-[22px] border ${style.panel} shadow-md shadow-purple-100/60 transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-200 hover:shadow-lg hover:shadow-purple-200/70 focus-visible:outline-none focus-visible:ring-2 ${style.ring}`}
         >
           <Image
             src={item.bannerSrc ?? item.imageSrc ?? "/v2-banner-daily-ranking.png"}
@@ -292,10 +305,10 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/35 via-white/72 to-white/55 transition-colors duration-200 group-hover:from-purple-50/25 group-hover:via-white/50 group-hover:to-rose-50/45" />
           <div className="relative flex min-w-0 flex-1 flex-col justify-center px-5 py-3 pr-14">
-            <h3 className="text-[16.5px] font-extrabold leading-5 tracking-normal text-purple-900 transition-colors duration-200 group-hover:text-violet-800 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif]">
+            <h3 className="text-[16.5px] font-extrabold leading-5 tracking-normal text-purple-900 transition-colors duration-200 group-hover:text-violet-800 [font-family:var(--font-jp-sans)]">
               {item.title}
             </h3>
-            <p className="mt-1.5 max-w-[13rem] text-[11.5px] font-medium leading-[1.5] text-purple-950/72 transition-colors duration-200 group-hover:text-purple-950/90 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif]">
+            <p className="mt-1.5 max-w-[13rem] text-[11.5px] font-medium leading-[1.5] text-purple-950/72 transition-colors duration-200 group-hover:text-purple-950/90 [font-family:var(--font-jp-sans)]">
               {item.desc}
             </p>
           </div>
@@ -306,7 +319,7 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
 
         <Link
           href={item.href}
-          className={`group hidden h-full flex-col overflow-hidden rounded-2xl border ${style.panel} shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 ${style.ring} md:flex`}
+          className={`group hidden h-full flex-col overflow-hidden rounded-2xl border ${style.panel} shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 ${style.ring}`}
         >
           <div className={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${style.icon}`}>
             {item.imageSrc ? (
@@ -363,10 +376,10 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
           className="absolute -bottom-3 -right-3 h-[88px] w-[88px] object-contain opacity-95 transition-transform duration-200 group-hover:scale-105 md:h-[112px] md:w-[112px]"
         />
         <div className="relative z-10 flex min-h-[104px] flex-col">
-          <h3 className="max-w-[7.2rem] text-[13.5px] font-extrabold leading-[1.35] text-purple-950 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif] md:max-w-[9rem] md:text-base">
+          <h3 className="max-w-[7.2rem] text-[13.5px] font-extrabold leading-[1.35] text-purple-950 [font-family:var(--font-jp-sans)]">
             {item.title}
           </h3>
-          <p className="mt-1 max-w-[6.8rem] text-[10.5px] font-medium leading-[1.45] text-purple-950/72 [font-family:'Yu_Gothic','YuGothic','Hiragino_Kaku_Gothic_ProN',var(--font-geist-sans),sans-serif] md:max-w-[9rem] md:text-xs">
+          <p className="mt-1 max-w-[6.8rem] text-[10.5px] font-medium leading-[1.45] text-purple-950/72 [font-family:var(--font-jp-sans)]">
             {item.desc}
           </p>
           <span className="mt-auto grid h-7 w-7 place-items-center rounded-full bg-white/92 text-lg font-black text-purple-700 shadow-sm shadow-purple-100 transition-colors duration-200 group-hover:bg-purple-700 group-hover:text-white">
@@ -381,14 +394,14 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
     <Link
       href={item.href}
       className={`group relative flex h-full overflow-hidden border ${style.panel} shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 ${style.ring} ${
-        compact
-          ? "min-h-[112px] flex-row rounded-2xl md:min-h-0 md:flex-col"
-          : "min-h-[108px] flex-row rounded-[22px] md:min-h-0 md:flex-col md:rounded-2xl"
+          compact
+          ? "min-h-[112px] flex-row rounded-2xl"
+          : "min-h-[108px] flex-row rounded-[22px]"
       }`}
     >
       <div
         className={`relative shrink-0 overflow-hidden bg-gradient-to-br ${style.icon} ${
-          compact ? "w-[38%] md:w-auto md:aspect-[16/9]" : "w-[36%] md:w-auto md:aspect-[16/9]"
+          compact ? "w-[38%]" : "w-[36%]"
         }`}
       >
         {item.imageSrc ? (
@@ -400,27 +413,27 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-4xl md:text-5xl">{item.emoji}</div>
+          <div className="flex h-full items-center justify-center text-4xl">{item.emoji}</div>
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/10 md:bg-gradient-to-t md:from-slate-950/40 md:via-transparent md:to-white/10" />
-        <div className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-base shadow-sm md:left-3 md:top-3 md:px-2.5 md:py-1 md:text-lg">
+        <div className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-base shadow-sm">
           {item.emoji}
         </div>
         {item.badge && (
-          <div className="absolute bottom-2 left-2 hidden rounded-full bg-slate-950/75 px-3 py-1 text-[11px] font-bold text-white backdrop-blur md:block">
+          <div className="absolute bottom-2 left-2 hidden rounded-full bg-slate-950/75 px-3 py-1 text-[11px] font-bold text-white backdrop-blur">
             {item.badge}
           </div>
         )}
       </div>
-      <div className={`flex min-w-0 flex-1 flex-col justify-center ${compact ? "p-3 pr-9 md:p-4" : "p-4 pr-12 md:p-4"}`}>
-        <h3 className={`${compact ? "text-[13px] leading-5 md:text-base" : "text-lg leading-6 md:text-base"} font-black ${style.accent}`}>
+      <div className={`flex min-w-0 flex-1 flex-col justify-center ${compact ? "p-3 pr-9" : "p-4 pr-12"}`}>
+        <h3 className={`${compact ? "text-[13px] leading-5" : "text-lg leading-6"} font-black ${style.accent}`}>
           {item.title}
         </h3>
-        <p className={`${compact ? "mt-1 text-[11px] leading-4 md:mt-2 md:text-sm md:leading-6" : "mt-1.5 text-[13px] leading-5 md:mt-2 md:text-sm md:leading-6"} flex-1 text-slate-600`}>
+        <p className={`${compact ? "mt-1 text-[11px] leading-4" : "mt-1.5 text-[13px] leading-5"} flex-1 text-slate-600`}>
           {item.desc}
         </p>
-        <div className="hidden md:block">{item.href === "/daily-fortune-ranking" ? <FortuneRankingSummary /> : null}</div>
-        <div className="mt-4 hidden items-center justify-between md:flex">
+        <div className="hidden">{item.href === "/daily-fortune-ranking" ? <FortuneRankingSummary /> : null}</div>
+        <div className="mt-4 hidden items-center justify-between">
           <span className={`rounded-full px-4 py-2 text-xs font-bold transition-colors ${style.button}`}>
             開く
           </span>
@@ -429,7 +442,7 @@ function FortuneCard({ item, compact = false }: { item: FortuneItem; compact?: b
           </span>
         </div>
       </div>
-      <span className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-xl font-black text-purple-700 shadow-md shadow-purple-100 md:hidden">
+      <span className="absolute right-3 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-xl font-black text-purple-700 shadow-md shadow-purple-100">
         ›
       </span>
     </Link>
@@ -444,18 +457,18 @@ function FortuneGroupSection({ group, index }: { group: FortuneGroup; index: num
     <section id={group.id} className="scroll-mt-24">
       <div className="mb-4 flex flex-col items-center gap-1 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
         <div>
-          <p className="hidden text-xs font-black uppercase tracking-wider text-slate-400 md:block">0{index + 1}</p>
-          <h2 className="flex items-center justify-center gap-2 text-[22px] font-black tracking-wide text-purple-950 md:justify-start md:text-2xl md:text-slate-950">
+          <p className="hidden text-xs font-black uppercase tracking-wider text-slate-400">0{index + 1}</p>
+          <h2 className="flex items-center justify-center gap-2 text-[22px] font-black tracking-wide text-purple-950">
             <span className="text-amber-400">✦</span>
             {group.label}
             <span className="text-amber-400">✦</span>
           </h2>
         </div>
-        <p className="hidden max-w-lg text-sm leading-6 text-slate-500 md:block">{group.lead}</p>
+        <p className="hidden max-w-lg text-sm leading-6 text-slate-500">{group.lead}</p>
       </div>
       <div
         className={`grid gap-3 md:gap-4 ${
-          isDaily ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : isDiagnose ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-2 lg:grid-cols-3"
+          isDaily ? "grid-cols-1" : isDiagnose ? "grid-cols-2" : "grid-cols-2"
         }`}
       >
         {group.items.map((item) => (
@@ -468,26 +481,18 @@ function FortuneGroupSection({ group, index }: { group: FortuneGroup; index: num
 
 export default function FortuneSelect() {
   return (
-    <div className="space-y-4 md:space-y-8">
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="hidden text-xs font-black uppercase tracking-wider text-rose-600 md:block">Fortune Menu</p>
-          <h2 className="hidden mt-1 text-2xl font-black text-slate-950 sm:text-3xl md:block">何を占いますか？</h2>
-          <p className="hidden mt-2 text-sm leading-6 text-slate-600 md:block">
-            今日の運勢、じっくり自己分析、友だちと楽しめる占いまでそろえています。
-          </p>
-        </div>
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3">
         <GroupNav />
       </div>
 
+      <div className="space-y-6">
+        <FortuneGroupSection group={POPULAR_GROUP} index={0} />
+      </div>
+
       {GROUPS.map((group, index) => (
-        <div key={group.id} className={index === 0 ? "space-y-6 md:space-y-8" : "space-y-8"}>
-          <FortuneGroupSection group={group} index={index} />
-          {index < GROUPS.length - 1 ? (
-            <div className="hidden md:block">
-              <AdBanner />
-            </div>
-          ) : null}
+        <div key={group.id} className={index === 0 ? "space-y-6" : "space-y-8"}>
+          <FortuneGroupSection group={group} index={index + 1} />
         </div>
       ))}
     </div>

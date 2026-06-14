@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import FooterLinks from "../components/FooterLinks";
 import {
   calcSanmei,
@@ -162,22 +163,18 @@ export default function SanmeigakuPage() {
     : "";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-stone-100">
-      <PageHeader
-        variant="fortune"
-        theme="calendar"
-        subText="算命学占い"
-        links={[
-          { type: "fortune", href: "/lucky-number", label: "数秘術占い" },
-          { type: "fortune", href: "/daily-fortune", label: "今日の運勢" },
-        ]}
-      />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-
-        {/* タイトル */}
-        <div className="text-center space-y-1">
-          <h1 className="text-2xl font-bold text-stone-800 mt-2">🌅 算命学占い</h1>
-          <p className="text-stone-500 text-sm">
+    <FortunePageShell
+      variant="fortune"
+      theme="amber"
+      subText="算命学占い"
+      links={[
+        { type: "fortune", href: "/lucky-number", label: "数秘術占い" },
+        { type: "fortune", href: "/daily-fortune", label: "今日の運勢" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>🌅 算命学占い</h1>
+          <p className={fortunePageDescription}>
             生年月日から命式を算出し、あなたの持ち味と
             <br />
             今年・今月・今日の流れをやさしく読み解きます
@@ -503,7 +500,6 @@ export default function SanmeigakuPage() {
         </p>
 
         <FooterLinks />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

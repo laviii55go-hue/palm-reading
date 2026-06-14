@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import RakutenWidget from "../components/RakutenWidget";
 import { KYUSEI_DATA, calcHonmeisei, kyuseiYearOf } from "../data/kyuseiData";
 
@@ -124,23 +125,19 @@ export default function KyuseiPage() {
     : "";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-violet-50 to-blue-50">
-      <PageHeader
-        variant="fortune"
-        theme="dream"
-        subText="九星気学占い"
-        links={[
-          { type: "fortune", href: "/sanmeigaku", label: "算命学占い" },
-          { type: "fortune", href: "/lucky-number", label: "数秘術占い" },
-        ]}
-      />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-
-        {/* タイトル */}
-        <div className="text-center space-y-1">
-          <div className="text-5xl mt-3">🧭</div>
-          <h1 className="text-2xl font-black text-indigo-800 mt-2">九星気学占い</h1>
-          <p className="text-indigo-600 text-sm">生年月日から「本命星」を割り出す東洋の運命学</p>
+    <FortunePageShell
+      variant="fortune"
+      theme="indigo"
+      subText="九星気学占い"
+      links={[
+        { type: "fortune", href: "/sanmeigaku", label: "算命学占い" },
+        { type: "fortune", href: "/lucky-number", label: "数秘術占い" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <div className="text-5xl">🧭</div>
+          <h1 className={fortunePageTitle}>九星気学占い</h1>
+          <p className={fortunePageDescription}>生年月日から「本命星」を割り出す東洋の運命学</p>
         </div>
 
         {phase === "input" && (
@@ -282,7 +279,6 @@ export default function KyuseiPage() {
             <RakutenWidget />
           </div>
         )}
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

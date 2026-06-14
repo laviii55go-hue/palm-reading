@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   getRokuyo,
@@ -34,17 +35,15 @@ export default function CalendarPage() {
   const firstDay = getFirstDayOfWeek(year, month);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50">
-      <PageHeader
-        variant="fortune"
-        theme="calendar"
-        subText="開運カレンダー"
-        links={[{ type: "guide", href: "/calendar-guide" }]}
-      />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        <div className="text-center">
-          <h1 className="text-2xl font-black text-amber-900 mt-3">📅 開運カレンダー</h1>
-          <p className="text-amber-700 text-sm">六曜で吉日をチェック</p>
+    <FortunePageShell
+      variant="fortune"
+      theme="calendar"
+      subText="開運カレンダー"
+      links={[{ type: "guide", href: "/calendar-guide" }]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>📅 開運カレンダー</h1>
+          <p className={fortunePageDescription}>六曜で吉日をチェック</p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-sm p-5 space-y-4">
@@ -137,7 +136,6 @@ export default function CalendarPage() {
 
         <AdBanner />
         <RakutenWidget />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

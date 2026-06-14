@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import TopBannerLink from "../../components/TopBannerLink";
+import FortunePageShell from "../../components/FortunePageShell";
 import AdBanner from "../../components/AdBanner";
 import RakutenWidget from "../../components/RakutenWidget";
 import Image from "next/image";
-import { getDailyTarotCards, TAROT_MAJOR_ARCANA, TAROT_CARD_IMAGES, TAROT_BACK_IMAGE } from "../../data/tarotData";
+import { getDailyTarotCards, TAROT_CARD_IMAGES, TAROT_BACK_IMAGE } from "../../data/tarotData";
 import type { TarotCard } from "../../data/tarotData";
 import { TAROT_CARD_SEO } from "../../data/tarotSeoData";
 
@@ -58,26 +58,15 @@ export default function OneCardPage() {
   const lineShareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50">
-      <div className="max-w-md mx-auto px-4 py-6">
-        {/* ヘッダー */}
-        <div className="flex items-center justify-between mb-6">
-          <TopBannerLink />
-          <div className="flex gap-2">
-            <Link
-              href="/tarot"
-              className="text-xs text-purple-600 border border-purple-300 rounded-full px-3 py-1 hover:bg-purple-50 transition-colors"
-            >
-              3択タロット
-            </Link>
-            <Link
-              href="/tarot-guide"
-              className="text-xs text-purple-600 border border-purple-300 rounded-full px-3 py-1 hover:bg-purple-50 transition-colors"
-            >
-              ガイド
-            </Link>
-          </div>
-        </div>
+    <FortunePageShell
+      theme="tarot"
+      subText="ワンカードタロット"
+      links={[
+        { type: "fortune", href: "/tarot", label: "タロットTOP" },
+        { type: "guide", href: "/tarot-guide" },
+      ]}
+      contentClassName="mx-auto w-full max-w-lg px-4 pb-10 pt-3 space-y-6"
+    >
 
         {/* タイトル */}
         <div className="text-center mb-8">
@@ -340,7 +329,6 @@ export default function OneCardPage() {
             <RakutenWidget />
           </div>
         )}
-      </div>
 
       {/* CSSアニメーション */}
       <style jsx>{`
@@ -367,6 +355,6 @@ export default function OneCardPage() {
           animation: fadeIn 0.6s ease-out;
         }
       `}</style>
-    </div>
+    </FortunePageShell>
   );
 }

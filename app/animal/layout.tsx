@@ -1,32 +1,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "動物占い【無料】生年月日で60種類の動物キャラを診断",
-  description: "生年月日から12動物×5サブタイプ＝60キャラの中からあなたの動物を診断。相性診断も無料で楽しめます。",
+  title: "動物占い 無料｜生年月日で60種類の動物キャラ診断",
+  description:
+    "動物占いを無料で診断。生年月日を入力するだけで、12動物×5サブタイプの60種類からあなたの動物キャラ、性格、恋愛、仕事、相性をチェックできます。",
   openGraph: {
-    title: "動物占い【無料】生年月日で60種類の動物キャラを診断",
-    description: "生年月日から12動物×5サブタイプ＝60キャラの中からあなたの動物を診断。相性診断も無料で楽しめます。",
+    title: "動物占い 無料｜生年月日で60種類の動物キャラ診断",
+    description:
+      "生年月日でわかる無料の動物占い。60種類の動物キャラから性格・恋愛・仕事・相性を診断します。",
     url: "https://uranai-tenohira.jp/animal",
-    siteName: "手のひらの予言者",
-    images: [
-      {
-        url: "https://uranai-tenohira.jp/animal-top.webp",
-        width: 1200,
-        height: 630,
-        alt: "動物占い",
-      },
-    ],
-    locale: "ja_JP",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "動物占い【無料】生年月日で60種類の動物キャラを診断",
-    description: "生年月日から12動物×5サブタイプ＝60キャラの中からあなたの動物を診断。相性診断も無料で楽しめます。",
-    images: ["https://uranai-tenohira.jp/animal-top.webp"],
   },
 };
 
 export default function AnimalLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return children;
 }

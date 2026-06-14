@@ -6,7 +6,8 @@ import Image from "next/image";
 import { TAROT_MAJOR_ARCANA, TAROT_CARD_IMAGES, TAROT_BACK_IMAGE } from "../../data/tarotData";
 import type { TarotCard } from "../../data/tarotData";
 import { TAROT_CARD_SEO } from "../../data/tarotSeoData";
-import TopBannerLink from "../../components/TopBannerLink";
+import FortunePageShell from "../../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../../lib/fortuneDesign";
 import AdBanner from "../../components/AdBanner";
 import RakutenWidget from "../../components/RakutenWidget";
 
@@ -71,31 +72,17 @@ export default function YesNoTarotPage() {
   const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(shareText)}`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50">
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        {/* ヘッダー */}
-        <div className="text-center">
-          <div className="flex items-center justify-between">
-            <TopBannerLink />
-            <div className="flex gap-2">
-              <Link
-                href="/tarot"
-                className="text-xs text-purple-600 border border-purple-300 rounded-full px-3 py-1 hover:bg-purple-50 transition-colors"
-              >
-                3択タロット
-              </Link>
-              <Link
-                href="/tarot-guide"
-                className="text-xs text-purple-600 border border-purple-300 rounded-full px-3 py-1 hover:bg-purple-50 transition-colors"
-              >
-                ガイド
-              </Link>
-            </div>
-          </div>
-          <h1 className="text-2xl font-black text-purple-900 mt-4">
-            YES/NOタロット占い
-          </h1>
-          <p className="text-purple-600 text-sm mt-1">
+    <FortunePageShell
+      theme="tarot"
+      subText="YES/NOタロット"
+      links={[
+        { type: "fortune", href: "/tarot", label: "タロットTOP" },
+        { type: "guide", href: "/tarot-guide" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>YES/NOタロット占い</h1>
+          <p className={fortunePageDescription}>
             1枚引きで、あなたの質問にYES/NOでお答えします
           </p>
         </div>
@@ -378,7 +365,6 @@ export default function YesNoTarotPage() {
             カードごとの詳しい解釈テキストも表示されるため、単なるYES/NOだけでなく、カードが伝えるメッセージも読み取ることができます。
           </p>
         </section>
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

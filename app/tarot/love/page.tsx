@@ -3,7 +3,8 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import AdBanner from "../../components/AdBanner";
-import TopBannerLink from "../../components/TopBannerLink";
+import FortunePageShell from "../../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../../lib/fortuneDesign";
 import RakutenWidget from "../../components/RakutenWidget";
 import Image from "next/image";
 import { TAROT_MAJOR_ARCANA, TAROT_CARD_IMAGES, TAROT_BACK_IMAGE } from "../../data/tarotData";
@@ -113,31 +114,17 @@ export default function LoveTarotPage() {
   const allRevealed = cards?.every((c) => c.flipped) ?? false;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50">
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        {/* ヘッダー */}
-        <div className="text-center">
-          <div className="flex items-center justify-between">
-            <TopBannerLink />
-            <div className="flex gap-2">
-              <Link
-                href="/tarot"
-                className="text-xs text-rose-600 border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors"
-              >
-                3択タロット
-              </Link>
-              <Link
-                href="/tarot-guide"
-                className="text-xs text-rose-600 border border-rose-300 rounded-full px-3 py-1 hover:bg-rose-50 transition-colors"
-              >
-                ガイド
-              </Link>
-            </div>
-          </div>
-          <h1 className="text-2xl font-black text-rose-900 mt-4">
-            恋愛タロット占い
-          </h1>
-          <p className="text-rose-600 text-sm mt-1">
+    <FortunePageShell
+      theme="tarot"
+      subText="恋愛タロット"
+      links={[
+        { type: "fortune", href: "/tarot", label: "タロットTOP" },
+        { type: "guide", href: "/tarot-guide" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>恋愛タロット占い</h1>
+          <p className={fortunePageDescription}>
             大アルカナ3枚スプレッドで、過去・現在・未来の恋の流れを読み解きます
           </p>
         </div>
@@ -500,7 +487,6 @@ export default function LoveTarotPage() {
             </Link>
           </p>
         </section>
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

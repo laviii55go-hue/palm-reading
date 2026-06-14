@@ -4,9 +4,10 @@
 // 記事一覧では、publishedAt が ARTICLE_CUTOFF_DATE 以前の記事のみ表示します。
 // 新しい記事を公開するタイミングで、この日付を更新してから push してください。
 //
-export const ARTICLE_CUTOFF_DATE = "2026-04-21";
+export const ARTICLE_CUTOFF_DATE = "2026-06-12";
 
 export const ARTICLES = [
+  { slug: "free-birthday-diagnosis", emoji: "🎂", title: "動物占い 無料診断｜生年月日でわかる動物キャラと相性の見方", desc: "動物占いを無料で試したい人向けに、生年月日で何がわかるのか、60種類の動物キャラ、相性診断の楽しみ方をやさしく解説します。", publishedAt: "2026-06-12" },
   { slug: "60-types-guide", emoji: "🐾", title: "動物占い60種類の楽しみ方｜12動物×5サブタイプの使いこなし", desc: "動物占いの60種類（12動物×5サブタイプ＝黒・白・赤・青・金）の構造と、色の違いによるキャラの微妙な違いを解説。家族や友人で楽しむコツも紹介。", publishedAt: "2026-04-21" },
 ] as const;
 

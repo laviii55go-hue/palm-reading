@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
-import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageHero from "../components/FortunePageHero";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortuneContentCard } from "../lib/fortuneDesign";
 import RakutenWidget from "../components/RakutenWidget";
 import {
   ANIMALS,
@@ -20,6 +21,25 @@ type CompatPhase = "input" | "result";
 
 const CURRENT_YEAR = new Date().getFullYear();
 const PAGE_URL = "https://uranai-tenohira.jp/animal";
+
+const ANIMAL_FAQS = [
+  {
+    q: "動物占いは無料でできますか？",
+    a: "はい。手のひらの予言者の動物占いは無料で利用できます。生年月日を入力すると、12動物×5サブタイプの60種類からあなたの動物キャラを診断できます。",
+  },
+  {
+    q: "生年月日だけで診断できますか？",
+    a: "はい。動物占いの個人診断は、生まれ年・月・日を入力するだけで結果を表示します。名前やメールアドレスの入力は不要です。",
+  },
+  {
+    q: "大人でも楽しめる動物占いですか？",
+    a: "大人の方にも楽しめるように、性格だけでなく恋愛傾向、仕事での強み、相性診断も用意しています。家族や友人との会話のきっかけにも使えます。",
+  },
+  {
+    q: "動物占いで相性診断はできますか？",
+    a: "できます。自分と相手の生年月日を入力すると、2人の動物キャラをもとに相性スコアと関係のヒントを表示します。",
+  },
+] as const;
 
 type SubtypeTheme = {
   cardGradient: string;
@@ -255,35 +275,62 @@ export default function AnimalFortunePage() {
   // ─── シェアテキスト ───────────────────────────────────
   const personalShareText = `私の動物占いは「${animal.emoji} ${fullName}」でした！\n${animal.title}タイプ✨\n\nあなたも試してみてください👇\n${PAGE_URL}\n#動物占い #${fullName} #占い好きな人と繋がりたい #生年月日占い`;
   const compatShareText = `動物占い相性診断結果 ${animal.emoji}×${partnerAnimal.emoji}\n${myFullName} × ${partnerFullName}\n相性スコア ★${compat.score}/5\n\nあなたも試してみてください👇\n${PAGE_URL}\n#動物占い #相性診断 #占い好きな人と繋がりたい`;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: ANIMAL_FAQS.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
-      <PageHeader
-        variant="fortune"
+    <FortunePageShell
+      variant="fortune"
+      theme="animal"
+      subText="動物占い"
+      links={[
+        { type: "guide", href: "/animal-guide" },
+        { type: "articles", href: "/animal-guide/articles" },
+      ]}
+    >
+      <FortunePageHero
         theme="animal"
-        subText="動物占い"
-        links={[
-          { type: "guide", href: "/animal-guide" },
-          { type: "articles", href: "/animal-guide/articles" },
-        ]}
+        imageSrc="/animal-top.webp"
+        title="動物占い｜無料"
+        description="生年月日で60種類の動物キャラを診断。性格・恋愛・仕事・相性もチェック"
       />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
 
-        {/* タイトル・ヒーロー画像 */}
-        <div className="text-center space-y-1">
-          <div className="mt-3 rounded-2xl overflow-hidden shadow-md">
-            <Image
-              src="/animal-top.webp"
-              alt="動物占い"
-              width={600}
-              height={300}
-              className="w-full h-auto object-cover"
-              priority
-            />
-          </div>
-          <h1 className="text-2xl font-black text-green-800 mt-3">動物占い</h1>
-          <p className="text-green-600 text-sm">生年月日があなたの動物キャラを教えてくれる</p>
-        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+
+        <section className={`${fortuneContentCard} p-5 space-y-3 text-sm leading-relaxed text-green-950/80`}>
+          <h1 className="text-lg font-black text-green-900">
+            動物占い 無料診断｜生年月日でわかる60種類の動物キャラ
+          </h1>
+          <p>
+            生年月日を入力するだけで、あなたの動物キャラを無料診断できます。
+            12種類の動物と5つのサブタイプを組み合わせた60種類から、性格・恋愛・仕事の傾向を読み解きます。
+          </p>
+          <p>
+            相手の生年月日も入力すると、動物占いの相性診断もできます。
+            くわしい仕組みは
+            <Link href="/animal-guide" className="font-bold text-green-700 underline hover:text-green-900">
+              動物占い入門ガイド
+            </Link>
+            、60種類の楽しみ方は
+            <Link href="/animal-guide/articles/60-types-guide" className="font-bold text-green-700 underline hover:text-green-900">
+              動物占い60種類の記事
+            </Link>
+            でも解説しています。
+          </p>
+        </section>
 
         {/* タブ */}
         <div className="flex rounded-2xl overflow-hidden border-2 border-green-200 bg-white">
@@ -324,7 +371,7 @@ export default function AnimalFortunePage() {
           <>
             {personalPhase === "input" && (
               <>
-                <div className="bg-white rounded-3xl shadow-sm p-6 space-y-5">
+                <div className={`${fortuneContentCard} p-6 space-y-5`}>
                   <h2 className="text-center font-bold text-green-800">あなたの生年月日を入力</h2>
                   <DateInputs
                     labelYear="生まれ年" labelMonth="月" labelDay="日"
@@ -472,7 +519,7 @@ export default function AnimalFortunePage() {
           <>
             {compatPhase === "input" && (
               <>
-                <div className="bg-white rounded-3xl shadow-sm p-6 space-y-5">
+                <div className={`${fortuneContentCard} p-6 space-y-5`}>
                   <h2 className="text-center font-bold text-green-800">2人の生年月日を入力</h2>
 
                   <div className="bg-green-50 rounded-2xl p-4 space-y-3">
@@ -636,7 +683,29 @@ export default function AnimalFortunePage() {
             )}
           </>
         )}
-      </div>
-    </div>
+
+        <section className={`${fortuneContentCard} p-5 space-y-4`}>
+          <div className="space-y-2">
+            <p className="text-xs font-black uppercase tracking-wider text-green-500">FAQ</p>
+            <h2 className="text-lg font-black text-green-900">動物占い 無料診断のよくある質問</h2>
+          </div>
+          <div className="space-y-3">
+            {ANIMAL_FAQS.map((faq) => (
+              <details key={faq.q} className="rounded-2xl border border-green-100 bg-green-50/60 p-4">
+                <summary className="cursor-pointer text-sm font-bold text-green-900">{faq.q}</summary>
+                <p className="mt-2 text-sm leading-relaxed text-gray-700">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+          <div className="grid gap-2 text-sm sm:grid-cols-2">
+            <Link href="/animal-guide" className="rounded-2xl bg-white px-4 py-3 font-bold text-green-700 shadow-sm hover:bg-green-50">
+              動物占いの仕組みを見る
+            </Link>
+            <Link href="/animal-guide/articles/free-birthday-diagnosis" className="rounded-2xl bg-white px-4 py-3 font-bold text-green-700 shadow-sm hover:bg-green-50">
+              生年月日診断の解説記事へ
+            </Link>
+          </div>
+        </section>
+    </FortunePageShell>
   );
 }

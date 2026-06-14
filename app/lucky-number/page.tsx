@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
 import Image from "next/image";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
 import RakutenWidget from "../components/RakutenWidget";
 import FooterLinks from "../components/FooterLinks";
 import {
@@ -268,18 +268,18 @@ export default function LuckyNumberPage() {
   const compat = myNum && partnerNum ? getCompatibility(myNum, partnerNum) : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-0">
-      <PageHeader
-        variant="fortune"
-        theme="numerology"
-        subText="数秘術占い"
-        dark
-        links={[
-          { type: "guide", href: "/numerology-guide" },
-          { type: "articles", href: "/numerology-guide/articles" },
-        ]}
-      />
-      <div className="w-full max-w-lg p-4">
+    <FortunePageShell
+      variant="fortune"
+      theme="numerology"
+      subText="数秘術占い"
+      dark
+      backgroundClassName="min-h-screen bg-gradient-to-b from-violet-950 via-purple-900 to-slate-900 flex flex-col items-center p-0 text-white"
+      contentClassName="w-full max-w-lg p-4 pb-10 space-y-6"
+      links={[
+        { type: "guide", href: "/numerology-guide" },
+        { type: "articles", href: "/numerology-guide/articles" },
+      ]}
+    >
         <div className="text-center mb-6">
           <div className="rounded-2xl overflow-hidden shadow-lg shadow-black/30">
             <Image
@@ -831,7 +831,6 @@ export default function LuckyNumberPage() {
         </div>
 
         <FooterLinks className="text-center mt-4" linkClassName="text-slate-500 text-xs hover:text-slate-400 hover:underline" />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }

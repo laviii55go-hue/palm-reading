@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import AdBanner from "../components/AdBanner";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortuneContentCard, fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import RakutenWidget from "../components/RakutenWidget";
 import { getDailyFortune } from "../data/dailyFortuneData";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
@@ -70,27 +71,25 @@ function DailyFortuneContent() {
     : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50">
-      <PageHeader
-        variant="fortune"
-        theme="daily"
-        subText="今日の運勢"
-        links={[
-          { type: "fortune", href: "/daily-fortune-ranking", label: "ランキング", icon: "🏆" },
-          { type: "guide", href: "/daily-fortune-ranking-guide" },
-        ]}
-      />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-        <div className="text-center">
-          <h1 className="text-2xl font-black text-rose-900 mt-3">📆 今日の運勢</h1>
-          <p className="text-rose-700 text-sm">
+    <FortunePageShell
+      variant="fortune"
+      theme="daily"
+      subText="今日の運勢"
+      links={[
+        { type: "fortune", href: "/daily-fortune-ranking", label: "ランキング", icon: "🏆" },
+        { type: "guide", href: "/daily-fortune-ranking-guide" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>📆 今日の運勢</h1>
+          <p className={fortunePageDescription}>
             {CURRENT_YEAR}年{CURRENT_MONTH}月{CURRENT_DAY}日
           </p>
         </div>
 
         {phase === "input" && (
           <>
-            <div className="bg-white rounded-3xl shadow-sm p-5 space-y-4">
+            <div className={`${fortuneContentCard} p-5 space-y-4`}>
               <div className="space-y-2">
                 <p className="text-gray-600 text-sm font-bold">生まれ月・日を入力（12星座）</p>
                 <div className="flex gap-2">
@@ -179,7 +178,7 @@ function DailyFortuneContent() {
                 </div>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-sm p-5 space-y-4">
+            <div className={`${fortuneContentCard} p-5 space-y-4`}>
               <div>
                 <span className="text-pink-600 font-bold text-sm">💕 恋愛運</span>
                 <p className="text-gray-600 text-sm mt-1">{fortune.love}</p>
@@ -215,16 +214,15 @@ function DailyFortuneContent() {
             <RakutenWidget />
           </div>
         )}
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }
 
 export default function DailyFortunePage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 flex items-center justify-center">
-        <p className="text-rose-600 font-medium">読み込み中...</p>
+      <div className="min-h-screen flex items-center justify-center bg-[linear-gradient(180deg,#fffaf8_0%,#fff7fb_38%,#ffffff_100%)]">
+        <p className="font-medium text-purple-700">読み込み中...</p>
       </div>
     }>
       <DailyFortuneContent />

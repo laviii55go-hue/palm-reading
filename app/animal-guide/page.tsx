@@ -6,9 +6,9 @@ import RakutenWidget from "../components/RakutenWidget";
 import { ANIMALS, SUBTYPES } from "../data/animalData";
 
 export const metadata: Metadata = {
-  title: "動物占いとは？12動物の特徴と相性の見方【入門ガイド】",
+  title: "動物占いとは？無料で生年月日からわかる12動物と相性の見方",
   description:
-    "動物占いの基本をわかりやすく解説。生年月日から分かる60種の動物キャラクター、12動物の性格・相性・恋愛傾向、5つのサブタイプの意味まで。初めての方でも楽しめる入門ガイドです。",
+    "動物占いの基本をわかりやすく解説。無料診断で生年月日から分かる60種類の動物キャラクター、12動物の性格・相性・恋愛傾向、5つのサブタイプの意味まで紹介します。",
 };
 
 const GROUP_INFO = [

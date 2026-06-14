@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getSavedBirthDate, saveBirthDate, clearSavedBirthDate } from "../lib/birthDateStorage";
-import PageHeader from "../components/PageHeader";
+import FortunePageShell from "../components/FortunePageShell";
+import { fortunePageDescription, fortunePageTitle } from "../lib/fortuneDesign";
 import FooterLinks from "../components/FooterLinks";
 import { calcJibunKoyomi, type JibunKoyomiResult } from "../lib/jibunKoyomi";
 import { MAIN_STARS, SUB_STARS, ENERGY_BANDS } from "../data/sanmeiTextData";
@@ -66,25 +67,19 @@ export default function JibunKoyomiPage() {
       : "";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-rose-50">
-      <PageHeader
-        variant="fortune"
-        theme="neutral"
-        subText="じぶん暦"
-        links={[
-          { type: "fortune", href: "/sanmeigaku", label: "算命学占い" },
-          { type: "fortune", href: "/lucky-number", label: "数秘術占い" },
-        ]}
-      />
-      <div className="max-w-md mx-auto px-4 py-6 space-y-6">
-
-        {/* タイトル */}
-        <div className="text-center space-y-1">
-          <h1 className="text-2xl font-bold text-indigo-900 mt-2">🌈 じぶん暦</h1>
-          <p className="text-indigo-400 text-xs font-semibold tracking-wide">
-            算命学 × 数秘術 オリジナル総合鑑定
-          </p>
-          <p className="text-slate-500 text-sm">
+    <FortunePageShell
+      variant="fortune"
+      theme="violet"
+      subText="じぶん暦"
+      links={[
+        { type: "fortune", href: "/sanmeigaku", label: "算命学占い" },
+        { type: "fortune", href: "/lucky-number", label: "数秘術占い" },
+      ]}
+    >
+        <div className="text-center space-y-2">
+          <h1 className={fortunePageTitle}>🌈 じぶん暦</h1>
+          <p className="text-xs font-semibold tracking-wide text-violet-700">算命学 × 数秘術 オリジナル総合鑑定</p>
+          <p className={fortunePageDescription}>
             2つの暦であなたの「外の顔」と「内の原動力」を
             <br />
             重ねて読み解く、当サイトだけの鑑定です
@@ -383,7 +378,6 @@ export default function JibunKoyomiPage() {
         </p>
 
         <FooterLinks />
-      </div>
-    </div>
+    </FortunePageShell>
   );
 }
