@@ -110,7 +110,7 @@ const GROUPS: FortuneGroup[] = [
         emoji: "🏆",
         imageSrc: "/v2-daily-moon.png",
         iconSrc: "/v2-daily-moon.png",
-        bannerSrc: "/v2-daily-moon.png",
+        bannerSrc: "/v2-banner-daily-ranking.png",
         badge: "毎日更新",
       },
       {
@@ -121,7 +121,7 @@ const GROUPS: FortuneGroup[] = [
         emoji: "🔮",
         imageSrc: "/v2-daily-tarot-card.png",
         iconSrc: "/v2-daily-tarot-card.png",
-        bannerSrc: "/v2-daily-tarot-card.png",
+        bannerSrc: "/v2-banner-tarot.png",
       },
       {
         href: "/calendar",

@@ -10,6 +10,24 @@ export const metadata: Metadata = {
 
 const ARTICLE_CATEGORIES = [
   {
+    href: "/palm-guide/articles",
+    emoji: "✋",
+    label: "手相占いコラム",
+    desc: "基本3線の読み方・左右の手の違いを初心者向けに解説",
+  },
+  {
+    href: "/tarot-guide/articles",
+    emoji: "🔮",
+    label: "タロットコラム",
+    desc: "3択タロットの楽しみ方・大アルカナの意味を深掘り",
+  },
+  {
+    href: "/kyusei-guide/articles",
+    emoji: "⭐",
+    label: "九星気学コラム",
+    desc: "本命星別の相性・相生と相剋の関係を解説",
+  },
+  {
     href: "/numerology-guide/articles",
     emoji: "🔢",
     label: "数秘術コラム",
@@ -20,12 +38,6 @@ const ARTICLE_CATEGORIES = [
     emoji: "🧠",
     label: "16タイプコラム",
     desc: "性格タイプ別の恋愛・仕事・才能ランキング",
-  },
-  {
-    href: "/tarot-guide/articles",
-    emoji: "🔮",
-    label: "タロットコラム",
-    desc: "3択タロットの楽しみ方・大アルカナの意味を深掘り",
   },
   {
     href: "/animal-guide/articles",
