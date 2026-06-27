@@ -673,6 +673,33 @@ export default function DinosaurFortunePage() {
                   </div>
                 )}
 
+                <div className="rounded-2xl border-2 border-emerald-300 bg-gradient-to-br from-emerald-50 to-teal-50 p-5 space-y-3">
+                  <p className="font-bold text-emerald-800 text-sm flex items-center gap-2">
+                    <span>📱</span> 恐竜けしアプリで遊ぼう！
+                  </p>
+                  <p className="text-gray-600 text-xs leading-relaxed">
+                    恐竜占いが好きなら「恐竜けし」もおすすめ！30種類の恐竜を集めて進化させる無料の脳トレパズルゲームです。
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href="https://apps.apple.com/jp/app/id6762076250"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-black text-white text-xs font-bold hover:bg-gray-800 transition-colors"
+                    >
+                      🍎 App Store
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.laviii55.dinokeshi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-emerald-700 text-white text-xs font-bold hover:bg-emerald-800 transition-colors"
+                    >
+                      ▶ Google Play
+                    </a>
+                  </div>
+                </div>
+
                 <Link
                   href="/lucky-number"
                   className="block w-full py-3 rounded-xl bg-violet-600 text-white font-semibold text-sm text-center hover:bg-violet-700 transition-colors"

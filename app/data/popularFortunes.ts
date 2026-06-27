@@ -2,6 +2,7 @@
 // Search Console / GA4 の状況を見て、この順番を差し替える。
 export const POPULAR_FORTUNE_HREFS = [
   "/animal",
+  "/dinosaur-fortune",
   "/tarot",
   "/daily-fortune-ranking",
   "/palm-quiz",
